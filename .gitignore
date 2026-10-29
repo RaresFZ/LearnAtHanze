@@ -1,0 +1,7 @@
+# Your own course files: large and private. The app only needs the extracted text in content/*/sources.
+exams studies/
+# Tool folders and local junk
+.serena/
+.playwright-mcp/
+node_modules/
+*.log

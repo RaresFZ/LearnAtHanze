@@ -1,0 +1,9 @@
+{
+  "about": "Which existing questions the Match up and Sort it games may use. In a pair the question is the clue and its answer is the match, so nothing here is new content and every pair keeps the source of its question. Short, unambiguous questions only; no two pairs in a round may share an answer. Edit freely, then run npm run validate. The Speed round and Combo run use the exam's own short multiple-choice and true/false questions automatically.",
+  "pairs": [
+    "la-001", "la-002", "la-003", "la-004", "la-006", "la-009", "la-012", "la-014", "la-016", "la-017",
+    "la-020", "la-108", "la-111", "la-115", "la-117", "la-120", "la-122", "la-125", "la-127",
+    "la-130", "la-131", "la-132", "la-133", "la-135", "la-138", "la-139", "la-202", "la-203", "la-204",
+    "la-208", "la-221", "la-225", "la-265", "la-273", "la-286"
+  ]
+}

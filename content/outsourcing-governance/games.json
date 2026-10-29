@@ -1,0 +1,9 @@
+{
+  "about": "Which existing questions the Match up and Sort it games may use. In a pair the question is the clue and its answer is the match, so nothing here is new content and every pair keeps the source of its question. Short, unambiguous questions only; no two pairs in a round may share an answer. Edit freely, then run npm run validate. The Speed round and Combo run use the exam's own short multiple-choice and true/false questions automatically.",
+  "pairs": [
+    "og-002", "og-008", "og-009", "og-010", "og-011", "og-016", "og-021", "og-022", "og-030", "og-032",
+    "og-033", "og-039", "og-040", "og-044", "og-063", "og-064", "og-066", "og-071", "og-077",
+    "og-084", "og-085", "og-086", "og-089", "og-090", "og-105", "og-107", "og-116",
+    "og-119", "og-123", "og-124", "og-125", "og-127"
+  ]
+}

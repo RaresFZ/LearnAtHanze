@@ -1,0 +1,5 @@
+{
+  "about": "Flashcards are built from the questions in questions.json, nothing is written twice. Open and fill-in questions become cards automatically; multiple-choice and true/false questions become cards only when listed in include (definitions and key terms where the question makes sense without its options). Anything in exclude is left out. The card back is the answer, explanation, any Check-the-source flag and the cited source of the question.",
+  "include": ["la-001","la-002","la-009","la-010","la-011","la-014","la-017","la-018","la-020","la-202","la-203","la-204","la-206","la-212","la-215","la-217","la-220","la-221","la-222","la-225","la-227","la-232","la-233","la-235","la-240","la-244","la-250","la-251","la-253","la-254","la-255","la-256","la-257","la-258","la-260","la-261","la-263","la-265","la-266","la-267","la-273","la-274","la-276","la-277","la-279","la-283","la-284","la-286","la-287","la-289","la-290","la-291","la-294","la-299","la-300"],
+  "exclude": ["la-126","la-128","la-137","la-234","la-237","la-239","la-243","la-245","la-246","la-247","la-252","la-280","la-281"]
+}

@@ -1,0 +1,32 @@
+{
+  "title": "LEAN & Agile Project Management",
+  "shortTitle": "LEAN & Agile",
+  "description": "Lean Six Sigma Green Belt (TPS, DMAIC, metrics, improvement tools) plus Scrum, ITIL, Kanban and DevOps.",
+  "examFormat": "Not stated in the course files.",
+  "examFormatShort": "Exam format not stated",
+  "accent": "#b8f25b",
+  "language": "en",
+  "documents": {
+    "key": { "label": "Lean Six Sigma 20 MC answer key", "file": "Lean_Six_Sigma_20_MC_Answer_Key.xlsx" },
+    "syl": { "label": "Green Belt Study Syllabus", "file": "Lean_Six_Sigma_Green_Belt_Syllabus_EN1.pdf" },
+    "l1": { "label": "Lesson 1 slides (Introduction)", "file": "Intro LEAN Minor IT Mgmt CMI Def 22 BB [Automatisch opgeslagen].ppt" },
+    "l2": { "label": "Lesson 2 handout", "file": "Intro LEAN Minor IT Mgmt CMI Lesson 2.pdf" },
+    "l3": { "label": "Lesson 3 slides (group 3)", "file": "Intro LEAN Minor IT Mgmt CMI 1 1920 groep 3 2026 v2.ppt" },
+    "s5": { "label": "Scrum lecture 5 slides", "file": "Minor BiTM Scrum 5 2026.pptx" },
+    "s6": { "label": "Scrum lecture 6 slides", "file": "Minor BiTM Scrum 6 2026.pptx" }
+  },
+  "gaps": [
+    "Scrum lectures 2-4 are not in the folder. Scrum roles, artifacts and events have no source material; only the Scrum values and pillars appear (lecture 5/6 decks).",
+    "The Lean 'metrics 2026 v2' deck is unreadable and was skipped. Add a re-saved .pptx or PDF and the metrics content can be checked against it.",
+    "ITIL 4 (lecture 5): the slides only list the structure and practice names, with no explanations. Questions stay at that level.",
+    "Kanban and DevOps (lecture 6): principles and definitions only. The coffee-shop example and the videos are not text.",
+    "Obeya board: the slide has only the title and 'A0 floor'. No questions were written.",
+    "Agile vs Waterfall vs Start-up: the slides show only the four labels.",
+    "Chapter 9 statistics (control charts, Cp/Cpk, hypothesis tests) comes from the syllabus only. No lecture slide covers it, so it may be beyond what the exam asks.",
+    "The real exam format is not stated anywhere in the files."
+  ],
+  "simulation": {
+    "official": false, "questions": 30, "minutes": 45, "types": ["mc","tf","fill","open"], "passMark": null,
+    "note": "The real exam format is not stated in the course files, so the number of questions, the time and the question types here are a practice setup of your own. Change them in the \"simulation\" block of exam.json."
+  }
+}

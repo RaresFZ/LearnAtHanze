@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LearnAtHanze</title>
+  <meta name="description" content="A local study app for two Hanze exams: quiz, flashcards, weak spots, exam simulation and mini games. Everything stays on your computer.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='4' width='24' height='24' rx='5' fill='%23ffd83d' stroke='%23141414' stroke-width='2.5' transform='rotate(-4 16 16)'/%3E%3Cpath d='M9 15l7-3.5L23 15l-7 3.5z' fill='none' stroke='%23141414' stroke-width='2.2' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preload" href="fonts/bricolage.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    // Apply a saved theme before first paint to avoid a flash.
+    try { var t = localStorage.getItem('learnathanze:theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="wordmark" href="#/" aria-label="LearnAtHanze, home"><span class="mark-sq"></span><span class="word">LearnAtHanze</span></a>
+      <nav class="switcher" id="switcher" aria-label="Exam"></nav>
+      <span class="spacer"></span>
+      <div class="tools" id="tools"></div>
+    </div>
+  </header>
+  <main id="view" class="page" aria-live="polite"></main>
+  <script src="vendor/motion.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

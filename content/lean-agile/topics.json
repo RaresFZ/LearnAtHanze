@@ -1,0 +1,18 @@
+[
+  { "id": "foundations", "title": "Foundations & TPS", "description": "Lean vs Six Sigma, Toyota Production System, the 3Ms, Kaizen and PDCA, JIT, Jidoka, Heijunka, Andon.", "coverage": "good", "examFocus": "The syllabus names TPS, Mura and the aims of Six Sigma as low-scoring themes in the class quizzes." },
+  { "id": "waste", "title": "Lean principles & waste", "description": "Five Lean principles, value-added work, the wastes (TIMWOODS), Gemba / waste walk.", "coverage": "good", "note": "The slide shows 7 wastes, the syllabus 8 (it adds unused talent). Questions follow the syllabus and say so." },
+  { "id": "governance", "title": "Belts, DMAIC & charter", "description": "Belt roles, Champion, DMAIC phases and tollgates, project charter, SMART, RACI.", "coverage": "good", "examFocus": "The Champion role is a low-scoring theme in the class quizzes." },
+  { "id": "define", "title": "Define: VOC, CTQ & SIPOC", "description": "Voice of the Customer / Business, CTQ, SIPOC, stakeholders and scope.", "coverage": "good", "examFocus": "SIPOC and VOC are low-scoring themes in the class quizzes." },
+  { "id": "mapping", "title": "Process mapping & VSM", "description": "Flowcharts, swimlanes, value stream mapping, process cycle efficiency.", "coverage": "good" },
+  { "id": "metrics-time", "title": "Measure: time, flow & capacity", "description": "Takt time, cycle time, lead time, Little's Law, utilization, bottlenecks, First Time Right.", "coverage": "good", "examFocus": "Takt time is a low-scoring theme in the class quizzes." },
+  { "id": "metrics-quality", "title": "Measure: defects & sigma", "description": "Defects and opportunities, DPU, DPO, DPMO, yield, rolled throughput yield, sigma level.", "coverage": "good" },
+  { "id": "analyze", "title": "Analyze: root causes", "description": "Root cause analysis, 5 Whys, Ishikawa, Pareto, A3, FMEA.", "coverage": "good", "examFocus": "5 Whys is a low-scoring theme in the class quizzes." },
+  { "id": "statistics", "title": "Analyze: data & variation", "description": "Descriptive statistics, common vs special causes, control charts, Cp/Cpk.", "coverage": "medium", "note": "Syllabus only. No lecture slide covers this, so it may go beyond the exam." },
+  { "id": "improve-flow", "title": "Improve: flow, pull & error-proofing", "description": "One-piece flow, pull and Kanban, Heijunka, line balancing, Poka Yoke, Jidoka.", "coverage": "good", "examFocus": "Poka Yoke examples are a low-scoring theme in the class quizzes." },
+  { "id": "improve-workplace", "title": "Improve: 5S, SMED & standard work", "description": "5S, visual management, standardized work, SMED, daily huddles.", "coverage": "good" },
+  { "id": "oee", "title": "TPM, OEE & constraints", "description": "Total Productive Maintenance, OEE, six big losses, Theory of Constraints.", "coverage": "good" },
+  { "id": "control", "title": "Control & Lean leadership", "description": "Control plan, Lean leadership, Hoshin Kanri, DMAIC vs PDCA.", "coverage": "good" },
+  { "id": "agile-scrum", "title": "Agile & Scrum", "description": "Agile Manifesto, Scrum values and pillars.", "coverage": "thin", "note": "Scrum lectures 2-4 are missing from the folder. Only the values, the pillars and the Agile Manifesto slide are available." },
+  { "id": "itil", "title": "ITIL 4", "description": "Service Value System, four dimensions, practice groups.", "coverage": "thin", "note": "The slides only list the structure and names, without explanations." },
+  { "id": "kanban-devops", "title": "Kanban & DevOps", "description": "The four Kanban principles, DevOps definition, key components, CI/CD.", "coverage": "medium", "note": "Obeya board has no usable content (title only), so it has no questions." }
+]

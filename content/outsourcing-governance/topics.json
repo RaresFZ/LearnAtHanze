@@ -1,0 +1,12 @@
+[
+  { "id": "control-sox", "title": "Need for control: Enron & SOX", "description": "Why control is needed, Sarbanes-Oxley, SOX for IT (ITGC).", "coverage": "medium", "note": "Lecture 1 only; the Enron and SOX videos are not covered." },
+  { "id": "frameworks", "title": "IT frameworks & standards", "description": "ITIL, COBIT, CMMI, ISO standards, COSO, which framework covers what, framework goals.", "coverage": "good" },
+  { "id": "audit", "title": "IT audit", "description": "IT audit principles, the audit procedure and follow-up.", "coverage": "good" },
+  { "id": "audit-report", "title": "Writing the audit / consultancy report", "description": "Executive summary, findings with evidence, RAG, recommendations, report structure.", "coverage": "good" },
+  { "id": "innovation", "title": "Disruptive technologies & IT strategy", "description": "Disruptive technology, types of disruption, sustaining innovation, IT as product vs support.", "coverage": "medium", "note": "The IT-strategy slides on the BCG matrix and Business Model Canvas are only pictures with titles." },
+  { "id": "outsourcing-basics", "title": "Outsourcing basics & choosing a provider", "description": "SPO and SRO, why outsource, SPO structure, what makes a good provider, selection criteria, vendor lock-in.", "coverage": "medium", "note": "The book excerpt behind Outsourcing I is missing from the folder." },
+  { "id": "managing-spo", "title": "Managing the provider & contracts", "description": "Good practices, pricing models, knowledge management, pyramid, captives, exit management, contract content.", "coverage": "good" },
+  { "id": "scaling-intro", "title": "Scaling agile: Spaceship game", "description": "The classroom simulation used to introduce scaling agile.", "coverage": "thin", "note": "Game rules only; no theory behind it in the slides." },
+  { "id": "safe", "title": "SAFe", "description": "Agile Release Train, Program Increment, PI Planning, roles, meetings, Inspect & Adapt.", "coverage": "good" },
+  { "id": "scrum-at-scale", "title": "Scrum@Scale", "description": "S@S roles, scaled events, the S@S cycle, and comparison with SAFe.", "coverage": "good" }
+]

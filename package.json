@@ -1,0 +1,13 @@
+{
+  "name": "learnathanze",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local study app for Hanze exams",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "extract": "node tools/extract.mjs",
+    "validate": "node tools/validate.mjs"
+  },
+  "engines": { "node": ">=18" }
+}

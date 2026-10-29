@@ -1,0 +1,30 @@
+{
+  "title": "Outsourcing & Agile Governance",
+  "shortTitle": "Outsourcing & Governance",
+  "description": "IT governance and audit, innovation and IT strategy, outsourcing to IT providers, and scaling agile with SAFe and Scrum@Scale.",
+  "examFormat": "Multiple-choice theory exam (week 46, per the course planning on the Lecture 1 slides).",
+  "examFormatShort": "Multiple-choice theory exam",
+  "accent": "#9db0ff",
+  "language": "en",
+  "documents": {
+    "g1": { "label": "Lecture 1: Governance", "file": "Lecture 1  OAG Governance.pptx" },
+    "g2": { "label": "Lecture 2: IT Governance, Audit Report", "file": "OAG Lecture 02 IT Governance - Audit Report.pptx" },
+    "g3": { "label": "Lecture 3: Innovation, Disruptive Technologies", "file": "OAG Lecture Innovation 2026 - Disruptive Technologies.pptx" },
+    "g4": { "label": "Lecture 4: Outsourcing I", "file": "OAG Lecture 04 Outsourcing I.pptx" },
+    "g5": { "label": "Lecture 5: Outsourcing II", "file": "OAG Lecture 05 Outsourcing II - 2.pptx" },
+    "g6": { "label": "Lecture 6: Scaling Agile I", "file": "OAG Lecture 06 Scaling Agile I 2026.pptx" },
+    "g7": { "label": "Lecture 7: Scaling Agile II", "file": "OAG Lecture 07 Scaling Agile II.pptx" }
+  },
+  "gaps": [
+    "Outsourcing I refers to a book excerpt on Blackboard ('see BB'). It is not in the folder, so outsourcing content comes only from the slides.",
+    "Lecture 6 (Spaceship game) is a classroom simulation with rules only. There is almost no theory to ask about.",
+    "The SAFe 'essential' and 'full configuration' pictures hold more detail than the slide text. Only the components explained on the text slides are covered.",
+    "IT strategy slides (BCG matrix, Business Model Canvas) show a picture and a title only, with no explanation. Questions stay at what is visible.",
+    "Not in the folder: the Debating Best Practices document, the audit report example structure ('see BS'), and any material for week 45 (PI Planning preparation).",
+    "The lectures link to YouTube videos. Their content is not available, so nothing from them is covered."
+  ],
+  "simulation": {
+    "official": false, "questions": 40, "minutes": 60, "types": ["mc","tf"], "passMark": null,
+    "note": "The course plan (Lecture 1) says this is a multiple-choice theory exam, but not how many questions, how long it lasts or what the pass mark is. Those numbers are a practice setup of your own. Change them in the \"simulation\" block of exam.json."
+  }
+}
