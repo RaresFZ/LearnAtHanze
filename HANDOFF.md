@@ -18,6 +18,8 @@ The two exams never share content, progress, stats or accent colour. Keep it tha
 ## 2. Run and check it
 
 ```
+LearnAtHanze.bat       # one-click launcher (Windows): hidden server window, waits for it to answer, opens the browser; reuses a running one
+Stop LearnAtHanze.bat  # clean stop: ends a live game, closes the phone port, exits (asks first if a game runs; -Force skips)
 npm start              # http://localhost:3737 (opens the browser; NO_OPEN=1 stops that)
 npm run validate       # checks every content/<exam>/questions.json (ids, topics, sources, answer indexes)
 npm run extract        # re-extracts text from "exams studies/" into content/<exam>/sources/
@@ -27,6 +29,7 @@ npm run test:live:http # Live Quiz over real HTTP (6 tests, ~22 s): isolation, n
 
 Live Quiz ports: the play server for phones is **3738** (`PLAY_PORT` overrides), opened only while a game is hosted. Test-only env: `LIVE_LAN=off` (never open the network, loopback only), `LIVE_LAN=loopback` (loopback only but still *reports* the LAN address, for screenshots and QR tests), `LIVE_SSE=off` (the phone event stream hangs silently, like a tunnel that swallows streams: forces the long-poll fallback) and short timers `LIVE_HEARTBEAT_MS`, `LIVE_POLL_HOLD_MS`, `LIVE_HOST_AWAY_MS` (defaults 10000 / 20000 / 6000). A plain `npm start` opens the network when a game is created (Windows Firewall will ask once). `PORT` and `PLAY_PORT` must differ (the server refuses to start otherwise).
 
+- **Launcher details.** `LearnAtHanze.bat` and `Stop LearnAtHanze.bat` are thin (CRLF, `pushd %~dp0`); the logic is in `tools/launch.ps1`, `tools/stop.ps1`, `tools/lah-common.ps1` (plain ASCII, Windows PowerShell 5.1). `Get-AppState` asks `GET /api/live/status` (only LearnAtHanze answers with an `active` field): `ours` / `other` / `free`. `other` = tell the user, change nothing, never kill, never change port. The server is started with `Start-Process node server.js -WindowStyle Hidden` with `NO_OPEN=1` and output in `LearnAtHanze.out.log` / `.err.log` (ignored by `*.log`); the launcher opens the browser itself after the server answers (polls every 150 ms, 20 s limit). Stop = `POST /api/quit` in `server.js` (same Host/Origin/JSON checks as the live host API, 403 otherwise) which runs the same `shutdown()` as Ctrl+C: `live.end()` (ends the game, closes 3738) then `process.exit`. Env for tests: `PORT`, `NO_OPEN=1` (no browser), `NO_PAUSE=1` (no message box). **Test the launcher only on spare ports (3777/3778), never 3737.** Desktop shortcut: `tools/make-shortcut.ps1` (`-Folder`, `-IncludeStop`), icon `tools/icon/LearnAtHanze.ico` built from `tools/icon/icon.svg` via PNG renders in `tools/icon/png/` and `node tools/pack-ico.mjs`. Not tested: pressing Y/another key at the live-game question (needs a real keyboard), a real double-click from Explorer, the default-browser open, the message box itself.
 - Port **3737 is fixed on purpose**: localStorage is tied to the address, so a different port looks like lost progress. If it is busy the server says so instead of picking another port. `PORT=4000` overrides it.
 - Node 18+ (the machine has Node 24). No npm dependencies at all.
 - `npm run extract` needs `pdftotext` (poppler, found via MiKTeX here) for PDFs and LibreOffice (`C:\Program Files\LibreOffice`) for old `.ppt`. It unzips pptx/xlsx with `C:/Windows/System32/tar.exe`.
@@ -36,7 +39,7 @@ Live Quiz ports: the play server for phones is **3738** (`PLAY_PORT` overrides),
 ## 3. Project structure
 
 ```
-server.js                    tiny static server + /api/exams and /api/exams/<id> (reads the JSON on every request); mounts the Live Quiz host API at /api/live/* (server/live/hub.js)
+server.js                    tiny static server (also POST /api/quit, used by the stop script) + /api/exams and /api/exams/<id> (reads the JSON on every request); mounts the Live Quiz host API at /api/live/* (server/live/hub.js)
 package.json                 scripts only
 README.md                    user-facing: how to run, how to edit questions
 HANDOFF.md                   this file
@@ -85,6 +88,7 @@ server/live/engine.js        Live Quiz game engine (pure, injected clock, ONE ga
 server/live/hub.js           Live Quiz hub: the play server (allow-listed files + /live/*), SSE streams, host API under /api/live/*
 server/live/lan.js           picks the LAN IPv4 address(es) phones should use
 tools/test-live-engine.mjs   engine tests; tools/test-live-http.mjs  HTTP integration test (needs LIVE_* timers set by its own boot())
+LearnAtHanze.bat, Stop LearnAtHanze.bat  launcher and stopper (logic in tools/launch.ps1, stop.ps1, lah-common.ps1; shortcut maker tools/make-shortcut.ps1; icon in tools/icon/ + tools/pack-ico.mjs)
 tools/extract.mjs            extraction (see SKIP table at the top)
 tools/validate.mjs           validator
 docs/mockup/                 standalone design mockup (open exam.html); screens/ has its GIFs and stills

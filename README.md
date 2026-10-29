@@ -12,6 +12,17 @@ npm start
 
 The app opens at **http://localhost:3737**. Stop it with `Ctrl+C`.
 
+### One-click launcher (Windows)
+
+Instead of typing `npm start`, double-click **`LearnAtHanze.bat`** (from any location). It starts the app in a hidden window, waits until it answers, and opens http://localhost:3737 in your default browser. If the app is already running it only opens the browser, so you never get a second copy or a port error.
+
+- **Stop it** with **`Stop LearnAtHanze.bat`**. It asks the app to quit: a running live game is ended, the phone port (3738) is closed, then the app exits. If a live game is running it asks first (press **Y**; or run it with `-Force` to skip the question). It never force-kills anything.
+- **Desktop shortcut with the icon:** run `powershell -ExecutionPolicy Bypass -File tools\make-shortcut.ps1` (add `-IncludeStop` for a second one that stops the app, or `-Folder "C:\path"` to put them somewhere other than the Desktop). Delete the `.lnk` files to remove them. If you move the project folder, run it again. The icon is `tools/icon/LearnAtHanze.ico` (source `tools/icon/icon.svg`; rebuild with `node tools/pack-ico.mjs`).
+- The launcher only starts the app. The Live Quiz network listener still opens only when you create a game, never at launch.
+- If something goes wrong a message box says what, and the app's output is in `LearnAtHanze.out.log` and `LearnAtHanze.err.log` in this folder.
+- **Port 3737 busy with another program?** The launcher says so and changes nothing. Find it with `netstat -ano | findstr :3737`, then `tasklist /FI "PID eq <number>"`, close that program and launch again. Do not switch ports (your progress is stored per address). If you really must: set `PORT=4000` first (PowerShell: `$env:PORT=4000`), and note that your progress will look empty there; Export/Import brings it back.
+- Needs Node.js 18+ on your PATH (the launcher tells you if it is missing). Closing the terminal window of a plain `npm start` also stops the app; the launcher has no window, hence the Stop script.
+
 > Your progress is saved in the browser and tied to this address. Always use `http://localhost:3737` (the port is fixed on purpose). If you change the port, your progress will look empty; you can bring it back with Export/Import.
 
 ## What is in it

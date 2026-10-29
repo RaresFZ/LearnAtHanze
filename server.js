@@ -82,9 +82,30 @@ if (PLAY_PORT === PORT) {
 
 const live = createHub({ loadExam, hostPort: PORT, playPort: PLAY_PORT });
 
+// Stopping: ends a live game and closes the phone port first, then exits. Used by Ctrl+C and by the "Stop LearnAtHanze" script (POST /api/quit).
+let stopping = false;
+function shutdown(why) {
+  if (stopping) return;
+  stopping = true;
+  console.log(`LearnAtHanze is stopping (${why}).`);
+  live.end().catch(() => {}).finally(() => process.exit(0));
+}
+/** Same checks as the Live Quiz host API: only this computer's own page or script may call it (no other website, no plain form post). */
+function fromThisComputer(req) {
+  const hosts = [`localhost:${PORT}`, `127.0.0.1:${PORT}`];
+  if (!hosts.includes(req.headers.host || '')) return false;
+  if (req.headers.origin && !hosts.some((h) => req.headers.origin === `http://${h}`)) return false;
+  return /^application\/json/.test(req.headers['content-type'] || '');
+}
+
 const server = http.createServer(async (req, res) => {
   try {
     const { pathname } = new URL(req.url, 'http://localhost');
+    if (pathname === '/api/quit') {
+      if (req.method !== 'POST' || !fromThisComputer(req)) return sendJson(res, 403, { error: 'Forbidden' });
+      sendJson(res, 200, { ok: true, liveGame: live.status().active });
+      return void res.on('finish', () => shutdown('asked to stop'));
+    }
     if (pathname.startsWith('/api/live/')) return live.handleHost(req, res, pathname);
     if (pathname === '/api/exams') return sendJson(res, 200, await listExams());
     const m = pathname.match(/^\/api\/exams\/([a-z0-9-]+)$/);
@@ -108,7 +129,7 @@ server.on('error', (e) => {
   process.exit(1);
 });
 
-for (const sig of ['SIGINT', 'SIGTERM']) process.on(sig, () => { live.end().finally(() => process.exit(0)); });
+for (const sig of ['SIGINT', 'SIGTERM']) process.on(sig, () => shutdown(sig));
 
 server.listen(PORT, '127.0.0.1', () => {
   const url = `http://localhost:${PORT}`;
