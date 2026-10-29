@@ -189,7 +189,7 @@ Reads `exams studies/` and rewrites `content/<exam>/sources/`. It needs `pdftote
 - Top bar toggles: sound (off by default), reduce motion, marker cursor (off by default), light/dark. "Reduce motion" is also switched on by your system setting, and it makes every animation land instantly.
 - Pressing any key finishes a running animation, so nothing ever blocks you from answering.
 - Colours, spacing and type sizes live at the top of `app/css/style.css`; the motion code is in `app/js/fx.js`.
-- `docs/screenshots/` has screenshots of the real app; `docs/mockup/` is the standalone design mockup it came from.
+- The maintainer keeps screenshots of the app and the design mockup in `docs/` on their own machine; they are not part of the repository.
 
 ## Progress
 

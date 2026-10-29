@@ -1,5 +1,11 @@
 # Your own course files: large and private. The app only needs the extracted text in content/*/sources.
 exams studies/
+# Notes for Claude sessions: useful on this machine, not part of the app
+CLAUDE.md
+HANDOFF.md
+.claude/
+# Screenshots, GIFs and the design mockup (about 56 MB of the 58 MB repo): keeping them out makes every ZIP download and update small
+docs/
 # Tool folders and local junk
 .serena/
 .playwright-mcp/
