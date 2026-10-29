@@ -223,3 +223,7 @@ Reads `exams studies/` and rewrites `content/<exam>/sources/`. It needs `pdftote
 - [x] Live Quiz (multiplayer on phones): lobby, rounds, scoring, leaderboard, podium, reconnecting, network help
 
 Tested in Chromium (desktop and a touch-emulated phone). Live Quiz was also tested with simulated phones and, in an earlier build, one real phone over Wi-Fi. Not tested: Firefox, Safari, iOS, screen readers. The app uses modern CSS (`:has()`, `@property`), so use a current browser.
+
+## License
+
+The code is released under the [MIT License](LICENSE): free to use, copy and change. This covers the code only. The course material the questions are based on belongs to its authors and to Hanze; the files in `content/*/sources/` are text extracted from it. Bundled third-party parts keep their own licenses: Motion and qrcode-generator (MIT, license files in `app/vendor/`), the Lucide icons (ISC, inlined in `app/js/icons.js`) and the fonts Bricolage Grotesque and Geist (SIL Open Font License).

@@ -2,6 +2,7 @@
   "name": "learnathanze",
   "version": "1.0.0",
   "private": true,
+  "license": "MIT",
   "description": "Local study app for Hanze exams",
   "type": "module",
   "scripts": {
