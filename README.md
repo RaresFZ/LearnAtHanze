@@ -23,6 +23,18 @@ Instead of typing `npm start`, double-click **`LearnAtHanze.bat`** (from any loc
 - **Port 3737 busy with another program?** The launcher says so and changes nothing. Find it with `netstat -ano | findstr :3737`, then `tasklist /FI "PID eq <number>"`, close that program and launch again. Do not switch ports (your progress is stored per address). If you really must: set `PORT=4000` first (PowerShell: `$env:PORT=4000`), and note that your progress will look empty there; Export/Import brings it back.
 - Needs Node.js 18+ on your PATH (the launcher tells you if it is missing). Closing the terminal window of a plain `npm start` also stops the app; the launcher has no window, hence the Stop script.
 
+### Updates
+
+The launcher keeps your copy up to date. Each time you start LearnAtHanze with it, it looks at GitHub (this takes about a second, and is skipped without any message when you are offline). If there is a newer version, a window says **"Update available. Update now?"**, with the version you have, the newest one and the list of what changed. **Yes** updates and then starts the app; **No** starts the app as it is (it asks again next time). It never updates without asking.
+
+- **Your progress is safe.** It lives in your browser, which an update cannot reach. Your own course files in `exams studies/` and the `.log` files are never touched either.
+- **An update never happens while the app is running.** The launcher then only tells you; use **Stop LearnAtHanze**, then start LearnAtHanze again.
+- **If you edited files yourself** and the update would change the same file, it refuses and changes nothing: it tells you which file, and the app starts on your current version. To get the update anyway, copy your edited file somewhere safe, undo your edit (git clone: `git checkout -- <file>`; ZIP copy: download the newest ZIP and put the file back from it) and launch again. Edits to files the update does not change are kept.
+- **Git clone** (the folder has a `.git` folder): the update is `git pull --ff-only` (needs git and the `main` branch). **ZIP copy** (you used "Download ZIP"): it downloads the newest ZIP and copies the files over; files that were removed on GitHub stay in your folder. It writes `.lah-install.json` to remember what it installed, which is how it tells your edits from its own files next time. The first time a ZIP copy updates, it cannot know which version you had, so it first saves the files it replaces in `.lah-backup/`. All of these `.lah-*` entries are scratch files, safe to delete, and ignored by git.
+- **Copies from before the updater existed** cannot update themselves once: download the newest ZIP (or `git pull`) one time by hand. After that the launcher does it.
+- **No update at all?** `LAH_NO_UPDATE=1` skips the check (PowerShell: `$env:LAH_NO_UPDATE=1` before starting). The check also does nothing when GitHub is not reachable or limits requests.
+- **For the maintainer:** what you push to `main` on GitHub is what everyone is offered at their next launch. The checks in `.github/workflows/ci.yml` (content validation and the Live Quiz tests) run on every push, so look at them before you tell friends. `npm run test:update` tests the launcher itself against a fake GitHub in scratch copies.
+
 > Your progress is saved in the browser and tied to this address. Always use `http://localhost:3737` (the port is fixed on purpose). If you change the port, your progress will look empty; you can bring it back with Export/Import.
 
 ## What is in it

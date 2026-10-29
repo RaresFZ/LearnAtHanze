@@ -1,0 +1,2 @@
+# The Windows launchers must keep CRLF line endings, also in the ZIP that GitHub's "Download ZIP" builds.
+*.bat text eol=crlf

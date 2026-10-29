@@ -5,3 +5,5 @@ exams studies/
 .playwright-mcp/
 node_modules/
 *.log
+# Written by the launcher self-update: install record of ZIP copies, its download scratch folder, backups of replaced files
+.lah-*

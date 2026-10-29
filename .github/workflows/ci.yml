@@ -1,0 +1,31 @@
+# Runs on every push and pull request, so a broken push is seen here before friends' launchers offer it as an update.
+# No dependencies to install: the app uses only Node's own modules. The Live Quiz tests start their own servers on spare ports (3757/3758)
+# with the network listener off, and the update test (Windows only, the launcher is PowerShell) uses 3777/3778.
+name: checks
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Content check
+        run: npm run validate
+      - name: Live Quiz engine tests
+        run: npm run test:live
+      - name: Live Quiz over real HTTP
+        run: npm run test:live:http
+      - name: Launcher self-update (fake GitHub, scratch copies)
+        if: runner.os == 'Windows'
+        run: npm run test:update

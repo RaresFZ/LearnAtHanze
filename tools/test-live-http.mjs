@@ -7,7 +7,7 @@ import http from 'node:http';
 import { spawn } from 'node:child_process';
 
 const HOST = 3757, PLAY = 3758;
-const H = `http://localhost:${HOST}`, P = `http://localhost:${PLAY}`;
+const H = `http://127.0.0.1:${HOST}`, P = `http://127.0.0.1:${PLAY}`;     // not "localhost": on some machines it tries ::1 first and the servers listen on IPv4 only
 let child;
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));

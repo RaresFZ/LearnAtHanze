@@ -1,7 +1,10 @@
 # One-click launcher: starts the LearnAtHanze server in a hidden window, waits until it answers, then opens the browser.
 # If it is already running it only opens the browser. Never kills anything and never picks another port.
-# Environment (all optional): PORT (default 3737), NO_OPEN=1 (do not open the browser), NO_PAUSE=1 (no message box on problems).
+# Before starting it checks GitHub for a newer version and, only if the person says yes, updates (tools/update.ps1). It never updates a running app.
+# Environment (all optional): PORT (default 3737), NO_OPEN=1 (do not open the browser), NO_PAUSE=1 (no message box on problems),
+# LAH_NO_UPDATE=1 (no update check); the others are listed at the top of update.ps1.
 . "$PSScriptRoot\lah-common.ps1"
+. "$PSScriptRoot\update.ps1"
 
 $openBrowser = -not $env:NO_OPEN
 function Open-App { if ($openBrowser) { Start-Process $Url } }
@@ -10,6 +13,7 @@ $s = Get-AppState
 if ($s.State -eq 'ours') {
     Write-Host "LearnAtHanze is already running at $Url."
     Open-App
+    [void](Invoke-UpdateFlow -Running)       # after the browser is open: only tells the person how to update, never touches a running app
     exit 0
 }
 if ($s.State -eq 'other') {
@@ -24,6 +28,15 @@ $node = Get-Command node -ErrorAction SilentlyContinue
 if (-not $node) {
     Show-Problem "Node.js was not found. Install the LTS version from https://nodejs.org (it adds node to your PATH), then start LearnAtHanze again."
     exit 1
+}
+
+# Update check (bounded to a few seconds, silent when offline). After an update this script starts over, so the NEW scripts start the app.
+if (-not $env:LAH_UPDATED) {
+    if ((Invoke-UpdateFlow).Updated) {
+        $env:LAH_UPDATED = '1'
+        & powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$PSScriptRoot\launch.ps1"
+        exit $LASTEXITCODE
+    }
 }
 
 $out = Join-Path $Root 'LearnAtHanze.out.log'
