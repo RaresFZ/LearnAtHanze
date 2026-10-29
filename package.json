@@ -7,7 +7,9 @@
   "scripts": {
     "start": "node server.js",
     "extract": "node tools/extract.mjs",
-    "validate": "node tools/validate.mjs"
+    "validate": "node tools/validate.mjs",
+    "test:live": "node --test tools/test-live-engine.mjs",
+    "test:live:http": "node --test tools/test-live-http.mjs"
   },
   "engines": { "node": ">=18" }
 }

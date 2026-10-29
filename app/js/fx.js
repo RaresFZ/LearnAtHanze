@@ -121,10 +121,10 @@ FX.enter = (els, { y = -44, rotate = 0, delay = 0, stagger = 0.06, spring = FX.s
 /** Delay to use for entrances so they start as a wipe retracts. */
 FX.base = () => (FX.wiping ? 0.3 : 0.05);
 
-FX.count = (el, to, { duration = 0.9, delay = 0, fmt = (v) => String(Math.round(v)) } = {}) => {
+FX.count = (el, to, { duration = 0.9, delay = 0, from = 0, fmt = (v) => String(Math.round(v)) } = {}) => {
   if (FX.reduced()) { el.textContent = fmt(to); return; }
-  el.textContent = fmt(0);
-  const c = M.animate(0, to, { duration, delay, ease: [0.2, 0.7, 0.2, 1], onUpdate: (v) => { el.textContent = fmt(v); } });
+  el.textContent = fmt(from);
+  const c = M.animate(from, to, { duration, delay, ease: [0.2, 0.7, 0.2, 1], onUpdate: (v) => { el.textContent = fmt(v); } });
   active.add(c); c.then(() => { active.delete(c); el.textContent = fmt(to); }, () => active.delete(c));
 };
 
@@ -191,6 +191,7 @@ FX.sound = (name) => {
       g.gain.setValueAtTime(gain, t + at); g.gain.exponentialRampToValueAtTime(0.0001, t + at + dur);
       o.connect(g).connect(actx.destination); o.start(t + at); o.stop(t + at + dur + 0.02);
     };
+    if (name === 'tick') tone('triangle', 1300, 950, 0.035, 0.06);
     if (name === 'click') tone('triangle', 900, 520, 0.045, 0.07);
     if (name === 'pop') { tone('sine', 420, 820, 0.1, 0.13); tone('sine', 620, 1200, 0.09, 0.07, 0.05); }
     if (name === 'thud') { tone('sine', 150, 42, 0.26, 0.3); tone('triangle', 90, 40, 0.18, 0.14); }

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Live Quiz</title>
+  <meta name="description" content="Join a live quiz game on your phone.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='4' width='24' height='24' rx='5' fill='%23ffd83d' stroke='%23141414' stroke-width='2.5' transform='rotate(-4 16 16)'/%3E%3Cpath d='M9 15l7-3.5L23 15l-7 3.5z' fill='none' stroke='%23141414' stroke-width='2.2' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preload" href="/fonts/bricolage.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/live.css">
+  <script src="/theme.js"></script>
+</head>
+<body class="play-body">
+  <header class="play-top">
+    <span class="wordmark" aria-label="LearnAtHanze live quiz"><span class="mark-sq"></span><span class="word">Live Quiz</span></span>
+    <div class="tools" id="tools"></div>
+  </header>
+  <main id="view" class="play-main" aria-live="polite"></main>
+  <script src="/vendor/motion.js"></script>
+  <script type="module" src="/play.js"></script>
+</body>
+</html>

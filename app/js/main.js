@@ -10,6 +10,7 @@ import { renderWeak, weakCounts } from './weak.js';
 import { renderProgress } from './progress-view.js';
 import { renderSimSetup, destroySim } from './simulation.js';
 import { renderGamesHub, renderGameIntro, destroyGame } from './games.js';
+import { renderLiveSetup, renderLiveHost, destroyLive } from './live.js';
 
 const M = window.Motion;
 const root = document.getElementById('view');
@@ -157,6 +158,7 @@ async function renderExam(id) {
 
   // study modes: only the ones that exist
   const due = cardStatus(data).due;
+  const live = await api('/api/live/status').catch(() => ({ active: false }));
   const weakNow = weakCounts(data);
   const weakN = weakNow.questions + weakNow.cards;
   const modes = [
@@ -180,6 +182,10 @@ async function renderExam(id) {
     FX.obj(h('a', { class: 'mode yellow', href: `#/exam/${id}/progress` },
       icon('chart-column', 40), h('div', null, h('h3', null, 'Progress'), h('p', null, 'Accuracy over time, mastery per topic, streaks.'))),
     { cls: 'o-mode', tilt: 8, shine: true, fill: true, z: 18 }),
+    FX.obj(h('a', { class: 'mode coral', href: `#/exam/${id}/live` },
+      h('div', { class: 'wide-main' }, icon('radio', 40), h('div', null, h('h3', null, 'Live Quiz'), h('p', null, 'Host a game on this screen. Friends join on their phones with a code.'))),
+      h('span', { class: 'chip' }, live.active ? 'Hosting now' : 'Multiplayer')),
+    { cls: 'o-mode o-wide', tilt: 4, shine: true, z: 18 }),
   ];
 
   // topics
@@ -288,7 +294,18 @@ async function renderGames(id, game) {
   if (game) renderGameIntro(root, data, game); else renderGamesHub(root, data);
 }
 
+async function renderLive(id) {
+  const data = await api(`/api/exams/${id}`);
+  setAccent(data.exam);
+  await renderLiveSetup(root, data);
+}
+
+function renderLiveHostView(id) {
+  renderLiveHost(root, { setAccent, leave: () => FX.navigate(`#/exam/${id}/live`) });
+}
+
 async function route() {
+  destroyLive();
   destroyActiveCard();
   destroyCardSession();
   destroySim();
@@ -306,6 +323,8 @@ async function route() {
     else if ((m = path.match(/^\/exam\/([a-z0-9-]+)\/simulation$/))) await renderSimulation(m[1]);
     else if ((m = path.match(/^\/exam\/([a-z0-9-]+)\/games$/))) await renderGames(m[1]);
     else if ((m = path.match(/^\/exam\/([a-z0-9-]+)\/games\/(match|sort|speed|combo)$/))) await renderGames(m[1], m[2]);
+    else if ((m = path.match(/^\/exam\/([a-z0-9-]+)\/live$/))) await renderLive(m[1]);
+    else if ((m = path.match(/^\/exam\/([a-z0-9-]+)\/live\/host$/))) renderLiveHostView(m[1]);
     else { setAccent(null); mount(root, h('p', { class: 'lead' }, 'This page does not exist. ', h('a', { href: '#/', class: 'back' }, 'Go to the exam list'))); }
     window.scrollTo(0, 0);
   } catch (e) {

@@ -422,7 +422,7 @@ html[data-reduce="1"] *, html[data-reduce="1"] *::before, html[data-reduce="1"] 
 .toggle .box { flex: none; width: 22px; height: 22px; border: 2px solid var(--ink); border-radius: 5px; display: grid; place-items: center; background: var(--card); color: var(--ink); }
 .toggle .box .icon { opacity: 0; }
 .toggle[aria-pressed="true"] { background: var(--accent); color: var(--on-fill); }
-.toggle[aria-pressed="true"] .box { background: var(--card); color: #141414; }
+.toggle[aria-pressed="true"] .box { background: #fffdf8; color: #141414; }   /* light box in both themes, so the tick shows in dark mode too */
 .toggle[aria-pressed="true"] .box .icon { opacity: 1; }
 .toggle .t { flex: 1; }
 .toggle .count { font: 500 12px/1 var(--mono); letter-spacing: 0.04em; }

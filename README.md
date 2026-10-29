@@ -16,7 +16,7 @@ The app opens at **http://localhost:3737**. Stop it with `Ctrl+C`.
 
 ## What is in it
 
-Six ways to study, for each exam: **Quiz** (by topic or a random mix, four question types), **Flashcards** (spaced repetition), **Weak spots** (aims the quiz and flashcards at what you keep missing), **Exam simulation** (timed and mixed, one score at the end), **Mini games** (match up, sort it, speed round, combo run) and a **Progress** page. Every question and card comes from your own course files and cites its source; nothing is made up.
+Seven ways to study, for each exam: **Quiz** (by topic or a random mix, four question types), **Flashcards** (spaced repetition), **Weak spots** (aims the quiz and flashcards at what you keep missing), **Exam simulation** (timed and mixed, one score at the end), **Mini games** (match up, sort it, speed round, combo run), a **Progress** page and **Live Quiz** (a multiplayer game for your friends' phones, see below). Every question and card comes from your own course files and cites its source; nothing is made up.
 
 ## The two exams
 
@@ -99,6 +99,57 @@ Four short games per exam, built only from that exam's own questions and answers
 
 Match up and Sort it use the pairs listed in `content/<exam>/games.json` (`"pairs": [question ids]`: the question is the clue, its answer is the match). Pick short, unambiguous questions without a source flag; no two pairs in a round may share an answer. Speed round and Combo run pick short questions automatically (flagged ones are left out). The answers you give in the Speed round and Combo run count toward your accuracy and weak spots, but not toward your carried-over streak. `npm run validate` checks `games.json`.
 
+## Live Quiz (play with friends on their phones)
+
+A Kahoot-style game for one exam at a time. You host it on this computer's screen, friends join on their phones with a code, no account and nothing to install.
+
+**How to host**
+
+1. Start the app (`npm start`), open an exam and choose **Live Quiz**.
+2. Pick topics (none = all), 5, 10 or 20 questions, and 10, 20 or 30 seconds per question. Optional: **I am playing too** (you get your own player screen in a new tab) and **Allow late joiners** (people who arrive after the start join at 0 points).
+3. Click **Open the lobby**. The big screen shows the address, a QR code, a 5-digit code and the players as they join. Click **Start game** when everyone is in. Windows may ask once whether Node.js may use the network (see below).
+
+**How friends join**
+
+- On the same Wi-Fi as this computer, scan the QR code or type the address shown (it looks like `192.168.0.12:3738`), then type the code and a nickname (1 to 16 characters).
+- Refreshing the page, a locked screen or a lost connection does not lose the seat: the phone reconnects by itself. If a phone ends up on the join screen, typing the same nickname takes the seat back, with its points. Two people cannot use the same nickname at once.
+- Up to 30 players. After the game starts nobody new can join (unless you allowed late joiners).
+
+**The rules**
+
+- Only **multiple choice and true/false** questions from the exam you opened, never ones flagged "Check the source". Two exams are never mixed.
+- A correct answer scores `500 + 500 x (time left / time limit)`, plus a streak bonus of 50 for each correct answer in a row before it (at most 250). A wrong or missing answer scores 0 and ends the streak.
+- A question ends when everyone has answered or the time is up. Then the right answer, the explanation and the source light up on the big screen, and each phone sees its own result. After each question: a top-5 leaderboard with rank changes; after the last one, a podium. Ties are decided by less total time spent on correct answers.
+- Host keys: **P** pause or resume, **S** skip to the answer, **Enter** go on. **Play again** keeps the players and the code and starts a fresh set of questions at 0 points.
+- Phones only receive what they are allowed to see: the right answer and the explanation are not sent until the question is over. The game runs on the computer and is kept in memory only: if the app is stopped or restarted, the game is over. Sound is off by default; **reduce motion** works on phones too.
+
+**What it does not touch**
+
+- Your solo progress, streaks and flashcard schedules are never read or changed. A live game saves nothing about you.
+- Only the phone page can be reached from the network, on its own port (**3738**), and only while a game is hosted. The rest of the app, your course files and your progress stay on `localhost:3737`, which only this computer can open. **Phones can join** (above the code) switches the network off at once; **End game** closes the port.
+
+**If a phone can't connect** (the same help is in the lobby, under "Phones can't connect?"). Try in this order:
+
+1. **Same Wi-Fi.** Not a guest network. If the page will not open, turn mobile data off on the phone for a moment.
+2. **Windows Firewall.** The first time, Windows asks if Node.js may use the network: tick **Private networks** only and click Allow access. If you clicked Cancel (or ticked Public only), run PowerShell **as administrator** once:
+
+   ```
+   New-NetFirewallRule -DisplayName "LearnAtHanze live quiz" -Direction Inbound -Protocol TCP -LocalPort 3738 -Action Allow -Profile Private
+   ```
+
+   To remove that rule later:
+
+   ```
+   Remove-NetFirewallRule -DisplayName "LearnAtHanze live quiz"
+   ```
+
+   The rule opens only port 3738. It only applies when Windows has marked your Wi-Fi as **Private** (Settings, Network & internet, Wi-Fi, your network, Network profile type). **Public** networks block incoming connections. Switch a network to Private only if you trust it (your home Wi-Fi); for school or other shared Wi-Fi use step 3.
+3. **Phone hotspot.** School Wi-Fi often blocks phone-to-laptop traffic ("client isolation"). Turn on the hotspot on one phone and connect this computer and the other phones to it. The address in the lobby updates by itself after the computer switches network.
+4. **Windows Mobile hotspot.** Make this computer the hotspot (Settings, Network & internet, Mobile hotspot). The phones join its Wi-Fi. This computer is usually `192.168.137.1` there and shows up in the lobby as another address choice. It needs a connection to share and may not work with every adapter.
+5. **Last resort: a tunnel you start by hand.** A tunnel gives the phone page an internet address through a free service. The app never starts one. For example, with `cloudflared` installed from Cloudflare: `cloudflared tunnel --url http://localhost:3738`. It prints an `https://...` address: paste it into the field in the lobby's help panel and the QR code and address switch to it. **Privacy:** everything the phones and this computer exchange (nicknames, questions, answers, scores) passes through the tunnel company's servers; anyone who gets the address can open the join page, so the 5-digit code is the only lock; only port 3738 is exposed, never 3737. Stop the tunnel (Ctrl+C in its window) when the game is over: switching **Phones can join** off does not cut a tunnel. Cloudflare's free quick tunnels do not carry live event streams, so the phone page switches to a slower long-polling mode after about 5 seconds by itself.
+
+**Port busy?** Hosting says so if port 3738 is taken (for example by a second copy of the app). Close the other copy, or start with another play port: PowerShell `$env:PLAY_PORT=3748; npm start`. Tests: `npm run test:live` (engine) and `npm run test:live:http` (over real HTTP, 15 simulated phones; starts its own server on ports 3757 and 3758).
+
 ## Re-extract text from the course files
 
 ```
@@ -146,5 +197,6 @@ Reads `exams studies/` and rewrites `content/<exam>/sources/`. It needs `pdftote
 - [x] Exam simulation (timed, mixed, self-graded open answers, resumable)
 - [x] Mini games (match up, sort it, speed round, combo run)
 - [x] Polish: dated Export filename, touch and accessibility pass, README
+- [x] Live Quiz (multiplayer on phones): lobby, rounds, scoring, leaderboard, podium, reconnecting, network help
 
-Tested in Chromium (desktop and a touch-emulated phone). Not tested: Firefox, Safari, a physical phone, screen readers. The app uses modern CSS (`:has()`, `@property`), so use a current browser.
+Tested in Chromium (desktop and a touch-emulated phone). Live Quiz was also tested with simulated phones and, in an earlier build, one real phone over Wi-Fi. Not tested: Firefox, Safari, iOS, screen readers. The app uses modern CSS (`:has()`, `@property`), so use a current browser.

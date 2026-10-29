@@ -5,6 +5,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { exec } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { createHub } from './server/live/hub.js';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const APP = path.join(ROOT, 'app');
@@ -12,6 +13,8 @@ const CONTENT = path.join(ROOT, 'content');
 // Progress lives in the browser's localStorage, which is tied to the address (including the port).
 // Keep the port fixed so your progress is always found.
 const PORT = Number(process.env.PORT) || 3737;
+// Live Quiz: the play server phones connect to. It only listens while a live game is hosted (see server/live/hub.js).
+const PLAY_PORT = Number(process.env.PLAY_PORT) || 3738;
 
 const TYPES = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8',
@@ -72,9 +75,17 @@ async function serveStatic(res, pathname) {
   }
 }
 
+if (PLAY_PORT === PORT) {
+  console.error(`PORT and PLAY_PORT are both ${PORT}. The app (${PORT}) and the phones' play server (PLAY_PORT, default 3738) need different ports.`);
+  process.exit(1);
+}
+
+const live = createHub({ loadExam, hostPort: PORT, playPort: PLAY_PORT });
+
 const server = http.createServer(async (req, res) => {
   try {
     const { pathname } = new URL(req.url, 'http://localhost');
+    if (pathname.startsWith('/api/live/')) return live.handleHost(req, res, pathname);
     if (pathname === '/api/exams') return sendJson(res, 200, await listExams());
     const m = pathname.match(/^\/api\/exams\/([a-z0-9-]+)$/);
     if (m) {
@@ -96,6 +107,8 @@ server.on('error', (e) => {
   } else console.error(e);
   process.exit(1);
 });
+
+for (const sig of ['SIGINT', 'SIGTERM']) process.on(sig, () => { live.end().finally(() => process.exit(0)); });
 
 server.listen(PORT, '127.0.0.1', () => {
   const url = `http://localhost:${PORT}`;
