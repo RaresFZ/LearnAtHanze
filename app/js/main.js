@@ -35,7 +35,7 @@ const ico = (name, size) => icon(name, size).outerHTML;
 
 /** The whole page takes the exam's colour (it blends smoothly), or the default yellow on the home screen. */
 function setAccent(exam) {
-  if (exam) document.body.style.setProperty('--accent', exam.accent); else document.body.style.removeProperty('--accent');
+  if (exam) document.body.style.setProperty('--accent-raw', exam.accent); else document.body.style.removeProperty('--accent-raw');
   switcher.querySelectorAll('a').forEach((a) => a.setAttribute('aria-current', String(!!exam && a.dataset.exam === exam.id)));
 }
 

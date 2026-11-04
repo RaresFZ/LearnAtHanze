@@ -4,6 +4,7 @@ import { icon } from './icons.js';
 import { FX } from './fx.js';
 import { questionCard, TYPE_LABEL, reviewBlocks, destroyActiveCard } from './question.js';
 import { loadProgress, recordAnswer, recordSession, questionStat } from './store.js';
+import { examSets } from './sim.js';
 
 const M = window.Motion;
 const COUNTS = [5, 10, 20, 40, 0];
@@ -85,14 +86,24 @@ export function renderQuizSetup(root, ctx, preset = {}) {
     FX.transition(() => runQuiz(root, ctx, picked, { label: state.topics.size ? 'Topic quiz' : 'Random mix' }), { x: e.clientX || centreOf(startBtn).x, y: e.clientY || centreOf(startBtn).y });
   });
 
+  // ready-made sets (the teacher's test exam, the Scrum Kahoot ...): play them with feedback after every question
+  const sets = examSets(exam, questions);
+  const setButtons = sets.map((s) => {
+    const b = h('button', { class: 'btn', type: 'button' }, icon('play', 16), `${s.title} (${s.questions.length})`);
+    b.addEventListener('click', (e) => FX.transition(() => runQuiz(root, ctx, s.questions, { label: s.title }), { x: e.clientX || centreOf(b).x, y: e.clientY || centreOf(b).y }));
+    return FX.obj(b, { cls: 'o-btn' });
+  });
+  const setsSection = sets.length ? h('section', { class: 'field' }, h('h2', { class: 'small' }, 'Ready-made sets'), h('p', { class: 'fine', style: { marginBottom: '10px' } }, 'The questions of the teacher, in their own order. For a timed run without feedback use Exam simulation.'), h('div', { class: 'row' }, setButtons)) : null;
+
   const sections = [
+    setsSection,
     h('section', { class: 'field' }, h('h2', { class: 'small' }, 'Topics', FX.obj(clear, { cls: 'o-btn' })), h('div', { class: 'togglegrid' }, topicToggles.map((t) => t.obj))),
     h('section', { class: 'field' }, h('h2', { class: 'small' }, 'Question types'), h('div', { class: 'togglegrid' }, typeToggles.map((t) => t.obj))),
     h('div', { class: 'two-col' },
       h('section', { class: 'field' }, h('h2', { class: 'small' }, 'How many questions'), segmented(COUNTS.map((c) => [c, c || 'All']), state.count, (v) => { state.count = v; })),
       h('section', { class: 'field' }, h('h2', { class: 'small' }, 'Which questions first'), segmented([['random', 'Random'], ['unseen', 'Unseen'], ['weak', 'Weakest']], state.strategy, (v) => { state.strategy = v; }))),
     h('div', { class: 'start-row' }, startObj, summary),
-  ];
+  ].filter(Boolean);
   mount(root,
     h('a', { class: 'back', href: `#/exam/${exam.id}` }, icon('arrow-left', 14), exam.title),
     h('h1', { class: 'pagetitle' }, 'Quiz'),

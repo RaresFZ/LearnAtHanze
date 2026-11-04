@@ -37,6 +37,25 @@ test('formulas reproduce the worked examples of the syllabus', () => {
   near(F.rty([95, 98, 90]), 83.79, 4);
 });
 
+test('Exercise 4 (Hout enzo B.V.) reproduces the corrected answers of the teacher', () => {
+  const steps = [['Sort material', 90, 20, 25, 1, 85, 5.29, 481.76], ['Assembling', 95, 25, 65, 2, 55, 8.18, 793.64], ['Apply lacquer layer', 160, 30, 130, 4, 60, 7.5, 1230], ['Packing and sending', 125, 30, 90, 1, 65, 6.92, 872.31]];
+  const takt = F.takt(450, 15000 / 250);
+  assert.equal(takt, 7.5);
+  let processing = 0, lead = 0;
+  for (const [name, s0, inflow, s1, fte, out, ct, lt] of steps) {
+    assert.equal(F.stepOutput(s0, inflow, s1), out, name);
+    const cycle = F.stepCycleTime(450, out);
+    near(cycle, ct, 2);
+    const l = F.leadSimplified(cycle, fte, s0);
+    near(l, lt, 2);
+    processing += cycle * fte; lead += l;
+    assert.equal(cycle > takt, name === 'Assembling', name + ' is the only step above takt');
+  }
+  near(processing, 58.58, 2);
+  near(lead, 3377.71, 2);
+  near((processing / lead) * 100, 1.73, 2);
+});
+
 test('Exam A has the trainer, Exam B does not', () => {
   assert.ok(generatorsFor('lean-agile').length >= 15);
   assert.deepEqual(generatorsFor('outsourcing-governance'), []);

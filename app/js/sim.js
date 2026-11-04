@@ -8,6 +8,8 @@ import { gradeFill } from './grade.js';
 /** The numbers and wording are the learner's to set in exam.json ("simulation"); nothing here is the real exam format. */
 export const DEFAULTS = { questions: 30, minutes: 45, types: ['mc', 'tf', 'fill', 'open'], official: false, passMark: null, note: '' };
 export const simConfig = (exam) => ({ ...DEFAULTS, ...(exam?.simulation || {}) });
+/** Ready-made exams listed in exam.json ("simulation.sets"): the questions whose "set" matches, in the order of questions.json. Sets without questions are left out. */
+export const examSets = (exam, questions) => (exam?.simulation?.sets || []).map((s) => ({ ...s, questions: questions.filter((q) => q.set === s.id) })).filter((s) => s.questions.length);
 export const simPool = (questions, cfg) => questions.filter((q) => cfg.types.includes(q.type));
 
 const shuffled = (arr, rnd = Math.random) => { const a = [...arr]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };

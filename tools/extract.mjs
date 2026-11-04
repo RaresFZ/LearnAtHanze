@@ -19,10 +19,7 @@ const EXAMS = {
 };
 
 // Files that cannot be read yet. Remove the entry once a readable copy is in the folder.
-const SKIP = {
-  'Intro LEAN Minor IT Mgmt CMI 1 1920 metrics 2026 v2.ppt':
-    'unreadable (LibreOffice produces garbage); waiting for a re-saved .pptx/.pdf',
-};
+const SKIP = {};
 
 const SOFFICE = [
   'C:/Program Files/LibreOffice/program/soffice.exe',
@@ -104,7 +101,24 @@ function xlsxToMarkdown(file) {
   }
 }
 
-const HANDLERS = { '.pptx': pptxToMarkdown, '.ppt': pptToMarkdown, '.pdf': pdfToMarkdown, '.xlsx': xlsxToMarkdown };
+
+function docxToMarkdown(file) {
+  const dir = unzip(file);
+  try {
+    const xml = fs.readFileSync(path.join(dir, 'word', 'document.xml'), 'utf8');
+    const lines = [];
+    for (const p of xml.matchAll(/<w:p[ >][\s\S]*?<\/w:p>/g)) {
+      const text = [...p[0].matchAll(/<w:t(?: [^>]*)?>([\s\S]*?)<\/w:t>|<w:tab\/>|<w:br\/>/g)].map((t) => (t[1] === undefined ? ' ' : decode(t[1]))).join('');
+      if (text.trim()) lines.push(text.trim());
+    }
+    return { text: `\n${lines.join('\n')}\n`, units: `${lines.length} paragraphs` };
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+}
+
+const ONLY = process.argv.slice(2).join(" ").toLowerCase();
+const HANDLERS = { '.docx': docxToMarkdown, '.pptx': pptxToMarkdown, '.ppt': pptToMarkdown, '.pdf': pdfToMarkdown, '.xlsx': xlsxToMarkdown };
 
 for (const [folder, examId] of Object.entries(EXAMS)) {
   const srcDir = path.join(STUDY, folder);
@@ -113,6 +127,7 @@ for (const [folder, examId] of Object.entries(EXAMS)) {
   for (const name of fs.readdirSync(srcDir).sort()) {
     const handler = HANDLERS[path.extname(name).toLowerCase()];
     if (!handler) continue;
+    if (ONLY && !name.toLowerCase().includes(ONLY)) continue;       // npm run extract -- scrum 1   (only files whose name contains that text)
     if (SKIP[name]) { console.log(`SKIP  ${examId}/${name}: ${SKIP[name]}`); continue; }
     try {
       const { text, units } = handler(path.join(srcDir, name));

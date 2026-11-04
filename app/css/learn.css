@@ -183,3 +183,10 @@ button.guess-chip:disabled { opacity: 0.55; cursor: default; }
   .cs-often .chips { gap: 1.5mm; margin-top: 1.5mm; }
   .cs-card .icon, .cs-often .icon { display: none; }
 }
+
+/* ready-made exams (the teacher's test exam, the Scrum Kahoot) on the exam simulation page */
+.sim-sets { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.sim-set { padding: 20px 22px; height: 100%; display: flex; flex-direction: column; gap: 8px; }
+.sim-set h3 { font: 800 19px/1.15 var(--head); letter-spacing: -0.02em; }
+.sim-set .fine { margin-bottom: 6px; }
+.sim-set .obj { margin-top: auto; align-self: flex-start; }

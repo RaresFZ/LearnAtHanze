@@ -22,6 +22,10 @@ export const FORMULAS = {
   rpn: (s, o, d) => s * o * d,
   cp: (usl, lsl, sigma) => (usl - lsl) / (6 * sigma),
   relativeReduction: (from, to) => ((from - to) / from) * 100,
+  // Exercise 4 (Hout enzo B.V.): output from the stock change, cycle time from the output, and the answer key's simplified lead time
+  stepOutput: (stock0, inflow, stock1) => stock0 + inflow - stock1,
+  stepCycleTime: (availableMin, output) => availableMin / output,
+  leadSimplified: (cycleTime, fte, stock0) => cycleTime * fte + cycleTime * stock0,
 };
 
 const R = (rng, a, b) => a + Math.floor(rng() * (b - a + 1));
@@ -134,6 +138,25 @@ export const GENERATORS = [
       formula: 'relative reduction = (old − new) ÷ old × 100%. The absolute reduction is the difference in points.', steps: [`(${x} − ${y}) ÷ ${x} × 100 = ${p}%`, `(Absolute: ${(x - y) / 10} percentage points, from ${x / 10}% to ${y / 10}%.)`] };
   } },
 ];
+
+/** Exercise 4 (Hout enzo B.V.): the generators below follow the corrected answers of the teacher's files. The lead-time method is a classroom simplification. */
+GENERATORS.push(
+  { id: 'takt-year', group: 'flow', label: 'Takt time from yearly demand', src: ['e4', 'Exercise 4, question 1'], make(rng) {
+    const perDay = pick(rng, [50, 60, 75, 80, 90]), avail = pick(rng, [420, 450, 480]), year = perDay * 250, a = round(FORMULAS.takt(avail, perDay), 2);
+    return { prompt: `A factory has a customer demand of ${n0(year)} finished products per year, works 250 days per year and has ${avail} available minutes per day. What is the takt time (2 decimals)?`, unit: 'minutes per product', answer: a, decimals: 2,
+      formula: 'daily demand = yearly demand ÷ working days; takt time = net available time ÷ daily demand', steps: [`${n0(year)} ÷ 250 = ${perDay} products per day`, `${avail} ÷ ${perDay} = ${fix(a, 2)} minutes per product`] };
+  } },
+  { id: 'step-cycle', group: 'flow', label: 'Cycle time from the stock change', src: ['e4', 'Exercise 4, question 2'], make(rng) {
+    const s0 = R(rng, 60, 170), inflow = R(rng, 15, 35), out = R(rng, 45, 90), s1 = s0 + inflow - out, a = round(FORMULAS.stepCycleTime(450, out), 2);
+    return { prompt: `In a 450-minute working day a process step has an opening stock of ${s0}, an inflow of ${inflow} and a closing stock of ${s1}. What is its average cycle time (2 decimals)?`, unit: 'minutes per product', answer: a, decimals: 2,
+      formula: 'output = opening stock + inflow − closing stock; average cycle time = available minutes ÷ output', steps: [`output = ${s0} + ${inflow} − ${s1} = ${out}`, `450 ÷ ${out} = ${fix(a, 2)} minutes per product`] };
+  } },
+  { id: 'lead-simplified', group: 'flow', label: 'Lead time, the answer-key method', src: ['e4', 'Exercise 4, question 5'], make(rng) {
+    const ct = pick(rng, [5, 6, 7.5, 8, 9]), fte = pick(rng, [1, 2, 3, 4]), s0 = R(rng, 40, 200), proc = ct * fte, wait = ct * s0, a = round(proc + wait, 2);
+    return { prompt: `A process step has a cycle time of ${ct} minutes, ${fte} FTE and an opening stock of ${s0}. Using the simplified method of Exercise 4 (processing time = cycle time × FTE, waiting time = cycle time × opening stock), what is the lead time of the step (2 decimals)?`, unit: 'minutes', answer: a, decimals: 2,
+      formula: 'processing = cycle time × FTE; waiting = cycle time × opening stock; lead time = processing + waiting (a classroom simplification, not a universal law)', steps: [`processing = ${ct} × ${fte} = ${fix(proc, 2)}`, `waiting = ${ct} × ${s0} = ${fix(wait, 2)}`, `lead time = ${fix(proc, 2)} + ${fix(wait, 2)} = ${fix(a, 2)} minutes`] };
+  } },
+);
 
 export const generatorsFor = (examId) => (examId === 'lean-agile' ? GENERATORS : []);
 

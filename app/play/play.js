@@ -193,7 +193,7 @@ function showHostPill(away) {
 
 function render(v) {
   showHostPill(v.hostAway);
-  if (v.exam?.accent) document.body.style.setProperty('--accent', v.exam.accent);
+  if (v.exam?.accent) document.body.style.setProperty('--accent-raw', v.exam.accent);
   const name = screenName(v);
   show(name, () => FACTORY[v.phase](v), v);
 }

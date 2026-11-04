@@ -6,7 +6,7 @@ import { FX } from './fx.js';
 import { TYPE_LABEL, sourceText } from './question.js';
 import { answerText } from './cards.js';
 import { loadSim, saveSim, clearSim, recordExam } from './store.js';
-import { simConfig, simPool, pickExam, newAttempt, isAnswered, timeLeft, secondsUsed, clock, pendingGrades, finalScores, passed } from './sim.js';
+import { simConfig, simPool, examSets, pickExam, newAttempt, isAnswered, timeLeft, secondsUsed, clock, pendingGrades, finalScores, passed } from './sim.js';
 import { pillBtn, renderResults, runQuiz } from './quiz.js';
 
 const M = window.Motion;
@@ -34,6 +34,13 @@ const segmented = (options, current, onPick) => {
 function startSimulation(root, ctx, count, minutes, from) {
   const cfg = simConfig(ctx.exam);
   const attempt = newAttempt(ctx.exam.id, pickExam(simPool(ctx.questions, cfg), count), minutes);
+  saveSim(ctx.exam.id, attempt);
+  FX.transition(() => runSim(root, ctx, attempt), from);
+}
+
+/** A ready-made exam: its questions in their own order, with its own time. */
+function startSet(root, ctx, set, from) {
+  const attempt = newAttempt(ctx.exam.id, set.questions, set.minutes || ctx.exam.simulation?.minutes || 30);
   saveSim(ctx.exam.id, attempt);
   FX.transition(() => runSim(root, ctx, attempt), from);
 }
@@ -98,12 +105,21 @@ export function renderSimSetup(root, ctx) {
       h('div', { class: 'grades' }, FX.obj(go, { cls: 'o-btn' }), FX.obj(drop, { cls: 'o-btn' }))), { cls: 'o-tile', hover: false });
   }
 
+  const setCards = examSets(exam, questions).map((s) => {
+    const go = h('button', { class: 'btn yellow', type: 'button' }, icon('timer', 18), `Start (${s.minutes || cfg.minutes} min)`);
+    go.addEventListener('click', (e) => startSet(root, ctx, s, pos(e, go)));
+    return FX.obj(h('div', { class: 'card sim-set' }, h('h3', null, s.title), h('p', null, s.description || ''), h('p', { class: 'fine' }, plural(s.questions.length, 'question', 'questions')), FX.obj(go, { cls: 'o-btn' })), { cls: 'o-tile', hover: false, fill: true });
+  });
+  const setsSection = setCards.length ? h('section', { class: 'field' }, h('h2', { class: 'small' }, 'Ready-made exams'),
+    h('p', { class: 'fine', style: { marginBottom: '12px' } }, 'The real thing, question for question, in the same order. Starting one replaces an unfinished exam.'), h('div', { class: 'sim-sets' }, setCards)) : null;
+
   const sections = [
-    h('section', { class: 'field' }, h('h2', { class: 'small' }, 'How many questions'), segmented(counts.map((c) => [c, String(c)]), state.count, (v) => { state.count = v; refresh(); })),
+    setsSection,
+    h('section', { class: 'field' }, h('h2', { class: 'small' }, 'A mixed exam: how many questions'), segmented(counts.map((c) => [c, String(c)]), state.count, (v) => { state.count = v; refresh(); })),
     h('section', { class: 'field' }, h('h2', { class: 'small' }, 'Minutes'), segmented(mins.map((m) => [m, String(m)]), state.minutes, (v) => { state.minutes = v; refresh(); })),
     h('div', { class: 'start-row' }, startObj, summary),
     h('p', { class: 'fine', style: { marginTop: '18px' } }, `Questions are drawn from all topics of this exam (${pool.length} match), spread evenly across the topics.`),
-  ];
+  ].filter(Boolean);
   mount(root,
     h('a', { class: 'back', href: `#/exam/${exam.id}` }, icon('arrow-left', 14), exam.title),
     h('h1', { class: 'pagetitle' }, 'Exam simulation'),

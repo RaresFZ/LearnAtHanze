@@ -2,31 +2,111 @@
   "title": "LEAN & Agile Project Management",
   "shortTitle": "LEAN & Agile",
   "description": "Lean Six Sigma Green Belt (TPS, DMAIC, metrics, improvement tools) plus Scrum, ITIL, Kanban and DevOps.",
-  "examFormat": "Not stated in the course files.",
-  "examFormatShort": "Exam format not stated",
+  "examFormat": "Multiple choice, combined with the Lean part (Scrum lecture 1, slide 5: \"Exam: MC (combined with Lean)\"). The number of questions and the time are not stated.",
+  "examFormatShort": "Multiple choice (Lean + Scrum)",
   "accent": "#b8f25b",
   "language": "en",
   "documents": {
-    "key": { "label": "Lean Six Sigma 20 MC answer key", "file": "Lean_Six_Sigma_20_MC_Answer_Key.xlsx" },
-    "syl": { "label": "Green Belt Study Syllabus", "file": "Lean_Six_Sigma_Green_Belt_Syllabus_EN1.pdf" },
-    "l1": { "label": "Lesson 1 slides (Introduction)", "file": "Intro LEAN Minor IT Mgmt CMI Def 22 BB [Automatisch opgeslagen].ppt" },
-    "l2": { "label": "Lesson 2 handout", "file": "Intro LEAN Minor IT Mgmt CMI Lesson 2.pdf" },
-    "l3": { "label": "Lesson 3 slides (group 3)", "file": "Intro LEAN Minor IT Mgmt CMI 1 1920 groep 3 2026 v2.ppt" },
-    "s5": { "label": "Scrum lecture 5 slides", "file": "Minor BiTM Scrum 5 2026.pptx" },
-    "s6": { "label": "Scrum lecture 6 slides", "file": "Minor BiTM Scrum 6 2026.pptx" }
+    "key": {
+      "label": "Lean Six Sigma 20 MC answer key",
+      "file": "Lean_Six_Sigma_20_MC_Answer_Key.xlsx"
+    },
+    "syl": {
+      "label": "Green Belt Study Syllabus",
+      "file": "Lean_Six_Sigma_Green_Belt_Syllabus_EN1.pdf"
+    },
+    "l1": {
+      "label": "Lesson 1 slides (Introduction)",
+      "file": "Intro LEAN Minor IT Mgmt CMI Def 22 BB [Automatisch opgeslagen].ppt"
+    },
+    "l2": {
+      "label": "Lesson 2 handout",
+      "file": "Intro LEAN Minor IT Mgmt CMI Lesson 2.pdf"
+    },
+    "l3": {
+      "label": "Lesson 3 slides (group 3)",
+      "file": "Intro LEAN Minor IT Mgmt CMI 1 1920 groep 3 2026 v2.ppt"
+    },
+    "s5": {
+      "label": "Scrum lecture 5 slides",
+      "file": "Minor BiTM Scrum 5 2026.pptx"
+    },
+    "s6": {
+      "label": "Scrum lecture 6 slides",
+      "file": "Minor BiTM Scrum 6 2026.pptx"
+    },
+    "tp": {
+      "label": "Green Belt Practice Exam (the teacher's Microsoft Forms test exam)",
+      "file": "Green Belt Practice Exam.pdf"
+    },
+    "te": {
+      "label": "LEAN Test Exam + Answers (practice exam, answers, glossary)",
+      "file": "LEAN Test Exam+Answers.docx"
+    },
+    "sk": {
+      "label": "Scrum Kahoot (the class quiz)",
+      "file": "Scrum Kahoot.docx"
+    },
+    "s1": {
+      "label": "Scrum lecture 1 slides (Intro)",
+      "file": "Minor BiTM Scrum 1 20252.pptx"
+    },
+    "l5": {
+      "label": "Lesson 5 slides (Lean Six Sigma, the \"metrics\" deck)",
+      "file": "Intro LEAN Minor IT Mgmt CMI 1 1920 metrics 2026 v2.ppt"
+    },
+    "e4": {
+      "label": "Exercise 4, Hout enzo B.V. (exercise, process data and corrected answers)",
+      "file": "Exercise_4_Corrected_EN.pdf, Process_Data_4_Corrected_EN.pdf, Lean_Metrics_Results_4_Corrected_EN.pdf"
+    },
+    "sg": {
+      "label": "The Scrum Guide 2020 (set as homework on Scrum lecture 1)",
+      "file": "https://scrumguides.org/scrum-guide.html"
+    },
+    "ext": {
+      "label": "Public reference, not in your course files",
+      "file": ""
+    }
   },
   "gaps": [
-    "Scrum lectures 2-4 are not in the folder. Scrum roles, artifacts and events have no source material; only the Scrum values and pillars appear (lecture 5/6 decks).",
-    "The Lean 'metrics 2026 v2' deck is unreadable and was skipped. Add a re-saved .pptx or PDF and the metrics content can be checked against it.",
-    "ITIL 4 (lecture 5): the slides only list the structure and practice names, with no explanations. Questions stay at that level.",
-    "Kanban and DevOps (lecture 6): principles and definitions only. The coffee-shop example and the videos are not text.",
-    "Obeya board: the slide has only the title and 'A0 floor'. No questions were written.",
-    "Agile vs Waterfall vs Start-up: the slides show only the four labels.",
-    "Chapter 9 statistics (control charts, Cp/Cpk, hypothesis tests) comes from the syllabus only. No lecture slide covers it, so it may be beyond what the exam asks.",
-    "The real exam format is not stated anywhere in the files."
+    "The exam is multiple choice (Scrum lecture 1, slide 5: \"Exam: MC (combined with Lean)\"). The number of questions and the time are not stated. The exam simulation copies the teacher's test exam: 20 questions in 30 minutes.",
+    "Scrum lectures 2-4 are not in the folder. The Scrum roles, events and artifacts come from the Scrum Guide 2020 (the homework of lecture 1) and from the Scrum Kahoot.",
+    "The Scrum Kahoot file has the questions and the right answers only. The wrong options in the app were written to be clearly wrong. A typo in one Kahoot answer (\"print backlog item\") is flagged.",
+    "Scrum lecture 1 says a Sprint is \"2 weeks to 1 month\"; the Scrum Guide and the Kahoot say \"one month or less\". Both agree it is never longer than a month.",
+    "ITIL 4 (lecture 5) only lists names and numbers. The Kahoot and public ITIL 4 Foundation material (marked \"outside the course files\") fill in the guiding principles and the six value chain activities.",
+    "Kanban and DevOps (lecture 6): the coffee-shop example and the videos are not text. The Kanban practices come from the Kahoot and the public Kanban Method (marked \"outside the course files\"). Obeya: the slide has only the title.",
+    "The Lesson 5 deck has many picture slides (roles, DMAIC, the 7 wastes, takt time, cycle time and lead time, a pizza SIPOC, a value stream map). They were read from rendered pictures, and the video slides (YouTube) have no text.",
+    "Exercise 4 (Hout enzo): the corrected answers use a simplified lead-time method that the answer key calls a classroom simplification, not a universal law.",
+    "Chapter 9 statistics (control charts, Cp/Cpk, hypothesis tests) comes from the syllabus only. No lecture slide covers it, so it may be beyond what the exam asks."
   ],
   "simulation": {
-    "official": false, "questions": 30, "minutes": 45, "types": ["mc","tf","fill","open"], "passMark": null,
-    "note": "The real exam format is not stated in the course files, so the number of questions, the time and the question types here are a practice setup of your own. Change them in the \"simulation\" block of exam.json."
+    "official": false,
+    "questions": 20,
+    "minutes": 30,
+    "types": [
+      "mc"
+    ],
+    "passMark": null,
+    "note": "The exam is multiple choice (Scrum lecture 1, slide 5), but the number of questions and the time are not stated. 20 questions in 30 minutes copies the teacher's test exam. Change the numbers in the \"simulation\" block of exam.json.",
+    "sets": [
+      {
+        "id": "teacher-test",
+        "title": "The teacher's test exam",
+        "minutes": 30,
+        "description": "The 20 questions of the Microsoft Forms test exam (\"Green Belt Practice Exam\"), in the same order with the same options."
+      },
+      {
+        "id": "scrum-kahoot",
+        "title": "The Scrum Kahoot",
+        "minutes": 20,
+        "description": "The 26 questions of the Scrum Kahoot: Scrum, Kanban, DevOps and ITIL."
+      },
+      {
+        "id": "answer-key",
+        "title": "The 20-question answer key",
+        "minutes": 20,
+        "description": "The 20 multiple-choice questions of the Lean Six Sigma answer key."
+      }
+    ]
   }
 }

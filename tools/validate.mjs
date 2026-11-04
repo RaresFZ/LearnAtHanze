@@ -49,6 +49,19 @@ function checkSimulation(name, exam, questions) {
   for (const k of ['questions', 'minutes']) if (s[k] !== undefined && !(Number.isInteger(s[k]) && s[k] > 0)) err(`"${k}" must be a positive whole number`);
   if (s.types !== undefined && (!Array.isArray(s.types) || !s.types.length || s.types.some((t) => !TYPES.includes(t)))) err(`"types" must be a non-empty list of ${TYPES.join(', ')}`);
   if (s.passMark != null && !(typeof s.passMark === 'number' && s.passMark > 0 && s.passMark <= 100)) err('"passMark" must be a percentage above 0 up to 100, or null when it is not known');
+  // ready-made exams: sets: [{ id, title, minutes, description }], questions join a set with "set": id
+  const ids = new Set();
+  if (s.sets !== undefined && !Array.isArray(s.sets)) err('"sets" must be an array');
+  for (const set of Array.isArray(s.sets) ? s.sets : []) {
+    if (!set.id || typeof set.id !== 'string') { err('every set needs an id'); continue; }
+    if (ids.has(set.id)) err(`set "${set.id}" is listed twice`);
+    ids.add(set.id);
+    if (!set.title) err(`set "${set.id}" needs a title`);
+    if (!(Number.isInteger(set.minutes) && set.minutes > 0)) err(`set "${set.id}": minutes must be a positive whole number`);
+    const inSet = questions.filter((q) => q.set === set.id);
+    if (!inSet.length) err(`set "${set.id}" has no questions (give questions "set": "${set.id}")`);
+  }
+  for (const q of questions) if (q.set !== undefined && !ids.has(q.set)) err(`${q.id}: set "${q.set}" is not listed in exam.json simulation.sets`);
   const types = Array.isArray(s.types) ? s.types : TYPES;
   const pool = questions.filter((q) => types.includes(q.type)).length;
   if (s.questions > pool) console.warn(`warn  ${name}/exam.json simulation: asks for ${s.questions} questions but only ${pool} match the types`);

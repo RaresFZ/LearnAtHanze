@@ -1,12 +1,79 @@
 {
-  "intro": "Read one short lesson, then answer questions on it. The questions you miss come first the next time, and you can retry them straight away on the results screen. Everything here comes from the syllabus and slides of this course, and each lesson says where.",
-  "order": ["foundations", "waste", "governance", "define", "mapping", "metrics-time", "metrics-quality", "analyze", "statistics", "improve-flow", "improve-workplace", "oee", "control", "agile-scrum", "itil", "kanban-devops"],
+  "intro": "Read one short lesson, then answer questions on it. The questions you miss come first the next time, and you can retry them straight away on the results screen. Everything here comes from the syllabus, the slides, the Scrum Kahoot and the teacher's test exam of this course, and each lesson says where. A few explanations that your files do not contain come from public references and say so.",
+  "order": [
+    "foundations",
+    "waste",
+    "governance",
+    "define",
+    "mapping",
+    "metrics-time",
+    "metrics-quality",
+    "analyze",
+    "statistics",
+    "improve-flow",
+    "improve-workplace",
+    "oee",
+    "control",
+    "case-study",
+    "agile-scrum",
+    "scrum-team",
+    "scrum-events",
+    "scrum-artifacts",
+    "itil",
+    "kanban-devops"
+  ],
   "plan": {
     "blocks": [
-      { "title": "Block 1: the basics", "topics": ["foundations", "waste", "governance", "define"] },
-      { "title": "Block 2: mapping and measuring", "topics": ["mapping", "metrics-time", "metrics-quality"] },
-      { "title": "Block 3: analyse and improve", "topics": ["analyze", "statistics", "improve-flow", "improve-workplace"] },
-      { "title": "Block 4: sustain, and the Agile side", "topics": ["oee", "control", "agile-scrum", "itil", "kanban-devops"] }
+      {
+        "title": "Block 1: the basics",
+        "topics": [
+          "foundations",
+          "waste",
+          "governance",
+          "define"
+        ]
+      },
+      {
+        "title": "Block 2: mapping and measuring",
+        "topics": [
+          "mapping",
+          "metrics-time",
+          "metrics-quality"
+        ]
+      },
+      {
+        "title": "Block 3: analyse and improve",
+        "topics": [
+          "analyze",
+          "statistics",
+          "improve-flow",
+          "improve-workplace"
+        ]
+      },
+      {
+        "title": "Block 4: sustain, and the case",
+        "topics": [
+          "oee",
+          "control",
+          "case-study"
+        ]
+      },
+      {
+        "title": "Block 5: Agile and Scrum",
+        "topics": [
+          "agile-scrum",
+          "scrum-team",
+          "scrum-events",
+          "scrum-artifacts"
+        ]
+      },
+      {
+        "title": "Block 6: ITIL, Kanban and DevOps",
+        "topics": [
+          "itil",
+          "kanban-devops"
+        ]
+      }
     ],
     "tips": [
       "Work in blocks of 25 to 40 minutes, then take 5 to 10 minutes off. Short blocks beat one long sitting.",
@@ -17,37 +84,176 @@
   },
   "cheatsheet": {
     "formulas": [
-      { "name": "Takt time", "formula": "net available time ÷ customer demand", "example": "420 min ÷ 140 units = 3 min per unit" },
-      { "name": "Process cycle efficiency (PCE)", "formula": "value-added time ÷ total lead time × 100%", "example": "18 ÷ 4,320 × 100 = 0.42%" },
-      { "name": "Little's Law", "formula": "average WIP = throughput rate × average flow time, so flow time = WIP ÷ throughput", "example": "80 open cases ÷ 20 per day = 4 days" },
-      { "name": "First Time Right (FTR)", "formula": "units correct on the first attempt ÷ units processed × 100%", "example": "910 ÷ 1,000 = 91%" },
-      { "name": "DPU", "formula": "defects ÷ units", "example": "40 ÷ 500 = 0.08" },
-      { "name": "DPO", "formula": "defects ÷ (units × opportunities per unit)", "example": "40 ÷ (500 × 4) = 0.02" },
-      { "name": "DPMO", "formula": "DPO × 1,000,000 (defects per million opportunities)", "example": "0.02 × 1,000,000 = 20,000" },
-      { "name": "Defective-unit rate", "formula": "defective units ÷ units", "example": "35 ÷ 500 = 7% (not the 8% of the DPU)" },
-      { "name": "FPY and RTY", "formula": "FPY = units passing first time ÷ units entering. RTY = product of the step FPYs", "example": "" },
-      { "name": "OEE", "formula": "Availability × Performance × Quality", "example": "0.9 × 0.8 × 0.95 = 68.4%" },
-      { "name": "OEE parts", "formula": "Availability = operating time ÷ planned time. Performance = (ideal cycle time × total count) ÷ operating time. Quality = good count ÷ total count", "example": "420 ÷ 480 = 87.5%; 360 ÷ 420 = 85.7%; 171 ÷ 180 = 95%" },
-      { "name": "FMEA risk priority number", "formula": "Severity × Occurrence × Detectability", "example": "" },
-      { "name": "Cp and Cpk", "formula": "Cp = (USL − LSL) ÷ (6σ). Cpk = the smaller of (USL − mean) ÷ 3σ and (mean − LSL) ÷ 3σ", "example": "" }
+      {
+        "name": "Takt time",
+        "formula": "net available time ÷ customer demand",
+        "example": "420 min ÷ 140 units = 3 min per unit"
+      },
+      {
+        "name": "Process cycle efficiency (PCE)",
+        "formula": "value-added time ÷ total lead time × 100%",
+        "example": "18 ÷ 4,320 × 100 = 0.42%"
+      },
+      {
+        "name": "Little's Law",
+        "formula": "average WIP = throughput rate × average flow time, so flow time = WIP ÷ throughput",
+        "example": "80 open cases ÷ 20 per day = 4 days"
+      },
+      {
+        "name": "First Time Right (FTR)",
+        "formula": "units correct on the first attempt ÷ units processed × 100%",
+        "example": "910 ÷ 1,000 = 91%"
+      },
+      {
+        "name": "DPU",
+        "formula": "defects ÷ units",
+        "example": "40 ÷ 500 = 0.08"
+      },
+      {
+        "name": "DPO",
+        "formula": "defects ÷ (units × opportunities per unit)",
+        "example": "40 ÷ (500 × 4) = 0.02"
+      },
+      {
+        "name": "DPMO",
+        "formula": "DPO × 1,000,000 (defects per million opportunities)",
+        "example": "0.02 × 1,000,000 = 20,000"
+      },
+      {
+        "name": "Defective-unit rate",
+        "formula": "defective units ÷ units",
+        "example": "35 ÷ 500 = 7% (not the 8% of the DPU)"
+      },
+      {
+        "name": "FPY and RTY",
+        "formula": "FPY = units passing first time ÷ units entering. RTY = product of the step FPYs",
+        "example": ""
+      },
+      {
+        "name": "OEE",
+        "formula": "Availability × Performance × Quality",
+        "example": "0.9 × 0.8 × 0.95 = 68.4%"
+      },
+      {
+        "name": "OEE parts",
+        "formula": "Availability = operating time ÷ planned time. Performance = (ideal cycle time × total count) ÷ operating time. Quality = good count ÷ total count",
+        "example": "420 ÷ 480 = 87.5%; 360 ÷ 420 = 85.7%; 171 ÷ 180 = 95%"
+      },
+      {
+        "name": "FMEA risk priority number",
+        "formula": "Severity × Occurrence × Detectability",
+        "example": ""
+      },
+      {
+        "name": "Cp and Cpk",
+        "formula": "Cp = (USL − LSL) ÷ (6σ). Cpk = the smaller of (USL − mean) ÷ 3σ and (mean − LSL) ÷ 3σ",
+        "example": ""
+      },
+      {
+        "name": "Output and cycle time from stock (Exercise 4)",
+        "formula": "output = opening stock + inflow − closing stock; cycle time = available minutes ÷ output",
+        "example": "Assembling: 95 + 25 − 65 = 55; 450 ÷ 55 = 8.18 min, above takt 7.50"
+      },
+      {
+        "name": "Simplified lead time (Exercise 4 answer key)",
+        "formula": "processing = cycle time × FTE; waiting = cycle time × opening stock; lead time = processing + waiting. Process efficiency = processing ÷ lead time × 100",
+        "example": "Total 58.58 ÷ 3,377.71 × 100 = 1.73%. A classroom simplification, not a universal law"
+      },
+      {
+        "name": "Absolute and relative reduction",
+        "formula": "absolute = difference in percentage points; relative = (old − new) ÷ old × 100%",
+        "example": "SLA misses 30% to 15%: 15 points absolute, 50% relative"
+      }
     ],
     "lists": [
-      { "name": "Five Lean principles (in order)", "items": "Value, Value stream, Flow, Pull, Perfection" },
-      { "name": "Two pillars of TPS", "items": "Just-in-Time and Jidoka" },
-      { "name": "The 3Ms", "items": "Muda = waste, Mura = unevenness, Muri = overburden" },
-      { "name": "Eight wastes (TIMWOODS)", "items": "Transportation, Inventory, Motion, Waiting, Overproduction, Overprocessing, Defects, Skills (unused talent). The Lesson 3 slide shows the classic seven, without unused talent." },
-      { "name": "DMAIC", "items": "Define, Measure, Analyze, Improve, Control. The charter belongs to Define. A tollgate is a review, not a phase." },
-      { "name": "SIPOC", "items": "Suppliers, Inputs, Process (about 4 to 7 steps), Outputs, Customers" },
-      { "name": "SMART", "items": "Specific, Measurable, Achievable, Relevant, Time-bound" },
-      { "name": "RACI", "items": "Responsible, Accountable, Consulted, Informed. Normally one Accountable owner per decision." },
-      { "name": "PDCA", "items": "Plan (change and prediction), Do (small test), Check/Study (compare with the prediction), Act (adopt, adapt or abandon)" },
-      { "name": "5S", "items": "Sort, Set in Order, Shine, Standardize, Sustain (some add Safety as a sixth S)" },
-      { "name": "6M of a fishbone", "items": "Manpower/People, Machine, Method, Material, Measurement, Mother Nature/Environment" },
-      { "name": "Belts", "items": "White (awareness), Yellow (takes part, collects data), Green (leads bounded projects), Black (leads complex projects, coaches Green Belts), Master Black Belt (methods expert, deployment coach). Champion/Sponsor is a senior leader, not a belt." },
-      { "name": "Scrum", "items": "Values: Commitment, Focus, Openness, Respect, Courage. Pillars: Transparency, Inspection, Adaptation." },
-      { "name": "ITIL 4", "items": "Service Value System: Guiding principles, Governance, Service value chain, Practices, Continual improvement. Dimensions: Organizations & people, Information & technology, Partners & suppliers, Value streams & processes. Practices: 14 general, 17 service management, 3 technical." },
-      { "name": "Kanban principles", "items": "Visualise work, Limit work in progress, Focus on flow, Continuous improvement" },
-      { "name": "DevOps key components", "items": "Culture and philosophy, Automation, Continuous delivery, Feedback loops" }
+      {
+        "name": "Five Lean principles (in order)",
+        "items": "Value, Value stream, Flow, Pull, Perfection"
+      },
+      {
+        "name": "Two pillars of TPS",
+        "items": "Just-in-Time and Jidoka"
+      },
+      {
+        "name": "The 3Ms",
+        "items": "Muda = waste, Mura = unevenness, Muri = overburden"
+      },
+      {
+        "name": "Eight wastes (TIMWOODS)",
+        "items": "Transportation, Inventory, Motion, Waiting, Overproduction, Overprocessing, Defects, Skills (unused talent). The Lesson 3 slide shows the classic seven, without unused talent."
+      },
+      {
+        "name": "DMAIC",
+        "items": "Define, Measure, Analyze, Improve, Control. The charter belongs to Define. A tollgate is a review, not a phase."
+      },
+      {
+        "name": "SIPOC",
+        "items": "Suppliers, Inputs, Process (about 4 to 7 steps), Outputs, Customers"
+      },
+      {
+        "name": "SMART",
+        "items": "Specific, Measurable, Achievable, Relevant, Time-bound"
+      },
+      {
+        "name": "RACI",
+        "items": "Responsible, Accountable, Consulted, Informed. Normally one Accountable owner per decision."
+      },
+      {
+        "name": "PDCA",
+        "items": "Plan (change and prediction), Do (small test), Check/Study (compare with the prediction), Act (adopt, adapt or abandon)"
+      },
+      {
+        "name": "5S",
+        "items": "Sort, Set in Order, Shine, Standardize, Sustain (some add Safety as a sixth S)"
+      },
+      {
+        "name": "6M of a fishbone",
+        "items": "Manpower/People, Machine, Method, Material, Measurement, Mother Nature/Environment"
+      },
+      {
+        "name": "Belts",
+        "items": "White (awareness), Yellow (takes part, collects data), Green (leads bounded projects), Black (leads complex projects, coaches Green Belts), Master Black Belt (methods expert, deployment coach). Champion/Sponsor is a senior leader, not a belt."
+      },
+      {
+        "name": "Scrum",
+        "items": "Values: Commitment, Focus, Openness, Respect, Courage. Pillars: Transparency, Inspection, Adaptation."
+      },
+      {
+        "name": "ITIL 4",
+        "items": "Service Value System: Guiding principles, Governance, Service value chain, Practices, Continual improvement. Dimensions: Organizations & people, Information & technology, Partners & suppliers, Value streams & processes. Practices: 14 general, 17 service management, 3 technical."
+      },
+      {
+        "name": "Kanban principles",
+        "items": "Visualise work, Limit work in progress, Focus on flow, Continuous improvement"
+      },
+      {
+        "name": "DevOps key components",
+        "items": "Culture and philosophy, Automation, Continuous delivery, Feedback loops"
+      },
+      {
+        "name": "Scrum Team (Scrum Guide 2020)",
+        "items": "Scrum Master, Product Owner, Developers: typically 10 or fewer. Product Owner = value and Product Backlog (one person). Scrum Master = Scrum understood and enacted, serves the team. Developers = Sprint Backlog, quality (Definition of Done), daily adaptation."
+      },
+      {
+        "name": "Scrum events and time-boxes",
+        "items": "Sprint: one month or less (container). Sprint Planning: why, what, how, max 8 h. Daily Scrum: 15 minutes, Developers. Sprint Review: inspect the outcome with stakeholders, max 4 h. Sprint Retrospective: plan improvements, max 3 h, concludes the Sprint."
+      },
+      {
+        "name": "Scrum artifacts and commitments",
+        "items": "Product Backlog: Product Goal. Sprint Backlog: Sprint Goal. Increment: Definition of Done. Work that does not meet the Definition of Done goes back to the Product Backlog."
+      },
+      {
+        "name": "Kanban practices",
+        "items": "Visualise the workflow, limit work in progress, manage flow, make policies explicit, feedback loops, improve collaboratively. Start with what you do now. No time-boxed iterations (that is Scrum). Outside the course files: the six practices."
+      },
+      {
+        "name": "ITIL 4 guiding principles and value chain",
+        "items": "Principles: focus on value; start where you are (not \"from scratch\"); progress iteratively with feedback; collaborate and promote visibility; think and work holistically; keep it simple and practical; optimise and automate. Value chain: plan, improve, engage, design and transition, obtain/build, deliver and support. Outside the course files."
+      },
+      {
+        "name": "DevOps in the Kahoot",
+        "items": "Goal: collaboration between development and operations. Culture: shared responsibility and continuous learning. CI/CD, Kubernetes (containers), monitoring (early detection), shift-left (earlier in the lifecycle)."
+      }
     ],
     "often": [
       "Poka Yoke examples",
@@ -326,138 +532,1234 @@
         "emptyRows": 5
       },
       "model": null
+    },
+    {
+      "id": "hout-enzo",
+      "topic": "metrics-time",
+      "title": "Exercise 4: the Hout enzo line",
+      "minutes": 20,
+      "src": [
+        "e4",
+        "Exercise 4, all questions"
+      ],
+      "case": "Hout enzo B.V. produces wooden furniture for private customers. The process has four steps: (1) Sort material, (2) Assembling, (3) Apply lacquer layer, (4) Packing and sending. Customer demand is 15,000 finished products per year, there are 250 working days per year, and one working day has 450 minutes of available production time. Data per step: Sort material: inflow 20, stock at t=0 90, stock at t=1 25, 1 FTE. Assembling: inflow 25, stock t=0 95, stock t=1 65, 2 FTE. Apply lacquer layer: inflow 30, stock t=0 160, stock t=1 130, 4 FTE. Packing and sending: inflow 30, stock t=0 125, stock t=1 90, 1 FTE.",
+      "prompt": "Answer the seven questions: 1) takt time, 2) the average cycle time of each step (output = opening stock + inflow − closing stock), 3) which steps do not meet takt, 4) what it means if the cycle time exceeds takt, 5) the lead time per step and for the chain (processing = cycle time × FTE, waiting = cycle time × opening stock), 6) the process efficiency, 7) how to improve it.",
+      "checklist": [
+        "Takt = 450 ÷ (15,000 ÷ 250) = 450 ÷ 60 = 7.50 minutes per product.",
+        "Output per step from the stock change: 85, 55, 60 and 65. Cycle time = 450 ÷ output, never an observed station time.",
+        "You compared each cycle time with takt and found the one step above it.",
+        "You explained that a cycle time above takt means the step cannot keep pace, so backlogs and delays arise.",
+        "You used the simplified lead-time method of the answer key and said it is a classroom simplification.",
+        "Process efficiency = total processing time ÷ total lead time × 100."
+      ],
+      "template": {
+        "kind": "table",
+        "head": [
+          "Step",
+          "Output",
+          "Cycle time (min)",
+          "Processing (min)",
+          "Waiting (min)",
+          "Lead time (min)"
+        ],
+        "emptyRows": 4
+      },
+      "model": {
+        "title": "The corrected answers (Exercise 4)",
+        "kind": "table",
+        "head": [
+          "Step",
+          "Output",
+          "Cycle time (min)",
+          "Processing (min)",
+          "Waiting (min)",
+          "Lead time (min)"
+        ],
+        "rows": [
+          [
+            "Sort material",
+            "85",
+            "5.29",
+            "5.29",
+            "476.47",
+            "481.76"
+          ],
+          [
+            "Assembling",
+            "55",
+            "8.18",
+            "16.36",
+            "777.27",
+            "793.64"
+          ],
+          [
+            "Apply lacquer layer",
+            "60",
+            "7.50",
+            "30.00",
+            "1,200.00",
+            "1,230.00"
+          ],
+          [
+            "Packing and sending",
+            "65",
+            "6.92",
+            "6.92",
+            "865.38",
+            "872.31"
+          ],
+          [
+            "Total",
+            "",
+            "",
+            "58.58",
+            "3,319.13",
+            "3,377.71"
+          ]
+        ],
+        "note": "Takt time 7.50 minutes. Only Assembling (8.18) is above takt: it is the capacity bottleneck. Process efficiency = 58.58 ÷ 3,377.71 × 100 = 1.73%. To improve it: reduce intermediate inventories and waiting, balance the steps, address the Assembling bottleneck and consider pull-based production."
+      }
     }
   ],
   "topics": {
     "foundations": {
-      "minutes": 6, "src": ["syl", "Ch.1, p.3"],
+      "minutes": 6,
+      "src": [
+        "syl",
+        "Ch.1, p.3"
+      ],
       "chunks": [
-        { "title": "Lean and Six Sigma", "ask": ["la-201"], "points": ["Lean improves customer value and flow by cutting work that adds no value.", "Six Sigma cuts defects and unwanted variation, using measurement and analysis.", "Lean asks: where are time, effort and resources wasted? Six Sigma asks: how reliably does the process meet requirements?", "Neither is only for manufacturing, and they complement each other. A shorter process is not automatically a more capable one."], "remember": "Lean = value, flow, waste. Six Sigma = defects, variation, capability.", "often": true },
-        { "title": "The Toyota Production System (TPS)", "ask": ["la-005"], "points": ["TPS grew around respect for people and continuous improvement.", "Its two pillars are Just-in-Time (produce what is needed, when it is needed) and Jidoka (build quality into the process and stop to deal with abnormalities).", "Supporting practices: standardized work, visual management, making problems visible, and employees solving problems."], "remember": "The two pillars of TPS: Just-in-Time and Jidoka.", "often": true },
-        { "title": "Muda, Mura and Muri", "ask": ["la-205"], "points": ["Muda = waste: activity that uses resources but adds no value.", "Mura = unevenness: irregular demand or workload.", "Muri = overburden: too much load on people or equipment.", "They reinforce each other: an unstable schedule (Mura) causes overtime (Muri), which causes errors and queues (Muda)."], "remember": "Mura leads to Muri leads to Muda.", "often": true },
-        { "title": "Heijunka, Andon, Kaizen and PDCA", "points": ["Heijunka levels production volume and mix. Andon is a visual or audible signal that asks for support.", "Just-in-Time is more than keeping inventory low: it needs stable processes.", "Kaizen = continuous, incremental improvement, involving the people who do the work.", "PDCA: Plan a change and a prediction; Do a small-scale test; Check/Study by comparing the result with the prediction; Act: adopt, adapt or abandon, and standardize what you learned."] }
+        {
+          "title": "Lean and Six Sigma",
+          "ask": [
+            "la-201"
+          ],
+          "points": [
+            "Lean improves customer value and flow by cutting work that adds no value.",
+            "Six Sigma cuts defects and unwanted variation, using measurement and analysis.",
+            "Lean asks: where are time, effort and resources wasted? Six Sigma asks: how reliably does the process meet requirements?",
+            "Neither is only for manufacturing, and they complement each other. A shorter process is not automatically a more capable one.",
+            "Lesson 5 slide: Lean focuses on waste reduction by streamlining a process, Six Sigma on preventing defects through problem solving. Together, Lean strengthens Six Sigma."
+          ],
+          "remember": "Lean = value, flow, waste. Six Sigma = defects, variation, capability.",
+          "often": true
+        },
+        {
+          "title": "The Toyota Production System (TPS)",
+          "ask": [
+            "la-005"
+          ],
+          "points": [
+            "TPS grew around respect for people and continuous improvement.",
+            "Its two pillars are Just-in-Time (produce what is needed, when it is needed) and Jidoka (build quality into the process and stop to deal with abnormalities).",
+            "Supporting practices: standardized work, visual management, making problems visible, and employees solving problems."
+          ],
+          "remember": "The two pillars of TPS: Just-in-Time and Jidoka.",
+          "often": true
+        },
+        {
+          "title": "Muda, Mura and Muri",
+          "ask": [
+            "la-205"
+          ],
+          "points": [
+            "Muda = waste: activity that uses resources but adds no value.",
+            "Mura = unevenness: irregular demand or workload.",
+            "Muri = overburden: too much load on people or equipment.",
+            "They reinforce each other: an unstable schedule (Mura) causes overtime (Muri), which causes errors and queues (Muda)."
+          ],
+          "remember": "Mura leads to Muri leads to Muda.",
+          "often": true
+        },
+        {
+          "title": "Heijunka, Andon, Kaizen and PDCA",
+          "points": [
+            "Heijunka levels production volume and mix. Andon is a visual or audible signal that asks for support.",
+            "Just-in-Time is more than keeping inventory low: it needs stable processes.",
+            "Kaizen = continuous, incremental improvement, involving the people who do the work.",
+            "PDCA: Plan a change and a prediction; Do a small-scale test; Check/Study by comparing the result with the prediction; Act: adopt, adapt or abandon, and standardize what you learned."
+          ]
+        }
       ]
     },
     "waste": {
-      "minutes": 7, "src": ["syl", "Ch.2, p.4"],
+      "minutes": 7,
+      "src": [
+        "syl",
+        "Ch.2, p.4"
+      ],
       "chunks": [
-        { "title": "The five Lean principles, in order", "ask": ["la-208"], "points": ["1 Value: define what the customer needs and is willing to recognise as valuable.", "2 Value stream: map all the activities needed to deliver it.", "3 Flow: remove interruption, batching and rework.", "4 Pull: start work from actual downstream demand.", "5 Perfection: keep improving quality, flow and learning."], "remember": "Value, value stream, flow, pull, perfection." },
-        { "title": "Is an activity value-added?", "ask": ["la-215"], "points": ["A strict test asks three things: does it transform the product or service, is it done right the first time, and does the customer value it?", "Some work adds no value but is needed for legal or risk reasons. Count that separately from waste you can remove."] },
-        { "title": "The eight wastes: TIMWOODS", "ask": ["la-209"], "points": ["Transportation: moving materials or information between places.", "Inventory: too much work in progress, stock or waiting tickets.", "Motion: unnecessary movement by a person.", "Waiting: idle time.", "Overproduction: making too early or too much.", "Overprocessing: more work than needed.", "Defects: errors and rework.", "Skills: not using employees' expertise and ideas."], "remember": "Motion = a person moves. Transportation = things or information move." },
-        { "title": "Spot the waste in a ticket process", "ask": ["la-210"], "points": ["A ticket copied between three teams: transportation.", "The ticket waits two days: waiting.", "The same data entered twice: overprocessing.", "The ticket reopens because the first fix failed: defects.", "An employee knows an automation, but nobody asks: unused talent (skills)."] },
-        { "title": "Seven or eight? And the waste walk", "points": ["The Lesson 3 slide 'The 7 Wastes' shows seven: overproduction, inventory, transportation, motion, waiting, defects, overprocessing. The syllabus adds the eighth, unused talent. Follow what your lecturer used.", "Environmental waste is sometimes added as a ninth lens, but it is not one of the standard eight.", "A waste walk (Gemba walk): go to where the work happens, observe without blame, write down facts, ask staff about obstacles. It is learning, not an inspection to find who is at fault."] }
+        {
+          "title": "The five Lean principles, in order",
+          "ask": [
+            "la-208"
+          ],
+          "points": [
+            "1 Value: define what the customer needs and is willing to recognise as valuable.",
+            "2 Value stream: map all the activities needed to deliver it.",
+            "3 Flow: remove interruption, batching and rework.",
+            "4 Pull: start work from actual downstream demand.",
+            "5 Perfection: keep improving quality, flow and learning."
+          ],
+          "remember": "Value, value stream, flow, pull, perfection."
+        },
+        {
+          "title": "Is an activity value-added?",
+          "ask": [
+            "la-215"
+          ],
+          "points": [
+            "A strict test asks three things: does it transform the product or service, is it done right the first time, and does the customer value it?",
+            "Some work adds no value but is needed for legal or risk reasons. Count that separately from waste you can remove."
+          ]
+        },
+        {
+          "title": "The eight wastes: TIMWOODS",
+          "ask": [
+            "la-209"
+          ],
+          "points": [
+            "Transportation: moving materials or information between places.",
+            "Inventory: too much work in progress, stock or waiting tickets.",
+            "Motion: unnecessary movement by a person.",
+            "Waiting: idle time.",
+            "Overproduction: making too early or too much.",
+            "Overprocessing: more work than needed.",
+            "Defects: errors and rework.",
+            "Skills: not using employees' expertise and ideas."
+          ],
+          "remember": "Motion = a person moves. Transportation = things or information move."
+        },
+        {
+          "title": "Spot the waste in a ticket process",
+          "ask": [
+            "la-210"
+          ],
+          "points": [
+            "A ticket copied between three teams: transportation.",
+            "The ticket waits two days: waiting.",
+            "The same data entered twice: overprocessing.",
+            "The ticket reopens because the first fix failed: defects.",
+            "An employee knows an automation, but nobody asks: unused talent (skills)."
+          ]
+        },
+        {
+          "title": "Seven or eight? And the waste walk",
+          "points": [
+            "The Lesson 3 slide 'The 7 Wastes' shows seven: overproduction, inventory, transportation, motion, waiting, defects, overprocessing. The syllabus adds the eighth, unused talent. Follow what your lecturer used.",
+            "Environmental waste is sometimes added as a ninth lens, but it is not one of the standard eight.",
+            "A waste walk (Gemba walk): go to where the work happens, observe without blame, write down facts, ask staff about obstacles. It is learning, not an inspection to find who is at fault."
+          ]
+        }
       ]
     },
     "governance": {
-      "minutes": 7, "src": ["syl", "Ch.3, p.4-5"],
+      "minutes": 7,
+      "src": [
+        "syl",
+        "Ch.3, p.4-5"
+      ],
       "chunks": [
-        { "title": "Belts and roles", "ask": ["la-216"], "points": ["White Belt: basic awareness and terms. Yellow Belt: takes part in improvement work and collects data.", "Green Belt: leads bounded projects, usually next to normal duties.", "Black Belt: leads complex analytical projects and coaches Green Belts.", "Master Black Belt: methods expert and deployment coach. Not a sponsor by definition.", "Champion or Sponsor: a senior leader who selects and supports projects, secures resources and removes barriers. A governance role, not a technical belt."], "remember": "Champion = senior leader who removes barriers. Green Belt = leads the project.", "often": true },
-        { "title": "DMAIC and tollgates", "ask": ["la-219"], "points": ["Define: clarify the problem and the customer. Measure: set a trustworthy baseline. Analyze: validate the causes. Improve: test and implement solutions. Control: sustain the gains.", "The project charter is made in Define.", "A tollgate is a formal review at the end of a phase: the sponsor checks the evidence and authorises the next phase. It is not an extra DMAIC phase."] },
-        { "title": "The project charter", "ask": ["la-220"], "points": ["Typical contents: business case and Voice of the Business, problem statement, measurable goal, scope and exclusions, process boundaries, stakeholders, team and roles, high-level timeline, assumptions, risks and expected benefits.", "Do not put a preferred solution in the problem statement.", "Weak goal: 'Improve our app by implementing AI.' Stronger: 'Reduce the median time to resolve international-student onboarding questions from 72 to 36 hours by 30 June, without reducing first-contact resolution.'"] },
-        { "title": "SMART and RACI", "points": ["SMART goal: Specific, Measurable, Achievable, Relevant, Time-bound.", "RACI: Responsible, Accountable, Consulted, Informed. Normally only one Accountable owner per decision.", "Belt names and prerequisites differ between certifying bodies."] }
+        {
+          "title": "Belts and roles",
+          "ask": [
+            "la-216"
+          ],
+          "points": [
+            "White Belt: basic awareness and terms. Yellow Belt: takes part in improvement work and collects data.",
+            "Green Belt: leads bounded projects, usually next to normal duties.",
+            "Black Belt: leads complex analytical projects and coaches Green Belts.",
+            "Master Black Belt: methods expert and deployment coach. Not a sponsor by definition.",
+            "Champion or Sponsor: a senior leader who selects and supports projects, secures resources and removes barriers. A governance role, not a technical belt."
+          ],
+          "remember": "Champion = senior leader who removes barriers. Green Belt = leads the project.",
+          "often": true
+        },
+        {
+          "title": "DMAIC and tollgates",
+          "ask": [
+            "la-219"
+          ],
+          "points": [
+            "Define: clarify the problem and the customer. Measure: set a trustworthy baseline. Analyze: validate the causes. Improve: test and implement solutions. Control: sustain the gains.",
+            "The project charter is made in Define.",
+            "A tollgate is a formal review at the end of a phase: the sponsor checks the evidence and authorises the next phase. It is not an extra DMAIC phase."
+          ]
+        },
+        {
+          "title": "The project charter",
+          "ask": [
+            "la-220"
+          ],
+          "points": [
+            "Typical contents: business case and Voice of the Business, problem statement, measurable goal, scope and exclusions, process boundaries, stakeholders, team and roles, high-level timeline, assumptions, risks and expected benefits.",
+            "Do not put a preferred solution in the problem statement.",
+            "Weak goal: 'Improve our app by implementing AI.' Stronger: 'Reduce the median time to resolve international-student onboarding questions from 72 to 36 hours by 30 June, without reducing first-contact resolution.'"
+          ]
+        },
+        {
+          "title": "SMART and RACI",
+          "points": [
+            "SMART goal: Specific, Measurable, Achievable, Relevant, Time-bound.",
+            "RACI: Responsible, Accountable, Consulted, Informed. Normally only one Accountable owner per decision.",
+            "Belt names and prerequisites differ between certifying bodies."
+          ]
+        },
+        {
+          "title": "The roles on the Lesson 5 slide",
+          "ask": [
+            "la-414"
+          ],
+          "points": [
+            "White Belt: understands the structure and goals of Lean Six Sigma, uses basic vocabulary, reports process issues.",
+            "Yellow Belt: understands basic concepts, reports process issues to Green and Black Belts, takes part in project teams.",
+            "Green Belt: starts and manages Lean Six Sigma projects, has expertise (less detail than a Black Belt), gives just-in-time training to others.",
+            "Black Belt: can report to a Master Black Belt, has advanced expertise, works as a coach, mentor, teacher and project leader.",
+            "Master Black Belt: works with leaders to identify gaps and select projects, coaches, mentors, teaches, monitors and leads projects, and is responsible for implementation and culture change.",
+            "Champion: the executive leader who drives the initiative, helps select projects and removes barriers, and supports change and the Lean Six Sigma culture."
+          ],
+          "remember": "Champion = executive leader. Master Black Belt = deployment and culture."
+        },
+        {
+          "title": "The Lesson 5 charter template",
+          "points": [
+            "Business case: why is the project important? Link it to the Voice of the Business and the expected benefits (a better process sigma).",
+            "Problem description in clear, coherent terms (5xW 1xH): how often does it occur, where, who is bothered by it.",
+            "Target: SMART. How much improvement, which measurable business impact, by when.",
+            "Scope: what is the focus and what are the limits. Process: the start and the end of the process, plus a SIPOC.",
+            "Team: champion, client, Master Black Belt, Black Belt, team members. A tollgate date and status per DMAIC phase."
+          ]
+        }
       ]
     },
     "define": {
-      "minutes": 6, "src": ["syl", "Ch.4, p.5-6"],
+      "minutes": 6,
+      "src": [
+        "syl",
+        "Ch.4, p.5-6"
+      ],
       "chunks": [
-        { "title": "VOC and VOB", "ask": ["la-225"], "points": ["Voice of the Customer (VOC): the customers' needs, expectations and experiences, from interviews, surveys, complaints, service logs and observation.", "Voice of the Business (VOB): strategic, financial, regulatory and operational priorities.", "Separate what customers say from what the organisation assumes."], "remember": "VOC = what the customer needs. VOB = what the business needs.", "often": true },
-        { "title": "CTQ: Critical to Quality", "ask": ["la-226"], "points": ["A CTQ turns a broad need into something you can observe and measure.", "'Fast support' becomes '90% of priority-2 tickets get an initial response within 4 business hours'.", "A good CTQ has an operational definition, a target, a unit, a measurement method and an owner."] },
-        { "title": "SIPOC", "ask": ["la-228"], "points": ["S = Suppliers, I = Inputs, P = Process (roughly 4 to 7 high-level steps), O = Outputs, C = Customers.", "It sets boundaries and interfaces. It is not a detailed process map.", "You can start from the customers and outputs and work backwards."], "remember": "SIPOC = Suppliers, Inputs, Process, Outputs, Customers. The S is Suppliers.", "often": true },
-        { "title": "Two SIPOC examples", "points": ["Coffee service: suppliers = coffee, milk, bakery, guest. Inputs = beans, water, milk, biscuit, order. Process = receive order, prepare drink, assemble order, serve, collect payment. Outputs = a correctly served drink and the transaction. Customers = the guest and the business owner.", "Pizza (Lesson 3 slide): suppliers = Dairy Supply Corporation, Vegetable Farmers United, Prepared Foods Corporation. Inputs = cheese, olives, peppers, dough, sauce. Process = prepare dough, add sauce, add cheese and toppings, bake, remove and serve. Output = pizza. Customers = dine-in, take-out and delivery customers."] }
+        {
+          "title": "VOC and VOB",
+          "ask": [
+            "la-225"
+          ],
+          "points": [
+            "Voice of the Customer (VOC): the customers' needs, expectations and experiences, from interviews, surveys, complaints, service logs and observation.",
+            "Voice of the Business (VOB): strategic, financial, regulatory and operational priorities.",
+            "Separate what customers say from what the organisation assumes."
+          ],
+          "remember": "VOC = what the customer needs. VOB = what the business needs.",
+          "often": true
+        },
+        {
+          "title": "CTQ: Critical to Quality",
+          "ask": [
+            "la-226"
+          ],
+          "points": [
+            "A CTQ turns a broad need into something you can observe and measure.",
+            "'Fast support' becomes '90% of priority-2 tickets get an initial response within 4 business hours'.",
+            "A good CTQ has an operational definition, a target, a unit, a measurement method and an owner."
+          ]
+        },
+        {
+          "title": "SIPOC",
+          "ask": [
+            "la-228"
+          ],
+          "points": [
+            "S = Suppliers, I = Inputs, P = Process (roughly 4 to 7 high-level steps), O = Outputs, C = Customers.",
+            "It sets boundaries and interfaces. It is not a detailed process map.",
+            "You can start from the customers and outputs and work backwards."
+          ],
+          "remember": "SIPOC = Suppliers, Inputs, Process, Outputs, Customers. The S is Suppliers.",
+          "often": true
+        },
+        {
+          "title": "Two SIPOC examples",
+          "points": [
+            "Coffee service: suppliers = coffee, milk, bakery, guest. Inputs = beans, water, milk, biscuit, order. Process = receive order, prepare drink, assemble order, serve, collect payment. Outputs = a correctly served drink and the transaction. Customers = the guest and the business owner.",
+            "Pizza (Lesson 3 slide): suppliers = Dairy Supply Corporation, Vegetable Farmers United, Prepared Foods Corporation. Inputs = cheese, olives, peppers, dough, sauce. Process = prepare dough, add sauce, add cheese and toppings, bake, remove and serve. Output = pizza. Customers = dine-in, take-out and delivery customers."
+          ]
+        }
       ]
     },
     "mapping": {
-      "minutes": 4, "src": ["syl", "Ch.5, p.6"],
+      "minutes": 4,
+      "src": [
+        "syl",
+        "Ch.5, p.6"
+      ],
       "chunks": [
-        { "title": "Flowchart and swimlane", "ask": ["la-232"], "points": ["A flowchart shows steps, decisions, loops and start and end points.", "A swimlane diagram puts each activity in the lane of the person, department or system that does it.", "When work crosses from one lane to another you see handoffs, ownership gaps and repeated approvals.", "Always map the current state before designing the future state."] },
-        { "title": "Value stream map (VSM)", "ask": ["la-233"], "points": ["A VSM shows the flow of material and information from start to finish.", "It often includes process boxes, cycle times, changeover times, availability, inventories and queues, and lead time.", "Draw a current-state and a future-state map, and use measured data, not guesses.", "A future-state map is only a hypothesis until it has been tested."] },
-        { "title": "Process cycle efficiency (PCE)", "points": ["PCE = value-added time ÷ total lead time × 100%.", "A low PCE means waiting, queueing and handoffs take most of the elapsed time.", "Example: 18 minutes of real work in 3 calendar days (4,320 minutes) gives 0.42%.", "Do not mix minutes of staff effort with calendar days of lead time."], "remember": "PCE = value-added ÷ lead time × 100." }
+        {
+          "title": "Flowchart and swimlane",
+          "ask": [
+            "la-232"
+          ],
+          "points": [
+            "A flowchart shows steps, decisions, loops and start and end points.",
+            "A swimlane diagram puts each activity in the lane of the person, department or system that does it.",
+            "When work crosses from one lane to another you see handoffs, ownership gaps and repeated approvals.",
+            "Always map the current state before designing the future state."
+          ]
+        },
+        {
+          "title": "Value stream map (VSM)",
+          "ask": [
+            "la-233"
+          ],
+          "points": [
+            "A VSM shows the flow of material and information from start to finish.",
+            "It often includes process boxes, cycle times, changeover times, availability, inventories and queues, and lead time.",
+            "Draw a current-state and a future-state map, and use measured data, not guesses.",
+            "A future-state map is only a hypothesis until it has been tested."
+          ]
+        },
+        {
+          "title": "Process cycle efficiency (PCE)",
+          "points": [
+            "PCE = value-added time ÷ total lead time × 100%.",
+            "A low PCE means waiting, queueing and handoffs take most of the elapsed time.",
+            "Example: 18 minutes of real work in 3 calendar days (4,320 minutes) gives 0.42%.",
+            "Do not mix minutes of staff effort with calendar days of lead time."
+          ],
+          "remember": "PCE = value-added ÷ lead time × 100."
+        }
       ]
     },
     "metrics-time": {
-      "minutes": 8, "src": ["syl", "Ch.6, p.7"],
+      "minutes": 8,
+      "src": [
+        "syl",
+        "Ch.6, p.7"
+      ],
       "chunks": [
-        { "title": "Takt time", "ask": ["la-015"], "points": ["Takt time = net available time ÷ customer demand.", "It is the pace you must keep to match demand. It is not a time you observe.", "420 minutes ÷ 140 units = 3 minutes per unit. 400 ÷ 100 = 4. 450 ÷ 150 = 3."], "remember": "Takt = available time ÷ demand.", "often": true },
-        { "title": "Cycle time against takt", "ask": ["la-238"], "points": ["Cycle time is what you observe: the time to complete one cycle, or the time between finished units.", "Takt is the required pace, cycle time is the actual pace.", "If a station needs 4 minutes per unit and takt is 3, that station cannot meet demand without a redesign or extra parallel capacity."] },
-        { "title": "Lead time and Little's Law", "ask": ["la-240"], "points": ["Lead time = elapsed time from the customer's request to delivery, including waiting. Touch time is the time someone actively works on it.", "Little's Law: average WIP = throughput rate × average flow time. So flow time = WIP ÷ throughput.", "80 open cases ÷ 20 per day = 4 days. 60 ÷ 30 = 2 days.", "It is an average for a stable system, not a promise for each individual case."], "remember": "Flow time = WIP ÷ throughput." },
-        { "title": "Capacity, bottleneck and FTR", "points": ["Capacity is the maximum sustainable output. Utilization = actual use ÷ available capacity.", "The bottleneck is the limiting step. Improving other steps may not raise end-to-end throughput.", "First Time Right = units completed correctly without rework on the first attempt ÷ units processed × 100%."] }
+        {
+          "title": "Takt time",
+          "ask": [
+            "la-015"
+          ],
+          "points": [
+            "Takt time = net available time ÷ customer demand.",
+            "It is the pace you must keep to match demand. It is not a time you observe.",
+            "420 minutes ÷ 140 units = 3 minutes per unit. 400 ÷ 100 = 4. 450 ÷ 150 = 3."
+          ],
+          "remember": "Takt = available time ÷ demand.",
+          "often": true
+        },
+        {
+          "title": "Cycle time against takt",
+          "ask": [
+            "la-238"
+          ],
+          "points": [
+            "Cycle time is what you observe: the time to complete one cycle, or the time between finished units.",
+            "Takt is the required pace, cycle time is the actual pace.",
+            "If a station needs 4 minutes per unit and takt is 3, that station cannot meet demand without a redesign or extra parallel capacity.",
+            "Worked example: 7 staffed hours (420 minutes) and 84 tickets per day give takt = 5 minutes per ticket. An agent needs 8 minutes of touch time per ticket, so one agent cannot keep the pace but several can. The median ticket can still take 2 days because of queueing."
+          ]
+        },
+        {
+          "title": "Lead time and Little's Law",
+          "ask": [
+            "la-240"
+          ],
+          "points": [
+            "Lead time = elapsed time from the customer's request to delivery, including waiting. Touch time is the time someone actively works on it.",
+            "Little's Law: average WIP = throughput rate × average flow time. So flow time = WIP ÷ throughput.",
+            "80 open cases ÷ 20 per day = 4 days. 60 ÷ 30 = 2 days.",
+            "It is an average for a stable system, not a promise for each individual case."
+          ],
+          "remember": "Flow time = WIP ÷ throughput."
+        },
+        {
+          "title": "Capacity, bottleneck and FTR",
+          "points": [
+            "Capacity is the maximum sustainable output. Utilization = actual use ÷ available capacity.",
+            "The bottleneck is the limiting step. Improving other steps may not raise end-to-end throughput.",
+            "First Time Right = units completed correctly without rework on the first attempt ÷ units processed × 100%."
+          ]
+        },
+        {
+          "title": "Cycle time, production lead time and a takt example (Lesson 5)",
+          "ask": [
+            "la-411"
+          ],
+          "points": [
+            "Takt example on the slide: 27,600 seconds available per day ÷ 460 pieces demand = 60 seconds.",
+            "Cycle time (CT): how often a part or product is actually completed by a process, as timed by observation; also the time an operator needs to go through all work elements before repeating them.",
+            "Production lead time (PLT): the time it takes one piece to move all the way through a process or value stream, from start to finish.",
+            "Throughput time is often used like lead time: specify the boundaries."
+          ],
+          "remember": "CT = how often a piece comes out. PLT = one piece start to finish."
+        },
+        {
+          "title": "Exercise 4: the Hout enzo line",
+          "points": [
+            "Hout enzo B.V. makes wooden furniture: Sort material, Assembling, Apply lacquer layer, Packing and sending. Demand 15,000 per year, 250 days, 450 available minutes per day.",
+            "Takt: 15,000 ÷ 250 = 60 products per day, so takt = 450 ÷ 60 = 7.50 minutes.",
+            "Output per step = opening stock + inflow − closing stock (Sort 85, Assembling 55, Lacquer 60, Packing 65). Cycle time = 450 ÷ output (5.29, 8.18, 7.50, 6.92 minutes).",
+            "Only Assembling (8.18) is above takt (7.50): it is the capacity bottleneck. A cycle time above takt means the step cannot keep pace, so backlogs and delays may arise.",
+            "Lead time, with the simplified method of the answer key: processing time = cycle time × FTE; waiting time = cycle time × opening stock; lead time = processing + waiting. Total lead time 3,377.71 minutes (about 56.3 hours), total processing 58.58 minutes.",
+            "Process efficiency = 58.58 ÷ 3,377.71 × 100 = 1.73%. To improve it: reduce inventories and waiting, balance the steps, fix the Assembling bottleneck, move to pull. The lead-time method is a classroom simplification, not a universal law."
+          ],
+          "remember": "Output = stock0 + inflow − stock1. Cycle time = 450 ÷ output. Bottleneck: Assembling."
+        }
       ]
     },
     "metrics-quality": {
-      "minutes": 6, "src": ["syl", "Ch.7, p.7-8"],
+      "minutes": 6,
+      "src": [
+        "syl",
+        "Ch.7, p.7-8"
+      ],
       "chunks": [
-        { "title": "Defect, defective unit, opportunity", "ask": ["la-253"], "points": ["A defect is one failure to meet a requirement.", "A defective unit has one or more defects.", "A defect opportunity is a specified chance for one defect per unit. Count the ones that matter for the CTQs, and do not inflate the number to look better."] },
-        { "title": "DPU, DPO and DPMO", "ask": ["la-249"], "points": ["DPU = defects ÷ units. DPO = defects ÷ (units × opportunities per unit). DPMO = DPO × 1,000,000.", "500 forms, 40 defects, 4 opportunities each: DPU 0.08, DPO 0.02, DPMO 20,000.", "If the 40 defects sit in 35 forms, the defective-unit rate is 35 ÷ 500 = 7%, not 8%.", "DPMO counts defects per million opportunities, not defective units per million."], "remember": "DPMO = DPO × 1,000,000." },
-        { "title": "Yield and sigma level", "points": ["First-pass yield (FPY) = units passing first time ÷ units entering.", "Rolled throughput yield (RTY) = the product of the step FPYs. Do not guess it from the final inspection alone.", "The Six Sigma benchmark of about 3.4 DPMO rests on a long-term 1.5-sigma shift convention. It is a convention, not a law of nature."] }
+        {
+          "title": "Defect, defective unit, opportunity",
+          "ask": [
+            "la-253"
+          ],
+          "points": [
+            "A defect is one failure to meet a requirement.",
+            "A defective unit has one or more defects.",
+            "A defect opportunity is a specified chance for one defect per unit. Count the ones that matter for the CTQs, and do not inflate the number to look better."
+          ]
+        },
+        {
+          "title": "DPU, DPO and DPMO",
+          "ask": [
+            "la-249"
+          ],
+          "points": [
+            "DPU = defects ÷ units. DPO = defects ÷ (units × opportunities per unit). DPMO = DPO × 1,000,000.",
+            "500 forms, 40 defects, 4 opportunities each: DPU 0.08, DPO 0.02, DPMO 20,000.",
+            "If the 40 defects sit in 35 forms, the defective-unit rate is 35 ÷ 500 = 7%, not 8%.",
+            "DPMO counts defects per million opportunities, not defective units per million."
+          ],
+          "remember": "DPMO = DPO × 1,000,000."
+        },
+        {
+          "title": "Yield and sigma level",
+          "points": [
+            "First-pass yield (FPY) = units passing first time ÷ units entering.",
+            "Rolled throughput yield (RTY) = the product of the step FPYs. Do not guess it from the final inspection alone.",
+            "The Six Sigma benchmark of about 3.4 DPMO rests on a long-term 1.5-sigma shift convention. It is a convention, not a law of nature."
+          ]
+        },
+        {
+          "title": "Data you can trust",
+          "points": [
+            "Use operational definitions, consistent defect opportunities, representative sampling, clear timestamp conventions and repeatability checks.",
+            "Inconsistent logging can create false improvements. Do not inflate the number of opportunities to make performance look better."
+          ]
+        }
       ]
     },
     "analyze": {
-      "minutes": 7, "src": ["syl", "Ch.8, p.8-9"],
+      "minutes": 7,
+      "src": [
+        "syl",
+        "Ch.8, p.8-9"
+      ],
       "chunks": [
-        { "title": "Root cause analysis and the 5 Whys", "ask": ["la-260"], "points": ["Root cause analysis: define the failure, map how it happens, list plausible causes, collect evidence, and check that changing the cause changes the result.", "5 Whys: keep asking why, with evidence for every answer. Five is a mnemonic, not a rule: stop when the causes are evidenced and actionable.", "A root cause is useful when it is actionable and explains why the problem recurs."], "remember": "Five Whys does not mean exactly five questions.", "often": true },
-        { "title": "Ishikawa (fishbone)", "ask": ["la-254"], "points": ["Put the problem at the head of the fish (facing right) and the causes on bones extending to the left. Ribs are the major causes, sub-branches the root causes.", "Typical 6M categories: Manpower/People, Machine, Method, Material, Measurement, Mother Nature/Environment. For services you can use people, process, technology, culture, procedure, environment (as in the Lesson 2 hotel exercise).", "A fishbone organises hypotheses. It does not prove any of them."] },
-        { "title": "Pareto, A3 and FMEA", "points": ["Pareto: rank categories by frequency, cost or severity and show the cumulative total. The 80/20 rule is a rule of thumb, not a guarantee. Prioritise on impact and feasibility.", "A3: a concise one-page story of background, current condition, target, analysis, countermeasures, implementation and follow-up.", "FMEA: look ahead at failure modes, effects, causes and controls. RPN = Severity × Occurrence × Detectability. A high-severity risk still deserves attention when its RPN is modest."] }
+        {
+          "title": "Root cause analysis and the 5 Whys",
+          "ask": [
+            "la-260"
+          ],
+          "points": [
+            "Root cause analysis: define the failure, map how it happens, list plausible causes, collect evidence, and check that changing the cause changes the result.",
+            "5 Whys: keep asking why, with evidence for every answer. Five is a mnemonic, not a rule: stop when the causes are evidenced and actionable.",
+            "A root cause is useful when it is actionable and explains why the problem recurs.",
+            "Lesson 5 shows the video \"Root Cause Analysis from Juran: the Jefferson Memorial\" as the 5 Whys example. The usual retelling goes: the stone wears (why?) frequent cleaning with harsh chemicals (why?) bird droppings (why?) spiders to eat (why?) midges (why?) lights switched on at dusk, so the fix is to switch them on later. The story is contested, so use it as an illustration of the method, not as engineering history."
+          ],
+          "remember": "Five Whys does not mean exactly five questions.",
+          "often": true
+        },
+        {
+          "title": "Ishikawa (fishbone)",
+          "ask": [
+            "la-254"
+          ],
+          "points": [
+            "Put the problem at the head of the fish (facing right) and the causes on bones extending to the left. Ribs are the major causes, sub-branches the root causes.",
+            "Typical 6M categories: Manpower/People, Machine, Method, Material, Measurement, Mother Nature/Environment. For services you can use people, process, technology, culture, procedure, environment (as in the Lesson 2 hotel exercise).",
+            "A fishbone organises hypotheses. It does not prove any of them."
+          ]
+        },
+        {
+          "title": "Pareto, A3 and FMEA",
+          "points": [
+            "Pareto: rank categories by frequency, cost or severity and show the cumulative total. The 80/20 rule is a rule of thumb, not a guarantee. Prioritise on impact and feasibility.",
+            "A3: a concise one-page story of background, current condition, target, analysis, countermeasures, implementation and follow-up.",
+            "FMEA: look ahead at failure modes, effects, causes and controls. RPN = Severity × Occurrence × Detectability. A high-severity risk still deserves attention when its RPN is modest."
+          ]
+        }
       ]
     },
     "statistics": {
-      "minutes": 5, "src": ["syl", "Ch.9, p.9-10"],
+      "minutes": 5,
+      "src": [
+        "syl",
+        "Ch.9, p.9-10"
+      ],
       "chunks": [
-        { "title": "Describing data and variation", "ask": ["la-262"], "points": ["Mean = the average, median = the middle (robust to skew), standard deviation = spread, percentiles describe the tails.", "Lead times are often right-skewed, so use the median and P90.", "Common-cause variation comes from the current system. Special-cause variation comes from an identifiable unusual influence.", "Control limits come from the process data. They are not customer specification limits."] },
-        { "title": "Which control chart?", "ask": ["la-263"], "points": ["I-MR: individual continuous measurements.", "X-bar/R: rational subgroups.", "p-chart: proportion defective (for example weekly defective forms).", "u-chart: defects per unit when the exposure varies."] },
-        { "title": "Capability and tests", "points": ["Cp = (USL − LSL) ÷ (6σ). Cpk = the smaller of (USL − mean) ÷ 3σ and (mean − LSL) ÷ 3σ.", "Check stability first: a capable-looking but unstable process is not predictable.", "Hypothesis test: state a null and an alternative, report effect size as well as the p-value. Correlation is not causation.", "This chapter comes from the syllabus only, no slide covers it, so it may go beyond what the exam asks."] }
+        {
+          "title": "Describing data and variation",
+          "ask": [
+            "la-262"
+          ],
+          "points": [
+            "Mean = the average, median = the middle (robust to skew), standard deviation = spread, percentiles describe the tails.",
+            "Lead times are often right-skewed, so use the median and P90.",
+            "Common-cause variation comes from the current system. Special-cause variation comes from an identifiable unusual influence.",
+            "Control limits come from the process data. They are not customer specification limits."
+          ]
+        },
+        {
+          "title": "Which control chart?",
+          "ask": [
+            "la-263"
+          ],
+          "points": [
+            "I-MR: individual continuous measurements.",
+            "X-bar/R: rational subgroups.",
+            "p-chart: proportion defective (for example weekly defective forms).",
+            "u-chart: defects per unit when the exposure varies."
+          ]
+        },
+        {
+          "title": "Capability and tests",
+          "points": [
+            "Cp = (USL − LSL) ÷ (6σ). Cpk = the smaller of (USL − mean) ÷ 3σ and (mean − LSL) ÷ 3σ.",
+            "Check stability first: a capable-looking but unstable process is not predictable.",
+            "Hypothesis test: state a null and an alternative, report effect size as well as the p-value. Correlation is not causation.",
+            "This chapter comes from the syllabus only, no slide covers it, so it may go beyond what the exam asks."
+          ]
+        },
+        {
+          "title": "Compare like with like",
+          "points": [
+            "Two teams average 12 and 10 hours to resolve tickets, but the second team handles simpler tickets. The difference alone does not show it performs better.",
+            "Stratify by priority and complexity, compare the distributions, and use a controlled intervention.",
+            "Correlation does not establish causation. Prefer controlled pilots, randomisation where feasible and before/after comparisons with contextual safeguards. Report effect size and uncertainty next to p-values."
+          ],
+          "remember": "Stratify. Correlation is not causation. Pilot it."
+        }
       ]
     },
     "improve-flow": {
-      "minutes": 6, "src": ["syl", "Ch.10, p.10-11"],
+      "minutes": 6,
+      "src": [
+        "syl",
+        "Ch.10, p.10-11"
+      ],
       "chunks": [
-        { "title": "Flow and pull", "ask": ["la-266"], "points": ["One-piece (continuous) flow moves a unit on without batching. It reduces WIP and shows defects quickly, but needs balanced work and reliable steps.", "A pull system authorises work from downstream consumption.", "Kanban makes work visible and limits work in progress (cards or columns). WIP limits stop overload and expose blocked work."] },
-        { "title": "Heijunka and line balancing", "study": ["la-203"], "ask": ["la-271"], "points": ["Heijunka (levelling) reduces peaks in volume and mix. It does not mean ignoring urgent work.", "Line balancing: compare each step's cycle time with takt, move or reduce work at the constraint, protect the constraint, and recheck the whole flow afterwards."] },
-        { "title": "Poka Yoke and Jidoka", "points": ["Poka Yoke = error-proofing: make errors hard to make or easy to spot. Examples: a keyed connector that only fits one way, a required-format field, barcode validation.", "Jidoka stops or alerts on an abnormality and triggers a response. Detecting without reacting is not enough.", "Example: limiting 'In Progress' to eight tickets (Kanban) plus mandatory category validation (Poka Yoke)."], "remember": "Poka Yoke = error-proofing, for example a form that rejects invalid input.", "often": true }
+        {
+          "title": "Flow and pull",
+          "ask": [
+            "la-266"
+          ],
+          "points": [
+            "One-piece (continuous) flow moves a unit on without batching. It reduces WIP and shows defects quickly, but needs balanced work and reliable steps.",
+            "A pull system authorises work from downstream consumption.",
+            "Kanban makes work visible and limits work in progress (cards or columns). WIP limits stop overload and expose blocked work.",
+            "One-piece flow needs a suitable workload balance, reliable steps and sensible exceptions."
+          ]
+        },
+        {
+          "title": "Heijunka and line balancing",
+          "study": [
+            "la-203"
+          ],
+          "ask": [
+            "la-271"
+          ],
+          "points": [
+            "Heijunka (levelling) reduces peaks in volume and mix. It does not mean ignoring urgent work.",
+            "Line balancing: compare each step's cycle time with takt, move or reduce work at the constraint, protect the constraint, and recheck the whole flow afterwards.",
+            "Define service classes and capacity buffers so that urgent priority work is not ignored."
+          ]
+        },
+        {
+          "title": "Poka Yoke and Jidoka",
+          "points": [
+            "Poka Yoke = error-proofing: make errors hard to make or easy to spot. Examples: a keyed connector that only fits one way, a required-format field, barcode validation.",
+            "Jidoka stops or alerts on an abnormality and triggers a response. Detecting without reacting is not enough.",
+            "Example: limiting 'In Progress' to eight tickets (Kanban) plus mandatory category validation (Poka Yoke)."
+          ],
+          "remember": "Poka Yoke = error-proofing, for example a form that rejects invalid input.",
+          "often": true
+        }
       ]
     },
     "improve-workplace": {
-      "minutes": 5, "src": ["syl", "Ch.11, p.11-12"],
+      "minutes": 5,
+      "src": [
+        "syl",
+        "Ch.11, p.11-12"
+      ],
       "chunks": [
-        { "title": "5S", "ask": ["la-273"], "points": ["Sort: remove what is not needed.", "Set in Order: put needed items in a labelled place.", "Shine: clean and inspect.", "Standardize: agree visual standards and routines.", "Sustain: audit, coach and keep up the habits.", "Some organisations add Safety as a sixth S."], "remember": "Sort, Set in Order, Shine, Standardize, Sustain." },
-        { "title": "Visual management and standard work", "ask": ["la-277"], "points": ["Visual management makes normal and abnormal conditions obvious. A dashboard nobody acts on is not effective.", "Standardized work is the best currently known safe method. Employees help design and update it, and it makes Kaizen possible instead of freezing improvement.", "Daily huddles are short. Complex problems go to a separate problem-solving session."] },
-        { "title": "SMED", "points": ["SMED = Single-Minute Exchange of Die: aim for changeovers in single-digit minutes where possible.", "Internal activities need the equipment to be shut down. External activities can be done while it is still running.", "The method: convert internal to external, simplify, parallelise and standardise."] }
+        {
+          "title": "5S",
+          "ask": [
+            "la-273"
+          ],
+          "points": [
+            "Sort: remove what is not needed.",
+            "Set in Order: put needed items in a labelled place.",
+            "Shine: clean and inspect.",
+            "Standardize: agree visual standards and routines.",
+            "Sustain: audit, coach and keep up the habits.",
+            "Some organisations add Safety as a sixth S."
+          ],
+          "remember": "Sort, Set in Order, Shine, Standardize, Sustain."
+        },
+        {
+          "title": "Visual management and standard work",
+          "ask": [
+            "la-277"
+          ],
+          "points": [
+            "Visual management makes normal and abnormal conditions obvious. A dashboard nobody acts on is not effective.",
+            "Standardized work is the best currently known safe method. Employees help design and update it, and it makes Kaizen possible instead of freezing improvement.",
+            "Daily huddles are short. Complex problems go to a separate problem-solving session."
+          ]
+        },
+        {
+          "title": "SMED",
+          "points": [
+            "SMED = Single-Minute Exchange of Die: aim for changeovers in single-digit minutes where possible.",
+            "Internal activities need the equipment to be shut down. External activities can be done while it is still running.",
+            "The method: convert internal to external, simplify, parallelise and standardise."
+          ]
+        }
       ]
     },
     "oee": {
-      "minutes": 5, "src": ["syl", "Ch.12, p.12"],
+      "minutes": 5,
+      "src": [
+        "syl",
+        "Ch.12, p.12"
+      ],
       "chunks": [
-        { "title": "TPM: Total Productive Maintenance", "ask": ["la-283"], "points": ["TPM combines proactive maintenance, operator involvement, planned maintenance, quality maintenance and systematic loss reduction.", "Operators can do safe basic care. Specialist maintenance and safety rules still apply."] },
-        { "title": "OEE", "ask": ["la-282"], "points": ["OEE = Availability × Performance × Quality.", "Availability = operating time ÷ planned production time. Performance = (ideal cycle time × total count) ÷ operating time. Quality = good count ÷ total count.", "Example: 480 planned, 60 downtime, so 420 operating. Availability 87.5%, Performance (2 × 180) ÷ 420 = 85.7%, Quality 171 ÷ 180 = 95%, OEE = 71.25%.", "The six big losses: breakdowns, setup and adjustments, minor stops, reduced speed, startup rejects, production rejects."], "remember": "OEE = Availability × Performance × Quality." },
-        { "title": "Bottlenecks and the theory of constraints", "points": ["Find the constraint using throughput, queue and resource data.", "Then: exploit and protect it, subordinate the other steps, raise its capacity where justified, and reassess.", "A resource that is merely busy is not always the end-to-end constraint."] }
+        {
+          "title": "TPM: Total Productive Maintenance",
+          "ask": [
+            "la-283"
+          ],
+          "points": [
+            "TPM combines proactive maintenance, operator involvement, planned maintenance, quality maintenance and systematic loss reduction.",
+            "Operators can do safe basic care. Specialist maintenance and safety rules still apply."
+          ]
+        },
+        {
+          "title": "OEE",
+          "ask": [
+            "la-282"
+          ],
+          "points": [
+            "OEE = Availability × Performance × Quality.",
+            "Availability = operating time ÷ planned production time. Performance = (ideal cycle time × total count) ÷ operating time. Quality = good count ÷ total count.",
+            "Example: 480 planned, 60 downtime, so 420 operating. Availability 87.5%, Performance (2 × 180) ÷ 420 = 85.7%, Quality 171 ÷ 180 = 95%, OEE = 71.25%.",
+            "The six big losses: breakdowns, setup and adjustments, minor stops, reduced speed, startup rejects, production rejects."
+          ],
+          "remember": "OEE = Availability × Performance × Quality."
+        },
+        {
+          "title": "Bottlenecks and the theory of constraints",
+          "points": [
+            "Find the constraint using throughput, queue and resource data.",
+            "Then: exploit and protect it, subordinate the other steps, raise its capacity where justified, and reassess.",
+            "A resource that is merely busy is not always the end-to-end constraint."
+          ]
+        }
       ]
     },
     "control": {
-      "minutes": 4, "src": ["syl", "Ch.13, p.12-13"],
+      "minutes": 4,
+      "src": [
+        "syl",
+        "Ch.13, p.12-13"
+      ],
       "chunks": [
-        { "title": "Control plan", "ask": ["la-285"], "points": ["A control plan sets the CTQ or KPI, its operational definition, target, data source, frequency, process owner, visual display, reaction threshold, corrective action and escalation path.", "Its purpose: monitor and sustain the improvement, with clear owners and response rules.", "Also train staff, update procedures and audit that people use them."] },
-        { "title": "Lean leadership, Hoshin Kanri and catchball", "ask": ["la-286"], "points": ["Lean leaders set direction, protect time for improvement, ask evidence-based questions at Gemba, respect staff knowledge, remove barriers and avoid blame.", "Hoshin Kanri (policy deployment) turns strategy into a few breakthrough goals, annual objectives, owners and review cycles.", "Catchball is the dialogue that aligns ambition, resources and feasibility across levels."] },
-        { "title": "DMAIC versus PDCA", "points": ["DMAIC is a structured project path for an existing process problem.", "PDCA is a repeating learning cycle for everyday and experimental improvement.", "They complement each other, they do not compete.", "Measure more than speed and cost: also service quality, staff workload and accessibility."] }
+        {
+          "title": "Control plan",
+          "ask": [
+            "la-285"
+          ],
+          "points": [
+            "A control plan sets the CTQ or KPI, its operational definition, target, data source, frequency, process owner, visual display, reaction threshold, corrective action and escalation path.",
+            "Its purpose: monitor and sustain the improvement, with clear owners and response rules.",
+            "Also train staff, update procedures and audit that people use them."
+          ]
+        },
+        {
+          "title": "Lean leadership, Hoshin Kanri and catchball",
+          "ask": [
+            "la-286"
+          ],
+          "points": [
+            "Lean leaders set direction, protect time for improvement, ask evidence-based questions at Gemba, respect staff knowledge, remove barriers and avoid blame.",
+            "Hoshin Kanri (policy deployment) turns strategy into a few breakthrough goals, annual objectives, owners and review cycles.",
+            "Catchball is the dialogue that aligns ambition, resources and feasibility across levels.",
+            "Coaching and psychological safety support honest problem reporting."
+          ]
+        },
+        {
+          "title": "DMAIC versus PDCA",
+          "points": [
+            "DMAIC is a structured project path for an existing process problem.",
+            "PDCA is a repeating learning cycle for everyday and experimental improvement.",
+            "They complement each other, they do not compete.",
+            "Measure more than speed and cost: also service quality, staff workload and accessibility."
+          ]
+        }
       ]
     },
     "agile-scrum": {
-      "minutes": 3, "src": ["s5", "Slide 2"],
+      "minutes": 7,
+      "src": [
+        "s1",
+        "Slides 5-24, 31-32"
+      ],
       "chunks": [
-        { "title": "Scrum values and pillars", "ask": ["la-289"], "points": ["Five values: Commitment, Focus, Openness, Respect, Courage.", "Three pillars: Transparency, Inspection, Adaptation (the slide spells it 'Adaption').", "Your course files do not include the Scrum roles, artifacts and events (lectures 2 to 4 are missing), so nothing about them is taught here. If the exam asks, ask for those slides."] },
-        { "title": "The Agile Manifesto", "ask": ["la-291"], "points": ["Four pairs, each 'X over Y': individuals and interactions over processes and tools; working software over comprehensive documentation (the course slide says 'working product'); customer collaboration over contract negotiation; responding to change over following a plan.", "While there is value in the items on the right, the items on the left are valued more. The right-hand items are not worthless."] },
-        { "title": "Agile, Scrum, waterfall and Lean", "points": ["Agile/Scrum and waterfall are ways to deliver software. They are not alternative definitions of Lean.", "They can exist side by side with Lean process improvement."] }
+        {
+          "title": "What Agile is",
+          "ask": [
+            "la-391"
+          ],
+          "points": [
+            "Agile is a project management and software development approach focused on flexibility, collaboration and continuous improvement.",
+            "It responds to change, breaks work into smaller iterations and delivers value step by step.",
+            "It contrasts with rigid, linear approaches such as waterfall.",
+            "The Agile Manifesto is a statement of values (see below)."
+          ],
+          "remember": "Agile = flexible, collaborative, iterative."
+        },
+        {
+          "title": "Waterfall against Scrum",
+          "ask": [
+            "la-390"
+          ],
+          "points": [
+            "Waterfall is a linear, sequential approach with distinct phases: one phase must be finished before the next can begin, like a waterfall flowing downwards.",
+            "Scrum works in short time-boxed iterations (sprints) and focuses on a potentially shippable product each time.",
+            "On the slide, a Sprint is \"2 weeks to 1 month\". The Scrum Guide and the Kahoot say \"one month or less\". Both agree it is never longer than a month."
+          ],
+          "remember": "Waterfall: phases in sequence. Scrum: short iterations."
+        },
+        {
+          "title": "The Agile Manifesto",
+          "ask": [
+            "la-291"
+          ],
+          "points": [
+            "Four pairs, each 'X over Y': individuals and interactions over processes and tools; working software over comprehensive documentation (the course slide says 'working product'); customer collaboration over contract negotiation; responding to change over following a plan.",
+            "While there is value in the items on the right, the items on the left are valued more. The right-hand items are not worthless."
+          ]
+        },
+        {
+          "title": "Where Agile comes from",
+          "ask": [
+            "la-397"
+          ],
+          "points": [
+            "Steam engine and the industrial revolution: tasks, roles and responsibilities. Combustion engine: the assembly line and standardisation (Henry Ford). Software and the internet: distribution and adaptability.",
+            "Products get more complex every day. The slide names five drivers: Scale, Diversity, Connectivity, Dynamics and Refinement."
+          ]
+        },
+        {
+          "title": "Agile, Lean, DevOps, Kanban and ITIL",
+          "ask": [
+            "la-392"
+          ],
+          "points": [
+            "The lecture says: focus on Scrum, not on Agile in general, but also look at ITIL, DevOps and Kanban.",
+            "Lean: focus on processes, adding value for the customer, eliminating waste. DevOps: combines development and operations to increase the efficiency, speed and security of software delivery.",
+            "ITIL is not in the Agile family: it is a framework of best practices for managing IT services.",
+            "ITIL against Lean: ITIL emphasises processes and stability, Lean emphasises speed and continuous improvement.",
+            "Agile/Scrum and waterfall are ways to deliver software. They are not alternative definitions of Lean.",
+            "They can exist side by side with Lean process improvement."
+          ],
+          "remember": "ITIL is not Agile: processes and stability."
+        },
+        {
+          "title": "Scrum in short",
+          "ask": [
+            "la-394"
+          ],
+          "points": [
+            "Short time-boxed iterations. Developers focus on a potentially shippable product.",
+            "Characteristics: self-organizing teams; working with the customer; the product progresses in a series of month-long sprints; requirements are captured as items in a product backlog; no specific engineering practices prescribed; one of the \"agile processes\".",
+            "Scrum is not only for IT: the slides list commercial software, fixed-price projects, embedded systems, video games, websites, satellite control and more. Users include Microsoft, Google, Philips, Siemens and Nokia."
+          ],
+          "remember": "Self-organizing teams, a product backlog, sprints, no prescribed engineering practices."
+        },
+        {
+          "title": "The course plan, the exam and the sorting game",
+          "points": [
+            "Lectures: 1 intro, 2 to 4 Scrum, 5 DevOps and Kanban, 6 ITIL, then a wrap-up. The exam is multiple choice, combined with Lean.",
+            "Homework: read the Scrum Guide (release 2020, by Schwaber and Sutherland, under 15 pages). The next lessons here are built on it.",
+            "The sorting game: teams of 4 or 5 sort 72 cards under three column titles in three rounds of 3 minutes. Round 1: no advice. Round 2: you may also move a card that is already placed. Round 3: the team may advise and discuss. Afterwards you discuss the process."
+          ],
+          "remember": "The exam is multiple choice, together with Lean."
+        }
       ]
     },
     "itil": {
-      "minutes": 3, "src": ["s5", "Slide 5"],
+      "minutes": 6,
+      "src": [
+        "s5",
+        "Slide 5"
+      ],
       "chunks": [
-        { "title": "ITIL 4 in three lists", "points": ["The Service Value System has five core elements: Guiding principles, Governance, the Service value chain, Practices, Continual improvement.", "Four dimensions: Organizations & people; Information & technology; Partners & suppliers; Value streams & processes.", "Practices: 14 general management practices, 17 service management practices, 3 technical management practices.", "The slides give only the names and numbers, with no explanations, so questions stay at that level."], "remember": "5 elements, 4 dimensions, practices 14 + 17 + 3." }
+        {
+          "title": "ITIL 4 in three lists",
+          "points": [
+            "The Service Value System has five core elements: Guiding principles, Governance, the Service value chain, Practices, Continual improvement.",
+            "Four dimensions: Organizations & people; Information & technology; Partners & suppliers; Value streams & processes.",
+            "Practices: 14 general management practices, 17 service management practices, 3 technical management practices.",
+            "The slides give only the names and numbers, with no explanations, so questions stay at that level."
+          ],
+          "remember": "5 elements, 4 dimensions, practices 14 + 17 + 3."
+        },
+        {
+          "title": "Purpose, guiding principles and the value chain",
+          "ask": [
+            "la-352"
+          ],
+          "points": [
+            "The purpose of the Service Value System (SVS): deliver value through effective service management. The service value chain is its central element.",
+            "The guiding principles include \"progress iteratively with feedback\" (it encourages experimentation and learning). \"Start from scratch\" is not a guiding principle: the principle is \"start where you are\".",
+            "Outside the course files (ITIL 4 Foundation): the seven principles are focus on value; start where you are; progress iteratively with feedback; collaborate and promote visibility; think and work holistically; keep it simple and practical; optimise and automate.",
+            "Outside the course files: the six activities of the service value chain are plan, improve, engage, design and transition, obtain/build, deliver and support."
+          ],
+          "remember": "Central element: the service value chain. Not a principle: \"start from scratch\"."
+        },
+        {
+          "title": "Governance and continual improvement",
+          "points": [
+            "Governance ensures that the organisation's activities stay aligned with its objectives.",
+            "The goal of the continual improvement practice: align services with changing business needs."
+          ]
+        }
       ]
     },
     "kanban-devops": {
-      "minutes": 4, "src": ["s6", "Slides 8, 10-12"],
+      "minutes": 8,
+      "src": [
+        "s6",
+        "Slides 8, 10-12"
+      ],
       "chunks": [
-        { "title": "Kanban", "ask": ["la-297"], "points": ["Four principles: visualise work, limit work in progress, focus on flow, continuous improvement.", "In Lean terms it is a pull and WIP-control tool (see the Improve: flow topic)."], "remember": "Visualise, limit WIP, focus on flow, improve continuously." },
-        { "title": "DevOps", "points": ["DevOps is a set of practices, a cultural philosophy and technical tools that unify software development (Dev) and IT operations (Ops), to deliver software more quickly, reliably and securely.", "According to Len Bass it aims to shorten the time between committing a system change and putting it into production, while keeping quality high.", "Key components: culture and philosophy, automation, continuous delivery, feedback loops.", "CI/CD = continuous integration / continuous deployment."] }
+        {
+          "title": "Kanban",
+          "ask": [
+            "la-297"
+          ],
+          "points": [
+            "Four principles: visualise work, limit work in progress, focus on flow, continuous improvement.",
+            "In Lean terms it is a pull and WIP-control tool (see the Improve: flow topic)."
+          ],
+          "remember": "Visualise, limit WIP, focus on flow, improve continuously."
+        },
+        {
+          "title": "Kanban in the Kahoot",
+          "ask": [
+            "la-338"
+          ],
+          "points": [
+            "The first foundational principle: visualise the workflow. A Kanban board shows the workflow stages with the work items moving across.",
+            "Start with what you do now: Kanban does not ask you to replace the existing process first.",
+            "Limiting work in progress improves flow and reduces bottlenecks. Managing flow means making sure work items move smoothly through the system.",
+            "Kanban has no time-boxed iterations: those belong to Scrum.",
+            "Outside the course files: the Kanban Method names six core practices: visualise the workflow, limit work in progress, manage flow, make policies explicit, implement feedback loops, improve collaboratively and evolve experimentally."
+          ],
+          "remember": "Visualise, limit WIP, manage flow. No time-boxed iterations."
+        },
+        {
+          "title": "DevOps",
+          "points": [
+            "DevOps is a set of practices, a cultural philosophy and technical tools that unify software development (Dev) and IT operations (Ops), to deliver software more quickly, reliably and securely.",
+            "According to Len Bass it aims to shorten the time between committing a system change and putting it into production, while keeping quality high.",
+            "Key components (lecture 6, slide 11): culture and philosophy (shared responsibility, communication and collaboration between Dev and Ops, breaking down the silos); automation (building, testing and deploying software, which speeds things up and reduces errors); continuous delivery (frequent, high-quality releases by integrating and automating the workflows); feedback loops (gather feedback quickly through the whole cycle, for rapid iteration).",
+            "CI/CD = continuous integration / continuous deployment. The pipeline slide lists: version control, putting the code together (build), automated tests (TDD), functional tests, performance, configuration management, and managing reliability, security and availability."
+          ]
+        },
+        {
+          "title": "DevOps in the Kahoot",
+          "points": [
+            "The primary goal of DevOps: improve the collaboration between development and operations.",
+            "The culture: shared responsibility and continuous learning.",
+            "CI/CD = continuous integration / continuous deployment. Kubernetes is a common tool for container orchestration.",
+            "Monitoring: observe system performance and detect issues early. Shift-left: perform tasks such as testing earlier in the development lifecycle."
+          ],
+          "remember": "DevOps = Dev and Ops together: shared responsibility, CI/CD, monitoring, shift-left."
+        }
+      ]
+    },
+    "scrum-team": {
+      "minutes": 8,
+      "src": [
+        "sg",
+        "Scrum Theory, Scrum Values, The Scrum Team"
+      ],
+      "chunks": [
+        {
+          "title": "Scrum theory and the three pillars",
+          "ask": [
+            "la-336"
+          ],
+          "points": [
+            "Scrum is a lightweight framework that helps people, teams and organisations generate value. It is purposefully incomplete: it is only the minimum.",
+            "It rests on empiricism (knowledge comes from experience and from decisions based on what is observed) and on lean thinking (reduce waste, focus on the essentials).",
+            "Three pillars: Transparency (the work and the process are visible), Inspection (check the work and the progress often) and Adaptation (adjust as soon as you learn something).",
+            "Inspection without adaptation is pointless. The course slide spells the third pillar \"Adaption\"."
+          ],
+          "remember": "Transparency, Inspection, Adaptation."
+        },
+        {
+          "title": "The five Scrum values",
+          "ask": [
+            "la-289"
+          ],
+          "points": [
+            "Commitment, Focus, Openness, Respect, Courage.",
+            "The team commits to its goals and supports each other, focuses on the Sprint work, is open about the work and the challenges, respects the capabilities of the others and has the courage to do the right thing and tackle hard problems."
+          ],
+          "remember": "Commitment, Focus, Openness, Respect, Courage."
+        },
+        {
+          "title": "The Scrum Team",
+          "ask": [
+            "la-361"
+          ],
+          "points": [
+            "One Scrum Master, one Product Owner and Developers: typically 10 or fewer people. Larger groups split into several teams that share one Product Goal, one Product Backlog and one Product Owner.",
+            "The team is cross-functional (it has all the skills to create value each Sprint) and self-managing (members decide who does what, when and how).",
+            "There are no sub-teams and no hierarchy. The whole team is accountable for creating a valuable, useful Increment every Sprint."
+          ],
+          "remember": "Scrum Master + Product Owner + Developers, 10 or fewer."
+        },
+        {
+          "title": "The Product Owner",
+          "ask": [
+            "la-330"
+          ],
+          "points": [
+            "Accountable for maximising the value of the product that results from the work of the Scrum Team.",
+            "Accountable for the Product Backlog: develops and communicates the Product Goal, creates and communicates Product Backlog items, orders them and keeps the backlog transparent and understood.",
+            "May delegate the work but stays accountable. The Product Owner is one person, not a committee."
+          ],
+          "remember": "Product Owner = value and the Product Backlog."
+        },
+        {
+          "title": "The Scrum Master",
+          "ask": [
+            "la-331"
+          ],
+          "points": [
+            "Accountable for establishing Scrum as defined in the Scrum Guide: helping everyone understand Scrum theory and practice (ensuring Scrum is understood and enacted), and for the effectiveness of the Scrum Team.",
+            "Serves the team (coaches self-management, removes impediments, keeps events positive and in their time-box), the Product Owner (Product Goal, backlog techniques, stakeholders) and the organisation (leads and coaches the Scrum adoption).",
+            "The Scrum Master does not assign the work: the team is self-managing."
+          ],
+          "remember": "Scrum Master = Scrum is understood and enacted."
+        },
+        {
+          "title": "The Developers",
+          "points": [
+            "The people in the team who commit to creating any aspect of a usable Increment each Sprint.",
+            "Accountable for: creating the Sprint Backlog (the plan for the Sprint), instilling quality by following the Definition of Done, adapting the plan each day towards the Sprint Goal, and holding each other accountable as professionals."
+          ],
+          "remember": "Developers = Sprint Backlog, quality (Definition of Done), daily adaptation."
+        }
+      ]
+    },
+    "scrum-events": {
+      "minutes": 8,
+      "src": [
+        "sg",
+        "Scrum Events"
+      ],
+      "chunks": [
+        {
+          "title": "The Sprint",
+          "ask": [
+            "la-380"
+          ],
+          "points": [
+            "A fixed-length event of one month or less, the heartbeat of Scrum and the container for all the other events. A new Sprint starts right after the previous one ends.",
+            "During the Sprint: nothing is done that endangers the Sprint Goal, quality does not decrease, and the Product Backlog is refined as needed.",
+            "Only the Product Owner can cancel a Sprint, and only when the Sprint Goal has become obsolete."
+          ],
+          "remember": "Sprint = one month or less, fixed length."
+        },
+        {
+          "title": "Sprint Planning",
+          "ask": [
+            "la-372"
+          ],
+          "points": [
+            "It lays out the work for the Sprint. The whole Scrum Team makes the plan. Time-box: a maximum of eight hours for a one-month Sprint.",
+            "Topic one, why is this Sprint valuable? The team defines the Sprint Goal. Topic two, what can be done this Sprint? The Developers select Product Backlog items. Topic three, how will the chosen work get done? The Developers plan the work, often in tasks of a day or less."
+          ],
+          "remember": "Planning: why, what, how. Maximum 8 hours."
+        },
+        {
+          "title": "The Daily Scrum",
+          "ask": [
+            "la-369"
+          ],
+          "points": [
+            "A 15-minute event for the Developers, at the same time and place every working day.",
+            "Purpose: inspect progress towards the Sprint Goal and adapt the Sprint Backlog as necessary. It produces an actionable plan for the next day. The Developers choose the format."
+          ],
+          "remember": "Daily Scrum = 15 minutes, for the Developers."
+        },
+        {
+          "title": "The Sprint Review",
+          "ask": [
+            "la-375"
+          ],
+          "points": [
+            "Purpose: inspect the outcome of the Sprint with the stakeholders and decide what to adapt. The Product Backlog may change.",
+            "It is a working session, not just a presentation. Time-box: a maximum of four hours for a one-month Sprint."
+          ],
+          "remember": "Review = inspect the outcome with stakeholders. Maximum 4 hours."
+        },
+        {
+          "title": "The Sprint Retrospective",
+          "ask": [
+            "la-337"
+          ],
+          "points": [
+            "Purpose: plan ways to increase quality and effectiveness. The team inspects how the last Sprint went (people, interactions, processes, tools and the Definition of Done) and picks the most helpful improvements.",
+            "It concludes the Sprint, after the Sprint Review. Time-box: a maximum of three hours for a one-month Sprint."
+          ],
+          "remember": "Retrospective = plan improvements. Maximum 3 hours."
+        },
+        {
+          "title": "The time-boxes on one page",
+          "points": [
+            "For a one-month Sprint: Sprint Planning 8 hours, Daily Scrum 15 minutes, Sprint Review 4 hours, Sprint Retrospective 3 hours. For shorter Sprints the time-boxes are usually shorter.",
+            "Order inside the Sprint: Planning, then the Daily Scrums, then the Review, then the Retrospective."
+          ],
+          "remember": "Planning 8 h, Review 4 h, Retrospective 3 h, Daily 15 min."
+        }
+      ]
+    },
+    "scrum-artifacts": {
+      "minutes": 5,
+      "src": [
+        "sg",
+        "Scrum Artifacts"
+      ],
+      "chunks": [
+        {
+          "title": "Product Backlog and the Product Goal",
+          "ask": [
+            "la-334"
+          ],
+          "points": [
+            "The Product Backlog is an emergent, ordered list of what is needed to improve the product, the single source of work for the Scrum Team. It contains everything that is needed in the product.",
+            "Its commitment is the Product Goal: the long-term objective of the Scrum Team. The team fulfils it or abandons it before it takes on the next one."
+          ],
+          "remember": "Product Backlog: Product Goal."
+        },
+        {
+          "title": "Sprint Backlog and the Sprint Goal",
+          "ask": [
+            "la-384"
+          ],
+          "points": [
+            "The Sprint Backlog is the Sprint Goal (why), the selected Product Backlog items (what) and a plan to deliver them (how). It is a plan by and for the Developers and is updated during the Sprint.",
+            "Its commitment is the Sprint Goal: the single objective for the Sprint."
+          ],
+          "remember": "Sprint Backlog: Sprint Goal."
+        },
+        {
+          "title": "Increment and the Definition of Done",
+          "ask": [
+            "la-335"
+          ],
+          "points": [
+            "An Increment is a concrete step towards the Product Goal. Every Increment is additive and usable.",
+            "Its commitment is the Definition of Done, the formal description of the state of the Increment when it meets the quality required. The moment a Product Backlog item meets the Definition of Done, an Increment is born.",
+            "Work that does not meet the Definition of Done cannot be released or shown at the Sprint Review. It goes back to the Product Backlog."
+          ],
+          "remember": "Increment: Definition of Done."
+        },
+        {
+          "title": "Artifact and commitment",
+          "points": [
+            "Product Backlog goes with the Product Goal, Sprint Backlog with the Sprint Goal, Increment with the Definition of Done.",
+            "The commitments make progress measurable: the artifact describes the work, the commitment says what it is for."
+          ],
+          "remember": "Backlog: Product Goal. Sprint Backlog: Sprint Goal. Increment: Definition of Done."
+        }
+      ]
+    },
+    "case-study": {
+      "minutes": 8,
+      "src": [
+        "syl",
+        "Ch.14, p.13-14"
+      ],
+      "chunks": [
+        {
+          "title": "The case and the Define phase",
+          "points": [
+            "A university IT helpdesk wants to reduce long response times and repeated tickets while keeping service quality stable.",
+            "VOC: students need predictable and accurate support. CTQ1: first response within 4 business hours. CTQ2: tickets resolved correctly without reopening.",
+            "Charter: reduce SLA misses from 30% to 15% in one semester, scope = standard student tickets, sponsor = the head of IT services."
+          ],
+          "remember": "CTQ1 first response in 4 business hours, CTQ2 resolved without reopening."
+        },
+        {
+          "title": "Measure: the numbers",
+          "ask": [
+            "la-431"
+          ],
+          "points": [
+            "In a month: 1,000 tickets, 300 miss the first-response SLA, 90 tickets reopen.",
+            "First-response success = 700 ÷ 1,000 = 70%. FTR proxy (reopening is the defined defect) = 910 ÷ 1,000 = 91%.",
+            "Do not call reopening the only possible definition of FTR without agreement."
+          ],
+          "remember": "Success 70%, FTR proxy 91%."
+        },
+        {
+          "title": "Analyze: map and validate",
+          "ask": [
+            "la-436"
+          ],
+          "points": [
+            "Map the lanes: student, intake, first-line, specialist and system. A Pareto chart may show routing and missing information as the frequent causes.",
+            "Validate by stratifying the tickets and auditing a sample, not by collecting opinions."
+          ]
+        },
+        {
+          "title": "Improve and Control",
+          "ask": [
+            "la-435"
+          ],
+          "points": [
+            "Improve: pilot an intake form with error-proofing, routing rules, WIP limits and a daily blocked-ticket escalation. Compare with the baseline and control for ticket complexity and demand.",
+            "Control: monitor weekly the SLA miss proportion, the reopen proportion and the lead-time P90. Assign owners, publish standards and agree reaction rules. Check workload and accessibility for unintended consequences."
+          ],
+          "remember": "Weekly: SLA misses, reopen share, lead-time P90."
+        },
+        {
+          "title": "Metric practice from the case",
+          "points": [
+            "Demand 100 requests/day and 400 available minutes: takt = 4 minutes per request.",
+            "120 open requests at 40 per day: average flow time = 3 days, if the system is stable.",
+            "30 defects across 600 requests with 2 opportunities each: DPO = 0.025, DPMO = 25,000.",
+            "SLA misses from 300 to 150 per 1,000 tickets: 15 percentage points absolute (from 30% to 15%), 50% relative reduction."
+          ],
+          "remember": "Absolute: points. Relative: share of the old value."
+        }
       ]
     }
   }

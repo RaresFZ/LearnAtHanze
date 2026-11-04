@@ -1,93 +1,925 @@
 {
   "intro": "Terms that look alike are where multiple choice catches people. Compare them side by side, then drill: you get a statement and pick the term it describes.",
   "groups": [
-    { "id": "3ms", "title": "Muda, Mura or Muri?", "topic": "foundations", "src": ["syl", "Ch.1, p.3"], "terms": [
-      { "name": "Muda", "means": "Waste: activity that uses resources without adding value.", "tip": "Muda is what gets thrown away.", "clues": ["Errors, queues and rework use up resources without adding value.", "A ticket that waits in a queue for two days is an example of this.", "Activity that consumes resources and adds nothing for the customer."] },
-      { "name": "Mura", "means": "Unevenness: irregular demand or workload.", "tip": "Mura is the uneven part, and it is often the cause.", "clues": ["Demand that arrives in unpredictable batches.", "An unstable schedule is this, and it can cause overtime.", "Irregular demand or an uneven workload."] },
-      { "name": "Muri", "means": "Overburden: too much load on people or equipment.", "tip": "Muri is the overload, for example overtime.", "clues": ["Overtime that loads people too heavily.", "Too much load on people or on equipment.", "What an unstable schedule causes before errors and queues appear."] }
-    ] },
-    { "id": "time-metrics", "title": "Takt time, cycle time or lead time?", "topic": "metrics-time", "src": ["syl", "Ch.6, p.7"], "terms": [
-      { "name": "Takt time", "means": "The pace the customer demand requires: net available time ÷ customer demand.", "tip": "Takt is calculated from demand. You do not measure it.", "clues": ["420 minutes ÷ 140 units a day gives 3 minutes per unit.", "The required rhythm to match customer demand.", "It is not an observed time: it comes from available time and demand."] },
-      { "name": "Cycle time", "means": "What you observe: the time to complete one cycle, or the time between finished units.", "tip": "Cycle time is measured at a station. Compare it with takt.", "clues": ["A station needs 4 minutes per unit.", "The observed time between consecutive completed units.", "If it is longer than the takt time, one station cannot meet demand."] },
-      { "name": "Lead time", "means": "Elapsed time from the customer's request to delivery, including all waiting.", "tip": "Lead time includes the waiting. Touch time does not.", "clues": ["The whole time from request to delivery, waiting included.", "Waiting can take up most of it.", "A request that spends 3 calendar days in the process has this."] }
-    ] },
-    { "id": "defect-metrics", "title": "DPU, DPO, DPMO or defective-unit rate?", "topic": "metrics-quality", "src": ["syl", "Ch.7, p.8"], "terms": [
-      { "name": "DPU", "means": "Total defects ÷ total units.", "tip": "DPU counts defects per unit and ignores the opportunities.", "clues": ["40 defects in 500 forms gives 0.08.", "Defects per unit, one form can have several.", "It counts defects, not defective forms."] },
-      { "name": "DPO", "means": "Total defects ÷ (units × opportunities per unit).", "tip": "DPO divides by the number of chances for a defect.", "clues": ["40 defects, 500 forms and 4 opportunities each gives 0.02.", "Defects per opportunity.", "The step before the DPMO: multiply it by 1,000,000 to get the DPMO."] },
-      { "name": "DPMO", "means": "DPO × 1,000,000: defects per million opportunities.", "tip": "DPMO is not defective units per million.", "clues": ["20,000 for 40 defects in 500 forms with 4 opportunities each.", "Defects per million chances for a defect.", "The number behind the 3.4 benchmark of Six Sigma."] },
-      { "name": "Defective-unit rate", "means": "Units with at least one defect ÷ units.", "tip": "A unit counts once, however many defects it has.", "clues": ["35 of 500 forms contain defects: 7%.", "A form with three defects still counts as one.", "It differs from the DPU when one unit has several defects."] }
-    ] },
-    { "id": "wastes", "title": "Which of the eight wastes?", "topic": "waste", "src": ["syl", "Ch.2, p.4"], "terms": [
-      { "name": "Transportation", "means": "Unnecessary movement of materials or information between places.", "tip": "Transportation: things or information move. Motion: people move.", "clues": ["A ticket is copied between three teams.", "Materials or information are moved between places more than needed.", "Information is handed over again and again between departments."] },
-      { "name": "Motion", "means": "Unnecessary movement by a person.", "tip": "Motion: a person moves.", "clues": ["A worker walks to a distant printer.", "People walk or reach more than the task needs.", "Staff move around to find what they need."] },
-      { "name": "Overprocessing", "means": "More work than needed.", "tip": "Overprocessing: doing more than the customer asked for.", "clues": ["The same data is entered twice.", "A task gets more work than the customer needs.", "Extra checks and steps that add nothing for the customer."] },
-      { "name": "Waiting", "means": "Idle time.", "tip": "Waiting: the work sits still.", "clues": ["A ticket stays in a queue for two days.", "Work or people stand idle until the next step is ready.", "Time passes and nothing is being done on the request."] },
-      { "name": "Defects", "means": "Errors and rework.", "tip": "Defects: it has to be done again.", "clues": ["A ticket is reopened because the first fix failed.", "An employee corrects an error.", "Mistakes and the rework they cause."] },
-      { "name": "Skills (unused talent)", "means": "Not using employees' expertise and ideas.", "tip": "Skills is the eighth waste, the S of TIMWOODS.", "clues": ["An employee knows how to automate a task, but nobody asks.", "Staff ideas and expertise stay unused.", "The eighth waste in the eight-waste model."] },
-      { "name": "Inventory", "means": "Excess work in progress, stock or pending tickets.", "tip": "Inventory: too much waiting in the pile.", "clues": ["Far too many tickets are pending.", "More work in progress than the process can handle.", "Stock or work that piles up between steps."] },
-      { "name": "Overproduction", "means": "Producing too early or too much.", "tip": "Overproduction: more or sooner than demand asks.", "clues": ["Work is made before anyone needs it.", "More is produced than is asked for.", "Producing too early or in too large amounts."] }
-    ] },
-    { "id": "roles", "title": "Which belt or role?", "topic": "governance", "src": ["syl", "Ch.3, p.4"], "terms": [
-      { "name": "White Belt", "means": "Awareness and basic terminology.", "tip": "The lowest level: knows the words.", "clues": ["Basic awareness of Lean Six Sigma and support for the improvement culture.", "Knows the basic terminology.", "Awareness is the whole job."] },
-      { "name": "Yellow Belt", "means": "Takes part in improvement activities and data collection.", "tip": "Yellow takes part, Green leads.", "clues": ["Participates in improvement work and collects data.", "Helps a project team without leading it.", "Takes part in improvement activities."] },
-      { "name": "Green Belt", "means": "Leads bounded projects, usually next to normal duties.", "tip": "Green leads the project.", "clues": ["Leading a defined process-improvement project.", "Leads a bounded project alongside normal duties.", "The typical project leader of this course."] },
-      { "name": "Black Belt", "means": "Leads complex analytical projects and coaches Green Belts.", "tip": "Black coaches Green Belts.", "clues": ["Leads complex analytical projects.", "Coaches the Green Belts.", "More analytical expertise than a Green Belt."] },
-      { "name": "Master Black Belt", "means": "Methodological expert and deployment coach.", "tip": "Not a sponsor by definition.", "clues": ["A technical coaching and deployment role.", "The methods expert of the organisation.", "Not by definition the project sponsor."] },
-      { "name": "Champion", "means": "Senior leader who selects and supports projects, secures resources and removes barriers.", "tip": "Champion = sponsor, a governance role, not a belt.", "clues": ["A senior leader who selects and supports the projects.", "Secures resources and removes barriers.", "A governance role rather than a technical belt."] }
-    ] },
-    { "id": "tps-ideas", "title": "Which TPS idea?", "topic": "foundations", "src": ["syl", "Ch.1 and Ch.10-11, p.3, 11"], "terms": [
-      { "name": "Just-in-Time", "means": "Produce what is needed when it is needed.", "tip": "One of the two pillars of TPS.", "clues": ["Production is coordinated with demand.", "Produce exactly what is needed, when it is needed.", "A pillar of TPS that must not be confused with merely keeping inventory low."] },
-      { "name": "Jidoka", "means": "Build quality into the process and stop to deal with abnormalities.", "tip": "The other pillar of TPS. Detection must lead to a reaction.", "clues": ["Stops or signals an abnormal condition and triggers a response.", "Quality is built into the process.", "Detecting a problem without reacting is not enough."] },
-      { "name": "Heijunka", "means": "Levelling production volume and mix.", "tip": "Heijunka = levelling.", "clues": ["Reduces peaks in volume and mix.", "Smooths the workload where demand allows it.", "Levelling that is no reason to ignore urgent work."] },
-      { "name": "Andon", "means": "A visual or audible signal that asks for support.", "tip": "Andon = the signal.", "clues": ["A signal that calls for help when something is abnormal.", "A visual or audible request for support.", "It requests support when something abnormal happens."] },
-      { "name": "Kaizen", "means": "Continuous, incremental improvement with the people who do the work.", "tip": "Kaizen = many small improvements.", "clues": ["Continuous incremental improvement.", "Improvement that involves the staff doing the work.", "Not a one-time large investment."] },
-      { "name": "Poka Yoke", "means": "Error-proofing: make errors hard to make or easy to detect.", "tip": "Poka Yoke = foolproof.", "clues": ["A connector that only fits in the right orientation.", "A form field that rejects invalid input.", "Barcode validation."] }
-    ] },
-    { "id": "voices", "title": "VOC, VOB or CTQ?", "topic": "define", "src": ["syl", "Ch.4, p.5"], "terms": [
-      { "name": "VOC", "means": "Voice of the Customer: the customers' needs, expectations and experiences.", "tip": "VOC = what the customer says and needs.", "clues": ["Evidence from interviews, surveys, complaints and service logs.", "What customers need and experience.", "Customers' words, as opposed to what the organisation assumes."] },
-      { "name": "VOB", "means": "Voice of the Business: strategic, financial, regulatory and operational priorities.", "tip": "VOB = what the business needs.", "clues": ["Strategic, financial, regulatory and operational priorities.", "The organisation's own priorities.", "The business case of a project charter is linked to it."] },
-      { "name": "CTQ", "means": "Critical to Quality: a broad need turned into something observable and measurable.", "tip": "A CTQ has a target, a unit and an owner.", "clues": ["90% of priority-2 tickets get an initial response within 4 business hours.", "'Fast support' made specific and measurable.", "It needs an operational definition, a target, a unit, a measurement method and an owner."] }
-    ] },
-    { "id": "cycles", "title": "DMAIC, PDCA, tollgate or charter?", "topic": "governance", "src": ["syl", "Ch.1, 3 and 13, p.3, 5, 13"], "terms": [
-      { "name": "DMAIC", "means": "A structured project path for an existing process problem, in five phases.", "tip": "DMAIC = a project, PDCA = a habit.", "clues": ["Define, Measure, Analyze, Improve, Control.", "The structured path of a Green Belt project.", "Used for an existing process problem, with a start and an end."] },
-      { "name": "PDCA", "means": "A repeating learning cycle for everyday and experimental improvement.", "tip": "Complements DMAIC, does not compete with it.", "clues": ["Plan a change and a prediction, do a small test, check, then act.", "A repeating cycle for learning in everyday improvement.", "Adopt, adapt or abandon is its last step."] },
-      { "name": "Tollgate", "means": "A formal review at the end of a phase: the sponsor checks the evidence and authorises the next phase.", "tip": "A tollgate is not a sixth phase.", "clues": ["A phase-end evidence review and authorization decision.", "The sponsor decides whether the project may go on to the next phase.", "It is a review, not an additional DMAIC phase."] },
-      { "name": "Project charter", "means": "The document with the business case, problem statement, goal, scope, team and timeline. Made in Define.", "tip": "The charter belongs to the Define phase.", "clues": ["Contains the business case, scope, stakeholders, team and timeline.", "Its problem statement should not name a preferred solution.", "Made in the Define phase."] }
-    ] },
-    { "id": "charts", "title": "Which control chart?", "topic": "statistics", "src": ["syl", "Ch.9, p.10"], "terms": [
-      { "name": "I-MR chart", "means": "For individual continuous measurements.", "tip": "One measurement at a time.", "clues": ["Individual continuous measurements.", "Each point is a single measurement.", "Used when data does not come in subgroups."] },
-      { "name": "X-bar/R chart", "means": "For rational subgroups.", "tip": "Measurements in subgroups.", "clues": ["Data that comes in rational subgroups.", "Tracks the subgroup average and range.", "Used when several measurements are taken together each time."] },
-      { "name": "p-chart", "means": "For the proportion defective.", "tip": "p = proportion.", "clues": ["Weekly defective-form proportions.", "The share of defective items.", "The proportion defective in a sample."] },
-      { "name": "u-chart", "means": "For defects per unit when the exposure varies.", "tip": "u = defects per unit.", "clues": ["Defects per unit, with a varying opportunity exposure.", "Counts defects, not defective items, when sample sizes differ.", "Defects per unit over time."] }
-    ] },
-    { "id": "tools", "title": "Which improvement tool?", "topic": "improve-workplace", "src": ["syl", "Ch.10-13, p.10-13"], "terms": [
-      { "name": "5S", "means": "Sort, Set in Order, Shine, Standardize, Sustain.", "tip": "5S = the workplace.", "clues": ["Remove what is not needed, label what is, clean, agree standards, keep it up.", "A workplace method of five steps, some add Safety as a sixth.", "Used for example to set up a training room."] },
-      { "name": "SMED", "means": "Reduce changeover time by separating internal and external activities.", "tip": "SMED = changeovers.", "clues": ["Single-Minute Exchange of Die.", "Move activities that need a shutdown to ones that can be done while running.", "Aims for changeovers in single-digit minutes where feasible."] },
-      { "name": "TPM", "means": "Total Productive Maintenance: proactive and planned maintenance with operator involvement.", "tip": "TPM = maintenance.", "clues": ["Operators do safe basic care, specialists do the rest.", "Proactive maintenance and systematic loss reduction.", "Combines planned and quality maintenance."] },
-      { "name": "Kanban", "means": "Visualizes work and limits work in progress (a pull system).", "tip": "Kanban = visible WIP limits.", "clues": ["Cards or columns that show work and limit WIP.", "Explicit WIP limits expose blocked work.", "A pull mechanism that authorises work from downstream consumption."] },
-      { "name": "Hoshin Kanri", "means": "Policy deployment: strategy turned into goals, owners and review cycles.", "tip": "Hoshin Kanri = strategy deployment, with catchball.", "clues": ["Translates strategic priorities into a few breakthrough goals.", "Uses catchball, a dialogue across levels.", "Deployment and alignment of strategy with operational objectives."] },
-      { "name": "OEE", "means": "Availability × Performance × Quality.", "tip": "OEE = how well equipment is used.", "clues": ["Three factors multiplied.", "Measures how effectively equipment is used.", "Has the six big losses behind it."] }
-    ] },
-    { "id": "yields", "title": "FPY, RTY or FTR?", "topic": "metrics-quality", "src": ["syl", "Ch.6-7, p.7-8"], "terms": [
-      { "name": "FPY", "means": "First-pass yield: units passing a process step without rework ÷ units entering.", "tip": "FPY belongs to one step.", "clues": ["Units that pass a step first time divided by units entering it.", "The yield of one process step.", "One of the factors in the rolled throughput yield."] },
-      { "name": "RTY", "means": "Rolled throughput yield: the product of the step first-pass yields.", "tip": "RTY multiplies the steps.", "clues": ["Multiply the yields of all the steps.", "Must not be guessed from the final inspection alone.", "Three steps of 95%, 98% and 90% give a lower number than any of them."] },
-      { "name": "FTR", "means": "First Time Right: work completed correctly without rework on the first attempt ÷ units processed × 100%.", "tip": "FTR is the share done right the first time.", "clues": ["Completing work correctly without rework on the first attempt.", "Define whether reopening and exceptions count as failures.", "910 of 1,000 tickets that never reopened gives 91%."] }
-    ] },
-    { "id": "analysis-tools", "title": "Which analysis tool?", "topic": "analyze", "src": ["syl", "Ch.8, p.8-9"], "terms": [
-      { "name": "5 Whys", "means": "Keep asking why, with evidence for every answer.", "tip": "Five is a mnemonic, not a rule.", "clues": ["Repeatedly ask why a condition occurred.", "Stop when the causes are evidenced and actionable.", "Does not have to ask exactly five questions."] },
-      { "name": "Fishbone (Ishikawa)", "means": "Organises possible causes on branches, with the problem at the head.", "tip": "It organises hypotheses, it proves nothing.", "clues": ["The problem is the fish's head, causes are the bones.", "Typical categories are Manpower, Machine, Method, Material, Measurement and Environment.", "Also called a cause-and-effect diagram."] },
-      { "name": "Pareto analysis", "means": "Ranks categories by frequency, cost or severity and shows the cumulative total.", "tip": "The 80/20 rule is a rule of thumb.", "clues": ["Ranks causes and shows the cumulative contribution.", "Prioritise on impact and feasibility, not on frequency alone.", "The 80/20 heuristic belongs to it."] },
-      { "name": "A3", "means": "A concise one-page narrative from background to follow-up.", "tip": "A3 = one page.", "clues": ["Background, current condition, target, analysis, countermeasures, follow-up on one page.", "Encourages evidence, shared thinking and coaching.", "A one-page problem-solving story."] },
-      { "name": "FMEA", "means": "Looks ahead at failure modes, effects, causes and controls. RPN = S × O × D.", "tip": "FMEA is about risk, before it happens.", "clues": ["Scores severity, occurrence and detectability.", "A high-severity risk deserves attention even when the RPN is modest.", "Anticipates failure modes and their effects."] }
-    ] },
-    { "id": "itil-lists", "title": "ITIL 4: element or dimension?", "topic": "itil", "src": ["s5", "Slide 5"], "terms": [
-      { "name": "Service Value System element", "means": "One of the five core elements: Guiding principles, Governance, Service value chain, Practices, Continual improvement.", "tip": "5 elements.", "clues": ["Guiding principles is one of these.", "Governance is one of these.", "The service value chain is one of these.", "Continual improvement is one of these."] },
-      { "name": "ITIL dimension", "means": "One of the four dimensions: Organizations & people, Information & technology, Partners & suppliers, Value streams & processes.", "tip": "4 dimensions.", "clues": ["Partners & suppliers is one of these.", "Organizations & people is one of these.", "Information & technology is one of these.", "Value streams & processes is one of these."] }
-    ] },
-    { "id": "lean-six-agile", "title": "Lean, Six Sigma or Agile/Scrum?", "topic": "foundations", "src": ["syl", "Ch.1 and 16, p.3, 17"], "terms": [
-      { "name": "Lean", "means": "Improves customer value and flow by reducing non-value-adding work.", "tip": "Lean = waste and flow.", "clues": ["Asks where time, effort and resources are wasted across the value stream.", "Emphasises value, flow and waste reduction.", "Its five principles run from value to perfection."] },
-      { "name": "Six Sigma", "means": "Reduces defects and unwanted variation through measurement and analysis.", "tip": "Six Sigma = defects and variation.", "clues": ["Asks how reliably the process meets requirements.", "Emphasises defects, variation and process capability.", "Its benchmark is about 3.4 DPMO."] },
-      { "name": "Agile/Scrum", "means": "A software delivery approach, not a definition of Lean.", "tip": "Can coexist with Lean process improvement.", "clues": ["A way to deliver software, like waterfall, but iterative.", "Not an alternative definition of Lean.", "Can exist side by side with Lean process improvement."] }
-    ] }
+    {
+      "id": "3ms",
+      "title": "Muda, Mura or Muri?",
+      "topic": "foundations",
+      "src": [
+        "syl",
+        "Ch.1, p.3"
+      ],
+      "terms": [
+        {
+          "name": "Muda",
+          "means": "Waste: activity that uses resources without adding value.",
+          "tip": "Muda is what gets thrown away.",
+          "clues": [
+            "Errors, queues and rework use up resources without adding value.",
+            "A ticket that waits in a queue for two days is an example of this.",
+            "Activity that consumes resources and adds nothing for the customer."
+          ]
+        },
+        {
+          "name": "Mura",
+          "means": "Unevenness: irregular demand or workload.",
+          "tip": "Mura is the uneven part, and it is often the cause.",
+          "clues": [
+            "Demand that arrives in unpredictable batches.",
+            "An unstable schedule is this, and it can cause overtime.",
+            "Irregular demand or an uneven workload."
+          ]
+        },
+        {
+          "name": "Muri",
+          "means": "Overburden: too much load on people or equipment.",
+          "tip": "Muri is the overload, for example overtime.",
+          "clues": [
+            "Overtime that loads people too heavily.",
+            "Too much load on people or on equipment.",
+            "What an unstable schedule causes before errors and queues appear."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "time-metrics",
+      "title": "Takt time, cycle time or lead time?",
+      "topic": "metrics-time",
+      "src": [
+        "syl",
+        "Ch.6, p.7"
+      ],
+      "terms": [
+        {
+          "name": "Takt time",
+          "means": "The pace the customer demand requires: net available time ÷ customer demand.",
+          "tip": "Takt is calculated from demand. You do not measure it.",
+          "clues": [
+            "420 minutes ÷ 140 units a day gives 3 minutes per unit.",
+            "The required rhythm to match customer demand.",
+            "It is not an observed time: it comes from available time and demand."
+          ]
+        },
+        {
+          "name": "Cycle time",
+          "means": "What you observe: the time to complete one cycle, or the time between finished units.",
+          "tip": "Cycle time is measured at a station. Compare it with takt.",
+          "clues": [
+            "A station needs 4 minutes per unit.",
+            "The observed time between consecutive completed units.",
+            "If it is longer than the takt time, one station cannot meet demand."
+          ]
+        },
+        {
+          "name": "Lead time",
+          "means": "Elapsed time from the customer's request to delivery, including all waiting.",
+          "tip": "Lead time includes the waiting. Touch time does not.",
+          "clues": [
+            "The whole time from request to delivery, waiting included.",
+            "Waiting can take up most of it.",
+            "A request that spends 3 calendar days in the process has this."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "defect-metrics",
+      "title": "DPU, DPO, DPMO or defective-unit rate?",
+      "topic": "metrics-quality",
+      "src": [
+        "syl",
+        "Ch.7, p.8"
+      ],
+      "terms": [
+        {
+          "name": "DPU",
+          "means": "Total defects ÷ total units.",
+          "tip": "DPU counts defects per unit and ignores the opportunities.",
+          "clues": [
+            "40 defects in 500 forms gives 0.08.",
+            "Defects per unit, one form can have several.",
+            "It counts defects, not defective forms."
+          ]
+        },
+        {
+          "name": "DPO",
+          "means": "Total defects ÷ (units × opportunities per unit).",
+          "tip": "DPO divides by the number of chances for a defect.",
+          "clues": [
+            "40 defects, 500 forms and 4 opportunities each gives 0.02.",
+            "Defects per opportunity.",
+            "The step before the DPMO: multiply it by 1,000,000 to get the DPMO."
+          ]
+        },
+        {
+          "name": "DPMO",
+          "means": "DPO × 1,000,000: defects per million opportunities.",
+          "tip": "DPMO is not defective units per million.",
+          "clues": [
+            "20,000 for 40 defects in 500 forms with 4 opportunities each.",
+            "Defects per million chances for a defect.",
+            "The number behind the 3.4 benchmark of Six Sigma."
+          ]
+        },
+        {
+          "name": "Defective-unit rate",
+          "means": "Units with at least one defect ÷ units.",
+          "tip": "A unit counts once, however many defects it has.",
+          "clues": [
+            "35 of 500 forms contain defects: 7%.",
+            "A form with three defects still counts as one.",
+            "It differs from the DPU when one unit has several defects."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wastes",
+      "title": "Which of the eight wastes?",
+      "topic": "waste",
+      "src": [
+        "syl",
+        "Ch.2, p.4"
+      ],
+      "terms": [
+        {
+          "name": "Transportation",
+          "means": "Unnecessary movement of materials or information between places.",
+          "tip": "Transportation: things or information move. Motion: people move.",
+          "clues": [
+            "A ticket is copied between three teams.",
+            "Materials or information are moved between places more than needed.",
+            "Information is handed over again and again between departments."
+          ]
+        },
+        {
+          "name": "Motion",
+          "means": "Unnecessary movement by a person.",
+          "tip": "Motion: a person moves.",
+          "clues": [
+            "A worker walks to a distant printer.",
+            "People walk or reach more than the task needs.",
+            "Staff move around to find what they need."
+          ]
+        },
+        {
+          "name": "Overprocessing",
+          "means": "More work than needed.",
+          "tip": "Overprocessing: doing more than the customer asked for.",
+          "clues": [
+            "The same data is entered twice.",
+            "A task gets more work than the customer needs.",
+            "Extra checks and steps that add nothing for the customer."
+          ]
+        },
+        {
+          "name": "Waiting",
+          "means": "Idle time.",
+          "tip": "Waiting: the work sits still.",
+          "clues": [
+            "A ticket stays in a queue for two days.",
+            "Work or people stand idle until the next step is ready.",
+            "Time passes and nothing is being done on the request."
+          ]
+        },
+        {
+          "name": "Defects",
+          "means": "Errors and rework.",
+          "tip": "Defects: it has to be done again.",
+          "clues": [
+            "A ticket is reopened because the first fix failed.",
+            "An employee corrects an error.",
+            "Mistakes and the rework they cause."
+          ]
+        },
+        {
+          "name": "Skills (unused talent)",
+          "means": "Not using employees' expertise and ideas.",
+          "tip": "Skills is the eighth waste, the S of TIMWOODS.",
+          "clues": [
+            "An employee knows how to automate a task, but nobody asks.",
+            "Staff ideas and expertise stay unused.",
+            "The eighth waste in the eight-waste model."
+          ]
+        },
+        {
+          "name": "Inventory",
+          "means": "Excess work in progress, stock or pending tickets.",
+          "tip": "Inventory: too much waiting in the pile.",
+          "clues": [
+            "Far too many tickets are pending.",
+            "More work in progress than the process can handle.",
+            "Stock or work that piles up between steps."
+          ]
+        },
+        {
+          "name": "Overproduction",
+          "means": "Producing too early or too much.",
+          "tip": "Overproduction: more or sooner than demand asks.",
+          "clues": [
+            "Work is made before anyone needs it.",
+            "More is produced than is asked for.",
+            "Producing too early or in too large amounts."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "roles",
+      "title": "Which belt or role?",
+      "topic": "governance",
+      "src": [
+        "syl",
+        "Ch.3, p.4"
+      ],
+      "terms": [
+        {
+          "name": "White Belt",
+          "means": "Awareness and basic terminology.",
+          "tip": "The lowest level: knows the words.",
+          "clues": [
+            "Basic awareness of Lean Six Sigma and support for the improvement culture.",
+            "Knows the basic terminology.",
+            "Awareness is the whole job."
+          ]
+        },
+        {
+          "name": "Yellow Belt",
+          "means": "Takes part in improvement activities and data collection.",
+          "tip": "Yellow takes part, Green leads.",
+          "clues": [
+            "Participates in improvement work and collects data.",
+            "Helps a project team without leading it.",
+            "Takes part in improvement activities."
+          ]
+        },
+        {
+          "name": "Green Belt",
+          "means": "Leads bounded projects, usually next to normal duties.",
+          "tip": "Green leads the project.",
+          "clues": [
+            "Leading a defined process-improvement project.",
+            "Leads a bounded project alongside normal duties.",
+            "The typical project leader of this course."
+          ]
+        },
+        {
+          "name": "Black Belt",
+          "means": "Leads complex analytical projects and coaches Green Belts.",
+          "tip": "Black coaches Green Belts.",
+          "clues": [
+            "Leads complex analytical projects.",
+            "Coaches the Green Belts.",
+            "More analytical expertise than a Green Belt."
+          ]
+        },
+        {
+          "name": "Master Black Belt",
+          "means": "Methodological expert and deployment coach.",
+          "tip": "Not a sponsor by definition.",
+          "clues": [
+            "A technical coaching and deployment role.",
+            "The methods expert of the organisation.",
+            "Not by definition the project sponsor."
+          ]
+        },
+        {
+          "name": "Champion",
+          "means": "Senior leader who selects and supports projects, secures resources and removes barriers.",
+          "tip": "Champion = sponsor, a governance role, not a belt.",
+          "clues": [
+            "A senior leader who selects and supports the projects.",
+            "Secures resources and removes barriers.",
+            "A governance role rather than a technical belt."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tps-ideas",
+      "title": "Which TPS idea?",
+      "topic": "foundations",
+      "src": [
+        "syl",
+        "Ch.1 and Ch.10-11, p.3, 11"
+      ],
+      "terms": [
+        {
+          "name": "Just-in-Time",
+          "means": "Produce what is needed when it is needed.",
+          "tip": "One of the two pillars of TPS.",
+          "clues": [
+            "Production is coordinated with demand.",
+            "Produce exactly what is needed, when it is needed.",
+            "A pillar of TPS that must not be confused with merely keeping inventory low."
+          ]
+        },
+        {
+          "name": "Jidoka",
+          "means": "Build quality into the process and stop to deal with abnormalities.",
+          "tip": "The other pillar of TPS. Detection must lead to a reaction.",
+          "clues": [
+            "Stops or signals an abnormal condition and triggers a response.",
+            "Quality is built into the process.",
+            "Detecting a problem without reacting is not enough."
+          ]
+        },
+        {
+          "name": "Heijunka",
+          "means": "Levelling production volume and mix.",
+          "tip": "Heijunka = levelling.",
+          "clues": [
+            "Reduces peaks in volume and mix.",
+            "Smooths the workload where demand allows it.",
+            "Levelling that is no reason to ignore urgent work."
+          ]
+        },
+        {
+          "name": "Andon",
+          "means": "A visual or audible signal that asks for support.",
+          "tip": "Andon = the signal.",
+          "clues": [
+            "A signal that calls for help when something is abnormal.",
+            "A visual or audible request for support.",
+            "It requests support when something abnormal happens."
+          ]
+        },
+        {
+          "name": "Kaizen",
+          "means": "Continuous, incremental improvement with the people who do the work.",
+          "tip": "Kaizen = many small improvements.",
+          "clues": [
+            "Continuous incremental improvement.",
+            "Improvement that involves the staff doing the work.",
+            "Not a one-time large investment."
+          ]
+        },
+        {
+          "name": "Poka Yoke",
+          "means": "Error-proofing: make errors hard to make or easy to detect.",
+          "tip": "Poka Yoke = foolproof.",
+          "clues": [
+            "A connector that only fits in the right orientation.",
+            "A form field that rejects invalid input.",
+            "Barcode validation."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "voices",
+      "title": "VOC, VOB or CTQ?",
+      "topic": "define",
+      "src": [
+        "syl",
+        "Ch.4, p.5"
+      ],
+      "terms": [
+        {
+          "name": "VOC",
+          "means": "Voice of the Customer: the customers' needs, expectations and experiences.",
+          "tip": "VOC = what the customer says and needs.",
+          "clues": [
+            "Evidence from interviews, surveys, complaints and service logs.",
+            "What customers need and experience.",
+            "Customers' words, as opposed to what the organisation assumes."
+          ]
+        },
+        {
+          "name": "VOB",
+          "means": "Voice of the Business: strategic, financial, regulatory and operational priorities.",
+          "tip": "VOB = what the business needs.",
+          "clues": [
+            "Strategic, financial, regulatory and operational priorities.",
+            "The organisation's own priorities.",
+            "The business case of a project charter is linked to it."
+          ]
+        },
+        {
+          "name": "CTQ",
+          "means": "Critical to Quality: a broad need turned into something observable and measurable.",
+          "tip": "A CTQ has a target, a unit and an owner.",
+          "clues": [
+            "90% of priority-2 tickets get an initial response within 4 business hours.",
+            "'Fast support' made specific and measurable.",
+            "It needs an operational definition, a target, a unit, a measurement method and an owner."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cycles",
+      "title": "DMAIC, PDCA, tollgate or charter?",
+      "topic": "governance",
+      "src": [
+        "syl",
+        "Ch.1, 3 and 13, p.3, 5, 13"
+      ],
+      "terms": [
+        {
+          "name": "DMAIC",
+          "means": "A structured project path for an existing process problem, in five phases.",
+          "tip": "DMAIC = a project, PDCA = a habit.",
+          "clues": [
+            "Define, Measure, Analyze, Improve, Control.",
+            "The structured path of a Green Belt project.",
+            "Used for an existing process problem, with a start and an end."
+          ]
+        },
+        {
+          "name": "PDCA",
+          "means": "A repeating learning cycle for everyday and experimental improvement.",
+          "tip": "Complements DMAIC, does not compete with it.",
+          "clues": [
+            "Plan a change and a prediction, do a small test, check, then act.",
+            "A repeating cycle for learning in everyday improvement.",
+            "Adopt, adapt or abandon is its last step."
+          ]
+        },
+        {
+          "name": "Tollgate",
+          "means": "A formal review at the end of a phase: the sponsor checks the evidence and authorises the next phase.",
+          "tip": "A tollgate is not a sixth phase.",
+          "clues": [
+            "A phase-end evidence review and authorization decision.",
+            "The sponsor decides whether the project may go on to the next phase.",
+            "It is a review, not an additional DMAIC phase."
+          ]
+        },
+        {
+          "name": "Project charter",
+          "means": "The document with the business case, problem statement, goal, scope, team and timeline. Made in Define.",
+          "tip": "The charter belongs to the Define phase.",
+          "clues": [
+            "Contains the business case, scope, stakeholders, team and timeline.",
+            "Its problem statement should not name a preferred solution.",
+            "Made in the Define phase."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "charts",
+      "title": "Which control chart?",
+      "topic": "statistics",
+      "src": [
+        "syl",
+        "Ch.9, p.10"
+      ],
+      "terms": [
+        {
+          "name": "I-MR chart",
+          "means": "For individual continuous measurements.",
+          "tip": "One measurement at a time.",
+          "clues": [
+            "Individual continuous measurements.",
+            "Each point is a single measurement.",
+            "Used when data does not come in subgroups."
+          ]
+        },
+        {
+          "name": "X-bar/R chart",
+          "means": "For rational subgroups.",
+          "tip": "Measurements in subgroups.",
+          "clues": [
+            "Data that comes in rational subgroups.",
+            "Tracks the subgroup average and range.",
+            "Used when several measurements are taken together each time."
+          ]
+        },
+        {
+          "name": "p-chart",
+          "means": "For the proportion defective.",
+          "tip": "p = proportion.",
+          "clues": [
+            "Weekly defective-form proportions.",
+            "The share of defective items.",
+            "The proportion defective in a sample."
+          ]
+        },
+        {
+          "name": "u-chart",
+          "means": "For defects per unit when the exposure varies.",
+          "tip": "u = defects per unit.",
+          "clues": [
+            "Defects per unit, with a varying opportunity exposure.",
+            "Counts defects, not defective items, when sample sizes differ.",
+            "Defects per unit over time."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tools",
+      "title": "Which improvement tool?",
+      "topic": "improve-workplace",
+      "src": [
+        "syl",
+        "Ch.10-13, p.10-13"
+      ],
+      "terms": [
+        {
+          "name": "5S",
+          "means": "Sort, Set in Order, Shine, Standardize, Sustain.",
+          "tip": "5S = the workplace.",
+          "clues": [
+            "Remove what is not needed, label what is, clean, agree standards, keep it up.",
+            "A workplace method of five steps, some add Safety as a sixth.",
+            "Used for example to set up a training room."
+          ]
+        },
+        {
+          "name": "SMED",
+          "means": "Reduce changeover time by separating internal and external activities.",
+          "tip": "SMED = changeovers.",
+          "clues": [
+            "Single-Minute Exchange of Die.",
+            "Move activities that need a shutdown to ones that can be done while running.",
+            "Aims for changeovers in single-digit minutes where feasible."
+          ]
+        },
+        {
+          "name": "TPM",
+          "means": "Total Productive Maintenance: proactive and planned maintenance with operator involvement.",
+          "tip": "TPM = maintenance.",
+          "clues": [
+            "Operators do safe basic care, specialists do the rest.",
+            "Proactive maintenance and systematic loss reduction.",
+            "Combines planned and quality maintenance."
+          ]
+        },
+        {
+          "name": "Kanban",
+          "means": "Visualizes work and limits work in progress (a pull system).",
+          "tip": "Kanban = visible WIP limits.",
+          "clues": [
+            "Cards or columns that show work and limit WIP.",
+            "Explicit WIP limits expose blocked work.",
+            "A pull mechanism that authorises work from downstream consumption."
+          ]
+        },
+        {
+          "name": "Hoshin Kanri",
+          "means": "Policy deployment: strategy turned into goals, owners and review cycles.",
+          "tip": "Hoshin Kanri = strategy deployment, with catchball.",
+          "clues": [
+            "Translates strategic priorities into a few breakthrough goals.",
+            "Uses catchball, a dialogue across levels.",
+            "Deployment and alignment of strategy with operational objectives."
+          ]
+        },
+        {
+          "name": "OEE",
+          "means": "Availability × Performance × Quality.",
+          "tip": "OEE = how well equipment is used.",
+          "clues": [
+            "Three factors multiplied.",
+            "Measures how effectively equipment is used.",
+            "Has the six big losses behind it."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "yields",
+      "title": "FPY, RTY or FTR?",
+      "topic": "metrics-quality",
+      "src": [
+        "syl",
+        "Ch.6-7, p.7-8"
+      ],
+      "terms": [
+        {
+          "name": "FPY",
+          "means": "First-pass yield: units passing a process step without rework ÷ units entering.",
+          "tip": "FPY belongs to one step.",
+          "clues": [
+            "Units that pass a step first time divided by units entering it.",
+            "The yield of one process step.",
+            "One of the factors in the rolled throughput yield."
+          ]
+        },
+        {
+          "name": "RTY",
+          "means": "Rolled throughput yield: the product of the step first-pass yields.",
+          "tip": "RTY multiplies the steps.",
+          "clues": [
+            "Multiply the yields of all the steps.",
+            "Must not be guessed from the final inspection alone.",
+            "Three steps of 95%, 98% and 90% give a lower number than any of them."
+          ]
+        },
+        {
+          "name": "FTR",
+          "means": "First Time Right: work completed correctly without rework on the first attempt ÷ units processed × 100%.",
+          "tip": "FTR is the share done right the first time.",
+          "clues": [
+            "Completing work correctly without rework on the first attempt.",
+            "Define whether reopening and exceptions count as failures.",
+            "910 of 1,000 tickets that never reopened gives 91%."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "analysis-tools",
+      "title": "Which analysis tool?",
+      "topic": "analyze",
+      "src": [
+        "syl",
+        "Ch.8, p.8-9"
+      ],
+      "terms": [
+        {
+          "name": "5 Whys",
+          "means": "Keep asking why, with evidence for every answer.",
+          "tip": "Five is a mnemonic, not a rule.",
+          "clues": [
+            "Repeatedly ask why a condition occurred.",
+            "Stop when the causes are evidenced and actionable.",
+            "Does not have to ask exactly five questions."
+          ]
+        },
+        {
+          "name": "Fishbone (Ishikawa)",
+          "means": "Organises possible causes on branches, with the problem at the head.",
+          "tip": "It organises hypotheses, it proves nothing.",
+          "clues": [
+            "The problem is the fish's head, causes are the bones.",
+            "Typical categories are Manpower, Machine, Method, Material, Measurement and Environment.",
+            "Also called a cause-and-effect diagram."
+          ]
+        },
+        {
+          "name": "Pareto analysis",
+          "means": "Ranks categories by frequency, cost or severity and shows the cumulative total.",
+          "tip": "The 80/20 rule is a rule of thumb.",
+          "clues": [
+            "Ranks causes and shows the cumulative contribution.",
+            "Prioritise on impact and feasibility, not on frequency alone.",
+            "The 80/20 heuristic belongs to it."
+          ]
+        },
+        {
+          "name": "A3",
+          "means": "A concise one-page narrative from background to follow-up.",
+          "tip": "A3 = one page.",
+          "clues": [
+            "Background, current condition, target, analysis, countermeasures, follow-up on one page.",
+            "Encourages evidence, shared thinking and coaching.",
+            "A one-page problem-solving story."
+          ]
+        },
+        {
+          "name": "FMEA",
+          "means": "Looks ahead at failure modes, effects, causes and controls. RPN = S × O × D.",
+          "tip": "FMEA is about risk, before it happens.",
+          "clues": [
+            "Scores severity, occurrence and detectability.",
+            "A high-severity risk deserves attention even when the RPN is modest.",
+            "Anticipates failure modes and their effects."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "itil-lists",
+      "title": "ITIL 4: element or dimension?",
+      "topic": "itil",
+      "src": [
+        "s5",
+        "Slide 5"
+      ],
+      "terms": [
+        {
+          "name": "Service Value System element",
+          "means": "One of the five core elements: Guiding principles, Governance, Service value chain, Practices, Continual improvement.",
+          "tip": "5 elements.",
+          "clues": [
+            "Guiding principles is one of these.",
+            "Governance is one of these.",
+            "The service value chain is one of these.",
+            "Continual improvement is one of these."
+          ]
+        },
+        {
+          "name": "ITIL dimension",
+          "means": "One of the four dimensions: Organizations & people, Information & technology, Partners & suppliers, Value streams & processes.",
+          "tip": "4 dimensions.",
+          "clues": [
+            "Partners & suppliers is one of these.",
+            "Organizations & people is one of these.",
+            "Information & technology is one of these.",
+            "Value streams & processes is one of these."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lean-six-agile",
+      "title": "Lean, Six Sigma or Agile/Scrum?",
+      "topic": "foundations",
+      "src": [
+        "syl",
+        "Ch.1 and 16, p.3, 17"
+      ],
+      "terms": [
+        {
+          "name": "Lean",
+          "means": "Improves customer value and flow by reducing non-value-adding work.",
+          "tip": "Lean = waste and flow.",
+          "clues": [
+            "Asks where time, effort and resources are wasted across the value stream.",
+            "Emphasises value, flow and waste reduction.",
+            "Its five principles run from value to perfection."
+          ]
+        },
+        {
+          "name": "Six Sigma",
+          "means": "Reduces defects and unwanted variation through measurement and analysis.",
+          "tip": "Six Sigma = defects and variation.",
+          "clues": [
+            "Asks how reliably the process meets requirements.",
+            "Emphasises defects, variation and process capability.",
+            "Its benchmark is about 3.4 DPMO."
+          ]
+        },
+        {
+          "name": "Agile/Scrum",
+          "means": "A software delivery approach, not a definition of Lean.",
+          "tip": "Can coexist with Lean process improvement.",
+          "clues": [
+            "A way to deliver software, like waterfall, but iterative.",
+            "Not an alternative definition of Lean.",
+            "Can exist side by side with Lean process improvement."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scrum-roles",
+      "title": "Which Scrum accountability?",
+      "topic": "scrum-team",
+      "src": [
+        "sg",
+        "The Scrum Team, p.4-6"
+      ],
+      "terms": [
+        {
+          "name": "Product Owner",
+          "means": "Accountable for maximising the value of the product and for managing the Product Backlog.",
+          "tip": "Product Owner = value and the backlog.",
+          "clues": [
+            "Orders the Product Backlog items.",
+            "Develops and communicates the Product Goal.",
+            "One person, not a committee."
+          ]
+        },
+        {
+          "name": "Scrum Master",
+          "means": "Accountable for establishing Scrum and for the effectiveness of the team.",
+          "tip": "Scrum Master = Scrum is understood and enacted.",
+          "clues": [
+            "Coaches the team in self-management and removes impediments.",
+            "Keeps the events positive and within their time-box.",
+            "Helps everyone understand Scrum theory and practice."
+          ]
+        },
+        {
+          "name": "Developers",
+          "means": "Create any aspect of a usable Increment each Sprint, and own the Sprint Backlog.",
+          "tip": "Developers = the plan and the quality.",
+          "clues": [
+            "Create the Sprint Backlog, the plan for the Sprint.",
+            "Instil quality by following the Definition of Done.",
+            "Adapt the plan each day towards the Sprint Goal."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scrum-events",
+      "title": "Which Scrum event?",
+      "topic": "scrum-events",
+      "src": [
+        "sg",
+        "Scrum Events, p.7-11"
+      ],
+      "terms": [
+        {
+          "name": "Sprint Planning",
+          "means": "Lays out the work for the Sprint: why, what and how. Maximum eight hours for a one-month Sprint.",
+          "tip": "Planning = why, what, how.",
+          "clues": [
+            "The Sprint Goal is created here.",
+            "The Developers select Product Backlog items and plan how to do them.",
+            "Has three topics: why, what, how."
+          ]
+        },
+        {
+          "name": "Daily Scrum",
+          "means": "A 15-minute event for the Developers to inspect progress towards the Sprint Goal and adapt the Sprint Backlog.",
+          "tip": "Daily = 15 minutes.",
+          "clues": [
+            "Held at the same time and place every working day.",
+            "Produces an actionable plan for the next day.",
+            "Inspects progress towards the Sprint Goal."
+          ]
+        },
+        {
+          "name": "Sprint Review",
+          "means": "Inspects the outcome of the Sprint with the stakeholders and decides what to adapt. Maximum four hours.",
+          "tip": "Review = the product, with stakeholders.",
+          "clues": [
+            "A working session, not just a presentation.",
+            "The Product Backlog may be adjusted.",
+            "The team and the stakeholders discuss progress towards the Product Goal."
+          ]
+        },
+        {
+          "name": "Sprint Retrospective",
+          "means": "Plans ways to increase quality and effectiveness. Maximum three hours. It concludes the Sprint.",
+          "tip": "Retrospective = the way of working.",
+          "clues": [
+            "Inspects how the last Sprint went with regard to people, interactions, processes and tools.",
+            "Identifies the most helpful improvements.",
+            "The last event of the Sprint."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scrum-artifacts",
+      "title": "Which Scrum artifact and commitment?",
+      "topic": "scrum-artifacts",
+      "src": [
+        "sg",
+        "Scrum Artifacts, p.11-13"
+      ],
+      "terms": [
+        {
+          "name": "Product Backlog (Product Goal)",
+          "means": "An ordered list of everything the product needs. Commitment: the Product Goal.",
+          "tip": "Product Backlog: Product Goal.",
+          "clues": [
+            "The single source of work for the Scrum Team.",
+            "Emergent and ordered by the Product Owner.",
+            "Its commitment is the long-term objective of the team."
+          ]
+        },
+        {
+          "name": "Sprint Backlog (Sprint Goal)",
+          "means": "The Sprint Goal, the selected items and the plan to deliver them. Commitment: the Sprint Goal.",
+          "tip": "Sprint Backlog: Sprint Goal.",
+          "clues": [
+            "A plan by and for the Developers.",
+            "Updated throughout the Sprint.",
+            "Its commitment is the single objective of the Sprint."
+          ]
+        },
+        {
+          "name": "Increment (Definition of Done)",
+          "means": "A concrete, usable step towards the Product Goal. Commitment: the Definition of Done.",
+          "tip": "Increment: Definition of Done.",
+          "clues": [
+            "Born the moment an item meets the Definition of Done.",
+            "Work that is not done cannot be shown at the Sprint Review.",
+            "Every one is additive to the previous ones."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kanban-scrum",
+      "title": "Kanban or Scrum?",
+      "topic": "kanban-devops",
+      "src": [
+        "sk",
+        "Kanban and Scrum questions"
+      ],
+      "terms": [
+        {
+          "name": "Scrum",
+          "means": "A framework with roles, five events, three artifacts and time-boxed Sprints.",
+          "tip": "Scrum = Sprints.",
+          "clues": [
+            "Work in time-boxed iterations of one month or less.",
+            "Work is organised in Sprints, with a Product Owner and Developers.",
+            "Has a Sprint Review and a Retrospective."
+          ]
+        },
+        {
+          "name": "Kanban",
+          "means": "A method that visualises the workflow and limits work in progress. No time-boxed iterations.",
+          "tip": "Kanban = board and WIP limits.",
+          "clues": [
+            "A board shows the workflow stages.",
+            "Work in progress is limited to improve flow.",
+            "Start with what you do now."
+          ]
+        }
+      ]
+    }
   ]
 }
