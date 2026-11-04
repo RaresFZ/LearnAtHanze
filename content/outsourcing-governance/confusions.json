@@ -1,0 +1,81 @@
+{
+  "intro": "Terms that look alike are where multiple choice catches people. Compare them side by side, then drill: you get a statement and pick the term it describes.",
+  "groups": [
+    { "id": "rules-practices-standards", "title": "Rules, best practices or standards?", "topic": "frameworks", "src": ["g1", "Slide 12"], "terms": [
+      { "name": "Rules and procedures", "means": "COBIT and COSO: they answer 'How do I keep control over my finance?'", "tip": "Control over finance.", "clues": ["COBIT and COSO belong here.", "They answer: how do I keep control over my finance?", "COSO has the widest scope in the coverage picture."] },
+      { "name": "Best practices", "means": "ITIL, BiSL, ASL, ISM and MOF: they answer 'How do I organize my IT processes?'", "tip": "Organise IT processes.", "clues": ["ITIL, BiSL, ASL, ISM and MOF belong here.", "They answer: how do I organize my IT processes?", "ITIL is drawn on the 'how' side of the coverage picture."] },
+      { "name": "Standards", "means": "ISO, ANSI and BSI: they answer 'How do I control my quality?'", "tip": "Control quality.", "clues": ["ISO, ANSI and BSI belong here.", "They answer: how do I control my quality?", "ISO 9000 and ISO 27001 are of this kind."] }
+    ] },
+    { "id": "framework-facts", "title": "Which framework or standard?", "topic": "frameworks", "src": ["g1", "Slides 16-20"], "terms": [
+      { "name": "COBIT", "means": "Control Objectives for Information Technology: 2 areas, 5 domains, 37 processes, 210 practices, 1112 activities.", "tip": "5 domains, 37 processes.", "clues": ["It has 5 domains and 37 processes.", "210 governance and management practices and 1112 activities.", "The framework listed with ISO and CMMI for all subjects, with rules and procedures about finance."] },
+      { "name": "CMMI", "means": "Capability Maturity Model Integration, from Carnegie Mellon University: 5 maturity levels, 24 process areas.", "tip": "Maturity levels.", "clues": ["It has 5 maturity levels and 24 process areas.", "Developed by Carnegie Mellon University.", "Designed for rating and comparing organisations, or for process improvement."] },
+      { "name": "ITIL", "means": "3 process clusters and 34 processes. Listed for IT infrastructure maintenance.", "tip": "34 processes.", "clues": ["It has 3 process clusters and 34 processes.", "The framework listed for IT infrastructure maintenance.", "ISO 20000 has 30 processes 'like' it."] },
+      { "name": "ISO 27001", "means": "Information security management: 114 controls (policies).", "tip": "114 controls.", "clues": ["It lists 114 controls.", "The standard for information security management.", "The framework listed for IT security."] },
+      { "name": "ISO 20000", "means": "IT service management (BS 15000): 30 processes, like ITIL.", "tip": "30 processes.", "clues": ["It has 30 processes, like ITIL.", "Also known as BS 15000.", "The ISO standard for IT service management."] }
+    ] },
+    { "id": "subject-framework", "title": "Which framework for which subject?", "topic": "frameworks", "src": ["g1", "Slide 10"], "terms": [
+      { "name": "ITIL", "means": "IT infrastructure maintenance.", "tip": "ITIL: infrastructure.", "clues": ["The framework listed for IT infrastructure maintenance."] },
+      { "name": "Scrum", "means": "New software.", "tip": "Scrum: new software.", "clues": ["The framework listed for new software."] },
+      { "name": "DevOps", "means": "Running software.", "tip": "DevOps: running software.", "clues": ["The framework listed for running software."] },
+      { "name": "PRINCE2", "means": "IT projects.", "tip": "PRINCE2: projects.", "clues": ["The framework listed for IT projects."] },
+      { "name": "TOGAF", "means": "IT architecture.", "tip": "TOGAF: architecture.", "clues": ["The framework listed for IT architecture."] },
+      { "name": "LEAN", "means": "Process improvement.", "tip": "LEAN: process improvement.", "clues": ["The framework listed for process improvement."] },
+      { "name": "ISO 27001", "means": "IT security.", "tip": "ISO 27001: security.", "clues": ["The framework listed for IT security."] }
+    ] },
+    { "id": "spo-sro", "title": "SPO or SRO?", "topic": "outsourcing-basics", "src": ["g4", "Slide 7"], "terms": [
+      { "name": "SPO", "means": "Service providing organisation: the IT provider.", "tip": "P = provides.", "clues": ["The IT provider.", "Its utilization rate is billable hours as a percentage of working hours.", "Uses consultative selling and can lose its innovative spirit when it focuses on growth."] },
+      { "name": "SRO", "means": "Service receiving organisation: the customer, the users.", "tip": "R = receives.", "clues": ["The customer and the users.", "It has to assess the candidate providers thoroughly.", "It must match its structure to the provider's through organisational alignment."] }
+    ] },
+    { "id": "spo-structure", "title": "Verticals, horizontals or supporting services?", "topic": "outsourcing-basics", "src": ["g4", "Slide 8"], "terms": [
+      { "name": "Verticals", "means": "Industry-specific (content-specific) services at application or functional level.", "tip": "Vertical = a branch.", "clues": ["Services that are specific to a branch or industry.", "Services at application or functional level.", "Business managers sit on this side."] },
+      { "name": "Horizontals", "means": "General technical services (infrastructure, testing, BI) that serve all customers across the verticals.", "tip": "Horizontal = across all customers.", "clues": ["Infrastructure, testing and BI.", "General technical services that serve all customers.", "Process managers sit on this side."] },
+      { "name": "Supporting services", "means": "The general supporting departments.", "tip": "Supporting = the traditional support departments.", "clues": ["The traditional supporting departments.", "General supporting departments of the provider.", "The third column of how an SPO is structured."] }
+    ] },
+    { "id": "pricing", "title": "Which pricing model?", "topic": "managing-spo", "src": ["g5", "Slide 6"], "terms": [
+      { "name": "Fixed price contract", "means": "An agreed set of activities for a fixed price.", "tip": "Fixed set, fixed price.", "clues": ["An agreed set of activities for a fixed price."] },
+      { "name": "Time and materials contract", "means": "Pay staff per hour and for materials.", "tip": "Hours plus materials.", "clues": ["Staff is paid per hour, and materials are paid for."] },
+      { "name": "Staff augmentation", "means": "Hire professional staff.", "tip": "You hire people.", "clues": ["Hiring professional staff."] }
+    ] },
+    { "id": "disruption", "title": "Which kind of disruption?", "topic": "innovation", "src": ["g3", "Slides 6-7"], "terms": [
+      { "name": "Low-end disruption", "means": "Simple, cheap products win at the low end because established companies add features too fast. No new technology.", "tip": "Cheap and simple.", "clues": ["Aldi, Ryanair and IKEA.", "Established companies add features at too high a pace, so simple cheap products win.", "It needs no new technology."] },
+      { "name": "New-market disruption", "means": "Extending an innovation to a new market, often with internet or mobile technology.", "tip": "A new market.", "clues": ["eBay, Uber and the e-bike.", "An innovation extended to a new market.", "New technology, many times internet or mobile technology in existing markets."] },
+      { "name": "Top-down disruption", "means": "New products that outperform the existing ones, sold at a higher price at first.", "tip": "Better and pricier first.", "clues": ["Apple, Tesla, PlayStation and Samsung.", "Products that outperform the existing ones.", "Sold at a higher price in the beginning."] },
+      { "name": "Sustaining innovation", "means": "An existing company defends itself by modernizing its old services or products.", "tip": "The defence of the incumbent.", "clues": ["Chain stores starting webshops.", "How existing companies defend against disruptive newcomers.", "Modernizing old services or products."] }
+    ] },
+    { "id": "innovation-aspect", "title": "Which aspect of innovation?", "topic": "innovation", "src": ["g3", "Slide 5"], "terms": [
+      { "name": "Product innovation", "means": "Innovation in the primary product, e.g. Apple, Tesla.", "tip": "Primary.", "clues": ["The primary aspect: Apple and Tesla are examples.", "Innovation in what is sold."] },
+      { "name": "Process innovation", "means": "Innovation in the supporting process, e.g. the Toyota production process, Dell, Alibaba.", "tip": "Supporting.", "clues": ["The supporting aspect: the Toyota production process (LEAN) is an example.", "Dell and Alibaba are examples.", "Innovation in how the work is done."] },
+      { "name": "New combinations of existing elements", "means": "E.g. coffee pads, e-bikes, agricultural drones, smart watches, hybrid cars.", "tip": "Existing parts, new mix.", "clues": ["Coffee pads and e-bikes are examples.", "Agricultural drones, smart watches and hybrid cars.", "Existing elements put together in a new way."] }
+    ] },
+    { "id": "safe-roles", "title": "Which SAFe role?", "topic": "safe", "src": ["g7", "Slide 7"], "terms": [
+      { "name": "Release Train Engineer (RTE)", "means": "Coordinator of the ART, facilitates the ART meetings, like a team's Scrum Master.", "tip": "RTE = the ART's Scrum Master.", "clues": ["Coordinates the ART and facilitates the ART meetings.", "Leads the PI Planning retrospective.", "Comparable with a team's Scrum Master."] },
+      { "name": "Product Owner (program level)", "means": "The PO of the program.", "tip": "PO of the whole program.", "clues": ["The PO of the program.", "Attends the weekly PO Sync.", "Works at program level, above the teams' POs."] },
+      { "name": "System Architect", "means": "Ensures technical integrity and defines the architectural guidelines for the teams.", "tip": "Technical integrity.", "clues": ["Ensures technical integrity.", "Defines the architectural guidelines for the teams.", "Presents the architecture vision and roadmap on PI Planning day 1."] },
+      { "name": "Scrum of Scrums Master", "means": "The facilitator of the team Scrum Master meetings.", "tip": "Facilitates the Scrum Masters.", "clues": ["The facilitator of the team Scrum Master meetings.", "Works with the Scrum Masters of the teams.", "Facilitates the Scrum of Scrums."] }
+    ] },
+    { "id": "sas-terms", "title": "Scrum at Scale: roles and events", "topic": "scrum-at-scale", "src": ["g7", "Slides 18-19, 24"], "terms": [
+      { "name": "Scrum of Scrums Master (SoSM)", "means": "Facilitates the teams.", "tip": "Facilitates teams.", "clues": ["Facilitates the teams.", "Takes part in the Scaled Daily Scrum and the weekly Scrum of Scrums."] },
+      { "name": "Chief Product Owner (CPO)", "means": "Coordinates the PO team.", "tip": "Coordinates the POs.", "clues": ["Coordinates the PO team.", "Prioritizes the one backlog together with the POs."] },
+      { "name": "Executive Action Team (EAT)", "means": "CPO, SoSM, CEO and company managers: resolves escalated impediments and takes strategic decisions.", "tip": "Escalations and strategy.", "clues": ["Consists of the CPO, SoSM, CEO and company managers.", "Resolves escalated impediments and takes strategic decisions.", "Facilitates team clusters in the double-scaled setting."] },
+      { "name": "Executive MetaScrum (EMS)", "means": "The CPO and the POs prioritize the one backlog, at least once per sprint.", "tip": "Prioritizes the backlog.", "clues": ["A meeting of the CPO and the POs.", "Prioritizes the backlog that is shared by all teams.", "Meets at least once per sprint."] },
+      { "name": "Scaled Daily Scrum", "means": "At least one representative per team.", "tip": "One rep per team.", "clues": ["Daily, 15 minutes, one representative per team plus the SoSM.", "Focus on cross-team progress and impediments."] },
+      { "name": "Scaled Retrospective", "means": "All Scrum Masters of each team.", "tip": "The Scrum Masters.", "clues": ["All the Scrum Masters of the teams take part.", "Improves processes across groups."] }
+    ] },
+    { "id": "safe-vs-sas", "title": "SAFe or Scrum at Scale?", "topic": "safe", "src": ["g7", "Slides 5-28"], "terms": [
+      { "name": "SAFe", "means": "The elaborate framework: ART, PI, RTE, System Architect.", "tip": "Elaborate.", "clues": ["The elaborate one of the two.", "Uses an Agile Release Train of 5 to 12 teams and a Program Increment.", "Has a two-day PI Planning event and an Inspect & Adapt workshop."] },
+      { "name": "Scrum at Scale", "means": "The minimalistic framework: SoSM, CPO, EAT, one backlog.", "tip": "Minimalistic.", "clues": ["The minimalistic one of the two.", "One backlog for all the teams.", "Has an Executive MetaScrum and an Executive Action Team."] }
+    ] },
+    { "id": "audit-parties", "title": "Audit: the auditor or the organization?", "topic": "audit", "src": ["g1", "Slides 23-24"], "terms": [
+      { "name": "The auditor", "means": "Plans, analyzes and reports the findings, issues the final report.", "tip": "Plans and reports.", "clues": ["Plans the audit.", "Analyzes and reports the findings.", "Issues the final report.", "Reports the identified shortcomings."] },
+      { "name": "The organization", "means": "Responds to the findings and makes the improvement plan.", "tip": "Responds and improves.", "clues": ["Responds to the findings.", "Makes the improvement plan.", "Executes the planned measures."] }
+    ] },
+    { "id": "lock-in-measures", "title": "Vendor lock-in: which measure?", "topic": "outsourcing-basics", "src": ["g4", "Slide 19; g5, Slide 7"], "terms": [
+      { "name": "Share of services in-house", "means": "Perform at least 20% of the IT services in-house.", "tip": "20% of the services.", "clues": ["Perform at least 20% of the IT services in-house.", "A share of the services, not of the people.", "Let IT staff spread across all IT functions of the SPO to learn the outsourced work."] },
+      { "name": "Share of own personnel", "means": "Agree on a minimum percentage (for example 25%) of SRO personnel, and keep SRO personnel on key positions.", "tip": "25% of the personnel.", "clues": ["A minimum percentage of SRO personnel, for example 25%.", "Keep SRO personnel on key positions.", "Business continuity knowledge retention testing belongs here."] }
+    ] },
+    { "id": "pi-days", "title": "PI Planning: day 1 or day 2?", "topic": "safe", "src": ["g7", "Slides 9-10"], "terms": [
+      { "name": "Day 1", "means": "Business context and visions, team breakouts #1, draft plan review, management review.", "tip": "Draft plans and leadership review.", "clues": ["Business context by Business Owners and Product Management.", "Teams identify stories, estimate story points and identify risks.", "Teams present draft plans.", "The evening management review for leadership only."] },
+      { "name": "Day 2", "means": "Team breakouts #2, final plan review and confidence vote, PI objectives, program board, retrospective.", "tip": "Final plans and the vote.", "clues": ["Teams finalize plans and align dependencies.", "Final plan review with a confidence vote.", "The program board is finalized.", "The PI Planning retrospective, led by the RTE."] }
+    ] }
+  ]
+}

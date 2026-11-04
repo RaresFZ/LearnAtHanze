@@ -5,6 +5,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildCards } from '../app/js/cards.js';
 import { buildPairs, sortTopics, quickPool, MAX_CLUE, MAX_ANSWER } from '../app/js/games-data.js';
+import { checkConfusions } from '../app/js/confuse-data.js';
 
 const CONTENT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', 'content');
 const TYPES = ['mc', 'tf', 'fill', 'open'];
@@ -81,6 +82,76 @@ function checkGames(name, questions, config) {
   return `  mini games: ${pairs.length} pairs, ${sortTopics(pairs).length} sortable topics, ${quick} quick questions`;
 }
 
+/** lessons.json is optional (the Learn mode): topic ids, source keys, part shape, the order list, the plan and the cheat sheet. */
+function checkLessons(name, topics, exam, config, questions = []) {
+  const file = path.join(CONTENT, name, 'lessons.json');
+  if (!fs.existsSync(file)) return '  learn: no lessons.json';
+  if (!config) return '';
+  const err = (msg) => { console.error(`ERROR ${name}/lessons.json: ${msg}`); errors++; };
+  const topicIds = new Set(topics.map((t) => t.id));
+  const docs = new Set(Object.keys(exam.documents || {}));
+  const lessons = config.topics || {};
+  let parts = 0, minutes = 0;
+  for (const [id, l] of Object.entries(lessons)) {
+    if (!topicIds.has(id)) err(`lesson for unknown topic "${id}"`);
+    if (!Array.isArray(l.src) || !docs.has(l.src[0])) err(`${id}: src must be [documentKey, location] with a key from exam.json`);
+    if (!Number.isFinite(l.minutes) || l.minutes <= 0) err(`${id}: minutes must be a positive number`);
+    if (!Array.isArray(l.chunks) || !l.chunks.length) { err(`${id}: needs at least one part`); continue; }
+    minutes += l.minutes || 0;
+    for (const [k, c] of l.chunks.entries()) {
+      parts++;
+      if (typeof c.title !== 'string' || !c.title.trim()) err(`${id} part ${k + 1}: empty title`);
+      if (!Array.isArray(c.points) || !c.points.length || c.points.some((p) => typeof p !== 'string' || !p.trim())) err(`${id} part ${k + 1}: points must be a non-empty array of text`);
+      if (c.remember !== undefined && typeof c.remember !== 'string') err(`${id} part ${k + 1}: remember must be text`);
+      if (c.study !== undefined) {                       // the question a study game (Live Quiz) asks after this part: [] = none
+        if (!Array.isArray(c.study) || c.study.length > 1) err(`${id} part ${k + 1}: study must be a list with at most one question id`);
+        else if (c.study.length) {
+          const sq = questions.find((x) => x.id === c.study[0]);
+          if (!sq) err(`${id} part ${k + 1}: study question ${c.study[0]} does not exist`);
+          else if (!(sq.type === 'mc' || sq.type === 'tf') || sq.flag) err(`${id} part ${k + 1}: ${sq.id} cannot be used in a live game (it must be multiple choice or true/false, and not flagged)`);
+        }
+      }
+      if (c.ask !== undefined) {
+        const q = questions.find((x) => x.id === c.ask?.[0]);
+        if (!Array.isArray(c.ask) || c.ask.length !== 1 || !q) err(`${id} part ${k + 1}: ask must be a list with the id of one question`);
+        else if (q.topic !== id) err(`${id} part ${k + 1}: ${q.id} belongs to the topic "${q.topic}"`);
+        else if (q.type === 'open') err(`${id} part ${k + 1}: ${q.id} is an open question (use multiple choice, true/false or fill-in)`);
+      }
+    }
+  }
+  for (const t of topics) if (!lessons[t.id]) console.warn(`warn  ${name}/lessons.json: topic "${t.id}" has no lesson`);
+  const order = config.order || [];
+  for (const id of order) if (!lessons[id]) err(`order: "${id}" has no lesson`);
+  if (new Set(order).size !== order.length) err('order lists a topic twice');
+  for (const b of config.plan?.blocks || []) for (const id of b.topics || []) if (!lessons[id]) err(`plan: "${id}" has no lesson`);
+  for (const ex of config.exercises || []) {
+    const w = `exercise "${ex.id}"`;
+    if (!ex.id || !ex.title || !ex.prompt) err(`${w}: needs id, title and prompt`);
+    if (!topicIds.has(ex.topic)) err(`${w}: unknown topic "${ex.topic}"`);
+    if (!Array.isArray(ex.src) || !docs.has(ex.src[0])) err(`${w}: src must be [documentKey, location]`);
+    if (!Array.isArray(ex.checklist) || !ex.checklist.length) err(`${w}: needs a checklist`);
+    if (!ex.template || !['table', 'fishbone', 'swimlane'].includes(ex.template.kind)) err(`${w}: template.kind must be table, fishbone or swimlane`);
+  }
+  const cs = config.cheatsheet || {};
+  for (const f of cs.formulas || []) if (!f.name || !f.formula) err('cheatsheet: every formula needs a name and a formula');
+  for (const l of cs.lists || []) if (!l.name || !l.items) err('cheatsheet: every list needs a name and items');
+  const asks = Object.values(lessons).reduce((s, l) => s + l.chunks.filter((c) => c.ask).length, 0);
+  return `  learn: ${Object.keys(lessons).length} lessons, ${parts} parts (${asks} with a quick check), ${(config.exercises || []).length} drawing exercises, about ${minutes} min of reading`;
+}
+
+/** confusions.json is optional (the "easily confused" drills): shape, topics, sources, ambiguous or self-answering clues. */
+function checkConfusionsFile(name, topics, exam, config) {
+  const file = path.join(CONTENT, name, 'confusions.json');
+  if (!fs.existsSync(file)) return '  confused: no confusions.json';
+  if (!config) return '';
+  const { errors: errs, warnings } = checkConfusions(config, { topicIds: new Set(topics.map((t) => t.id)), docKeys: new Set(Object.keys(exam.documents || {})) });
+  for (const m of errs) { console.error(`ERROR ${name}/confusions.json: ${m}`); errors++; }
+  for (const m of warnings) console.warn(`warn  ${name}/confusions.json: ${m}`);
+  const terms = (config.groups || []).reduce((s, g) => s + (g.terms || []).length, 0);
+  const clues = (config.groups || []).reduce((s, g) => s + (g.terms || []).reduce((t, x) => t + (x.clues || []).length, 0), 0);
+  return `  confused: ${(config.groups || []).length} groups, ${terms} terms, ${clues} clues`;
+}
+
 for (const dir of fs.readdirSync(CONTENT, { withFileTypes: true }).filter((d) => d.isDirectory())) {
   const base = path.join(CONTENT, dir.name);
   const exam = readJson(path.join(base, 'exam.json'));
@@ -128,7 +199,11 @@ for (const dir of fs.readdirSync(CONTENT, { withFileTypes: true }).filter((d) =>
   const simLine = checkSimulation(dir.name, exam, questions);
   const gamesFile = path.join(base, 'games.json');
   const gamesLine = checkGames(dir.name, questions, fs.existsSync(gamesFile) ? readJson(gamesFile) : null);
-  console.log(`\n${dir.name}: ${questions.length} questions  ${JSON.stringify(byType)}  ${cardCount} flashcards${simLine}${gamesLine}`);
+  const confFile = path.join(base, 'confusions.json');
+  const confLine = checkConfusionsFile(dir.name, topics, exam, fs.existsSync(confFile) ? readJson(confFile) : null);
+  const lessonsFile = path.join(base, 'lessons.json');
+  const lessonsLine = checkLessons(dir.name, topics, exam, fs.existsSync(lessonsFile) ? readJson(lessonsFile) : null, questions);
+  console.log(`\n${dir.name}: ${questions.length} questions  ${JSON.stringify(byType)}  ${cardCount} flashcards${simLine}${gamesLine}${lessonsLine ? '\n' + lessonsLine : ''}${confLine ? '\n' + confLine : ''}`);
   for (const t of topics) console.log(`  ${String(byTopic[t.id] || 0).padStart(3)}  ${t.id}${byTopic[t.id] ? '' : '  (none)'}`);
 }
 

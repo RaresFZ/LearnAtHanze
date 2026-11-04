@@ -202,10 +202,11 @@ export function createHub({ loadExam, hostPort, playPort }) {
     }
     if (req.method === 'GET' && p === '/live/events') return playerStream(req, res, url.searchParams.get('t') || '', url.searchParams.get('c') || '');
     if (req.method === 'GET' && p === '/live/state') return playerPoll(req, res, url);
-    if (req.method === 'POST' && (p === '/live/join' || p === '/live/answer' || p === '/live/leave')) {
+    if (req.method === 'POST' && (p === '/live/join' || p === '/live/answer' || p === '/live/ready' || p === '/live/leave')) {
       const body = await readJson(req);
       if (p === '/live/join') return sendJson(res, 200, join(req, body));
       if (p === '/live/answer') return sendJson(res, 200, answer(body));
+      if (p === '/live/ready') return sendJson(res, 200, ready(body));
       return sendJson(res, 200, { ok: !!game?.leave(String(body.t || '')) });
     }
     send(res, 404, 'Not found');
@@ -218,6 +219,13 @@ export function createHub({ loadExam, hostPort, playPort }) {
     const r = game.join({ nick: body.nick, token: typeof body.token === 'string' ? body.token : undefined });
     if (r.error) throw new HttpError(r.error === 'nick' ? 400 : 409, r.message, r.error);
     return { token: r.player.token, nick: r.player.nick, rejoined: r.rejoined };
+  }
+  /** Vote mode: a phone says it read the answer and the explanation. */
+  function ready(body) {
+    if (!game) throw new HttpError(404, 'No game.', 'nogame');
+    const r = game.ready(String(body.t || ''));
+    if (r.error) throw new HttpError(409, 'Not accepted.', r.error);
+    return { ok: true };
   }
   function answer(body) {
     if (!game) throw new HttpError(404, 'No game.', 'nogame');
@@ -269,8 +277,8 @@ export function createHub({ loadExam, hostPort, playPort }) {
     let g;
     try {
       g = createGame({
-        exam: data.exam, topics: data.topics, questions: data.questions, code, onChange: scheduleFlush,
-        config: { topicIds: cfg.topicIds, count: cfg.count, seconds: cfg.seconds, allowLate: cfg.allowLate },
+        exam: data.exam, topics: data.topics, questions: data.questions, lessons: data.lessons, code, onChange: scheduleFlush,
+        config: { topicIds: cfg.topicIds, count: cfg.count, seconds: cfg.seconds, allowLate: cfg.allowLate, advance: cfg.advance, study: cfg.study, board: cfg.board },
       });
     } catch (e) { throw new HttpError(400, e.message); }
     if (cfg.hostPlays) {
@@ -328,7 +336,7 @@ export function createHub({ loadExam, hostPort, playPort }) {
     return u.origin;
   }
 
-  async function action({ action: a, id, on, url }) {
+  async function action({ action: a, id, on, url, mode }) {
     if (!game) throw new HttpError(404, 'No game running.', 'nogame');
     lastActivity = Date.now();
     let r = { ok: true };
@@ -339,6 +347,7 @@ export function createHub({ loadExam, hostPort, playPort }) {
       case 'skip': r = game.skip(); break;
       case 'next': r = game.next(); break;
       case 'again': r = game.again(); break;
+      case 'advance': r = game.setAdvance(String(mode || '')); break;
       case 'kick': { const p = game.kick(String(id || '')); if (p) kicked.add(p.token); r = p ? { ok: true } : { error: 'player' }; break; }
       case 'lan': await setLan(on); break;
       case 'public': publicUrl = cleanPublicUrl(url); scheduleFlush(); break;

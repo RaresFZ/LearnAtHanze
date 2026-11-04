@@ -5,7 +5,7 @@ import { icon } from './icons.js';
 import { FX } from './fx.js';
 import { buildCards } from './cards.js';
 import { TYPE_LABEL, reviewBlocks } from './question.js';
-import { loadProgress } from './store.js';
+import { loadProgress, questionStat } from './store.js';
 import { WEAK_MISSES, RECOVERED_STREAK, RECOVERED_DAYS, weakQuestions, weakCards, dailySeries, studyDays, topicRows, overall } from './progress.js';
 import { pillBtn } from './quiz.js';
 import { tile } from './flashcards.js';
@@ -139,8 +139,19 @@ export function renderProgress(root, ctx) {
     (w) => missRow(qById.get(w.card.id) || { question: w.card.front, type: 'open', modelAnswer: w.card.back, src: w.card.src, explanation: w.card.explanation, flag: w.card.flag }, `${topicTitle(w.card.topic)} / Flashcard`, `Again ${w.misses}x`),
     `No card has been rated Again ${WEAK_MISSES} times yet. One shows up here after that, and leaves once it is scheduled ${RECOVERED_DAYS} or more days out.`,
     'The weak-spots review takes the weakest 20.');
+  // the "I'm guessing" mark: wrong although you were not guessing (a wrong idea), and right although you were (not known yet)
+  const stats2 = questions.map((q) => ({ q, s: questionStat(progress, q.id) }));
+  const sure = stats2.filter((x) => x.s.sureWrong > 0 && !x.s.mastered).sort((a, b) => b.s.sureWrong - a.s.sureWrong);
+  const lucky = stats2.filter((x) => x.s.guesses > 0 && x.s.mastered).sort((a, b) => b.s.guesses - a.s.guesses);
+  const sureList = list(sure, (x) => missRow(x.q, `${topicTitle(x.q.topic)} / ${TYPE_LABEL[x.q.type]}`, `Sure and wrong ${x.s.sureWrong}x`),
+    'Nothing yet. A question shows up here when you answered it wrong without marking it as a guess, and have not got it right since.', 'The most often first.');
+  const luckyList = list(lucky, (x) => missRow(x.q, `${topicTitle(x.q.topic)} / ${TYPE_LABEL[x.q.type]}`, `Guessed ${x.s.guesses}x`),
+    'Nothing yet. Press G, or tap "I\'m guessing", on a question before you answer it when you are not sure.', 'The most often first.');
   const missSection = h('section', { class: 'field' },
-    h('h2', { class: 'small' }, 'Questions you keep missing', h('span', { class: 'lab' }, plural(wq.length, 'question', 'questions'))), qList,
+    h('h2', { class: 'small' }, 'Sure, but wrong', h('span', { class: 'lab' }, plural(sure.length, 'question', 'questions'))), sureList,
+    h('p', { class: 'fine', style: { margin: '10px 0 0' } }, 'These are the dangerous ones: you believed a wrong idea. Read their explanations first.'),
+    h('h2', { class: 'small', style: { marginTop: '32px' } }, 'Right, but you guessed', h('span', { class: 'lab' }, plural(lucky.length, 'question', 'questions'))), luckyList,
+    h('h2', { class: 'small', style: { marginTop: '32px' } }, 'Questions you keep missing', h('span', { class: 'lab' }, plural(wq.length, 'question', 'questions'))), qList,
     h('h2', { class: 'small', style: { marginTop: '32px' } }, 'Cards you keep missing', h('span', { class: 'lab' }, plural(wc.length, 'card', 'cards'))), cList);
 
   const weakBtn = h('a', { class: `btn xl${wq.length || wc.length ? ' yellow' : ''}`, href: `#/exam/${exam.id}/weak` }, icon('crosshair', 22), 'Practise weak spots');

@@ -54,7 +54,7 @@ class Phone {
   async join(code) { const r = await json(`${P}/live/join`, { code, nick: this.nick }); if (r.status === 200) { this.token = r.data.token; this.open(); } return r; }
   open() { this.stream = new Stream(`${P}/live/events?t=${this.token}`); }
   answer(q, choice) { return json(`${P}/live/answer`, { t: this.token, q, choice }); }
-  phase(p) { return this.stream.until((m) => m.phase === p && !m.paused); }
+  phase(p, i) { return this.stream.until((m) => m.phase === p && !m.paused && (i === undefined || m.q?.index === i)); }
 }
 
 // short timers so the heartbeat, the long-poll hold and the "host is away" notice can be tested in a second or two
@@ -300,6 +300,88 @@ test('phones are told when the host screen is gone and when it is back; the host
   }
   assert.ok(blocked >= 4, 'a tunnel visitor who keeps guessing is slowed down (' + blocked + ' refused)');
   a.stream.close(); host.close();
+  await act('end');
+});
+
+test('vote mode over real HTTP: the ready route, the vote count, switching the mode, nothing leaks early', async () => {
+  const { code } = await newGame({ advance: 'vote' });
+  const host = new Stream(`${H}/api/live/events`);
+  const phones = ['Ana', 'Bo', 'Cy'].map((n) => new Phone(n));
+  for (const p of phones) assert.equal((await p.join(code)).status, 200);
+  const lobby = await host.until((m) => m.phase === 'lobby' && m.players.length === 3);
+  assert.equal(lobby.settings.advance, 'vote');
+  const ready = (ph) => json(`${P}/live/ready`, { t: ph.token });
+  const refused = (r) => r.status === 409 && [r.data.error, r.data.code].includes('closed');
+  assert.ok(refused(await ready(phones[0])), 'no vote in the lobby');
+  assert.equal((await json(`${P}/live/ready`, { t: 'nope' })).status, 409, 'an unknown phone cannot vote');
+  assert.equal((await json(`${P}/api/live/action`, { action: 'advance', mode: 'auto' })).status, 404, 'the mode switch is a host control, not on the play server');
+  assert.equal((await act('advance', { mode: 'nope' })).status, 409, 'unknown modes are refused');
+  assert.equal((await act('start')).status, 200);
+  await phones[0].phase('question');
+  for (const ph of phones) assert.equal((await ph.answer(0, 0)).status, 200);
+  const rv = await phones[0].stream.until((m) => m.phase === 'reveal');
+  for (const ph of phones) assert.ok(!ph.stream.msgs.filter((m) => m.phase === 'ready' || m.phase === 'question').some((m) => 'advance' in m), 'no advance info before the reveal');
+  assert.deepEqual([rv.advance.mode, rv.advance.ready, rv.advance.of], ['vote', 0, 3]);
+
+  assert.equal((await ready(phones[0])).status, 200);
+  assert.equal((await ready(phones[0])).status, 200, 'tapping twice is harmless');
+  assert.equal((await phones[0].stream.until((m) => m.phase === 'reveal' && m.advance.ready === 1)).advance.you, true);
+  assert.equal((await phones[1].stream.until((m) => m.phase === 'reveal' && m.advance.ready === 1)).advance.you, false);
+  assert.equal((await host.until((m) => m.phase === 'reveal' && m.advance?.ready === 1)).advance.of, 3);
+  await sleep(600);
+  assert.equal(host.last.phase, 'reveal', 'still waiting for the others');
+  await ready(phones[1]);
+  await sleep(300);
+  assert.equal(host.last.phase, 'reveal');
+  await ready(phones[2]);
+  await phones[0].stream.until((m) => m.phase === 'board');
+  const board = await host.until((m) => m.phase === 'board');
+  assert.equal(board.advance.mode, 'vote');
+  assert.ok(board.advance.remainingMs > 0, 'the leaderboard moves on by itself');
+
+  // the host moves on by hand, and switches the mode in the middle of the next reveal
+  assert.equal((await act('next')).status, 200);
+  await phones[0].phase('question', 1);
+  for (const ph of phones) await ph.answer(1, 0);
+  await phones[0].stream.until((m) => m.phase === 'reveal' && m.q.index === 1);
+  assert.equal((await act('advance', { mode: 'auto' })).status, 200);
+  const auto = await phones[0].stream.until((m) => m.phase === 'reveal' && m.advance.mode === 'auto');
+  assert.ok(auto.advance.remainingMs >= 8000 - 500, `reading time on the phone (${auto.advance.remainingMs} ms)`);
+  assert.ok(refused(await ready(phones[0])), 'no vote in auto mode');
+  assert.equal((await host.until((m) => m.settings?.advance === 'auto')).settings.advance, 'auto');
+  assert.equal((await act('advance', { mode: 'manual' })).status, 200);
+  assert.equal((await phones[0].stream.until((m) => m.phase === 'reveal' && m.advance.mode === 'manual')).advance.remainingMs, 0);
+  for (const ph of phones) ph.stream.close();
+  host.close();
+  await act('end');
+});
+
+test('study together over real HTTP: lesson parts on every phone, a vote to read, then the question, and nothing leaks early', async () => {
+  const bad = await json(`${H}/api/live/create`, { examId: 'lean-agile', study: true, topicIds: [], seconds: 10 });
+  assert.equal(bad.status, 400); assert.match(bad.data.error, /at least one topic/);
+  assert.equal((await json(`${H}/api/live/create`, { examId: 'outsourcing-governance', study: true, topicIds: ['nope'], seconds: 10 })).status, 400);
+  const { code } = await newGame({ study: true, topicIds: ['define'], seconds: 10, advance: 'vote' });
+  const host = new Stream(`${H}/api/live/events`);
+  const phones = ['Ana', 'Bo'].map((n) => new Phone(n));
+  for (const p of phones) assert.equal((await p.join(code)).status, 200);
+  const lobby = await host.until((m) => m.phase === 'lobby' && m.players.length === 2);
+  assert.equal(lobby.settings.study, true); assert.equal(lobby.settings.board, false);
+  assert.equal((await act('start')).status, 200);
+  const lesson = await phones[0].stream.until((m) => m.phase === 'lesson' && m.q.index === 0);
+  assert.ok(lesson.lesson.title && lesson.lesson.points.length, 'the lesson part reaches the phone');
+  assert.ok(!/"(explanation|correct|source)":|reveal/.test(JSON.stringify(lesson)), 'no answer fields in the lesson payload');
+  assert.equal((await host.until((m) => m.phase === 'lesson')).lesson.title, lesson.lesson.title);
+  for (const ph of phones) assert.equal((await json(`${P}/live/ready`, { t: ph.token })).status, 200);
+  await phones[0].phase('question', 0);
+  for (const ph of phones) assert.ok(!ph.stream.msgs.filter((m) => m.phase === 'ready' || m.phase === 'question').some((m) => /"(explanation|correct|source)":|reveal/.test(JSON.stringify(m))), 'no leak before the reveal');
+  for (const ph of phones) assert.equal((await ph.answer(0, 0)).status, 200);
+  await phones[0].stream.until((m) => m.phase === 'reveal' && m.q.index === 0);
+  for (const ph of phones) await json(`${P}/live/ready`, { t: ph.token });
+  const next = await phones[0].stream.until((m) => m.phase === 'lesson' && m.q.index === 1);
+  assert.notEqual(next.lesson.title, lesson.lesson.title, 'no leaderboard in between: the next lesson part follows the answer');
+  assert.ok(!phones[0].stream.msgs.some((m) => m.phase === 'board'), 'a study game shows no leaderboard between rounds');
+  for (const ph of phones) ph.stream.close();
+  host.close();
   await act('end');
 });
 

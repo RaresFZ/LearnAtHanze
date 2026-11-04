@@ -11,6 +11,11 @@ import { renderProgress } from './progress-view.js';
 import { renderSimSetup, destroySim } from './simulation.js';
 import { renderGamesHub, renderGameIntro, destroyGame } from './games.js';
 import { renderLiveSetup, renderLiveHost, destroyLive } from './live.js';
+import { renderLearnHome, renderLearnTopic, renderCheatsheet, destroyLearn, learnCounts } from './learn.js';
+import { renderCalcHome } from './calc.js';
+import { renderConfuseHome } from './confuse.js';
+import { renderDrawHome, renderDrawExercise } from './draw.js';
+import { formatLeft } from './learn-data.js';
 
 const M = window.Motion;
 const root = document.getElementById('view');
@@ -122,14 +127,19 @@ async function renderExam(id) {
   const status = h('p', { class: 'fine', role: 'status', style: { marginTop: '14px' } });
 
   // hero
-  const goBtn = h('a', { class: 'btn yellow xl', href: `#/exam/${id}/quiz` }, icon('play', 22), seen.length ? 'Continue quiz' : 'Start quiz');
+  // exams with lessons lead with the guided path: it is the way in for someone who is starting from scratch
+  const goBtn = data.lessons
+    ? h('a', { class: 'btn yellow xl', href: `#/exam/${id}/learn` }, icon('graduation-cap', 22), learnCounts(data).done || seen.length ? 'Continue learning' : 'Start learning')
+    : h('a', { class: 'btn yellow xl', href: `#/exam/${id}/quiz` }, icon('play', 22), seen.length ? 'Continue quiz' : 'Start quiz');
   const goObj = FX.obj(goBtn, { cls: 'o-btn' });
   const notesBtn = h('button', { class: 'chip', type: 'button', 'aria-expanded': 'false', 'aria-controls': 'notes' }, icon('info', 14), ` Material notes (${(exam.gaps || []).length}) `, h('span', { class: 'chev' }, icon('chevron-down', 14)));
   const heroFace = h('div', { class: 'hero' },
     h('div', { class: 'deco', 'aria-hidden': 'true' }),
     h('div', { class: 'hero-main' },
       h('h1', null, exam.title), h('p', { class: 'sub' }, exam.description),
-      h('div', { class: 'chips' }, h('span', { class: 'chip', title: exam.examFormat || '' }, icon('book-open', 14), ` ${exam.examFormatShort || 'Exam format'}`), FX.obj(notesBtn, { cls: 'o-pill' }))),
+      h('div', { class: 'chips' }, h('span', { class: 'chip', title: exam.examFormat || '' }, icon('book-open', 14), ` ${exam.examFormatShort || 'Exam format'}`),
+        Number.isFinite(progress.plan.examAt) && progress.plan.examAt > Date.now() ? h('span', { class: 'chip yellow' }, icon('timer', 14), ` Exam in ${formatLeft(progress.plan.examAt - Date.now())}`) : null,
+        FX.obj(notesBtn, { cls: 'o-pill' }))),
     goObj);
   heroFace.querySelector('.deco').innerHTML = DECO;
   const heroObj = FX.obj(heroFace, { cls: 'o-hero', tilt: 4, shine: true, z: 0 });
@@ -161,7 +171,13 @@ async function renderExam(id) {
   const live = await api('/api/live/status').catch(() => ({ active: false }));
   const weakNow = weakCounts(data);
   const weakN = weakNow.questions + weakNow.cards;
+  const learn = data.lessons ? learnCounts(data) : null;
   const modes = [
+    // the guided path, only for exams that have lessons: one wide tile on its own row, above the others
+    learn ? FX.obj(h('a', { class: 'mode yellow', href: `#/exam/${id}/learn` },
+      h('div', { class: 'wide-main' }, icon('graduation-cap', 40), h('div', null, h('h3', null, 'Learn'), h('p', null, 'A guided path: a short lesson per topic, then questions on it. With a plan for one day and a cheat sheet.'))),
+      h('span', { class: 'chip' }, `${learn.done} of ${learn.total} topics done`)),
+    { cls: 'o-mode o-wide', tilt: 4, shine: true, z: 18 }) : null,
     FX.obj(h('a', { class: 'mode coral', href: `#/exam/${id}/quiz` },
       icon('list-checks', 40), h('div', null, h('h3', null, 'Quiz'), h('p', null, 'Questions by topic or a random mix.'))),
     { cls: 'o-mode', tilt: 8, shine: true, fill: true, z: 18 }),
@@ -239,7 +255,7 @@ async function renderExam(id) {
   FX.enter([heroObj], { y: -80, rotate: -2, delay: base, spring: FX.spring.deal });
   FX.enter(tiles, { delay: base + 0.16, stagger: 0.06 });
   stats4.querySelectorAll('.cnt').forEach((c, k) => FX.count(c, +c.dataset.to, { duration: 0.95, delay: base + 0.3 + k * 0.06 }));
-  FX.enter(modes, { y: 40, delay: base + 0.5, stagger: 0.06 });
+  FX.enter(modes.filter(Boolean), { y: 40, delay: base + 0.5, stagger: 0.06 });
   FX.enter(rows, { y: 28, delay: base + 0.62, stagger: 0.03, spring: FX.spring.soft });
   topicList.querySelectorAll('.segs').forEach((s, k) => FX.fillSegs(s, { delay: base + 0.95 + k * 0.03 }));
 
@@ -294,6 +310,34 @@ async function renderGames(id, game) {
   if (game) renderGameIntro(root, data, game); else renderGamesHub(root, data);
 }
 
+async function renderLearn(id, which) {
+  const data = await api(`/api/exams/${id}`);
+  setAccent(data.exam);
+  if (!data.lessons) { mount(root, h('p', { class: 'lead' }, 'This exam has no lessons yet. ', h('a', { href: `#/exam/${id}`, class: 'back' }, 'Back to the exam'))); return; }
+  if (which === 'cheatsheet') renderCheatsheet(root, data);
+  else if (which) renderLearnTopic(root, data, which);
+  else renderLearnHome(root, data);
+}
+
+async function renderCalc(id) {
+  const data = await api(`/api/exams/${id}`);
+  setAccent(data.exam);
+  renderCalcHome(root, data);
+}
+
+async function renderDraw(id, exId) {
+  const data = await api(`/api/exams/${id}`);
+  setAccent(data.exam);
+  if (!data.lessons) { mount(root, h('p', { class: 'lead' }, 'This exam has no exercises yet. ', h('a', { href: `#/exam/${id}`, class: 'back' }, 'Back to the exam'))); return; }
+  if (exId) renderDrawExercise(root, data, exId); else renderDrawHome(root, data);
+}
+
+async function renderConfuse(id) {
+  const data = await api(`/api/exams/${id}`);
+  setAccent(data.exam);
+  renderConfuseHome(root, data);
+}
+
 async function renderLive(id) {
   const data = await api(`/api/exams/${id}`);
   setAccent(data.exam);
@@ -307,6 +351,7 @@ function renderLiveHostView(id) {
 async function route() {
   destroyLive();
   destroyActiveCard();
+  destroyLearn();
   destroyCardSession();
   destroySim();
   destroyGame();
@@ -318,6 +363,12 @@ async function route() {
     else if ((m = path.match(/^\/exam\/([a-z0-9-]+)$/))) await renderExam(m[1]);
     else if ((m = path.match(/^\/exam\/([a-z0-9-]+)\/quiz$/))) await renderQuiz(m[1], query);
     else if ((m = path.match(/^\/exam\/([a-z0-9-]+)\/cards$/))) await renderCards(m[1]);
+    else if ((m = path.match(/^\/exam\/([a-z0-9-]+)\/calc$/))) await renderCalc(m[1]);
+    else if ((m = path.match(/^\/exam\/([a-z0-9-]+)\/confused$/))) await renderConfuse(m[1]);
+    else if ((m = path.match(/^\/exam\/([a-z0-9-]+)\/learn$/))) await renderLearn(m[1]);
+    else if ((m = path.match(/^\/exam\/([a-z0-9-]+)\/learn\/draw$/))) await renderDraw(m[1]);
+    else if ((m = path.match(/^\/exam\/([a-z0-9-]+)\/learn\/draw\/([a-z0-9-]+)$/))) await renderDraw(m[1], m[2]);
+    else if ((m = path.match(/^\/exam\/([a-z0-9-]+)\/learn\/([a-z0-9-]+)$/))) await renderLearn(m[1], m[2]);
     else if ((m = path.match(/^\/exam\/([a-z0-9-]+)\/weak$/))) await renderWeakSpots(m[1]);
     else if ((m = path.match(/^\/exam\/([a-z0-9-]+)\/progress$/))) await renderProgressView(m[1]);
     else if ((m = path.match(/^\/exam\/([a-z0-9-]+)\/simulation$/))) await renderSimulation(m[1]);

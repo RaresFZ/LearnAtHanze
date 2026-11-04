@@ -9,9 +9,12 @@
     "start": "node server.js",
     "extract": "node tools/extract.mjs",
     "validate": "node tools/validate.mjs",
-    "test:live": "node --test tools/test-live-engine.mjs",
+    "test:live": "node --test tools/test-live-engine.mjs tools/test-live-advance.mjs tools/test-live-study.mjs",
     "test:live:http": "node --test tools/test-live-http.mjs",
-    "test:update": "node --test tools/test-update.mjs"
+    "test:update": "node --test tools/test-update.mjs",
+    "test:learn": "node --test tools/test-learn.mjs tools/test-study.mjs tools/test-progress.mjs",
+    "test:calc": "node --test tools/test-calc.mjs",
+    "test:confuse": "node --test tools/test-confuse.mjs"
   },
   "engines": { "node": ">=18" }
 }

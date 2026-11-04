@@ -60,6 +60,8 @@ async function loadExam(id) {
     questions: await readJson(path.join(dir, 'questions.json'), []),
     flashcards: await readJson(path.join(dir, 'flashcards.json'), { include: [], exclude: [] }),
     games: await readJson(path.join(dir, 'games.json'), { pairs: [] }),
+    confusions: await readJson(path.join(dir, 'confusions.json'), null),   // optional: groups of easily confused terms for the drills
+    lessons: await readJson(path.join(dir, 'lessons.json'), null),      // optional: the Learn mode (guided lessons, plan, cheat sheet)
   };
 }
 

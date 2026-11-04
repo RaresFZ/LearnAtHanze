@@ -1,0 +1,185 @@
+/* ================= Learn mode: study path, lessons, cheat sheet ================= */
+
+/* path rows reuse .trow; the number badge and the done state are new */
+.lrow .name { gap: 14px; }
+.lnum { flex: none; display: inline-grid; place-items: center; width: 30px; height: 30px; border: 2px solid var(--ink); border-radius: 999px; background: var(--card); font: 600 13px/1 var(--mono); }
+.lrow.is-done { background: var(--accent); color: var(--on-fill); }
+.lrow.is-done .lnum { background: var(--yellow); color: var(--on-fill); }
+.lrow.is-done .segs i { border-color: var(--on-fill); }
+
+/* the plan for one day, and the tips */
+.plan-row { gap: 20px; align-items: stretch; }
+.plan-row > .obj { height: 100%; }
+.plan-card h3 { margin-bottom: 10px; }
+.plan-card .fine { margin-bottom: 14px; }
+.plan-list { list-style: none; counter-reset: plan; display: grid; gap: 14px; }
+.plan-list li { counter-increment: plan; position: relative; padding-left: 40px; font-size: 16px; line-height: 1.4; }
+.plan-list li::before { content: counter(plan); position: absolute; left: 0; top: -1px; display: grid; place-items: center; width: 28px; height: 28px; border: 2px solid var(--ink); border-radius: 999px; background: var(--yellow); color: var(--on-fill); font: 600 13px/1 var(--mono); }
+.plan-meta { font: 500 12px/1 var(--mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+.plan-topics { display: block; margin-top: 3px; font-size: 14px; color: var(--muted); }
+.tips-list { list-style: none; display: grid; gap: 14px; }
+.tips-list li { position: relative; padding-left: 26px; font-size: 16px; line-height: 1.45; }
+.tips-list li::before { content: ""; position: absolute; left: 0; top: 0.5em; width: 11px; height: 11px; border: 2px solid var(--ink); border-radius: 3px; background: var(--accent); }
+
+/* one lesson: small parts, one at a time */
+.lesson-head { margin: 14px 0 22px; }
+.lesson-head .pagesub { margin: 0 0 12px; }
+.lesson-card { padding: 30px 34px 32px; min-height: 280px; }
+.lesson-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+.lesson-title { font: 800 34px/1.08 var(--head); letter-spacing: -0.03em; margin-bottom: 20px; }
+.lesson-points { list-style: none; display: grid; gap: 16px; max-width: 760px; }
+.lesson-points li { position: relative; padding-left: 30px; font-size: 19px; line-height: 1.5; }
+.lesson-points li::before { content: ""; position: absolute; left: 0; top: 0.5em; width: 12px; height: 12px; border: 2px solid var(--ink); border-radius: 3px; background: var(--accent); }
+.remember { margin-top: 26px; padding: 16px 20px; border: 2px solid var(--ink); border-radius: var(--radius); background: var(--yellow); color: var(--on-fill); box-shadow: var(--shadow-s); max-width: 760px; }
+.remember .lab { display: block; margin-bottom: 6px; opacity: 0.75; }
+.remember p { font: 700 19px/1.4 var(--head); letter-spacing: -0.01em; }
+.quiz-segs + .obj, .quiz-segs + div { margin-top: 18px; }
+.lesson-nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 26px; flex-wrap: wrap; }
+.lesson-src { margin-top: 22px; display: flex; align-items: center; gap: 6px; }
+
+/* the cheat sheet */
+.cs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.cs-card { padding: 20px 22px; height: 100%; }
+.cs-card h3 { font: 800 19px/1.15 var(--head); letter-spacing: -0.02em; margin-bottom: 10px; }
+.cs-formula { font: 600 15px/1.5 var(--mono); }
+.cs-ex { margin-top: 10px; font-size: 14px; line-height: 1.45; color: var(--muted); }
+.cs-items { font-size: 15.5px; line-height: 1.55; }
+.cs-often { margin-bottom: 8px; }
+.cs-often h3 { display: flex; align-items: center; gap: 8px; }
+.cs-often .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+.cs-often .fine { margin-bottom: 0; }
+
+/* an object (the wrapper around buttons and cards) that is hidden must really disappear */
+.obj[hidden] { display: none !important; }
+
+/* read aloud, and the quick check after a lesson part */
+.speech-row { display: flex; gap: 12px; flex-wrap: wrap; margin: 4px 0 18px; }
+.quick-lab { display: flex; align-items: center; gap: 6px; margin: 0 0 12px; color: var(--muted); }
+.quick-slot .btn.textlink { margin-top: 12px; }
+
+/* Draw it */
+.draw-row { grid-template-columns: 1fr 1fr 130px 60px; }
+.draw-row .name .lnum { background: var(--lilac); }
+.draw-case { font-size: 18px; line-height: 1.55; max-width: 820px; }
+.draw-prompt { margin-top: 14px; font: 700 20px/1.4 var(--head); letter-spacing: -0.01em; max-width: 820px; }
+.draw-case + .draw-prompt { padding-top: 14px; border-top: 2px solid var(--ink); }
+.pad-wrap { display: grid; gap: 10px; margin: 6px 0 22px; }
+.pad-bar { display: flex; flex-wrap: wrap; gap: 10px; }
+.pad-bar .btn[aria-pressed="true"] { background: var(--yellow); color: var(--on-fill); }
+.pad-paper { border: 2px solid var(--ink); border-radius: var(--radius); box-shadow: var(--shadow); background: var(--card); overflow: hidden; }
+canvas.pad { display: block; width: 100%; height: auto; touch-action: none; cursor: crosshair; }
+.draw-svg-wrap { color: var(--ink); }
+.draw-svg { width: 100%; height: auto; max-width: 940px; display: block; }
+.draw-table-wrap { overflow-x: auto; }
+.draw-table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.draw-table th, .draw-table td { border: 2px solid var(--ink); padding: 10px 12px; text-align: left; vertical-align: top; min-width: 110px; height: 44px; }
+.draw-table th { background: var(--accent); color: var(--on-fill); font: 600 13px/1.2 var(--mono); text-transform: uppercase; letter-spacing: 0.04em; }
+.draw-note { margin-top: 12px; max-width: 820px; }
+.draw-check { grid-template-columns: 1fr; margin: 12px 0; }
+.draw-step2 { margin-top: 8px; }
+.draw-step2 .review { margin-top: 18px; }
+
+/* the exam countdown */
+.count-card h3 { margin-bottom: 10px; }
+.count-big { font: 800 56px/1 var(--head); letter-spacing: -0.04em; margin: 6px 0 14px; }
+.count-card .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.count-verdict { margin: 16px 0 0; font-size: 17px; line-height: 1.5; max-width: 780px; padding: 12px 16px; border: 2px solid var(--ink); border-radius: var(--radius); background: var(--page); }
+.count-verdict.v-tight, .count-verdict.v-short { background: var(--coral); color: var(--on-fill); }
+.count-verdict.v-comfortable, .count-verdict.v-done { background: var(--accent); color: var(--on-fill); }
+.count-list { margin: 8px 0 0; padding-left: 22px; display: grid; gap: 6px; font-size: 16px; }
+.count-list a { text-decoration: underline; text-underline-offset: 3px; }
+.count-list .warn-badge { margin-left: 8px; vertical-align: middle; }
+.count-form { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-top: 14px; }
+.count-form .obj:first-child { flex: 1 1 260px; max-width: 340px; }
+.count-form input.face { width: 100%; height: 48px; padding: 0 14px; font: 500 16px/1 var(--mono); }
+.count-tools { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; margin-top: 18px; }
+.count-change summary { cursor: pointer; font: 600 14px/1 var(--mono); text-decoration: underline; text-underline-offset: 4px; }
+
+/* the study timer */
+.timer-card { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 28px; padding: 16px 22px; }
+.timer-left { display: flex; align-items: center; gap: 14px; }
+.timer-clock { display: block; font: 800 34px/1 var(--mono); letter-spacing: -0.02em; margin-top: 4px; }
+.timer-mid { flex: 1 1 220px; display: grid; gap: 4px; }
+.timer-today { font: 500 13px/1.3 var(--mono); text-transform: uppercase; letter-spacing: 0.04em; }
+.timer-note { font-size: 14px; color: var(--muted); }
+
+/* the "I'm guessing" mark on a question card */
+button.guess-chip { cursor: pointer; margin-left: auto; }
+button.guess-chip[aria-pressed="true"] { background: var(--coral); color: var(--on-fill); }
+button.guess-chip:disabled { opacity: 0.55; cursor: default; }
+
+/* calculation trainer */
+.calc-card-wrap { width: 100%; }
+.calc-row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 22px; }
+.calc-row .obj { flex: none; }
+.calc-row .obj:first-child { flex: 1 1 220px; max-width: 360px; }
+.calc-row .obj[hidden] { display: none; }
+.calc-row input.face { width: 100%; height: 52px; padding: 0 16px; font: 600 22px/1 var(--mono); }
+.calc-steps { margin-top: 10px; display: grid; gap: 4px; }
+.calc-steps p { font: 500 15px/1.5 var(--mono); }
+.fb-slot { margin-top: 20px; }
+
+/* easily confused */
+.conf-title { display: flex; flex-direction: column; gap: 4px; }
+.conf-stat { font: 500 12px/1.2 var(--mono); letter-spacing: 0.04em; text-transform: uppercase; opacity: 0.7; }
+.conf-terms { display: grid; grid-template-columns: repeat(var(--n, 3), 1fr); gap: 14px; }
+.conf-term { border: 2px solid var(--ink); border-radius: var(--radius); background: var(--page); padding: 14px 16px; box-shadow: var(--shadow-s); }
+.conf-term h4 { font: 800 20px/1.15 var(--head); letter-spacing: -0.02em; margin-bottom: 8px; }
+.conf-term .means { font-size: 15px; line-height: 1.45; }
+.conf-term .tip { margin-top: 10px; font-size: 14px; color: var(--muted); }
+.conf-term .tip .lab { color: var(--ink); }
+.conf-src { margin-top: 14px; display: flex; align-items: center; gap: 6px; }
+
+@media (max-width: 900px) {
+  .conf-terms { grid-template-columns: 1fr; }
+  .draw-row { grid-template-columns: 1fr auto; }
+  .draw-row .count { display: none; }
+  .cs-grid { grid-template-columns: repeat(2, 1fr); }
+  .plan-row { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .cs-grid { grid-template-columns: 1fr; }
+  .lesson-card { padding: 22px 18px 24px; min-height: 0; }
+  .lesson-title { font-size: 27px; }
+  .lesson-points li { font-size: 17px; }
+  .remember p { font-size: 17px; }
+  .lesson-nav { flex-direction: column-reverse; align-items: stretch; }
+  .lesson-nav .obj, .lesson-nav .btn { width: 100%; }
+  .lrow .name { gap: 10px; font-size: 18px; }
+}
+
+.cs-hooks { display: grid; gap: 8px; font-size: 15px; line-height: 1.45; }
+.cs-hooks strong::after { content: ":"; }
+.cs-printhead { display: none; }
+
+/* print: the cheat sheet on A4, plain black on white, two columns */
+@media print {
+  @page { size: A4; margin: 11mm 12mm; }
+  :root, :root[data-theme="dark"] { --page: #fff; --card: #fff; --ink: #000; --muted: #333; --grain: none; --shadow: none; --shadow-s: none; --shadow-lift: none; color-scheme: light; }
+  html, body { background: #fff !important; background-image: none !important; color: #000; }
+  .topbar, .back, .cs-noprint, .toast, .mascot { display: none !important; }
+  .page { padding: 0 !important; max-width: none !important; margin: 0 !important; }
+  .cs-page { font-size: 9pt; line-height: 1.35; }
+  .cs-page .obj, .cs-page .obj > * { transform: none !important; opacity: 1 !important; }
+  .cs-printhead { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1.5pt solid #000; padding-bottom: 2mm; margin-bottom: 4mm; font-size: 11pt; }
+  .cs-page .pagetitle, .cs-page .lead { display: none; }
+  .cs-page h2.section { font-size: 12pt; margin: 4mm 0 2mm; letter-spacing: 0; border-bottom: 0.75pt solid #000; padding-bottom: 0.5mm; break-after: avoid; }
+  .cs-grid { display: block; column-count: 2; column-gap: 6mm; }
+  .cs-grid > .obj, .cs-grid > .obj > .tilt, .cs-card, .cs-often { break-inside: avoid; page-break-inside: avoid; -webkit-column-break-inside: avoid; }
+  .cs-grid > .obj { margin: 0 0 2.5mm; display: inline-block; width: 100%; vertical-align: top; padding: 0 !important; }
+  .cs-grid > .obj > .tilt { display: block; }
+  .cs-page .obj, .cs-page .tilt { background: transparent !important; }
+  .cs-page .tilt::before, .cs-page .tilt::after, .cs-page .obj::before, .cs-page .obj::after { display: none !important; }
+  .cs-page .obj .shadow { display: none !important; }       /* the hard-shadow layer of a card: absolute, so it would be drawn on the page edge */
+  .cs-card, .cs-often { border: 0.75pt solid #000 !important; border-radius: 1.5mm !important; box-shadow: none !important; padding: 2mm 2.5mm !important; height: auto !important; background: #fff !important; }
+  .cs-card h3 { font-size: 9.5pt; margin-bottom: 0.8mm; }
+  .cs-formula { font-size: 8.5pt; }
+  .cs-ex, .cs-items, .cs-hooks { font-size: 8.5pt; color: #000; }
+  .cs-hooks { gap: 1mm; }
+  .cs-often { margin-bottom: 2mm; }
+  .cs-often h3 { font-size: 10pt; }
+  .cs-often .fine { font-size: 7.5pt; }
+  .cs-often .chip { background: #fff !important; box-shadow: none !important; border: 0.75pt solid #000; font-size: 8pt; padding: 0.3mm 2mm; }
+  .cs-often .chips { gap: 1.5mm; margin-top: 1.5mm; }
+  .cs-card .icon, .cs-often .icon { display: none; }
+}

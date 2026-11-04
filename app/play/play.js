@@ -3,7 +3,7 @@
 import { h, mount } from '/js/util.js';
 import { icon } from '/js/icons.js';
 import { FX } from '/js/fx.js';
-import { readyScreen, questionScreen, revealScreen, boardScreen, podiumScreen } from '/rounds.js';
+import { readyScreen, questionScreen, revealScreen, boardScreen, podiumScreen, lessonScreen } from '/rounds.js';
 
 const root = document.getElementById('view');
 const KEY = 'learnathanze:live:session';
@@ -178,10 +178,11 @@ function screenName(v) {
   if (v.phase === 'question') return `question:${i}`;
   if (v.phase === 'reveal') return `reveal:${i}`;
   if (v.phase === 'ready') return `ready:${i}`;
+  if (v.phase === 'lesson') return `lesson:${i}`;
   if (v.phase === 'board') return `board:${v.progress.index}`;
   return v.phase;
 }
-const FACTORY = { lobby: lobbyScreen, ready: readyScreen, question: (v) => questionScreen(v, ctx), reveal: revealScreen, board: boardScreen, podium: podiumScreen };
+const FACTORY = { lesson: (v) => lessonScreen(v, ctx), lobby: lobbyScreen, ready: readyScreen, question: (v) => questionScreen(v, ctx), reveal: (v) => revealScreen(v, ctx), board: boardScreen, podium: podiumScreen };
 
 function showHostPill(away) {
   if (!away) { hostPill?.remove(); hostPill = null; return; }

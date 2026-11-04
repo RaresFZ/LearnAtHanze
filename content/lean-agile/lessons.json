@@ -1,0 +1,464 @@
+{
+  "intro": "Read one short lesson, then answer questions on it. The questions you miss come first the next time, and you can retry them straight away on the results screen. Everything here comes from the syllabus and slides of this course, and each lesson says where.",
+  "order": ["foundations", "waste", "governance", "define", "mapping", "metrics-time", "metrics-quality", "analyze", "statistics", "improve-flow", "improve-workplace", "oee", "control", "agile-scrum", "itil", "kanban-devops"],
+  "plan": {
+    "blocks": [
+      { "title": "Block 1: the basics", "topics": ["foundations", "waste", "governance", "define"] },
+      { "title": "Block 2: mapping and measuring", "topics": ["mapping", "metrics-time", "metrics-quality"] },
+      { "title": "Block 3: analyse and improve", "topics": ["analyze", "statistics", "improve-flow", "improve-workplace"] },
+      { "title": "Block 4: sustain, and the Agile side", "topics": ["oee", "control", "agile-scrum", "itil", "kanban-devops"] }
+    ],
+    "tips": [
+      "Work in blocks of 25 to 40 minutes, then take 5 to 10 minutes off. Short blocks beat one long sitting.",
+      "Do not just re-read. After each lesson, answer the questions without looking back: pulling an answer out of your head is what makes it stick.",
+      "When you miss a question, read the explanation, say it in your own words, then retry it.",
+      "Keep the last hour for the cheat sheet and a timed exam simulation. Sleep before the exam: you remember more after a night's sleep than after a late cram."
+    ]
+  },
+  "cheatsheet": {
+    "formulas": [
+      { "name": "Takt time", "formula": "net available time ÷ customer demand", "example": "420 min ÷ 140 units = 3 min per unit" },
+      { "name": "Process cycle efficiency (PCE)", "formula": "value-added time ÷ total lead time × 100%", "example": "18 ÷ 4,320 × 100 = 0.42%" },
+      { "name": "Little's Law", "formula": "average WIP = throughput rate × average flow time, so flow time = WIP ÷ throughput", "example": "80 open cases ÷ 20 per day = 4 days" },
+      { "name": "First Time Right (FTR)", "formula": "units correct on the first attempt ÷ units processed × 100%", "example": "910 ÷ 1,000 = 91%" },
+      { "name": "DPU", "formula": "defects ÷ units", "example": "40 ÷ 500 = 0.08" },
+      { "name": "DPO", "formula": "defects ÷ (units × opportunities per unit)", "example": "40 ÷ (500 × 4) = 0.02" },
+      { "name": "DPMO", "formula": "DPO × 1,000,000 (defects per million opportunities)", "example": "0.02 × 1,000,000 = 20,000" },
+      { "name": "Defective-unit rate", "formula": "defective units ÷ units", "example": "35 ÷ 500 = 7% (not the 8% of the DPU)" },
+      { "name": "FPY and RTY", "formula": "FPY = units passing first time ÷ units entering. RTY = product of the step FPYs", "example": "" },
+      { "name": "OEE", "formula": "Availability × Performance × Quality", "example": "0.9 × 0.8 × 0.95 = 68.4%" },
+      { "name": "OEE parts", "formula": "Availability = operating time ÷ planned time. Performance = (ideal cycle time × total count) ÷ operating time. Quality = good count ÷ total count", "example": "420 ÷ 480 = 87.5%; 360 ÷ 420 = 85.7%; 171 ÷ 180 = 95%" },
+      { "name": "FMEA risk priority number", "formula": "Severity × Occurrence × Detectability", "example": "" },
+      { "name": "Cp and Cpk", "formula": "Cp = (USL − LSL) ÷ (6σ). Cpk = the smaller of (USL − mean) ÷ 3σ and (mean − LSL) ÷ 3σ", "example": "" }
+    ],
+    "lists": [
+      { "name": "Five Lean principles (in order)", "items": "Value, Value stream, Flow, Pull, Perfection" },
+      { "name": "Two pillars of TPS", "items": "Just-in-Time and Jidoka" },
+      { "name": "The 3Ms", "items": "Muda = waste, Mura = unevenness, Muri = overburden" },
+      { "name": "Eight wastes (TIMWOODS)", "items": "Transportation, Inventory, Motion, Waiting, Overproduction, Overprocessing, Defects, Skills (unused talent). The Lesson 3 slide shows the classic seven, without unused talent." },
+      { "name": "DMAIC", "items": "Define, Measure, Analyze, Improve, Control. The charter belongs to Define. A tollgate is a review, not a phase." },
+      { "name": "SIPOC", "items": "Suppliers, Inputs, Process (about 4 to 7 steps), Outputs, Customers" },
+      { "name": "SMART", "items": "Specific, Measurable, Achievable, Relevant, Time-bound" },
+      { "name": "RACI", "items": "Responsible, Accountable, Consulted, Informed. Normally one Accountable owner per decision." },
+      { "name": "PDCA", "items": "Plan (change and prediction), Do (small test), Check/Study (compare with the prediction), Act (adopt, adapt or abandon)" },
+      { "name": "5S", "items": "Sort, Set in Order, Shine, Standardize, Sustain (some add Safety as a sixth S)" },
+      { "name": "6M of a fishbone", "items": "Manpower/People, Machine, Method, Material, Measurement, Mother Nature/Environment" },
+      { "name": "Belts", "items": "White (awareness), Yellow (takes part, collects data), Green (leads bounded projects), Black (leads complex projects, coaches Green Belts), Master Black Belt (methods expert, deployment coach). Champion/Sponsor is a senior leader, not a belt." },
+      { "name": "Scrum", "items": "Values: Commitment, Focus, Openness, Respect, Courage. Pillars: Transparency, Inspection, Adaptation." },
+      { "name": "ITIL 4", "items": "Service Value System: Guiding principles, Governance, Service value chain, Practices, Continual improvement. Dimensions: Organizations & people, Information & technology, Partners & suppliers, Value streams & processes. Practices: 14 general, 17 service management, 3 technical." },
+      { "name": "Kanban principles", "items": "Visualise work, Limit work in progress, Focus on flow, Continuous improvement" },
+      { "name": "DevOps key components", "items": "Culture and philosophy, Automation, Continuous delivery, Feedback loops" }
+    ],
+    "often": [
+      "Poka Yoke examples",
+      "The Champion role",
+      "TPS (the two pillars)",
+      "Mura",
+      "5 Whys",
+      "Takt time",
+      "SIPOC",
+      "VOC",
+      "The aims of Six Sigma"
+    ],
+    "oftenSource": "The syllabus (Ch.16) lists these as the themes the class scored lowest on in the Kahoot quizzes."
+  },
+  "exercises": [
+    {
+      "id": "coffee-sipoc",
+      "topic": "define",
+      "title": "SIPOC of the coffee lunchroom",
+      "minutes": 10,
+      "src": [
+        "l3",
+        "Slide 20"
+      ],
+      "case": "Delicious coffee is served daily in the 'bakkie leut' lunchroom. Customers can not only count on fresh coffee, made from fresh coffee beans, but also get a delicious biscuit by the coffee. Besides, of course, the usual sugar and milk that is served with it. This is not standard on the tables because of the freshness. The owner of the lunch room is busy setting up his process for serving customers smarter. Despite good service and satisfied customers, it does not seem to be organized just as well. He asks your Green Belt experts to chart this process.",
+      "prompt": "Make a SIPOC of this process. Use the five columns, and keep the process to about 4 to 7 high-level steps.",
+      "checklist": [
+        "Five columns: Suppliers, Inputs, Process, Outputs, Customers.",
+        "The process column has about 4 to 7 high-level steps. A SIPOC is not a detailed process map.",
+        "The start and the end of the process are clear.",
+        "Every input comes from a supplier and every output goes to a customer.",
+        "You thought about who the customers are: the person who gets the coffee and the person who pays."
+      ],
+      "template": {
+        "kind": "table",
+        "head": [
+          "Suppliers",
+          "Inputs",
+          "Process",
+          "Outputs",
+          "Customers"
+        ],
+        "emptyRows": 5
+      },
+      "model": {
+        "title": "The lecturer's answer (the Lesson 5 slide)",
+        "kind": "table",
+        "head": [
+          "Supplier",
+          "Input",
+          "Process",
+          "Output",
+          "Customer"
+        ],
+        "rows": [
+          [
+            "Coffee trade",
+            "Sign of the customer",
+            "Taking order",
+            "Order",
+            ""
+          ],
+          [
+            "Bijenkorf tableware",
+            "Order, tableware and coffee beans",
+            "Making coffee",
+            "Coffee just made",
+            ""
+          ],
+          [
+            "Factory cookies",
+            "cookie, sugar, milk, coffee",
+            "Preparing the order",
+            "Coffee and additionals",
+            ""
+          ],
+          [
+            "Melkunie",
+            "Coffee and additionals",
+            "Serve",
+            "Served coffee",
+            "Customer (coffee)"
+          ],
+          [
+            "CSM sugar",
+            "Order and sign of the customer",
+            "Pay the bill",
+            "Money",
+            "Boss (money)"
+          ]
+        ],
+        "note": "Each column is its own list: the rows do not belong together. The syllabus gives another version of the coffee service (suppliers: coffee, milk, bakery, guest; process: receive order, prepare drink, assemble order, serve, collect payment; outputs: a correctly served beverage and the transaction; customers: the guest and the business owner). Both are fine: map the actual practice."
+      }
+    },
+    {
+      "id": "hotel-fishbone",
+      "topic": "analyze",
+      "title": "Fishbone of the hotel mistake",
+      "minutes": 10,
+      "src": [
+        "l2",
+        "Pages 7-8"
+      ],
+      "case": "A hotel booked a customer into a smoking room, which was a mistake. It became worse: they gave the customer the wrong key cards and failed to apologize or correct the booking because the hotel was full. This resulted in a disappointed customer and bad publicity.",
+      "prompt": "Make an Ishikawa (fishbone) of this in your group. The slide suggests the categories people, process, technology, culture, procedure and environment.",
+      "checklist": [
+        "The problem is at the head of the fish, facing right.",
+        "The causes extend to the left as bones. Ribs are the major causes, sub-branches the root causes, as many levels as you need.",
+        "You used categories that fit a service (people, process, technology, culture, procedure, environment), not just the manufacturing ones.",
+        "Your causes are hypotheses: a fishbone organizes them, it does not prove them.",
+        "For at least one cause you can say what evidence would confirm it."
+      ],
+      "template": {
+        "kind": "fishbone",
+        "head": "Disappointed customer, bad publicity",
+        "categories": [
+          "People",
+          "Process",
+          "Technology",
+          "Culture",
+          "Procedure",
+          "Environment"
+        ]
+      },
+      "model": null
+    },
+    {
+      "id": "registration-fishbone",
+      "topic": "analyze",
+      "title": "Fishbone of late registration confirmations",
+      "minutes": 10,
+      "src": [
+        "syl",
+        "Ch.8 practice, p.9"
+      ],
+      "case": "Course-registration confirmations at a university arrive late.",
+      "prompt": "Create a fishbone for the late course-registration confirmations. Then write two competing causal explanations and the evidence you would need to tell them apart.",
+      "checklist": [
+        "The problem is the fish head; the categories are the bones (the usual 6M are Manpower/People, Machine, Method, Material, Measurement, Mother Nature/Environment; adapt them to a service).",
+        "You wrote two explanations that compete with each other.",
+        "For each explanation you named the evidence that would distinguish it from the other.",
+        "You separated what you assume from what you have verified."
+      ],
+      "template": {
+        "kind": "fishbone",
+        "head": "Late registration confirmations",
+        "categories": [
+          "Manpower / People",
+          "Machine",
+          "Method",
+          "Material",
+          "Measurement",
+          "Environment"
+        ]
+      },
+      "model": null
+    },
+    {
+      "id": "project-charter",
+      "topic": "governance",
+      "title": "A project charter",
+      "minutes": 15,
+      "src": [
+        "l3",
+        "Slides 14 and 16"
+      ],
+      "case": "Pick one: (1) a new Hanze app for international students; (2) how can I improve the results of the ITIL exams? (3) how can I improve my IT services?",
+      "prompt": "Fill in a project charter for the case you picked.",
+      "checklist": [
+        "Business case: why the project is important, linked to the Voice of the Business, with the expected benefits of a better process sigma.",
+        "Scope: the focus of the project, and the limits of the process or the objectives.",
+        "Problem description in clear terms (5 x W, 1 x H): how often, where, who is bothered.",
+        "Process: the start and the end, with a SIPOC.",
+        "Target, SMART: how much improvement, which measurable business impact, by when.",
+        "Team: who is involved (Champion, Client, MBB, Black Belt, team members).",
+        "The phases Define, Measure, Analyse, Improve, Control, each with a tollgate date and a status.",
+        "The problem statement does not name a preferred solution."
+      ],
+      "template": {
+        "kind": "table",
+        "head": [
+          "Section",
+          "What goes in it"
+        ],
+        "rows": [
+          [
+            "Business case",
+            "Why the project is important, the link with the Voice of the Business, the expected benefits"
+          ],
+          [
+            "Scope",
+            "The focus of the project, and the limits of the process or the objectives"
+          ],
+          [
+            "Problem description",
+            "How often does it occur, where, who is bothered"
+          ],
+          [
+            "Process",
+            "Start of the process, end of the process, a SIPOC"
+          ],
+          [
+            "Target (SMART)",
+            "How much improvement, which measurable business impact, by when"
+          ],
+          [
+            "Team",
+            "Champion, Client, MBB, Black Belt, team members"
+          ],
+          [
+            "Phases",
+            "Define, Measure, Analyse, Improve, Control, with a tollgate date and a status each"
+          ]
+        ]
+      },
+      "model": null
+    },
+    {
+      "id": "helpdesk-swimlane",
+      "topic": "mapping",
+      "title": "A four-lane swimlane map",
+      "minutes": 12,
+      "src": [
+        "syl",
+        "Ch.5 practice, p.6"
+      ],
+      "case": "A student sends a question to the university helpdesk. The service desk receives it, a specialist answers it, and a system records and closes the ticket.",
+      "prompt": "Draw a four-lane map (student, service desk, specialist, system) with at least two handoffs. Then sketch the current-state value stream and propose one future-state change.",
+      "checklist": [
+        "Each activity sits in the lane of the actor, department or system that does it.",
+        "Arrows that cross from one lane to another are handoffs: you have at least two.",
+        "Start and end points are marked, and decisions and loops are shown where they happen.",
+        "You mapped the current state first, as the work really goes.",
+        "You marked where a handoff shows an ownership gap or a repeated approval.",
+        "Your future-state change is a hypothesis: it is not true until it has been tested."
+      ],
+      "template": {
+        "kind": "swimlane",
+        "lanes": [
+          "Student",
+          "Service desk",
+          "Specialist",
+          "System"
+        ]
+      },
+      "model": null
+    },
+    {
+      "id": "waste-walk",
+      "topic": "waste",
+      "title": "A 20-minute waste walk",
+      "minutes": 20,
+      "src": [
+        "syl",
+        "Ch.2 practice, p.4"
+      ],
+      "case": null,
+      "prompt": "Visit a place where work happens (your own workplace, a service desk, a room at the university). Write down five observations. For each one: the type of waste, the evidence, the impact and a testable improvement idea. Distinguish motion from transportation.",
+      "checklist": [
+        "Five observations, written as facts, without blame.",
+        "Each has a waste type from TIMWOODS.",
+        "Each has evidence and an impact.",
+        "Each has an idea you could test.",
+        "You kept what you saw apart from what you think it means.",
+        "You used motion only for people moving and transportation for items or information moving."
+      ],
+      "template": {
+        "kind": "table",
+        "head": [
+          "Observation (fact)",
+          "Waste type",
+          "Evidence",
+          "Impact",
+          "Testable idea"
+        ],
+        "emptyRows": 5
+      },
+      "model": null
+    }
+  ],
+  "topics": {
+    "foundations": {
+      "minutes": 6, "src": ["syl", "Ch.1, p.3"],
+      "chunks": [
+        { "title": "Lean and Six Sigma", "ask": ["la-201"], "points": ["Lean improves customer value and flow by cutting work that adds no value.", "Six Sigma cuts defects and unwanted variation, using measurement and analysis.", "Lean asks: where are time, effort and resources wasted? Six Sigma asks: how reliably does the process meet requirements?", "Neither is only for manufacturing, and they complement each other. A shorter process is not automatically a more capable one."], "remember": "Lean = value, flow, waste. Six Sigma = defects, variation, capability.", "often": true },
+        { "title": "The Toyota Production System (TPS)", "ask": ["la-005"], "points": ["TPS grew around respect for people and continuous improvement.", "Its two pillars are Just-in-Time (produce what is needed, when it is needed) and Jidoka (build quality into the process and stop to deal with abnormalities).", "Supporting practices: standardized work, visual management, making problems visible, and employees solving problems."], "remember": "The two pillars of TPS: Just-in-Time and Jidoka.", "often": true },
+        { "title": "Muda, Mura and Muri", "ask": ["la-205"], "points": ["Muda = waste: activity that uses resources but adds no value.", "Mura = unevenness: irregular demand or workload.", "Muri = overburden: too much load on people or equipment.", "They reinforce each other: an unstable schedule (Mura) causes overtime (Muri), which causes errors and queues (Muda)."], "remember": "Mura leads to Muri leads to Muda.", "often": true },
+        { "title": "Heijunka, Andon, Kaizen and PDCA", "points": ["Heijunka levels production volume and mix. Andon is a visual or audible signal that asks for support.", "Just-in-Time is more than keeping inventory low: it needs stable processes.", "Kaizen = continuous, incremental improvement, involving the people who do the work.", "PDCA: Plan a change and a prediction; Do a small-scale test; Check/Study by comparing the result with the prediction; Act: adopt, adapt or abandon, and standardize what you learned."] }
+      ]
+    },
+    "waste": {
+      "minutes": 7, "src": ["syl", "Ch.2, p.4"],
+      "chunks": [
+        { "title": "The five Lean principles, in order", "ask": ["la-208"], "points": ["1 Value: define what the customer needs and is willing to recognise as valuable.", "2 Value stream: map all the activities needed to deliver it.", "3 Flow: remove interruption, batching and rework.", "4 Pull: start work from actual downstream demand.", "5 Perfection: keep improving quality, flow and learning."], "remember": "Value, value stream, flow, pull, perfection." },
+        { "title": "Is an activity value-added?", "ask": ["la-215"], "points": ["A strict test asks three things: does it transform the product or service, is it done right the first time, and does the customer value it?", "Some work adds no value but is needed for legal or risk reasons. Count that separately from waste you can remove."] },
+        { "title": "The eight wastes: TIMWOODS", "ask": ["la-209"], "points": ["Transportation: moving materials or information between places.", "Inventory: too much work in progress, stock or waiting tickets.", "Motion: unnecessary movement by a person.", "Waiting: idle time.", "Overproduction: making too early or too much.", "Overprocessing: more work than needed.", "Defects: errors and rework.", "Skills: not using employees' expertise and ideas."], "remember": "Motion = a person moves. Transportation = things or information move." },
+        { "title": "Spot the waste in a ticket process", "ask": ["la-210"], "points": ["A ticket copied between three teams: transportation.", "The ticket waits two days: waiting.", "The same data entered twice: overprocessing.", "The ticket reopens because the first fix failed: defects.", "An employee knows an automation, but nobody asks: unused talent (skills)."] },
+        { "title": "Seven or eight? And the waste walk", "points": ["The Lesson 3 slide 'The 7 Wastes' shows seven: overproduction, inventory, transportation, motion, waiting, defects, overprocessing. The syllabus adds the eighth, unused talent. Follow what your lecturer used.", "Environmental waste is sometimes added as a ninth lens, but it is not one of the standard eight.", "A waste walk (Gemba walk): go to where the work happens, observe without blame, write down facts, ask staff about obstacles. It is learning, not an inspection to find who is at fault."] }
+      ]
+    },
+    "governance": {
+      "minutes": 7, "src": ["syl", "Ch.3, p.4-5"],
+      "chunks": [
+        { "title": "Belts and roles", "ask": ["la-216"], "points": ["White Belt: basic awareness and terms. Yellow Belt: takes part in improvement work and collects data.", "Green Belt: leads bounded projects, usually next to normal duties.", "Black Belt: leads complex analytical projects and coaches Green Belts.", "Master Black Belt: methods expert and deployment coach. Not a sponsor by definition.", "Champion or Sponsor: a senior leader who selects and supports projects, secures resources and removes barriers. A governance role, not a technical belt."], "remember": "Champion = senior leader who removes barriers. Green Belt = leads the project.", "often": true },
+        { "title": "DMAIC and tollgates", "ask": ["la-219"], "points": ["Define: clarify the problem and the customer. Measure: set a trustworthy baseline. Analyze: validate the causes. Improve: test and implement solutions. Control: sustain the gains.", "The project charter is made in Define.", "A tollgate is a formal review at the end of a phase: the sponsor checks the evidence and authorises the next phase. It is not an extra DMAIC phase."] },
+        { "title": "The project charter", "ask": ["la-220"], "points": ["Typical contents: business case and Voice of the Business, problem statement, measurable goal, scope and exclusions, process boundaries, stakeholders, team and roles, high-level timeline, assumptions, risks and expected benefits.", "Do not put a preferred solution in the problem statement.", "Weak goal: 'Improve our app by implementing AI.' Stronger: 'Reduce the median time to resolve international-student onboarding questions from 72 to 36 hours by 30 June, without reducing first-contact resolution.'"] },
+        { "title": "SMART and RACI", "points": ["SMART goal: Specific, Measurable, Achievable, Relevant, Time-bound.", "RACI: Responsible, Accountable, Consulted, Informed. Normally only one Accountable owner per decision.", "Belt names and prerequisites differ between certifying bodies."] }
+      ]
+    },
+    "define": {
+      "minutes": 6, "src": ["syl", "Ch.4, p.5-6"],
+      "chunks": [
+        { "title": "VOC and VOB", "ask": ["la-225"], "points": ["Voice of the Customer (VOC): the customers' needs, expectations and experiences, from interviews, surveys, complaints, service logs and observation.", "Voice of the Business (VOB): strategic, financial, regulatory and operational priorities.", "Separate what customers say from what the organisation assumes."], "remember": "VOC = what the customer needs. VOB = what the business needs.", "often": true },
+        { "title": "CTQ: Critical to Quality", "ask": ["la-226"], "points": ["A CTQ turns a broad need into something you can observe and measure.", "'Fast support' becomes '90% of priority-2 tickets get an initial response within 4 business hours'.", "A good CTQ has an operational definition, a target, a unit, a measurement method and an owner."] },
+        { "title": "SIPOC", "ask": ["la-228"], "points": ["S = Suppliers, I = Inputs, P = Process (roughly 4 to 7 high-level steps), O = Outputs, C = Customers.", "It sets boundaries and interfaces. It is not a detailed process map.", "You can start from the customers and outputs and work backwards."], "remember": "SIPOC = Suppliers, Inputs, Process, Outputs, Customers. The S is Suppliers.", "often": true },
+        { "title": "Two SIPOC examples", "points": ["Coffee service: suppliers = coffee, milk, bakery, guest. Inputs = beans, water, milk, biscuit, order. Process = receive order, prepare drink, assemble order, serve, collect payment. Outputs = a correctly served drink and the transaction. Customers = the guest and the business owner.", "Pizza (Lesson 3 slide): suppliers = Dairy Supply Corporation, Vegetable Farmers United, Prepared Foods Corporation. Inputs = cheese, olives, peppers, dough, sauce. Process = prepare dough, add sauce, add cheese and toppings, bake, remove and serve. Output = pizza. Customers = dine-in, take-out and delivery customers."] }
+      ]
+    },
+    "mapping": {
+      "minutes": 4, "src": ["syl", "Ch.5, p.6"],
+      "chunks": [
+        { "title": "Flowchart and swimlane", "ask": ["la-232"], "points": ["A flowchart shows steps, decisions, loops and start and end points.", "A swimlane diagram puts each activity in the lane of the person, department or system that does it.", "When work crosses from one lane to another you see handoffs, ownership gaps and repeated approvals.", "Always map the current state before designing the future state."] },
+        { "title": "Value stream map (VSM)", "ask": ["la-233"], "points": ["A VSM shows the flow of material and information from start to finish.", "It often includes process boxes, cycle times, changeover times, availability, inventories and queues, and lead time.", "Draw a current-state and a future-state map, and use measured data, not guesses.", "A future-state map is only a hypothesis until it has been tested."] },
+        { "title": "Process cycle efficiency (PCE)", "points": ["PCE = value-added time ÷ total lead time × 100%.", "A low PCE means waiting, queueing and handoffs take most of the elapsed time.", "Example: 18 minutes of real work in 3 calendar days (4,320 minutes) gives 0.42%.", "Do not mix minutes of staff effort with calendar days of lead time."], "remember": "PCE = value-added ÷ lead time × 100." }
+      ]
+    },
+    "metrics-time": {
+      "minutes": 8, "src": ["syl", "Ch.6, p.7"],
+      "chunks": [
+        { "title": "Takt time", "ask": ["la-015"], "points": ["Takt time = net available time ÷ customer demand.", "It is the pace you must keep to match demand. It is not a time you observe.", "420 minutes ÷ 140 units = 3 minutes per unit. 400 ÷ 100 = 4. 450 ÷ 150 = 3."], "remember": "Takt = available time ÷ demand.", "often": true },
+        { "title": "Cycle time against takt", "ask": ["la-238"], "points": ["Cycle time is what you observe: the time to complete one cycle, or the time between finished units.", "Takt is the required pace, cycle time is the actual pace.", "If a station needs 4 minutes per unit and takt is 3, that station cannot meet demand without a redesign or extra parallel capacity."] },
+        { "title": "Lead time and Little's Law", "ask": ["la-240"], "points": ["Lead time = elapsed time from the customer's request to delivery, including waiting. Touch time is the time someone actively works on it.", "Little's Law: average WIP = throughput rate × average flow time. So flow time = WIP ÷ throughput.", "80 open cases ÷ 20 per day = 4 days. 60 ÷ 30 = 2 days.", "It is an average for a stable system, not a promise for each individual case."], "remember": "Flow time = WIP ÷ throughput." },
+        { "title": "Capacity, bottleneck and FTR", "points": ["Capacity is the maximum sustainable output. Utilization = actual use ÷ available capacity.", "The bottleneck is the limiting step. Improving other steps may not raise end-to-end throughput.", "First Time Right = units completed correctly without rework on the first attempt ÷ units processed × 100%."] }
+      ]
+    },
+    "metrics-quality": {
+      "minutes": 6, "src": ["syl", "Ch.7, p.7-8"],
+      "chunks": [
+        { "title": "Defect, defective unit, opportunity", "ask": ["la-253"], "points": ["A defect is one failure to meet a requirement.", "A defective unit has one or more defects.", "A defect opportunity is a specified chance for one defect per unit. Count the ones that matter for the CTQs, and do not inflate the number to look better."] },
+        { "title": "DPU, DPO and DPMO", "ask": ["la-249"], "points": ["DPU = defects ÷ units. DPO = defects ÷ (units × opportunities per unit). DPMO = DPO × 1,000,000.", "500 forms, 40 defects, 4 opportunities each: DPU 0.08, DPO 0.02, DPMO 20,000.", "If the 40 defects sit in 35 forms, the defective-unit rate is 35 ÷ 500 = 7%, not 8%.", "DPMO counts defects per million opportunities, not defective units per million."], "remember": "DPMO = DPO × 1,000,000." },
+        { "title": "Yield and sigma level", "points": ["First-pass yield (FPY) = units passing first time ÷ units entering.", "Rolled throughput yield (RTY) = the product of the step FPYs. Do not guess it from the final inspection alone.", "The Six Sigma benchmark of about 3.4 DPMO rests on a long-term 1.5-sigma shift convention. It is a convention, not a law of nature."] }
+      ]
+    },
+    "analyze": {
+      "minutes": 7, "src": ["syl", "Ch.8, p.8-9"],
+      "chunks": [
+        { "title": "Root cause analysis and the 5 Whys", "ask": ["la-260"], "points": ["Root cause analysis: define the failure, map how it happens, list plausible causes, collect evidence, and check that changing the cause changes the result.", "5 Whys: keep asking why, with evidence for every answer. Five is a mnemonic, not a rule: stop when the causes are evidenced and actionable.", "A root cause is useful when it is actionable and explains why the problem recurs."], "remember": "Five Whys does not mean exactly five questions.", "often": true },
+        { "title": "Ishikawa (fishbone)", "ask": ["la-254"], "points": ["Put the problem at the head of the fish (facing right) and the causes on bones extending to the left. Ribs are the major causes, sub-branches the root causes.", "Typical 6M categories: Manpower/People, Machine, Method, Material, Measurement, Mother Nature/Environment. For services you can use people, process, technology, culture, procedure, environment (as in the Lesson 2 hotel exercise).", "A fishbone organises hypotheses. It does not prove any of them."] },
+        { "title": "Pareto, A3 and FMEA", "points": ["Pareto: rank categories by frequency, cost or severity and show the cumulative total. The 80/20 rule is a rule of thumb, not a guarantee. Prioritise on impact and feasibility.", "A3: a concise one-page story of background, current condition, target, analysis, countermeasures, implementation and follow-up.", "FMEA: look ahead at failure modes, effects, causes and controls. RPN = Severity × Occurrence × Detectability. A high-severity risk still deserves attention when its RPN is modest."] }
+      ]
+    },
+    "statistics": {
+      "minutes": 5, "src": ["syl", "Ch.9, p.9-10"],
+      "chunks": [
+        { "title": "Describing data and variation", "ask": ["la-262"], "points": ["Mean = the average, median = the middle (robust to skew), standard deviation = spread, percentiles describe the tails.", "Lead times are often right-skewed, so use the median and P90.", "Common-cause variation comes from the current system. Special-cause variation comes from an identifiable unusual influence.", "Control limits come from the process data. They are not customer specification limits."] },
+        { "title": "Which control chart?", "ask": ["la-263"], "points": ["I-MR: individual continuous measurements.", "X-bar/R: rational subgroups.", "p-chart: proportion defective (for example weekly defective forms).", "u-chart: defects per unit when the exposure varies."] },
+        { "title": "Capability and tests", "points": ["Cp = (USL − LSL) ÷ (6σ). Cpk = the smaller of (USL − mean) ÷ 3σ and (mean − LSL) ÷ 3σ.", "Check stability first: a capable-looking but unstable process is not predictable.", "Hypothesis test: state a null and an alternative, report effect size as well as the p-value. Correlation is not causation.", "This chapter comes from the syllabus only, no slide covers it, so it may go beyond what the exam asks."] }
+      ]
+    },
+    "improve-flow": {
+      "minutes": 6, "src": ["syl", "Ch.10, p.10-11"],
+      "chunks": [
+        { "title": "Flow and pull", "ask": ["la-266"], "points": ["One-piece (continuous) flow moves a unit on without batching. It reduces WIP and shows defects quickly, but needs balanced work and reliable steps.", "A pull system authorises work from downstream consumption.", "Kanban makes work visible and limits work in progress (cards or columns). WIP limits stop overload and expose blocked work."] },
+        { "title": "Heijunka and line balancing", "study": ["la-203"], "ask": ["la-271"], "points": ["Heijunka (levelling) reduces peaks in volume and mix. It does not mean ignoring urgent work.", "Line balancing: compare each step's cycle time with takt, move or reduce work at the constraint, protect the constraint, and recheck the whole flow afterwards."] },
+        { "title": "Poka Yoke and Jidoka", "points": ["Poka Yoke = error-proofing: make errors hard to make or easy to spot. Examples: a keyed connector that only fits one way, a required-format field, barcode validation.", "Jidoka stops or alerts on an abnormality and triggers a response. Detecting without reacting is not enough.", "Example: limiting 'In Progress' to eight tickets (Kanban) plus mandatory category validation (Poka Yoke)."], "remember": "Poka Yoke = error-proofing, for example a form that rejects invalid input.", "often": true }
+      ]
+    },
+    "improve-workplace": {
+      "minutes": 5, "src": ["syl", "Ch.11, p.11-12"],
+      "chunks": [
+        { "title": "5S", "ask": ["la-273"], "points": ["Sort: remove what is not needed.", "Set in Order: put needed items in a labelled place.", "Shine: clean and inspect.", "Standardize: agree visual standards and routines.", "Sustain: audit, coach and keep up the habits.", "Some organisations add Safety as a sixth S."], "remember": "Sort, Set in Order, Shine, Standardize, Sustain." },
+        { "title": "Visual management and standard work", "ask": ["la-277"], "points": ["Visual management makes normal and abnormal conditions obvious. A dashboard nobody acts on is not effective.", "Standardized work is the best currently known safe method. Employees help design and update it, and it makes Kaizen possible instead of freezing improvement.", "Daily huddles are short. Complex problems go to a separate problem-solving session."] },
+        { "title": "SMED", "points": ["SMED = Single-Minute Exchange of Die: aim for changeovers in single-digit minutes where possible.", "Internal activities need the equipment to be shut down. External activities can be done while it is still running.", "The method: convert internal to external, simplify, parallelise and standardise."] }
+      ]
+    },
+    "oee": {
+      "minutes": 5, "src": ["syl", "Ch.12, p.12"],
+      "chunks": [
+        { "title": "TPM: Total Productive Maintenance", "ask": ["la-283"], "points": ["TPM combines proactive maintenance, operator involvement, planned maintenance, quality maintenance and systematic loss reduction.", "Operators can do safe basic care. Specialist maintenance and safety rules still apply."] },
+        { "title": "OEE", "ask": ["la-282"], "points": ["OEE = Availability × Performance × Quality.", "Availability = operating time ÷ planned production time. Performance = (ideal cycle time × total count) ÷ operating time. Quality = good count ÷ total count.", "Example: 480 planned, 60 downtime, so 420 operating. Availability 87.5%, Performance (2 × 180) ÷ 420 = 85.7%, Quality 171 ÷ 180 = 95%, OEE = 71.25%.", "The six big losses: breakdowns, setup and adjustments, minor stops, reduced speed, startup rejects, production rejects."], "remember": "OEE = Availability × Performance × Quality." },
+        { "title": "Bottlenecks and the theory of constraints", "points": ["Find the constraint using throughput, queue and resource data.", "Then: exploit and protect it, subordinate the other steps, raise its capacity where justified, and reassess.", "A resource that is merely busy is not always the end-to-end constraint."] }
+      ]
+    },
+    "control": {
+      "minutes": 4, "src": ["syl", "Ch.13, p.12-13"],
+      "chunks": [
+        { "title": "Control plan", "ask": ["la-285"], "points": ["A control plan sets the CTQ or KPI, its operational definition, target, data source, frequency, process owner, visual display, reaction threshold, corrective action and escalation path.", "Its purpose: monitor and sustain the improvement, with clear owners and response rules.", "Also train staff, update procedures and audit that people use them."] },
+        { "title": "Lean leadership, Hoshin Kanri and catchball", "ask": ["la-286"], "points": ["Lean leaders set direction, protect time for improvement, ask evidence-based questions at Gemba, respect staff knowledge, remove barriers and avoid blame.", "Hoshin Kanri (policy deployment) turns strategy into a few breakthrough goals, annual objectives, owners and review cycles.", "Catchball is the dialogue that aligns ambition, resources and feasibility across levels."] },
+        { "title": "DMAIC versus PDCA", "points": ["DMAIC is a structured project path for an existing process problem.", "PDCA is a repeating learning cycle for everyday and experimental improvement.", "They complement each other, they do not compete.", "Measure more than speed and cost: also service quality, staff workload and accessibility."] }
+      ]
+    },
+    "agile-scrum": {
+      "minutes": 3, "src": ["s5", "Slide 2"],
+      "chunks": [
+        { "title": "Scrum values and pillars", "ask": ["la-289"], "points": ["Five values: Commitment, Focus, Openness, Respect, Courage.", "Three pillars: Transparency, Inspection, Adaptation (the slide spells it 'Adaption').", "Your course files do not include the Scrum roles, artifacts and events (lectures 2 to 4 are missing), so nothing about them is taught here. If the exam asks, ask for those slides."] },
+        { "title": "The Agile Manifesto", "ask": ["la-291"], "points": ["Four pairs, each 'X over Y': individuals and interactions over processes and tools; working software over comprehensive documentation (the course slide says 'working product'); customer collaboration over contract negotiation; responding to change over following a plan.", "While there is value in the items on the right, the items on the left are valued more. The right-hand items are not worthless."] },
+        { "title": "Agile, Scrum, waterfall and Lean", "points": ["Agile/Scrum and waterfall are ways to deliver software. They are not alternative definitions of Lean.", "They can exist side by side with Lean process improvement."] }
+      ]
+    },
+    "itil": {
+      "minutes": 3, "src": ["s5", "Slide 5"],
+      "chunks": [
+        { "title": "ITIL 4 in three lists", "points": ["The Service Value System has five core elements: Guiding principles, Governance, the Service value chain, Practices, Continual improvement.", "Four dimensions: Organizations & people; Information & technology; Partners & suppliers; Value streams & processes.", "Practices: 14 general management practices, 17 service management practices, 3 technical management practices.", "The slides give only the names and numbers, with no explanations, so questions stay at that level."], "remember": "5 elements, 4 dimensions, practices 14 + 17 + 3." }
+      ]
+    },
+    "kanban-devops": {
+      "minutes": 4, "src": ["s6", "Slides 8, 10-12"],
+      "chunks": [
+        { "title": "Kanban", "ask": ["la-297"], "points": ["Four principles: visualise work, limit work in progress, focus on flow, continuous improvement.", "In Lean terms it is a pull and WIP-control tool (see the Improve: flow topic)."], "remember": "Visualise, limit WIP, focus on flow, improve continuously." },
+        { "title": "DevOps", "points": ["DevOps is a set of practices, a cultural philosophy and technical tools that unify software development (Dev) and IT operations (Ops), to deliver software more quickly, reliably and securely.", "According to Len Bass it aims to shorten the time between committing a system change and putting it into production, while keeping quality high.", "Key components: culture and philosophy, automation, continuous delivery, feedback loops.", "CI/CD = continuous integration / continuous deployment."] }
+      ]
+    }
+  }
+}

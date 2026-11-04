@@ -22,6 +22,12 @@ jobs:
           node-version: 22
       - name: Content check
         run: npm run validate
+      - name: Learn mode rules and study tools
+        run: npm run test:learn
+      - name: Calculation trainer
+        run: npm run test:calc
+      - name: Easily confused drills
+        run: npm run test:confuse
       - name: Live Quiz engine tests
         run: npm run test:live
       - name: Live Quiz over real HTTP

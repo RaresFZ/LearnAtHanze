@@ -2,15 +2,24 @@
 // checks answers and computes scores. Time comes from an injected clock so tests can drive it.
 //
 // Phases: lobby -> ready -> question (-> paused) -> reveal -> board -> ready ... -> podium.
+// Study together: the rounds are lesson parts, each followed by a question about it (see study.js); phase 'lesson' comes before 'ready'.
+// What moves the game on after a question: the host ('manual'), a timer ('auto') or every player saying they read it ('vote'). See arm().
 // The views (what a host screen or a phone may see) are built in ONE place, `view()`, and the correct answer,
 // the explanation and the source are only put in them from the reveal on.
 import crypto from 'node:crypto';
+import { studyParts } from './study.js';
 
 // keepMs: how long a player whose phone went away (screen locked, tab closed) keeps their seat in the lobby and for Play again.
 export const LIMITS = { maxPlayers: 30, nickMax: 16, readyMs: 2000, graceMs: 300, awayMs: 8000, keepMs: 5 * 60 * 1000 };
 // Correct answer: base + speed x (time left / time limit). Streak bonus: stepPerStreak for each correct answer in a row before this one, capped.
 export const SCORING = { base: 500, speed: 500, streakStep: 50, streakCap: 250 };
 export const COUNTS = [5, 10, 20];
+export const ADVANCE = ['manual', 'auto', 'vote'];
+// Auto mode: how long the answer stays up (reading time grows with the explanation, within limits) and how long the leaderboard stays.
+export const PACE = { boardMs: 6000, revealBaseMs: 6000, revealCharMs: 45, revealMinMs: 8000, revealMaxMs: 25000 };
+// Study game: the reading time of a lesson part grows with its length.
+export const lessonMs = (lesson) => Math.max(12000, Math.min(60000, 8000 + [lesson.title, ...lesson.points, lesson.remember || ''].join(' ').length * 45));
+export const revealMs = (explanation = '') => Math.max(PACE.revealMinMs, Math.min(PACE.revealMaxMs, PACE.revealBaseMs + explanation.length * PACE.revealCharMs));
 export const SECONDS = [10, 20, 30];
 export const BOARD_SIZE = 5;
 
@@ -44,18 +53,31 @@ export const realClock = {
   after: (ms, fn) => { const t = setTimeout(fn, ms); return () => clearTimeout(t); },
 };
 
-export function createGame({ exam, topics = [], questions, config, code, clock = realClock, random = Math.random, onChange = () => {} }) {
+export function createGame({ exam, topics = [], questions, lessons = null, config, code, clock = realClock, random = Math.random, onChange = () => {} }) {
   const cfg = {
     topicIds: Array.isArray(config.topicIds) ? config.topicIds : [],
     count: config.count,
     seconds: config.seconds,
     allowLate: !!config.allowLate,
     autoEnd: config.autoEnd !== false,
+    advance: config.advance === undefined ? 'manual' : config.advance,
+    study: !!config.study,
   };
-  if (!COUNTS.includes(cfg.count)) throw new Error('Pick 5, 10 or 20 questions.');
+  cfg.board = config.board === undefined ? !cfg.study : !!config.board;      // the leaderboard between rounds: on for a quiz, off by default for a study game
+  if (!ADVANCE.includes(cfg.advance)) throw new Error('Pick manual, auto or vote.');
   if (!SECONDS.includes(cfg.seconds)) throw new Error('Pick 10, 20 or 30 seconds.');
-  const pool = eligibleQuestions(questions, cfg.topicIds);
-  if (!pool.length) throw new Error('No multiple choice or true/false questions match these topics.');
+  let pool = [], parts = [];
+  if (cfg.study) {
+    if (!lessons) throw new Error('This exam has no lessons to study together.');
+    if (!cfg.topicIds.length) throw new Error('Pick at least one topic to study.');
+    parts = studyParts({ lessons, topics, questions, topicIds: cfg.topicIds });
+    if (!parts.length) throw new Error('No lesson parts with a usable question match these topics.');
+    cfg.count = parts.length;
+  } else {
+    if (!COUNTS.includes(cfg.count)) throw new Error('Pick 5, 10 or 20 questions.');
+    pool = eligibleQuestions(questions, cfg.topicIds);
+    if (!pool.length) throw new Error('No multiple choice or true/false questions match these topics.');
+  }
   const limitMs = cfg.seconds * 1000;
   const topicTitle = (id) => topics.find((t) => t.id === id)?.title || id;
 
@@ -77,7 +99,7 @@ export function createGame({ exam, topics = [], questions, config, code, clock =
     const source = doc ? `${doc.label}, ${q.src[1]}` : (q.src || []).join(', ');
     return { id: q.id, type: q.type, topic: topicTitle(q.topic), text: q.question, options, correct, explanation: q.explanation || '', source };
   };
-  const pick = () => shuffled(pool).slice(0, cfg.count).map(prepare);
+  const pick = () => (cfg.study ? parts.map((p) => ({ ...prepare(p.q), lesson: p.lesson })) : shuffled(pool).slice(0, cfg.count).map(prepare));
 
   let rounds = pick();
   let phase = 'lobby';
@@ -88,6 +110,8 @@ export function createGame({ exam, topics = [], questions, config, code, clock =
   let rev = 0;
   let reveal = null;         // { counts, correct, ... } for the current question, set at the reveal
   let board = null;          // standings captured at the last reveal
+  let advanceAt = 0;         // auto mode: when the answer or the leaderboard moves on by itself (0 = not scheduled)
+  let votes = new Set();     // vote mode: ids of the players who said they read the answer
   const players = new Map();       // id -> player
   const byToken = new Map();       // token -> id
 
@@ -105,7 +129,7 @@ export function createGame({ exam, topics = [], questions, config, code, clock =
   function find(tok) { const id = byToken.get(tok); return id ? players.get(id) : null; }
   function newPlayer(nick, extra = {}) {
     const p = { id: crypto.randomBytes(4).toString('hex'), token: token(), nick, key: nickKey(nick), connected: false, left: false, isHost: false,
-      seen: -Infinity, lastSeen: clock.now(), score: 0, streak: 0, totalMs: 0, rank: null, prevRank: null, cur: null, last: null, joinedAt: clock.now(), ...extra };
+      seen: -Infinity, lastSeen: clock.now(), score: 0, streak: 0, totalMs: 0, rank: null, prevRank: null, cur: null, last: null, history: {}, joinedAt: clock.now(), ...extra };
     players.set(p.id, p); byToken.set(p.token, p.id);
     return p;
   }
@@ -138,7 +162,7 @@ export function createGame({ exam, topics = [], questions, config, code, clock =
     p.lastSeen = clock.now();
     p.connected = on; p.seen = on ? clock.now() : -Infinity;   // once the stream is gone the seat is free to take back
     changed();
-    if (!on) maybeFinishEarly();
+    if (!on) { maybeFinishEarly(); maybeAdvanceByVote(); }
   }
 
   function leave(tok) {
@@ -148,13 +172,14 @@ export function createGame({ exam, topics = [], questions, config, code, clock =
     if (phase === 'lobby') players.delete(p.id); else { p.left = true; p.connected = false; }
     changed();
     maybeFinishEarly();
+    maybeAdvanceByVote();
     return true;
   }
   function kick(id) {
     const p = players.get(id);
     if (!p) return null;
     byToken.delete(p.token); players.delete(id);
-    changed(); maybeFinishEarly();
+    changed(); maybeFinishEarly(); maybeAdvanceByVote();
     return p;
   }
   /** A seat nobody has been in for a long time (a closed tab). A locked phone is NOT stale: it comes back within keepMs. */
@@ -179,8 +204,11 @@ export function createGame({ exam, topics = [], questions, config, code, clock =
 
   function nextQuestion() {
     qIndex++;
-    paused = false; reveal = null;
+    paused = false; reveal = null; advanceAt = 0; votes = new Set();
     for (const p of players.values()) p.cur = null;
+    if (round().lesson) { phase = 'lesson'; arm(); changed(); } else beginReady();       // a study round starts with the lesson part
+  }
+  function beginReady() {
     phase = 'ready'; readyUntil = clock.now() + LIMITS.readyMs;
     timer(LIMITS.readyMs, openQuestion);
     changed();
@@ -223,6 +251,7 @@ export function createGame({ exam, topics = [], questions, config, code, clock =
       if (!here(p) && !p.cur) { p.last = null; continue; }
       const c = p.cur;
       const correct = !!c && c.choice === r.correct;
+      p.history[qIndex] = correct ? 'right' : c ? 'wrong' : 'none';          // for the "parts to revisit" list of a study game
       const { points, bonus } = scoreAnswer({ correct, timeLeftMs: c?.timeLeftMs ?? 0, limitMs, streakBefore: p.streak });
       if (c) counts[c.choice]++;
       if (correct) { p.score += points + bonus; p.streak++; p.totalMs += limitMs - c.timeLeftMs; } else p.streak = 0;
@@ -232,6 +261,7 @@ export function createGame({ exam, topics = [], questions, config, code, clock =
     for (const e of board) { const p = players.get(e.id); p.prevRank = p.rank; p.rank = e.rank; }
     reveal = { counts, correct: r.correct, explanation: r.explanation, source: r.source };
     phase = 'reveal';
+    arm();
     changed();
   }
 
@@ -241,17 +271,63 @@ export function createGame({ exam, topics = [], questions, config, code, clock =
     return list.map((p, i) => ({ id: p.id, rank: i + 1, delta: p.rank == null ? 0 : p.rank - (i + 1) }));
   }
 
-  /** Host: from the reveal to the leaderboard (or the podium after the last question), from the leaderboard to the next question. */
+  /**
+   * From the reveal to the leaderboard (or the podium after the last question), from the leaderboard to the next question.
+   * The host can always press it, whatever the mode; auto mode calls it from a timer and vote mode when everybody is ready.
+   */
   function next() {
-    if (phase === 'reveal') {
-      if (qIndex >= rounds.length - 1) { phase = 'podium'; clear(); changed(); } else { phase = 'board'; changed(); }
+    if (phase === 'lesson') { clear(); advanceAt = 0; beginReady(); }
+    else if (phase === 'reveal') {
+      if (qIndex >= rounds.length - 1) { phase = 'podium'; clear(); advanceAt = 0; changed(); }
+      else if (cfg.board) { phase = 'board'; arm(); changed(); }
+      else nextQuestion();                                  // no leaderboard between rounds: straight on
     } else if (phase === 'board') nextQuestion();
     else return { error: 'phase' };
+    return { ok: true };
+  }
+
+  /**
+   * Sets up what moves the game on from the reveal or the leaderboard, for the current mode.
+   * manual: nothing, the host presses Next. auto: a timer (reading time from the explanation on the reveal, a fixed time on the leaderboard).
+   * vote: the reveal waits until every connected player has said they read it; the leaderboard (nothing to read) moves on after a fixed time.
+   */
+  function arm() {
+    if (phase !== 'reveal' && phase !== 'board' && phase !== 'lesson') return;
+    clear(); advanceAt = 0; votes = new Set();                // every lesson part and every answer gets its own, fresh vote
+    if (cfg.advance === 'manual') return;
+    if ((phase === 'reveal' || phase === 'lesson') && cfg.advance === 'vote') { maybeAdvanceByVote(); return; }
+    const ms = phase === 'lesson' ? lessonMs(round().lesson) : phase === 'reveal' ? revealMs(round().explanation) : PACE.boardMs;
+    advanceAt = clock.now() + ms;
+    timer(ms, next);
+  }
+  /** Vote mode, at the reveal: when every connected player is ready, move on. */
+  function maybeAdvanceByVote() {
+    if ((phase !== 'reveal' && phase !== 'lesson') || cfg.advance !== 'vote') return;
+    const l = live();
+    if (l.length && l.every((p) => votes.has(p.id))) next();
+  }
+  /** A player says they read the answer and the explanation (vote mode, at the reveal). */
+  function ready(tok) {
+    const p = find(tok);
+    if (!p || !here(p)) return { error: 'player' };
+    if ((phase !== 'reveal' && phase !== 'lesson') || cfg.advance !== 'vote') return { error: 'closed' };
+    if (!votes.has(p.id)) { votes.add(p.id); changed(); }
+    maybeAdvanceByVote();
+    return { ok: true };
+  }
+  /** Host: change the mode, also in the middle of a game. Takes effect right away on the reveal or the leaderboard. */
+  function setAdvance(mode) {
+    if (!ADVANCE.includes(mode)) return { error: 'mode', message: 'Pick manual, auto or vote.' };
+    cfg.advance = mode;
+    if (phase === 'reveal' || phase === 'lesson') votes = new Set();
+    arm();
+    changed();
     return { ok: true };
   }
   /** Host: end the question now (the answers so far count), or jump past the "get ready" splash. */
   function skip() {
     if (phase === 'question') finishQuestion();
+    else if (phase === 'lesson') return next();
     else if (phase === 'ready') { clear(); openQuestion(); } else return { error: 'phase' };
     return { ok: true };
   }
@@ -274,7 +350,7 @@ export function createGame({ exam, topics = [], questions, config, code, clock =
     clear();
     for (const p of [...players.values()]) {
       if (p.left || stale(p)) { byToken.delete(p.token); players.delete(p.id); continue; }
-      Object.assign(p, { score: 0, streak: 0, totalMs: 0, rank: null, prevRank: null, cur: null, last: null });
+      Object.assign(p, { score: 0, streak: 0, totalMs: 0, rank: null, prevRank: null, cur: null, last: null, history: {} });
     }
     rounds = pick(); phase = 'lobby'; qIndex = -1; reveal = null; board = null; paused = false;
     changed();
@@ -289,6 +365,25 @@ export function createGame({ exam, topics = [], questions, config, code, clock =
   const roster = () => [...players.values()].sort((a, b) => a.joinedAt - b.joinedAt)
     .map((p) => ({ id: p.id, nick: p.nick, connected: p.connected, away: here(p) && !p.connected, left: p.left, isHost: p.isHost }));
 
+  /**
+   * Study game, at the end: the lesson parts somebody missed, the worst first (the share of players who missed it, then lesson order).
+   * Each has the question and its answer (the game is over, nothing is secret now). With a player given, 'you' says how that player did.
+   */
+  function revisitList(p) {
+    if (!cfg.study) return undefined;
+    const out = [];
+    rounds.forEach((r, i) => {
+      if (!r.lesson) return;
+      const seen = [...players.values()].filter((x) => !x.left && x.history[i]);
+      if (!seen.length) return;
+      const right = seen.filter((x) => x.history[i] === 'right').length;
+      if (right === seen.length) return;
+      out.push({ index: i, topic: r.lesson.topic, title: r.lesson.title, part: r.lesson.part, parts: r.lesson.parts, right, of: seen.length,
+        question: r.text, answer: r.options[r.correct], explanation: r.explanation, ...(p ? { you: p.history[i] || null } : {}) });
+    });
+    return out.sort((a, b) => (a.right / a.of) - (b.right / b.of) || a.index - b.index);
+  }
+
   function questionBlock() {
     const r = round();
     return { index: qIndex, total: rounds.length, type: r.type, topic: r.topic, text: r.text, options: r.options, limitMs };
@@ -297,13 +392,26 @@ export function createGame({ exam, topics = [], questions, config, code, clock =
     return (board || []).filter((e) => players.has(e.id)).slice(0, max).map((e) => { const p = players.get(e.id); return { id: e.id, nick: p.nick, score: p.score, gain: p.last ? p.last.points + p.last.bonus : 0, rank: e.rank, delta: e.delta, away: !p.connected, left: p.left }; });
   }
 
+  /** What moves the game on from the reveal and the leaderboard, for the screens (mode, time left, and in vote mode how many are ready). */
+  function advanceInfo(p) {
+    if (phase !== 'reveal' && phase !== 'board' && phase !== 'lesson') return undefined;
+    const info = { mode: cfg.advance, remainingMs: advanceAt ? Math.max(0, advanceAt - clock.now()) : 0 };
+    if (cfg.advance === 'vote' && (phase === 'reveal' || phase === 'lesson')) {
+      const l = live();
+      info.ready = l.filter((x) => votes.has(x.id)).length; info.of = l.length;
+      if (p) info.you = votes.has(p.id);
+    }
+    return info;
+  }
+
   function base(extra) {
-    return { rev, code, phase, paused, exam: examInfo, settings: { count: rounds.length, seconds: cfg.seconds, allowLate: cfg.allowLate }, ...extra };
+    return { rev, code, phase, paused, exam: examInfo, settings: { count: rounds.length, seconds: cfg.seconds, allowLate: cfg.allowLate, advance: cfg.advance, study: cfg.study, board: cfg.board }, ...extra };
   }
 
   /** What the big screen may show. */
   function hostView() {
     const v = base({ players: roster(), progress: progressInfo() });
+    if (phase === 'lesson') { v.q = { index: qIndex, total: rounds.length }; v.lesson = round().lesson; }
     if (phase === 'ready') { v.readyMs = Math.max(0, readyUntil - clock.now()); v.q = { index: qIndex, total: rounds.length, topic: round().topic }; }
     if (phase === 'question') {
       v.q = questionBlock(); v.remainingMs = remainingMs();
@@ -311,7 +419,8 @@ export function createGame({ exam, topics = [], questions, config, code, clock =
     }
     if (phase === 'reveal') { v.q = questionBlock(); v.reveal = { ...reveal, answered: [...players.values()].filter((p) => p.last?.answered).length }; v.last = qIndex >= rounds.length - 1; }
     if (phase === 'board') v.board = boardRows(BOARD_SIZE);
-    if (phase === 'podium') v.podium = boardRows(Infinity);
+    if (phase === 'podium') { v.podium = boardRows(Infinity); const rv = revisitList(null); if (rv) v.revisit = rv; }
+    const adv = advanceInfo(null); if (adv) v.advance = adv;
     return v;
   }
 
@@ -320,6 +429,7 @@ export function createGame({ exam, topics = [], questions, config, code, clock =
     const p = find(tok);
     if (!p || !here(p)) return null;
     const v = base({ progress: progressInfo(), you: { id: p.id, nick: p.nick, isHost: p.isHost }, players: roster().filter((x) => !x.left).map((x) => ({ id: x.id, nick: x.nick, away: x.away })) });
+    if (phase === 'lesson') { v.q = { index: qIndex, total: rounds.length }; v.lesson = round().lesson; }
     if (phase === 'ready') { v.readyMs = Math.max(0, readyUntil - clock.now()); v.q = { index: qIndex, total: rounds.length }; }
     if (phase === 'question') { v.q = questionBlock(); v.remainingMs = remainingMs(); v.choice = p.cur ? p.cur.choice : null; }
     if (phase === 'reveal') {
@@ -328,12 +438,13 @@ export function createGame({ exam, topics = [], questions, config, code, clock =
     }
     if (phase === 'board') v.board = boardRows(BOARD_SIZE);
     if (phase === 'board' || phase === 'podium') v.you = { ...v.you, score: p.score, rank: p.rank, of: players.size };
-    if (phase === 'podium') v.podium = boardRows(3);
+    if (phase === 'podium') { v.podium = boardRows(3); const rv = revisitList(p); if (rv) v.revisit = rv; }
+    const adv = advanceInfo(p); if (adv) v.advance = adv;
     return v;
   }
 
   return {
-    code, config: cfg, join, setConnected, leave, kick, sweep, start, skip, next, pause, resume, again, answer, destroy,
+    code, config: cfg, join, setConnected, leave, kick, sweep, start, skip, next, ready, setAdvance, pause, resume, again, answer, destroy,
     hostView, playerView, find, nameOf,
     get phase() { return phase; }, get rev() { return rev; },
     playerCount: () => [...players.values()].filter(here).length,

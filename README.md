@@ -39,7 +39,31 @@ The launcher keeps your copy up to date. Each time you start LearnAtHanze with i
 
 ## What is in it
 
-Seven ways to study, for each exam: **Quiz** (by topic or a random mix, four question types), **Flashcards** (spaced repetition), **Weak spots** (aims the quiz and flashcards at what you keep missing), **Exam simulation** (timed and mixed, one score at the end), **Mini games** (match up, sort it, speed round, combo run), a **Progress** page and **Live Quiz** (a multiplayer game for your friends' phones, see below). Every question and card comes from your own course files and cites its source; nothing is made up.
+Eight ways to study, for each exam (**Learn** for both exams): **Learn** (a guided path, see below), **Quiz** (by topic or a random mix, four question types), **Flashcards** (spaced repetition), **Weak spots** (aims the quiz and flashcards at what you keep missing), **Exam simulation** (timed and mixed, one score at the end), **Mini games** (match up, sort it, speed round, combo run), a **Progress** page and **Live Quiz** (a multiplayer game for your friends' phones, see below). Every question and card comes from your own course files and cites its source; nothing is made up.
+
+## Learn (a guided path, for when you are short on time)
+
+Both exams have a **Learn** mode. It is the first thing on an exam page and the big button there. It is meant for someone who wants to be told what to do next instead of choosing.
+
+- **A path of topics in a sensible order (16 for LEAN & Agile, 10 for Outsourcing & Agile Governance).** Each topic is a lesson in 3 to 5 small parts, one at a time (press the arrow keys or the buttons). Plain sentences, a yellow "Remember" box on the key idea, and a flame badge on the parts the syllabus says the class scored lowest on. Every lesson names its source (the syllabus chapter and page, or the slide).
+- **Then "Test yourself".** Eight questions on that topic, with the usual feedback. The ones you got wrong or have not seen come first, so what you missed comes back next time, and the results screen lets you retry the wrong ones straight away. The third button there takes you to the next topic.
+- **A topic counts as done** when you have read its lesson to the end and your last answers were right for at least 80% of its multiple choice, true/false and fill-in questions.
+- **A plan for one day** (the whole path is about 3.5 hours for LEAN & Agile and 2.5 hours for Outsourcing, including the questions, in blocks with breaks, then a last hour for the cheat sheet, weak spots, flashcards and one timed exam simulation) and four short tips on how to study.
+- **A cheat sheet** with the formulas and the lists to know by heart. For LEAN & Agile: takt time, Little's Law, DPMO, OEE and so on with the syllabus's own examples, TIMWOODS, 5S, DMAIC, SIPOC, belts, ITIL 4. For Outsourcing: the framework per subject, the COBIT, CMMI, ITIL and ISO numbers, the audit steps, vendor lock-in measures, the PI cycle and the Scrum at Scale roles and events. It also lists the one-line "Remember" of every lesson part, topic by topic. **Print this sheet** (button on the page) opens your browser's print window with an A4 version: black and white, two columns, about 3 pages for LEAN & Agile and 2 for Outsourcing. Choose "Save as PDF" to keep a copy on your phone.
+- The lessons are written from your syllabus and slides only (for Outsourcing: the lecture slides). Where the files are thin (Scrum roles, artifacts and events, which are not in the files at all), the lesson says so instead of guessing. The text is in `content/<exam>/lessons.json`; `npm run validate` checks it. Your progress is saved in the browser like everything else (`learn` in the progress file, so Export and Import carry it).
+
+### More tools for learning and exam training
+
+All of these are reached from the Learn page (the "Also useful" buttons), and they save their results in the browser like everything else.
+
+- **Quick check after each lesson part.** Press **Quick check** instead of Next and you get one question about the part you just read, in the usual question card. Skip it if you like. It counts toward your progress like any other answer.
+- **Read aloud.** Switch on **Read aloud** at the top of a lesson and each part is read to you, using your computer's own voice (nothing is sent anywhere). Speed: slow, normal or fast. Which voices exist depends on your system.
+- **Exam countdown.** Enter your exam date and time on the Learn page. The app subtracts 8 hours of sleep per night, takes a quarter off for meals and breaks, and tells you how much focused study time you really have, whether the path fits in it, and what to do next (the next topics, flashcards due, weak questions). When time is tight it puts the topics marked with a flame first. The exam page shows "Exam in 1 d 4 h".
+- **Study timer.** 25 minutes of focus, then a 5 minute break. It keeps running when you go from page to page, and adds the minutes to "Studied today". Stopping early counts the time you did, from one minute on.
+- **Calculation trainer (LEAN & Agile).** Fresh numbers every time for takt time, Little's Law, process cycle efficiency, First Time Right, DPU, DPO, DPMO, defective-unit rate, rolled throughput yield, OEE and its three parts, RPN, Cp and relative reduction. You type the answer; then you see the formula and the steps. Typing `20,000`, `20000` or `0,42` all work. Wrong ones come back as a list with the steps, and "Same types, new numbers" repeats what you missed. Every formula is checked against the syllabus's own worked examples by `npm run test:calc`.
+- **Easily confused.** Look-alike terms side by side (Muda/Mura/Muri, takt/cycle/lead time, DPU/DPO/DPMO, the belts, the eight wastes, TPS ideas, the SAFe roles, rules/best practices/standards and more), then a drill: you get a statement from the course and pick the term it describes. The explanation shows both terms and a tip to tell them apart.
+- **Draw it (LEAN & Agile).** Six exercises from your slides and syllabus: the coffee SIPOC, two fishbones, a project charter, a four-lane swimlane map and a waste walk. Draw on the pad (finger, pen or mouse; it is not saved) or on paper, tick what your drawing has, and compare with the lecturer's answer or a layout to copy.
+- **"I'm guessing".** On a question card, tap the flag (or press **G**) before you answer when you are not sure. The Progress page then shows two lists: **Sure, but wrong** (you believed something wrong: read these first) and **Right, but you guessed** (not really known yet).
 
 ## The two exams
 
@@ -137,6 +161,17 @@ A Kahoot-style game for one exam at a time. You host it on this computer's scree
 - On the same Wi-Fi as this computer, scan the QR code or type the address shown (it looks like `192.168.0.12:3738`), then type the code and a nickname (1 to 16 characters).
 - Refreshing the page, a locked screen or a lost connection does not lose the seat: the phone reconnects by itself. If a phone ends up on the join screen, typing the same nickname takes the seat back, with its points. Two people cannot use the same nickname at once.
 - Up to 30 players. After the game starts nobody new can join (unless you allowed late joiners).
+
+**What moves the game on** (you pick it when you set up the game, and you can switch it at any moment on the big screen)
+
+- **Manual:** you press the big button (or Enter) after each answer and after each leaderboard. This is the default.
+- **Auto:** the answer and the leaderboard move on by themselves. The answer stays up for a reading time that grows with the length of the explanation (8 to 25 seconds), the leaderboard for 6 seconds. The big screen and the phones show the countdown.
+- **Vote:** after each answer, every phone gets an **I've read it** button. When every connected player has tapped it, the game moves on to the leaderboard (which then moves on by itself after 6 seconds). The big screen shows how many are ready. A player whose phone drops, or who leaves, no longer holds the others up.
+- In every mode the host's button and the Enter key still skip ahead, for example when one phone is lying on a table and never taps.
+
+**Study together (learn with friends)**
+
+On the setup screen, choose **Study together** instead of **Quiz**. Pick the topics you want to go through. Each round then shows one **lesson part** from the Learn mode on the big screen and on every phone. Everybody reads it, then there is **one question about that part**, the answer with its explanation, and on to the next part. There is no leaderboard between rounds (you can switch it on); the podium at the end still shows who got the most right. It starts in **Vote** mode (everybody taps "I've read it" on the lesson and on the answer), and Manual and Auto work too: in Auto the reading time of a lesson part grows with its length (12 to 60 seconds). The lesson text is course material, so phones get it before the question; the correct answer and the explanation still only arrive at the reveal. It never touches your solo Learn progress. A few lesson parts have no good question and are left out of a study game. At the end, the big screen and every phone show **Parts to revisit**: the parts somebody missed, the worst first, with the question and its answer (on your phone the ones you missed come first, marked "You missed it"), so you know what to read again.
 
 **The rules**
 

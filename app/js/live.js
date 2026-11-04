@@ -4,7 +4,7 @@
 import { h, mount } from './util.js';
 import { icon } from './icons.js';
 import { FX } from './fx.js';
-import { readyScreen, roundScreen, boardScreen, podiumScreen } from './live-rounds.js';
+import { readyScreen, roundScreen, boardScreen, podiumScreen, lessonScreen } from './live-rounds.js';
 import { helpPanel } from './live-help.js';
 
 const COUNTS = [5, 10, 20];
@@ -66,7 +66,8 @@ export async function renderLiveSetup(root, ctx) {
   const status = await call('/api/live/status').catch(() => ({ active: false }));
   const pool = questions.filter(usable);
   const topicN = (id) => pool.filter((q) => q.topic === id).length;
-  const state = { topics: new Set(), count: 10, seconds: 20, plays: false, late: false, nick: '' };
+  const state = { mode: 'quiz', topics: new Set(), count: 10, seconds: 20, plays: false, late: false, advance: 'manual', board: false, nick: '' };
+  const partsN = (id) => ctx.lessons?.topics?.[id]?.chunks?.length || 0;      // lesson parts of a topic (a study game)
   try { state.nick = localStorage.getItem(NICK_KEY) || ''; } catch { /* ignore */ }
 
   const summary = h('p', { class: 'setup-summary', role: 'status' });
@@ -74,6 +75,12 @@ export async function renderLiveSetup(root, ctx) {
   const startBtn = h('button', { class: 'btn yellow xl', type: 'button' }, icon('radio', 22), 'Open the lobby');
   const poolNow = () => pool.filter((q) => state.topics.size === 0 || state.topics.has(q.topic));
   const refresh = () => {
+    if (state.mode === 'study') {
+      const ids = [...state.topics], parts = ids.reduce((s, id) => s + partsN(id), 0);
+      summary.textContent = ids.length ? `Up to ${parts} lesson parts, about ${Math.round(parts * 1.5)} minutes` : 'Pick at least one topic to study';
+      startBtn.disabled = !ids.length || status.active;
+      return;
+    }
     const n = poolNow().length, take = Math.min(state.count, n);
     summary.textContent = n ? (n < state.count ? `Only ${n} questions match: the game will use all of them` : `${take} of ${n} matching questions · ${state.seconds} s each`) : 'No questions match these topics';
     startBtn.disabled = !n || status.active;
@@ -107,6 +114,39 @@ export async function renderLiveSetup(root, ctx) {
   nickIn.addEventListener('input', () => { state.nick = nickIn.value; });
   const playsToggle = toggle('I am playing too', false, null, () => { state.plays = !state.plays; nickField.hidden = !state.plays; if (state.plays) nickIn.focus(); return state.plays; });
 
+  // what moves the game on after each answer and each leaderboard
+  const ADV = [
+    ['manual', 'Manual', 'You press Next after each answer and each leaderboard.'],
+    ['auto', 'Auto', 'The answer and the leaderboard move on by themselves. The answer stays up longer when the explanation is long.'],
+    ['vote', 'Vote', "After each answer every player taps 'I've read it'. When everybody is ready, the game moves on."],
+  ];
+  const advNote = h('p', { class: 'fine pace-note' }, ADV[0][2]);
+  const advSeg = segmented(ADV.map(([v, l]) => [v, l]), state.advance, (v) => { state.advance = v; advNote.textContent = ADV.find((a) => a[0] === v)[2]; });
+
+  // quiz or study together: a study game shows a lesson part, then asks one question about it (vote mode is the natural pace there)
+  const setPill = (container, label) => container.querySelectorAll('.pill-btn').forEach((b) => b.setAttribute('aria-pressed', String(b.textContent.trim() === label)));
+  const boardToggle = toggle('Show the leaderboard after each question', false, null, () => { state.board = !state.board; return state.board; });
+  boardToggle.obj.hidden = true;
+  const countSeg = segmented(COUNTS.map((c) => [c, c]), state.count, (v) => { state.count = v; });
+  const secondsSeg = segmented(SECONDS.map((c) => [c, c]), state.seconds, (v) => { state.seconds = v; });
+  const countSec = h('section', { class: 'field' }, h('h2', { class: 'small' }, 'How many questions'), countSeg);
+  const secondsSec = h('section', { class: 'field' }, h('h2', { class: 'small' }, 'Seconds per question'), secondsSeg);
+  const topicsTitle = document.createTextNode('Topics');
+  const modeNote = h('p', { class: 'fine pace-note' }, 'A quiz of questions from the topics you pick. Everybody competes.');
+  const MODE_NOTES = { quiz: 'A quiz of questions from the topics you pick. Everybody competes.', study: 'Study together: each round shows a lesson part on this screen and on every phone, everybody reads it, then there is one question about it. No leaderboard until the end, unless you switch it on.' };
+  const setMode = (mode) => {
+    state.mode = mode;
+    const study = mode === 'study';
+    modeNote.textContent = MODE_NOTES[mode];
+    countSec.hidden = study; boardToggle.obj.hidden = !study;
+    topicsTitle.textContent = study ? 'Topics to study' : 'Topics';
+    topicToggles.forEach((t, k) => { t.btn.querySelector('.count').textContent = study ? `${partsN(topicIdsList[k])} ${partsN(topicIdsList[k]) === 1 ? 'part' : 'parts'}` : topicN(topicIdsList[k]); });
+    if (study) { state.advance = 'vote'; state.seconds = 30; setPill(advSeg, 'Vote'); setPill(secondsSeg, '30'); advNote.textContent = "After each lesson part and after each answer, every player taps \"I've read it\". When everybody is ready, the game moves on."; }
+    refresh();
+  };
+  const modeSeg = ctx.lessons ? segmented([['quiz', 'Quiz'], ['study', 'Study together']], state.mode, setMode) : null;
+  const topicIdsList = topics.filter((t) => topicN(t.id)).map((t) => t.id);
+
   const lateToggle = toggle('Allow late joiners (start at 0 points)', false, null, () => { state.late = !state.late; return state.late; });
 
   startBtn.addEventListener('click', async (e) => {
@@ -114,7 +154,7 @@ export async function renderLiveSetup(root, ctx) {
     if (state.plays && !state.nick.trim()) { error.textContent = 'Pick a nickname for yourself, or turn off "I am playing too".'; nickIn.focus(); return; }
     startBtn.disabled = true;
     try {
-      await call('/api/live/create', { examId: exam.id, topicIds: [...state.topics], count: state.count, seconds: state.seconds, hostPlays: state.plays, hostNick: state.nick, allowLate: state.late });
+      await call('/api/live/create', { examId: exam.id, topicIds: [...state.topics], count: state.count, seconds: state.seconds, hostPlays: state.plays, hostNick: state.nick, allowLate: state.late, advance: state.advance, study: state.mode === 'study', board: state.board });
       if (state.plays) try { localStorage.setItem(NICK_KEY, state.nick.trim()); } catch { /* ignore */ }
       FX.navigate(`#/exam/${exam.id}/live/host`, { x: e.clientX, y: e.clientY });
     } catch (ex) { error.textContent = ex.message; refresh(); }
@@ -135,11 +175,11 @@ export async function renderLiveSetup(root, ctx) {
   const sections = [
     endNote,
     busyNote,
-    h('section', { class: 'field' }, h('h2', { class: 'small' }, 'Topics', FX.obj(clear, { cls: 'o-btn' })), h('div', { class: 'togglegrid' }, topicToggles.map((t) => t.obj))),
-    h('div', { class: 'two-col' },
-      h('section', { class: 'field' }, h('h2', { class: 'small' }, 'How many questions'), segmented(COUNTS.map((c) => [c, c]), state.count, (v) => { state.count = v; })),
-      h('section', { class: 'field' }, h('h2', { class: 'small' }, 'Seconds per question'), segmented(SECONDS.map((c) => [c, c]), state.seconds, (v) => { state.seconds = v; }))),
+    modeSeg ? h('section', { class: 'field' }, h('h2', { class: 'small' }, 'What do you want to play?'), modeSeg, modeNote) : null,
+    h('section', { class: 'field' }, h('h2', { class: 'small' }, topicsTitle, FX.obj(clear, { cls: 'o-btn' })), h('div', { class: 'togglegrid' }, topicToggles.map((t) => t.obj))),
+    h('div', { class: 'two-col' }, countSec, secondsSec),
     h('section', { class: 'field' }, h('h2', { class: 'small' }, 'Players'), h('div', { class: 'togglegrid' }, playsToggle.obj, lateToggle.obj), nickField),
+    h('section', { class: 'field' }, h('h2', { class: 'small' }, 'What moves the game on'), advSeg, advNote, h('div', { class: 'togglegrid', style: { marginTop: '14px' } }, boardToggle.obj)),
     h('div', { class: 'start-row' }, FX.obj(startBtn, { cls: 'o-btn' }), summary),
     error,
   ].filter(Boolean);
@@ -201,10 +241,11 @@ const doAct = (action, extra) => act(action, extra).catch(() => {});
 function screenName(m) {
   if (m.phase === 'question' || m.phase === 'reveal') return `round:${m.q.index}`;
   if (m.phase === 'ready') return `ready:${m.q.index}`;
+  if (m.phase === 'lesson') return `lesson:${m.q.index}`;
   if (m.phase === 'board') return `board:${m.progress.index}`;
   return m.phase;
 }
-const FACTORY = { round: (m) => roundScreen(m, doAct), ready: (m) => readyScreen(m), board: (m) => boardScreen(m, doAct), podium: (m) => podiumScreen(m, doAct), lobby: () => lobbyScreen() };
+const FACTORY = { lesson: (m) => lessonScreen(m, doAct), round: (m) => roundScreen(m, doAct), ready: (m) => readyScreen(m), board: (m) => boardScreen(m, doAct), podium: (m) => podiumScreen(m, doAct), lobby: () => lobbyScreen() };
 
 function buildShell(root, first) {
   const examId = first.exam.id;
@@ -222,7 +263,9 @@ function buildShell(root, first) {
       title.hidden = meta.hidden = back.hidden = inGame;      // more room for the question on the big screen
       meta.replaceChildren(
         h('span', { class: 'chip accent' }, m.exam.shortTitle),
-        h('span', { class: 'chip' }, `${m.settings.count} questions`), h('span', { class: 'chip' }, `${m.settings.seconds} s each`));
+        m.settings.study ? h('span', { class: 'chip yellow' }, icon('graduation-cap', 14), ' Study together') : null,
+        h('span', { class: 'chip' }, m.settings.study ? `${m.settings.count} lesson parts` : `${m.settings.count} questions`), h('span', { class: 'chip' }, `${m.settings.seconds} s each`),
+        h('span', { class: 'chip' }, { manual: 'You press Next', auto: 'Moves on by itself', vote: 'Moves on by vote' }[m.settings.advance] || ''));
       net.update(m);
       const next = screenName(m);
       if (next !== name) {

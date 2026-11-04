@@ -2,12 +2,18 @@
 // Shape per exam: { v: 1, exam, questions: { [id]: { n, score, last, lastScore, streak } },
 //                   cards: { [id]: { due, interval, ease, reps, lapses, misses, first, last } },   (flashcards, see srs.js)
 //                   games: { [game]: { plays, best, last, lastTs } },   (mini games, see games-data.js)
+//                   learn: { [topicId]: { read } },   (Learn mode: when the lesson was read to the end, see learn-data.js)
+//                   calc: { [generatorId]: { n, right, last } },   (calculation trainer, see calc-data.js)
+//                   confuse: { [groupId]: { n, right, last } },   ("easily confused" drills, see confuse-data.js)
+//                   plan: { examAt },   (the exam date, in ms, for the countdown)
+//                   study: { [YYYY-MM-DD]: minutes },   (time spent with the study timer)
+//   questions[id] also counts guesses (marked "I'm guessing") and sureWrong (wrong without that mark).
 //                   sessions: [...], bestStreak, streak }
 // "streak" is the carried-over run of correct answers, kept between quizzes. Older saves do not have it:
 // every field is defaulted on load, so no migration is needed and nothing breaks.
 const key = (examId) => `learnathanze:v1:${examId}`;
 
-const empty = (examId) => ({ v: 1, exam: examId, questions: {}, cards: {}, games: {}, sessions: [], bestStreak: 0, streak: 0 });
+const empty = (examId) => ({ v: 1, exam: examId, questions: {}, cards: {}, games: {}, learn: {}, calc: {}, confuse: {}, plan: {}, study: {}, sessions: [], bestStreak: 0, streak: 0 });
 
 /** Fills in anything an older save is missing. */
 function normalize(examId, data) {
@@ -18,6 +24,11 @@ function normalize(examId, data) {
     questions: data.questions && typeof data.questions === 'object' ? data.questions : {},
     cards: data.cards && typeof data.cards === 'object' && !Array.isArray(data.cards) ? data.cards : {},
     games: data.games && typeof data.games === 'object' && !Array.isArray(data.games) ? data.games : {},
+    learn: data.learn && typeof data.learn === 'object' && !Array.isArray(data.learn) ? data.learn : {},
+    calc: data.calc && typeof data.calc === 'object' && !Array.isArray(data.calc) ? data.calc : {},
+    confuse: data.confuse && typeof data.confuse === 'object' && !Array.isArray(data.confuse) ? data.confuse : {},
+    plan: data.plan && typeof data.plan === 'object' && !Array.isArray(data.plan) ? data.plan : {},
+    study: data.study && typeof data.study === 'object' && !Array.isArray(data.study) ? data.study : {},
     sessions: Array.isArray(data.sessions) ? data.sessions : [],
     bestStreak: Number.isFinite(data.bestStreak) ? data.bestStreak : 0,
     streak: Number.isFinite(data.streak) ? data.streak : 0,
@@ -45,10 +56,12 @@ export function saveProgress(examId, data) {
   }
 }
 
-/** Record one answered question. score is 0..1 (open questions allow 0.5). Only a full score extends the streak. */
-export function recordAnswer(examId, qid, score) {
+/** Record one answered question. score is 0..1 (open questions allow 0.5). Only a full score extends the streak. opts.guess: the learner marked it "I'm guessing". */
+export function recordAnswer(examId, qid, score, opts = {}) {
   const p = loadProgress(examId);
   const q = p.questions[qid] || { n: 0, score: 0, last: 0, lastScore: 0, streak: 0 };
+  if (opts.guess) q.guesses = (q.guesses || 0) + 1;
+  else if (score < 1) q.sureWrong = (q.sureWrong || 0) + 1;      // wrong although it was not marked as a guess
   q.n += 1;
   q.score += score;
   q.last = Date.now();
@@ -65,6 +78,52 @@ export function recordAnswer(examId, qid, score) {
 export function recordCard(examId, cardId, state) {
   const p = loadProgress(examId);
   p.cards[cardId] = state;
+  saveProgress(examId, p);
+}
+
+/** Learn mode: remember that a topic's lesson was read to the end. */
+export function recordLessonRead(examId, topicId) {
+  const p = loadProgress(examId);
+  p.learn[topicId] = { read: Date.now() };
+  saveProgress(examId, p);
+}
+
+/** Draw it: remember that a drawing exercise was finished (kept in the learn map under "ex:<id>"). */
+export function recordExerciseDone(examId, exId) {
+  const p = loadProgress(examId);
+  p.learn[`ex:${exId}`] = { done: Date.now() };
+  saveProgress(examId, p);
+}
+
+/** Calculation trainer: one answered calculation of a generator. */
+export function recordCalc(examId, genId, correct) {
+  const p = loadProgress(examId);
+  const c = p.calc[genId] || { n: 0, right: 0, last: 0 };
+  c.n += 1; if (correct) c.right += 1; c.last = Date.now();
+  p.calc[genId] = c;
+  saveProgress(examId, p);
+}
+/** "Easily confused" drill: one answered clue of a group. */
+export function recordConfuse(examId, groupId, correct) {
+  const p = loadProgress(examId);
+  const c = p.confuse[groupId] || { n: 0, right: 0, last: 0 };
+  c.n += 1; if (correct) c.right += 1; c.last = Date.now();
+  p.confuse[groupId] = c;
+  saveProgress(examId, p);
+}
+/** The exam date for the countdown (ms since 1970), or null to remove it. */
+export function setExamAt(examId, ms) {
+  const p = loadProgress(examId);
+  if (ms == null) delete p.plan.examAt; else p.plan.examAt = ms;
+  saveProgress(examId, p);
+}
+export const dayKey = (ms = Date.now()) => { const d = new Date(ms); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
+/** Study timer: add minutes to today. */
+export function recordStudy(examId, minutes) {
+  if (!(minutes > 0)) return;
+  const p = loadProgress(examId);
+  const k = dayKey();
+  p.study[k] = Math.round(((p.study[k] || 0) + minutes) * 10) / 10;
   saveProgress(examId, p);
 }
 
@@ -150,8 +209,8 @@ export function importProgress(examId, text) {
 /** Per-question stats used by pickers and dashboards. */
 export function questionStat(progress, qid) {
   const q = progress.questions[qid];
-  if (!q || !q.n) return { seen: false, n: 0, accuracy: 0, lastScore: null, mastered: false };
-  return { seen: true, n: q.n, accuracy: q.score / q.n, lastScore: q.lastScore, mastered: q.lastScore >= 1 };
+  if (!q || !q.n) return { seen: false, n: 0, accuracy: 0, lastScore: null, mastered: false, guesses: 0, sureWrong: 0 };
+  return { seen: true, n: q.n, accuracy: q.score / q.n, lastScore: q.lastScore, mastered: q.lastScore >= 1, guesses: q.guesses || 0, sureWrong: q.sureWrong || 0 };
 }
 
 /** Topics where you have answered at least 3 times and got under 60% right. */

@@ -50,8 +50,8 @@ export function destroyActiveCard() { active?.destroy(); }
 
 /**
  * Builds a question card.
- * opts: { index, total, last, docs, topicTitle,
- *         onAnswer({ score, right, x, y }),   // effects: confetti, streak, progress (fires once, at answer time)
+ * opts: { index, total, last, docs, topicTitle, nextLabel,
+ *         onAnswer({ score, right, x, y, guess }),   // guess: the learner marked "I'm guessing" before answering   // effects: confetti, streak, progress (fires once, at answer time)
  *         onOverride({ x, y }),               // fill-in only: "my answer was right"
  *         onNext(score) }                     // advance (the runner records the answer here)
  * Returns { el, destroy }.
@@ -59,7 +59,7 @@ export function destroyActiveCard() { active?.destroy(); }
 export function questionCard(q, opts) {
   active?.destroy();
   const { docs = {} } = opts;
-  const st = { answered: false, advanced: false, score: 0 };
+  const st = { answered: false, advanced: false, score: 0, guess: false };
   const keyHandlers = [];
   const onKey = (e) => {
     if (e.ctrlKey || e.metaKey || e.altKey) return;
@@ -67,10 +67,15 @@ export function questionCard(q, opts) {
   };
   document.addEventListener('keydown', onKey);
 
+  // "I'm guessing": marked before answering, so the app can tell a lucky guess from a mistake you were sure about
+  const guessBtn = h('button', { class: 'chip guess-chip', type: 'button', 'aria-pressed': 'false', title: 'Mark this as a guess before you answer (key G)' }, icon('flag', 14), " I'm guessing");
+  const toggleGuess = () => { if (st.answered) return; st.guess = !st.guess; guessBtn.setAttribute('aria-pressed', String(st.guess)); };
+  guessBtn.addEventListener('click', toggleGuess);
+  keyHandlers.push((e) => (e.key.toLowerCase() === 'g' && !st.answered && q.type !== 'open' && !e.target.closest?.('input, textarea') ? (toggleGuess(), true) : false));
   const body = h('div', { class: 'qbody' });
   const fb = h('div', { class: 'fb-slot' });
   const hints = { mc: ['1', String('N'), 'answer'], tf: ['T', 'F', 'answer'] };
-  const next = h('button', { class: 'btn yellow', type: 'button', disabled: true }, opts.last ? 'See results' : 'Next question');
+  const next = h('button', { class: 'btn yellow', type: 'button', disabled: true }, opts.nextLabel || (opts.last ? 'See results' : 'Next question'));
   const nextObj = FX.obj(next, { cls: 'o-btn' });
   const advance = () => { if (st.advanced || !st.answered) return; st.advanced = true; opts.onNext(st.score); };
   next.addEventListener('click', advance);
@@ -78,7 +83,8 @@ export function questionCard(q, opts) {
 
   const answered = (score, x, y) => {
     st.answered = true; st.score = score;
-    opts.onAnswer?.({ score, right: score >= 1, x, y });
+    guessBtn.disabled = true;
+    opts.onAnswer?.({ score, right: score >= 1, x, y, guess: st.guess });
   };
 
   function showNote(good) {
@@ -212,7 +218,7 @@ export function questionCard(q, opts) {
     q.type === 'open' ? null : h('span', null, h('kbd', null, 'Enter'), ' next'));
 
   const cardFace = h('article', { class: 'qcard' },
-    h('div', { class: 'qmeta' }, h('span', { class: 'chip accent' }, opts.topicTitle || ''), h('span', { class: 'chip' }, TYPE_LABEL[q.type])),
+    h('div', { class: 'qmeta' }, h('span', { class: 'chip accent' }, opts.topicTitle || ''), h('span', { class: 'chip' }, TYPE_LABEL[q.type]), q.type === 'open' ? null : guessBtn),
     h('h1', { class: 'qtext' }, q.question),
     body, fb,
     h('div', { class: 'qfoot' }, hintEl, nextObj));

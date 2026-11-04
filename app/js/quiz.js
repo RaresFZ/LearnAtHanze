@@ -104,7 +104,7 @@ export function renderQuizSetup(root, ctx, preset = {}) {
 }
 
 // ---------------------------------------------------------------- run
-export function runQuiz(root, ctx, questions, { label = 'Quiz' } = {}) {
+export function runQuiz(root, ctx, questions, { label = 'Quiz', newHref, newLabel } = {}) {      // newHref/newLabel: where the results screen's third button goes (Learn mode: the next topic)
   const { exam, topics } = ctx;
   if (!questions.length) { mount(root, h('p', null, 'No questions to ask.')); return; }
   const topicTitle = (id) => topics.find((t) => t.id === id)?.title || id;
@@ -166,7 +166,7 @@ export function runQuiz(root, ctx, questions, { label = 'Quiz' } = {}) {
 
   const record = (score) => {
     if (!pending) return;
-    recordAnswer(exam.id, pending.q.id, score);
+    recordAnswer(exam.id, pending.q.id, score, { guess: pending.guess });
     results.push({ q: pending.q, score });
     pending = null;
   };
@@ -182,17 +182,17 @@ export function runQuiz(root, ctx, questions, { label = 'Quiz' } = {}) {
     }
     const where = from || centreOf(deck);
     FX.transition(() => renderResults(root, ctx, results, {
-      bestStreak, planned: total,
-      again: (e) => FX.transition(() => runQuiz(root, ctx, shuffle(questions), { label }), pos(e)),
-      retry: (qs, e) => FX.transition(() => runQuiz(root, ctx, qs, { label: 'Retry missed' }), pos(e)),
+      bestStreak, planned: total, newHref, newLabel,
+      again: (e) => FX.transition(() => runQuiz(root, ctx, shuffle(questions), { label, newHref, newLabel }), pos(e)),
+      retry: (qs, e) => FX.transition(() => runQuiz(root, ctx, qs, { label: 'Retry missed', newHref, newLabel }), pos(e)),
     }), where);
   };
   const pos = (e) => (e && e.clientX ? { x: e.clientX, y: e.clientY } : { x: innerWidth / 2, y: innerHeight / 2 });
   exitBtn.addEventListener('click', (e) => finish(pos(e)));
 
-  const onAnswer = ({ score, right, x, y }) => {
+  const onAnswer = ({ score, right, x, y, guess }) => {
     const q = questions[i];
-    pending = { q, score, prevStreak: streak, x, y };
+    pending = { q, score, prevStreak: streak, x, y, guess };
     paintSegs(results.length + 1, { pop: right ? 'flash-good' : 'flash-bad' });
     if (right) {
       streak += 1;
