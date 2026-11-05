@@ -17,11 +17,11 @@ export function studyTimer(examId) {
   const today = h('span', { class: 'timer-today' });
   const note = h('span', { class: 'timer-note', role: 'status' });
   const main = h('button', { class: 'btn yellow', type: 'button' });
-  const face = h('div', { class: 'timer-card' },
+  const face = h('div', { class: 'card timer-card' },
     h('div', { class: 'timer-left' }, icon('timer', 22), h('div', null, label, clock)),
     h('div', { class: 'timer-mid' }, today, note),
     h('div', { class: 'timer-right' }, FX.obj(main, { cls: 'o-btn' })));
-  const el = FX.obj(face, { cls: 'o-tile', fill: true, hover: false });
+  const el = FX.obj(face, { cls: 'o-tile', hover: false });
   let state = load(), tick = null, dead = false;
 
   const studiedToday = () => loadProgress(examId).study[dayKey()] || 0;

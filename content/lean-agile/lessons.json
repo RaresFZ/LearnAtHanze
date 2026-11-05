@@ -639,7 +639,7 @@
             "Six Sigma cuts defects and unwanted variation, using measurement and analysis.",
             "Lean asks: where are time, effort and resources wasted? Six Sigma asks: how reliably does the process meet requirements?",
             "Neither is only for manufacturing, and they complement each other. A shorter process is not automatically a more capable one.",
-            "Lesson 5 slide: Lean focuses on waste reduction by streamlining a process, Six Sigma on preventing defects through problem solving. Together, Lean strengthens Six Sigma."
+            "Lean focuses on waste reduction by streamlining a process, Six Sigma on preventing defects through problem solving. Together, Lean strengthens Six Sigma."
           ],
           "remember": "Lean = value, flow, waste. Six Sigma = defects, variation, capability.",
           "often": true
@@ -746,7 +746,7 @@
         {
           "title": "Seven or eight? And the waste walk",
           "points": [
-            "The Lesson 3 slide 'The 7 Wastes' shows seven: overproduction, inventory, transportation, motion, waiting, defects, overprocessing. The syllabus adds the eighth, unused talent. Follow what your lecturer used.",
+            "The classic model has seven wastes: overproduction, inventory, transportation, motion, waiting, defects, overprocessing. The common eight-waste model (TIMWOODS) adds the eighth, unused talent. The first seven are the same in both, so learn the eight.",
             "Environmental waste is sometimes added as a ninth lens, but it is not one of the standard eight.",
             "A waste walk (Gemba walk): go to where the work happens, observe without blame, write down facts, ask staff about obstacles. It is learning, not an inspection to find who is at fault."
           ]
@@ -806,7 +806,7 @@
           ]
         },
         {
-          "title": "The roles on the Lesson 5 slide",
+          "title": "The roles in more detail",
           "ask": [
             "la-414"
           ],
@@ -821,7 +821,7 @@
           "remember": "Champion = executive leader. Master Black Belt = deployment and culture."
         },
         {
-          "title": "The Lesson 5 charter template",
+          "title": "The charter template, field by field",
           "points": [
             "Business case: why is the project important? Link it to the Voice of the Business and the expected benefits (a better process sigma).",
             "Problem description in clear, coherent terms (5xW 1xH): how often does it occur, where, who is bothered by it.",
@@ -880,7 +880,7 @@
           "title": "Two SIPOC examples",
           "points": [
             "Coffee service: suppliers = coffee, milk, bakery, guest. Inputs = beans, water, milk, biscuit, order. Process = receive order, prepare drink, assemble order, serve, collect payment. Outputs = a correctly served drink and the transaction. Customers = the guest and the business owner.",
-            "Pizza (Lesson 3 slide): suppliers = Dairy Supply Corporation, Vegetable Farmers United, Prepared Foods Corporation. Inputs = cheese, olives, peppers, dough, sauce. Process = prepare dough, add sauce, add cheese and toppings, bake, remove and serve. Output = pizza. Customers = dine-in, take-out and delivery customers."
+            "Pizza: suppliers = Dairy Supply Corporation, Vegetable Farmers United, Prepared Foods Corporation. Inputs = cheese, olives, peppers, dough, sauce. Process = prepare dough, add sauce, add cheese and toppings, bake, remove and serve. Output = pizza. Customers = dine-in, take-out and delivery customers."
           ]
         }
       ]
@@ -982,12 +982,12 @@
           ]
         },
         {
-          "title": "Cycle time, production lead time and a takt example (Lesson 5)",
+          "title": "Cycle time, production lead time and a takt example",
           "ask": [
             "la-411"
           ],
           "points": [
-            "Takt example on the slide: 27,600 seconds available per day ÷ 460 pieces demand = 60 seconds.",
+            "Takt example: 27,600 seconds available per day ÷ 460 pieces demand = 60 seconds.",
             "Cycle time (CT): how often a part or product is actually completed by a process, as timed by observation; also the time an operator needs to go through all work elements before repeating them.",
             "Production lead time (PLT): the time it takes one piece to move all the way through a process or value stream, from start to finish.",
             "Throughput time is often used like lead time: specify the boundaries."
@@ -1072,7 +1072,7 @@
             "Root cause analysis: define the failure, map how it happens, list plausible causes, collect evidence, and check that changing the cause changes the result.",
             "5 Whys: keep asking why, with evidence for every answer. Five is a mnemonic, not a rule: stop when the causes are evidenced and actionable.",
             "A root cause is useful when it is actionable and explains why the problem recurs.",
-            "Lesson 5 shows the video \"Root Cause Analysis from Juran: the Jefferson Memorial\" as the 5 Whys example. The usual retelling goes: the stone wears (why?) frequent cleaning with harsh chemicals (why?) bird droppings (why?) spiders to eat (why?) midges (why?) lights switched on at dusk, so the fix is to switch them on later. The story is contested, so use it as an illustration of the method, not as engineering history."
+            "A classic 5 Whys example is the Jefferson Memorial (a Juran quality-improvement video). The usual retelling goes: the stone wears (why?) frequent cleaning with harsh chemicals (why?) bird droppings (why?) spiders to eat (why?) midges (why?) lights switched on at dusk, so the fix is to switch them on later. The story is contested, so use it as an illustration of the method, not as engineering history."
           ],
           "remember": "Five Whys does not mean exactly five questions.",
           "often": true
@@ -1346,7 +1346,7 @@
           "points": [
             "Waterfall is a linear, sequential approach with distinct phases: one phase must be finished before the next can begin, like a waterfall flowing downwards.",
             "Scrum works in short time-boxed iterations (sprints) and focuses on a potentially shippable product each time.",
-            "On the slide, a Sprint is \"2 weeks to 1 month\". The Scrum Guide and the Kahoot say \"one month or less\". Both agree it is never longer than a month."
+            "Sources differ on the Sprint length: \"2 weeks to 1 month\" in some material, \"one month or less\" in the Scrum Guide. Both agree it is never longer than a month."
           ],
           "remember": "Waterfall: phases in sequence. Scrum: short iterations."
         },
@@ -1356,7 +1356,7 @@
             "la-291"
           ],
           "points": [
-            "Four pairs, each 'X over Y': individuals and interactions over processes and tools; working software over comprehensive documentation (the course slide says 'working product'); customer collaboration over contract negotiation; responding to change over following a plan.",
+            "Four pairs, each 'X over Y': individuals and interactions over processes and tools; working software over comprehensive documentation (some material says 'working product'); customer collaboration over contract negotiation; responding to change over following a plan.",
             "While there is value in the items on the right, the items on the left are valued more. The right-hand items are not worthless."
           ]
         },
@@ -1367,7 +1367,7 @@
           ],
           "points": [
             "Steam engine and the industrial revolution: tasks, roles and responsibilities. Combustion engine: the assembly line and standardisation (Henry Ford). Software and the internet: distribution and adaptability.",
-            "Products get more complex every day. The slide names five drivers: Scale, Diversity, Connectivity, Dynamics and Refinement."
+            "Products get more complex every day. Five drivers: Scale, Diversity, Connectivity, Dynamics and Refinement."
           ]
         },
         {
@@ -1376,7 +1376,7 @@
             "la-392"
           ],
           "points": [
-            "The lecture says: focus on Scrum, not on Agile in general, but also look at ITIL, DevOps and Kanban.",
+            "This course focuses on Scrum, not on Agile in general, and also covers ITIL, DevOps and Kanban.",
             "Lean: focus on processes, adding value for the customer, eliminating waste. DevOps: combines development and operations to increase the efficiency, speed and security of software delivery.",
             "ITIL is not in the Agile family: it is a framework of best practices for managing IT services.",
             "ITIL against Lean: ITIL emphasises processes and stability, Lean emphasises speed and continuous improvement.",
@@ -1393,7 +1393,7 @@
           "points": [
             "Short time-boxed iterations. Developers focus on a potentially shippable product.",
             "Characteristics: self-organizing teams; working with the customer; the product progresses in a series of month-long sprints; requirements are captured as items in a product backlog; no specific engineering practices prescribed; one of the \"agile processes\".",
-            "Scrum is not only for IT: the slides list commercial software, fixed-price projects, embedded systems, video games, websites, satellite control and more. Users include Microsoft, Google, Philips, Siemens and Nokia."
+            "Scrum is not only for IT: it is used for commercial software, fixed-price projects, embedded systems, video games, websites, satellite control and more. Users include Microsoft, Google, Philips, Siemens and Nokia."
           ],
           "remember": "Self-organizing teams, a product backlog, sprints, no prescribed engineering practices."
         },
@@ -1421,7 +1421,7 @@
             "The Service Value System has five core elements: Guiding principles, Governance, the Service value chain, Practices, Continual improvement.",
             "Four dimensions: Organizations & people; Information & technology; Partners & suppliers; Value streams & processes.",
             "Practices: 14 general management practices, 17 service management practices, 3 technical management practices.",
-            "The slides give only the names and numbers, with no explanations, so questions stay at that level."
+            "Know the names and the numbers of the elements, the dimensions and the practices."
           ],
           "remember": "5 elements, 4 dimensions, practices 14 + 17 + 3."
         },
@@ -1466,7 +1466,7 @@
           "remember": "Visualise, limit WIP, focus on flow, improve continuously."
         },
         {
-          "title": "Kanban in the Kahoot",
+          "title": "Kanban principles and practices",
           "ask": [
             "la-338"
           ],
@@ -1484,12 +1484,12 @@
           "points": [
             "DevOps is a set of practices, a cultural philosophy and technical tools that unify software development (Dev) and IT operations (Ops), to deliver software more quickly, reliably and securely.",
             "According to Len Bass it aims to shorten the time between committing a system change and putting it into production, while keeping quality high.",
-            "Key components (lecture 6, slide 11): culture and philosophy (shared responsibility, communication and collaboration between Dev and Ops, breaking down the silos); automation (building, testing and deploying software, which speeds things up and reduces errors); continuous delivery (frequent, high-quality releases by integrating and automating the workflows); feedback loops (gather feedback quickly through the whole cycle, for rapid iteration).",
-            "CI/CD = continuous integration / continuous deployment. The pipeline slide lists: version control, putting the code together (build), automated tests (TDD), functional tests, performance, configuration management, and managing reliability, security and availability."
+            "Key components: culture and philosophy (shared responsibility, communication and collaboration between Dev and Ops, breaking down the silos); automation (building, testing and deploying software, which speeds things up and reduces errors); continuous delivery (frequent, high-quality releases by integrating and automating the workflows); feedback loops (gather feedback quickly through the whole cycle, for rapid iteration).",
+            "CI/CD = continuous integration / continuous deployment. A typical pipeline has: version control, putting the code together (build), automated tests (TDD), functional tests, performance, configuration management, and managing reliability, security and availability."
           ]
         },
         {
-          "title": "DevOps in the Kahoot",
+          "title": "DevOps culture, tools and practices",
           "points": [
             "The primary goal of DevOps: improve the collaboration between development and operations.",
             "The culture: shared responsibility and continuous learning.",
@@ -1516,7 +1516,7 @@
             "Scrum is a lightweight framework that helps people, teams and organisations generate value. It is purposefully incomplete: it is only the minimum.",
             "It rests on empiricism (knowledge comes from experience and from decisions based on what is observed) and on lean thinking (reduce waste, focus on the essentials).",
             "Three pillars: Transparency (the work and the process are visible), Inspection (check the work and the progress often) and Adaptation (adjust as soon as you learn something).",
-            "Inspection without adaptation is pointless. The course slide spells the third pillar \"Adaption\"."
+            "Inspection without adaptation is pointless. The third pillar is spelled \"Adaptation\" (some material writes \"Adaption\")."
           ],
           "remember": "Transparency, Inspection, Adaptation."
         },

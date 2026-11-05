@@ -223,7 +223,7 @@ Reads `exams studies/` and rewrites `content/<exam>/sources/`. It reads `.pptx`,
 "Paper cutouts on a desk": flat colour fills, 2px ink borders and hard offset shadows on everything, with springy motion. Headings use Bricolage Grotesque, body text Geist, numbers and labels Geist Mono (all bundled in `app/fonts/`, SIL Open Font License, so the app works offline). Icons are Lucide (ISC). Springs come from Motion (MIT, `app/vendor/motion.js`).
 
 - Each exam has its own accent colour, set as `accent` in its `exam.json`.
-- Top bar toggles: sound (off by default), reduce motion, marker cursor (off by default), light/dark (dark is a warm charcoal desk with black hard shadows and slightly deeper colours). "Reduce motion" is also switched on by your system setting, and it makes every animation land instantly.
+- Top bar toggles: sound (off by default), reduce motion, marker cursor (off by default), light/dark (dark is a cool slate night: each surface a step lighter than the one behind it, soft grey outlines, near-black hard shadows and slightly dimmer colours). "Reduce motion" is also switched on by your system setting, and it makes every animation land instantly.
 - Pressing any key finishes a running animation, so nothing ever blocks you from answering.
 - Colours, spacing and type sizes live at the top of `app/css/style.css`; the motion code is in `app/js/fx.js`.
 - The maintainer keeps screenshots of the app and the design mockup in `docs/` on their own machine; they are not part of the repository.

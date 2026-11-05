@@ -12,6 +12,7 @@ export function lessonScreen(v, ctx) {
   const wait = h('p', { class: 'fine pr-wait', role: 'status' });
   const readyBtn = h('button', { class: 'btn yellow xl pr-ready', type: 'button' }, icon('check', 22), "I've read it");
   const readyObj = FX.obj(readyBtn, { cls: 'o-btn' });
+  readyObj.style.marginTop = '22px';                       // the space sits on the wrapper: a margin on the button itself made the shadow layer a black slab above it
   readyObj.hidden = true;
   let tick = null, endsAt = 0, last = v;
   const paintWait = () => {
@@ -139,6 +140,7 @@ export function revealScreen(v, ctx) {
   const wait = h('p', { class: 'fine pr-wait', role: 'status' });
   const readyBtn = h('button', { class: 'btn yellow xl pr-ready', type: 'button' }, icon('check', 22), "I've read it");
   const readyObj = FX.obj(readyBtn, { cls: 'o-btn' });
+  readyObj.style.marginTop = '22px';                       // the space sits on the wrapper: a margin on the button itself made the shadow layer a black slab above it
   readyObj.hidden = true;
   let tick = null, endsAt = 0, last = v;
   const paintWait = () => {

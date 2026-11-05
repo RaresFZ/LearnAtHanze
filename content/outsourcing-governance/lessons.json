@@ -1,11 +1,44 @@
 {
   "intro": "Read one short lesson, then answer questions on it. The questions you miss come first the next time, and you can retry them straight away on the results screen. Everything here comes from the lecture slides of this course, and each lesson says where. The exam is multiple choice, so the questions after each lesson are the part that matters most.",
-  "order": ["control-sox", "frameworks", "audit", "audit-report", "innovation", "outsourcing-basics", "managing-spo", "scaling-intro", "safe", "scrum-at-scale"],
+  "order": [
+    "control-sox",
+    "frameworks",
+    "audit",
+    "audit-report",
+    "innovation",
+    "outsourcing-basics",
+    "managing-spo",
+    "scaling-intro",
+    "safe",
+    "scrum-at-scale"
+  ],
   "plan": {
     "blocks": [
-      { "title": "Block 1: governance and audit", "topics": ["control-sox", "frameworks", "audit", "audit-report"] },
-      { "title": "Block 2: innovation and outsourcing", "topics": ["innovation", "outsourcing-basics", "managing-spo"] },
-      { "title": "Block 3: scaled agile", "topics": ["scaling-intro", "safe", "scrum-at-scale"] }
+      {
+        "title": "Block 1: governance and audit",
+        "topics": [
+          "control-sox",
+          "frameworks",
+          "audit",
+          "audit-report"
+        ]
+      },
+      {
+        "title": "Block 2: innovation and outsourcing",
+        "topics": [
+          "innovation",
+          "outsourcing-basics",
+          "managing-spo"
+        ]
+      },
+      {
+        "title": "Block 3: scaled agile",
+        "topics": [
+          "scaling-intro",
+          "safe",
+          "scrum-at-scale"
+        ]
+      }
     ],
     "tips": [
       "Work in blocks of 25 to 40 minutes, then take 5 to 10 minutes off. Short blocks beat one long sitting.",
@@ -16,130 +49,764 @@
   },
   "cheatsheet": {
     "formulas": [
-      { "name": "Utilization rate (of a service provider)", "formula": "billable hours ÷ working hours (as a percentage)", "example": "It measures the efficiency of service providing." },
-      { "name": "Attrition rate", "formula": "the percentage of employees that leave over a given time frame", "example": "A low attrition rate means better motivated personnel. Reward an SPO for attrition below 10%." }
+      {
+        "name": "Utilization rate (of a service provider)",
+        "formula": "billable hours ÷ working hours (as a percentage)",
+        "example": "It measures the efficiency of service providing."
+      },
+      {
+        "name": "Attrition rate",
+        "formula": "the percentage of employees that leave over a given time frame",
+        "example": "A low attrition rate means better motivated personnel. Reward an SPO for attrition below 10%."
+      }
     ],
     "lists": [
-      { "name": "Four things to manage and control", "items": "IT processes, IT sourcing, IT innovation, multiple projects" },
-      { "name": "SOX responsibilities of public organisations", "items": "Public Company Accounting Oversight Board; auditor independence; corporate responsibility; internal control (yearly quality rating); enhanced financial disclosure (off-balance-sheet); disclosure of knowable conflicts of interests; penalties for misconduct. European affiliates: code Tabaksblat, IFRS." },
-      { "name": "SOX for IT (ITGC)", "items": "Change management; software change and configuration management (version control); software development standards; access policies; incident management; problem management; technical support policies; implementation and testing procedures; disaster recovery; physical security." },
-      { "name": "Framework per subject", "items": "Infrastructure maintenance: ITIL. New software: Scrum. Running software: DevOps. IT projects: PRINCE2. IT security: ISO 27001. IT architecture: TOGAF. Process improvement: LEAN. All subjects: ISO, COBIT, CMMI." },
-      { "name": "Rules, best practices, standards", "items": "Rules and procedures (COBIT, COSO): how do I keep control over my finance? Best practices (ITIL, BiSL, ASL, ISM, MOF): how do I organize my IT processes? Standards (ISO, ANSI, BSI): how do I control my quality?" },
-      { "name": "Numbers on the slides", "items": "COBIT: 2 areas, 5 domains, 37 processes, 210 practices, 1112 activities. CMMI: 5 maturity levels, 24 process areas. ITIL: 3 process clusters, 34 processes. ISO 20000: 30 processes. ISO 27001: 114 controls." },
-      { "name": "The eight audit steps", "items": "1 Plan (auditor). 2 Kickoff meeting (auditor/organization). 3 Gather data and test IT controls (both). 4 Interview managers and employees (both). 5 Review observations (both). 6 Analyze and report findings (auditor). 7 Respond to findings (organization). 8 Issue final report (auditor)." },
-      { "name": "Audit report structure", "items": "1 Title page, 2 Table of contents, 3 Executive summary, 4 Introduction, 5 Audit findings, 6 Recommendations, 7 Follow-up plan, 8 Conclusion, 9 Appendices." },
-      { "name": "Useful recommendations", "items": "Say how, not only what; tied to a finding; actionable within the organisation's limits; measurable outcomes; an owner; a clear and reasonable deadline; a relevant working example as proof." },
-      { "name": "Disruptive innovation", "items": "Low-end (cheap and simple, no new technology: Aldi, Ryanair, IKEA). New-market (an innovation in a new market, new technology: eBay, Uber, e-bike). Top-down (outperforms, sold at a higher price first: Apple, Tesla, PlayStation, Samsung). Existing companies defend with sustaining innovations." },
-      { "name": "Business Model Canvas blocks", "items": "Key Partners, Key Activities, Key Resources, Value Propositions, Customer Relationships, Channels, Customer Segments, Cost Structure, Revenue Streams" },
-      { "name": "Outsourcing words", "items": "SPO = service providing organisation (the IT provider). SRO = service receiving organisation (the customer). Revenue = top line. Profit margin = bottom line." },
-      { "name": "Pricing models", "items": "Fixed price (an agreed set of activities for a fixed price). Time and materials (staff per hour, plus materials). Staff augmentation (hire professional staff)." },
-      { "name": "Preventing vendor lock-in", "items": "Perform at least 20% of the IT services in-house; let IT staff spread across all IT functions of the SPO; fill key positions in outsourced projects; keep SRO personnel on key positions (for example a minimum of 25%); knowledge retention testing." },
-      { "name": "Exit management", "items": "Scope and duration; governance (treat it as a project); deliverables; employee transfer clause; knowledge transition; intellectual property; financial terms; cooperation; exit plan testing (for example every 2 years)." },
-      { "name": "SAFe", "items": "ART = 5 to 12 teams on one product. PI = 4 or 5 two-week sprints. PI Planning = 2 days, all teams. Roles: RTE, Product Owner (program), System Architect, Scrum of Scrums Master. Inspect & Adapt in week 10." },
-      { "name": "Scrum at Scale", "items": "Roles: Scrum of Scrums Master (SoSM), Chief Product Owner (CPO), Executive Action Team (EAT). Events: Scaled Daily Scrum, Scaled Retrospective, Executive MetaScrum. One backlog for all teams." },
-      { "name": "SAFe against Scrum at Scale", "items": "SAFe is elaborate, Scrum at Scale is minimalistic. Both have a completely different approach." }
+      {
+        "name": "Four things to manage and control",
+        "items": "IT processes, IT sourcing, IT innovation, multiple projects"
+      },
+      {
+        "name": "SOX responsibilities of public organisations",
+        "items": "Public Company Accounting Oversight Board; auditor independence; corporate responsibility; internal control (yearly quality rating); enhanced financial disclosure (off-balance-sheet); disclosure of knowable conflicts of interests; penalties for misconduct. European affiliates: code Tabaksblat, IFRS."
+      },
+      {
+        "name": "SOX for IT (ITGC)",
+        "items": "Change management; software change and configuration management (version control); software development standards; access policies; incident management; problem management; technical support policies; implementation and testing procedures; disaster recovery; physical security."
+      },
+      {
+        "name": "Framework per subject",
+        "items": "Infrastructure maintenance: ITIL. New software: Scrum. Running software: DevOps. IT projects: PRINCE2. IT security: ISO 27001. IT architecture: TOGAF. Process improvement: LEAN. All subjects: ISO, COBIT, CMMI."
+      },
+      {
+        "name": "Rules, best practices, standards",
+        "items": "Rules and procedures (COBIT, COSO): how do I keep control over my finance? Best practices (ITIL, BiSL, ASL, ISM, MOF): how do I organize my IT processes? Standards (ISO, ANSI, BSI): how do I control my quality?"
+      },
+      {
+        "name": "Numbers on the slides",
+        "items": "COBIT: 2 areas, 5 domains, 37 processes, 210 practices, 1112 activities. CMMI: 5 maturity levels, 24 process areas. ITIL: 3 process clusters, 34 processes. ISO 20000: 30 processes. ISO 27001: 114 controls."
+      },
+      {
+        "name": "The eight audit steps",
+        "items": "1 Plan (auditor). 2 Kickoff meeting (auditor/organization). 3 Gather data and test IT controls (both). 4 Interview managers and employees (both). 5 Review observations (both). 6 Analyze and report findings (auditor). 7 Respond to findings (organization). 8 Issue final report (auditor)."
+      },
+      {
+        "name": "Audit report structure",
+        "items": "1 Title page, 2 Table of contents, 3 Executive summary, 4 Introduction, 5 Audit findings, 6 Recommendations, 7 Follow-up plan, 8 Conclusion, 9 Appendices."
+      },
+      {
+        "name": "Useful recommendations",
+        "items": "Say how, not only what; tied to a finding; actionable within the organisation's limits; measurable outcomes; an owner; a clear and reasonable deadline; a relevant working example as proof."
+      },
+      {
+        "name": "Disruptive innovation",
+        "items": "Low-end (cheap and simple, no new technology: Aldi, Ryanair, IKEA). New-market (an innovation in a new market, new technology: eBay, Uber, e-bike). Top-down (outperforms, sold at a higher price first: Apple, Tesla, PlayStation, Samsung). Existing companies defend with sustaining innovations."
+      },
+      {
+        "name": "Business Model Canvas blocks",
+        "items": "Key Partners, Key Activities, Key Resources, Value Propositions, Customer Relationships, Channels, Customer Segments, Cost Structure, Revenue Streams"
+      },
+      {
+        "name": "Outsourcing words",
+        "items": "SPO = service providing organisation (the IT provider). SRO = service receiving organisation (the customer). Revenue = top line. Profit margin = bottom line."
+      },
+      {
+        "name": "Pricing models",
+        "items": "Fixed price (an agreed set of activities for a fixed price). Time and materials (staff per hour, plus materials). Staff augmentation (hire professional staff)."
+      },
+      {
+        "name": "Preventing vendor lock-in",
+        "items": "Perform at least 20% of the IT services in-house; let IT staff spread across all IT functions of the SPO; fill key positions in outsourced projects; keep SRO personnel on key positions (for example a minimum of 25%); knowledge retention testing."
+      },
+      {
+        "name": "Exit management",
+        "items": "Scope and duration; governance (treat it as a project); deliverables; employee transfer clause; knowledge transition; intellectual property; financial terms; cooperation; exit plan testing (for example every 2 years)."
+      },
+      {
+        "name": "SAFe",
+        "items": "ART = 5 to 12 teams on one product. PI = 4 or 5 two-week sprints. PI Planning = 2 days, all teams. Roles: RTE, Product Owner (program), System Architect, Scrum of Scrums Master. Inspect & Adapt in week 10."
+      },
+      {
+        "name": "Scrum at Scale",
+        "items": "Roles: Scrum of Scrums Master (SoSM), Chief Product Owner (CPO), Executive Action Team (EAT). Events: Scaled Daily Scrum, Scaled Retrospective, Executive MetaScrum. One backlog for all teams."
+      },
+      {
+        "name": "SAFe against Scrum at Scale",
+        "items": "SAFe is elaborate, Scrum at Scale is minimalistic. Both have a completely different approach."
+      }
     ]
   },
   "topics": {
     "control-sox": {
-      "minutes": 5, "src": ["g1", "Slides 3, 6-9"],
+      "minutes": 5,
+      "src": [
+        "g1",
+        "Slides 3, 6-9"
+      ],
       "chunks": [
-        { "title": "What needs to be managed and controlled", "ask": ["og-001"], "points": ["IT processes: how can we be in control of our IT department and its processes?", "IT sourcing: how can we be in control of our IT suppliers and their organisations?", "IT innovation: how do we manage innovation?", "Multiple projects: how do we manage several dependent projects in a modern way?"], "remember": "Processes, sourcing, innovation, projects." },
-        { "title": "Enron and the Sarbanes-Oxley Act (SOX)", "ask": ["og-003"], "points": ["The lecture uses the Enron scandal to show the need for control, followed by SOX.", "SOX makes public organisations responsible for: a Public Company Accounting Oversight Board; auditor independence (registration, procedures); corporate responsibility (individual responsibility); internal control (a yearly quality rating); enhanced financial disclosure (off-balance-sheet items); disclosure of knowable conflicts of interest; penalties for misconduct.", "European affiliates named on the slide: code Tabaksblat and IFRS."] },
-        { "title": "SOX for IT: the IT general controls (ITGC)", "ask": ["og-005"], "points": ["Change management, including software change and configuration management (version control).", "Software development standards and access policies.", "Incident management, problem management and technical support policies.", "Implementation and testing procedures.", "Disaster recovery and physical security."], "remember": "Incident and problem management are on the list, next to change management." },
-        { "title": "Standards, reference models and reality", "points": ["IT needs process standards and controls: you check reality against standards and reference models.", "The words on the slide for that check: compliance, conformity, accordance, consent."] }
+        {
+          "title": "What needs to be managed and controlled",
+          "ask": [
+            "og-001"
+          ],
+          "points": [
+            "IT processes: how can we be in control of our IT department and its processes?",
+            "IT sourcing: how can we be in control of our IT suppliers and their organisations?",
+            "IT innovation: how do we manage innovation?",
+            "Multiple projects: how do we manage several dependent projects in a modern way?"
+          ],
+          "remember": "Processes, sourcing, innovation, projects."
+        },
+        {
+          "title": "Enron and the Sarbanes-Oxley Act (SOX)",
+          "ask": [
+            "og-003"
+          ],
+          "points": [
+            "The Enron scandal shows the need for control and led to SOX.",
+            "SOX makes public organisations responsible for: a Public Company Accounting Oversight Board; auditor independence (registration, procedures); corporate responsibility (individual responsibility); internal control (a yearly quality rating); enhanced financial disclosure (off-balance-sheet items); disclosure of knowable conflicts of interest; penalties for misconduct.",
+            "European counterparts: code Tabaksblat and IFRS."
+          ]
+        },
+        {
+          "title": "SOX for IT: the IT general controls (ITGC)",
+          "ask": [
+            "og-005"
+          ],
+          "points": [
+            "Change management, including software change and configuration management (version control).",
+            "Software development standards and access policies.",
+            "Incident management, problem management and technical support policies.",
+            "Implementation and testing procedures.",
+            "Disaster recovery and physical security."
+          ],
+          "remember": "Incident and problem management are on the list, next to change management."
+        },
+        {
+          "title": "Standards, reference models and reality",
+          "points": [
+            "IT needs process standards and controls: you check reality against standards and reference models.",
+            "Related words for that check: compliance, conformity, accordance, consent."
+          ]
+        }
       ]
     },
     "frameworks": {
-      "minutes": 8, "src": ["g1", "Slides 10-21"],
+      "minutes": 8,
+      "src": [
+        "g1",
+        "Slides 10-21"
+      ],
       "chunks": [
-        { "title": "Which framework for which subject", "ask": ["og-008"], "points": ["IT infrastructure maintenance: ITIL.", "New software: Scrum. Running software: DevOps.", "IT projects: PRINCE2.", "IT security: ISO 27001. IT architecture: TOGAF.", "Process improvement: LEAN.", "All subjects: ISO, COBIT, CMMI."], "remember": "Only ISO, COBIT and CMMI are listed for all subjects." },
-        { "title": "Goals of an IT governance framework", "ask": ["og-013"], "points": ["Control: measurable results of processes, key metrics, processes and procedures to control the enterprise, distribution of rights and responsibilities, mitigating risks. Rules and procedures for decision making count as control and best practice.", "Profitability: ensure ROI, assure business value, satisfy stakeholder needs."], "remember": "ROI, business value and stakeholder needs = profitability. The rest = control." },
-        { "title": "Rules, best practices and standards", "study": [], "ask": ["og-024"], "points": ["Rules and procedures: COBIT and COSO. They answer 'How do I keep control over my finance?'", "Best practices: ITIL, BiSL, ASL, ISM and MOF. They answer 'How do I organize my IT processes?'", "Standards: ISO, ANSI and BSI. They answer 'How do I control my quality?'", "In the coverage picture COSO has the widest scope on top, with COBIT below it. ITIL sits lower, on the 'how' side.", "Frameworks in general are a structured set of processes, practices and professional products."] },
-        { "title": "COBIT, CMMI and ITIL in numbers", "ask": ["og-018"], "points": ["COBIT (Control Objectives for Information Technology): 2 areas, 5 domains, 37 processes, 210 governance and management practices, 1112 activities. The version is not stated, and numbers change between versions.", "CMMI (Capability Maturity Model Integration, from Carnegie Mellon University): maturity levels, for rating and comparing organisations or for process improvement. 5 maturity levels and 24 process areas, with goals, practices and work products.", "ITIL: 3 process clusters and 34 processes."], "remember": "COBIT 5 domains / 37 processes. CMMI 5 levels / 24 process areas. ITIL 34 processes." },
-        { "title": "The ISO standards, and who uses frameworks", "points": ["ISO 20000 (BS 15000): IT service management, 30 processes (like ITIL).", "ISO 27001: information security management, 114 controls (policies).", "ISO 9001: quality management.", "Survey on the adoption slide (Informa Tech, January 2022): 42% follow a formalized framework, 51% do not, 7% do not know. Most used: ITIL v4 and hybrid (both 40%), ITIL v3 26%, COBIT 21%, TOGAF 10%, eTOM 5%."] }
+        {
+          "title": "Which framework for which subject",
+          "ask": [
+            "og-008"
+          ],
+          "points": [
+            "IT infrastructure maintenance: ITIL.",
+            "New software: Scrum. Running software: DevOps.",
+            "IT projects: PRINCE2.",
+            "IT security: ISO 27001. IT architecture: TOGAF.",
+            "Process improvement: LEAN.",
+            "All subjects: ISO, COBIT, CMMI."
+          ],
+          "remember": "Only ISO, COBIT and CMMI are listed for all subjects."
+        },
+        {
+          "title": "Goals of an IT governance framework",
+          "ask": [
+            "og-013"
+          ],
+          "points": [
+            "Control: measurable results of processes, key metrics, processes and procedures to control the enterprise, distribution of rights and responsibilities, mitigating risks. Rules and procedures for decision making count as control and best practice.",
+            "Profitability: ensure ROI, assure business value, satisfy stakeholder needs."
+          ],
+          "remember": "ROI, business value and stakeholder needs = profitability. The rest = control."
+        },
+        {
+          "title": "Rules, best practices and standards",
+          "study": [],
+          "ask": [
+            "og-024"
+          ],
+          "points": [
+            "Rules and procedures: COBIT and COSO. They answer 'How do I keep control over my finance?'",
+            "Best practices: ITIL, BiSL, ASL, ISM and MOF. They answer 'How do I organize my IT processes?'",
+            "Standards: ISO, ANSI and BSI. They answer 'How do I control my quality?'",
+            "In the coverage picture COSO has the widest scope on top, with COBIT below it. ITIL sits lower, on the 'how' side.",
+            "Frameworks in general are a structured set of processes, practices and professional products."
+          ]
+        },
+        {
+          "title": "COBIT, CMMI and ITIL in numbers",
+          "ask": [
+            "og-018"
+          ],
+          "points": [
+            "COBIT (Control Objectives for Information Technology): 2 areas, 5 domains, 37 processes, 210 governance and management practices, 1112 activities. The version is not stated, and numbers change between versions.",
+            "CMMI (Capability Maturity Model Integration, from Carnegie Mellon University): maturity levels, for rating and comparing organisations or for process improvement. 5 maturity levels and 24 process areas, with goals, practices and work products.",
+            "ITIL: 3 process clusters and 34 processes."
+          ],
+          "remember": "COBIT 5 domains / 37 processes. CMMI 5 levels / 24 process areas. ITIL 34 processes."
+        },
+        {
+          "title": "The ISO standards, and who uses frameworks",
+          "points": [
+            "ISO 20000 (BS 15000): IT service management, 30 processes (like ITIL).",
+            "ISO 27001: information security management, 114 controls (policies).",
+            "ISO 9001: quality management.",
+            "Survey (Informa Tech, January 2022): 42% follow a formalized framework, 51% do not, 7% do not know. Most used: ITIL v4 and hybrid (both 40%), ITIL v3 26%, COBIT 21%, TOGAF 10%, eTOM 5%."
+          ]
+        }
       ]
     },
     "audit": {
-      "minutes": 4, "src": ["g1", "Slides 22-24"],
+      "minutes": 4,
+      "src": [
+        "g1",
+        "Slides 22-24"
+      ],
       "chunks": [
-        { "title": "IT audit principles", "ask": ["og-029"], "points": ["Being 'in control' matters more than 'how' you do it.", "Say what you do, do what you say, prove it.", "Professionalism and best practices; reference to standards.", "Obey laws (SOX, VAR) and ethics (SOX)."], "remember": "Say what you do, do what you say, prove it." },
-        { "title": "The eight steps of an audit", "ask": ["og-030"], "points": ["1 Plan the audit (auditor).", "2 Hold the audit kickoff meeting (auditor and organization).", "3 Gather data and test IT controls (auditor and organization).", "4 Interview responsible managers and employees (auditor and organization).", "5 Review observations (auditor and organization).", "6 Analyze and report findings (auditor).", "7 Respond to findings (organization).", "8 Issue the final report (auditor)."], "remember": "The auditor plans, analyzes and reports, and issues the final report. The organization responds." },
-        { "title": "After the audit: follow-up", "points": ["Identified shortcomings: reported by the auditor.", "Improvement plan: made by the organization.", "Execute the planned measures, with optional internal audits.", "Prepare for the next formal audit."] }
+        {
+          "title": "IT audit principles",
+          "ask": [
+            "og-029"
+          ],
+          "points": [
+            "Being 'in control' matters more than 'how' you do it.",
+            "Say what you do, do what you say, prove it.",
+            "Professionalism and best practices; reference to standards.",
+            "Obey laws (SOX, VAR) and ethics (SOX)."
+          ],
+          "remember": "Say what you do, do what you say, prove it."
+        },
+        {
+          "title": "The eight steps of an audit",
+          "ask": [
+            "og-030"
+          ],
+          "points": [
+            "1 Plan the audit (auditor).",
+            "2 Hold the audit kickoff meeting (auditor and organization).",
+            "3 Gather data and test IT controls (auditor and organization).",
+            "4 Interview responsible managers and employees (auditor and organization).",
+            "5 Review observations (auditor and organization).",
+            "6 Analyze and report findings (auditor).",
+            "7 Respond to findings (organization).",
+            "8 Issue the final report (auditor)."
+          ],
+          "remember": "The auditor plans, analyzes and reports, and issues the final report. The organization responds."
+        },
+        {
+          "title": "After the audit: follow-up",
+          "points": [
+            "Identified shortcomings: reported by the auditor.",
+            "Improvement plan: made by the organization.",
+            "Execute the planned measures, with optional internal audits.",
+            "Prepare for the next formal audit."
+          ]
+        }
       ]
     },
     "audit-report": {
-      "minutes": 5, "src": ["g2", "Slides 5-11"],
+      "minutes": 5,
+      "src": [
+        "g2",
+        "Slides 5-11"
+      ],
       "chunks": [
-        { "title": "Start with an executive summary", "ask": ["og-036"], "points": ["Lead with the most critical findings, for example a prioritized table of high-risk issues (risk level, impact, recommended action, timeline).", "Quantify the impact so it is concrete and tied to a date.", "Tailor the language: for executives talk about the ROI of fixes, for operations about efficiency gains."] },
-        { "title": "Findings: order and evidence", "ask": ["og-037"], "points": ["Organise by risk priority (high, medium, low), not by the order of the audit.", "Support every finding with verifiable evidence: charts, data, benchmarks. Provide details.", "Explain why the issue matters now, and connect it to the context."] },
-        { "title": "Visuals and storytelling", "ask": ["og-039"], "points": ["Use infographics, heat maps or timelines to show urgency, and the RAG colours.", "Frame each section as Problem, Impact, Solution.", "Keep it concise and avoid jargon: the report should be skimmable in about 10 minutes."], "remember": "RAG colours. Problem, Impact, Solution. Skim in 10 minutes." },
-        { "title": "Useful recommendations and follow-up", "ask": ["og-042"], "points": ["A useful recommendation says how to achieve something, not only what to do. It is tied to a finding, actionable within the organisation's constraints, and has measurable outcomes.", "It names an owner, has a clear and reasonable deadline, and gives a relevant working example as proof.", "Highlight short-term wins: they build momentum and show feasibility. End with a clear call to action.", "Build in follow-up with a tracking matrix for progress check-ins. Deliver digitally and within days."] },
-        { "title": "The report structure", "points": ["1 Title page, 2 Table of contents, 3 Executive summary, 4 Introduction, 5 Audit findings, 6 Recommendations, 7 Follow-up plan, 8 Conclusion, 9 Appendices.", "The lecture says you are free to use an alternative structure."] }
+        {
+          "title": "Start with an executive summary",
+          "ask": [
+            "og-036"
+          ],
+          "points": [
+            "Lead with the most critical findings, for example a prioritized table of high-risk issues (risk level, impact, recommended action, timeline).",
+            "Quantify the impact so it is concrete and tied to a date.",
+            "Tailor the language: for executives talk about the ROI of fixes, for operations about efficiency gains."
+          ]
+        },
+        {
+          "title": "Findings: order and evidence",
+          "ask": [
+            "og-037"
+          ],
+          "points": [
+            "Organise by risk priority (high, medium, low), not by the order of the audit.",
+            "Support every finding with verifiable evidence: charts, data, benchmarks. Provide details.",
+            "Explain why the issue matters now, and connect it to the context."
+          ]
+        },
+        {
+          "title": "Visuals and storytelling",
+          "ask": [
+            "og-039"
+          ],
+          "points": [
+            "Use infographics, heat maps or timelines to show urgency, and the RAG colours.",
+            "Frame each section as Problem, Impact, Solution.",
+            "Keep it concise and avoid jargon: the report should be skimmable in about 10 minutes."
+          ],
+          "remember": "RAG colours. Problem, Impact, Solution. Skim in 10 minutes."
+        },
+        {
+          "title": "Useful recommendations and follow-up",
+          "ask": [
+            "og-042"
+          ],
+          "points": [
+            "A useful recommendation says how to achieve something, not only what to do. It is tied to a finding, actionable within the organisation's constraints, and has measurable outcomes.",
+            "It names an owner, has a clear and reasonable deadline, and gives a relevant working example as proof.",
+            "Highlight short-term wins: they build momentum and show feasibility. End with a clear call to action.",
+            "Build in follow-up with a tracking matrix for progress check-ins. Deliver digitally and within days."
+          ]
+        },
+        {
+          "title": "The report structure",
+          "points": [
+            "1 Title page, 2 Table of contents, 3 Executive summary, 4 Introduction, 5 Audit findings, 6 Recommendations, 7 Follow-up plan, 8 Conclusion, 9 Appendices.",
+            "You are free to use an alternative structure."
+          ]
+        }
       ]
     },
     "innovation": {
-      "minutes": 7, "src": ["g3", "Slides 4-17"],
+      "minutes": 7,
+      "src": [
+        "g3",
+        "Slides 4-17"
+      ],
       "chunks": [
-        { "title": "Disruptive technology", "ask": ["og-047"], "points": ["A technical innovation that improves a product or service in ways the market does not expect, typically by being lower priced or designed for a different set of consumers or market place.", "Outperforming traditional ways with new technology: SSD, ChatGPT. Superior performance: Apple, Tesla.", "Lower cost: Ryanair, Aldi, Action. New business models: Dell, Amazon, Netflix, Spotify, Airbnb."] },
-        { "title": "What aspect is innovative? Innovation is relative", "ask": ["og-054"], "points": ["Product (primary): for example Apple, Tesla.", "Process (supporting): for example the Toyota production process (LEAN), Dell, Alibaba.", "New combinations of existing elements: coffee pads, e-bikes, agricultural drones, smart watches, hybrid cars.", "Innovation is relative: it is not either innovative or not."], "remember": "Innovation is relative." },
-        { "title": "Three kinds of disruption", "ask": ["og-052"], "points": ["Low-end disruption: established companies add features too fast, so simple cheap products win at the low end (Aldi, Ryanair, IKEA). No new technology.", "New-market disruption: extend an innovation to a new market (eBay, Uber, e-bike). New technology, often internet or mobile.", "Top-down: new products that outperform the existing ones, sold at a higher price at first (Apple, Tesla, PlayStation, Samsung)."] },
-        { "title": "How existing companies defend themselves", "ask": ["og-143"], "points": ["New entrants use new technology to enter existing markets or explore new ones.", "Existing companies can defend by modernizing their old services or products. These are called sustaining innovations.", "Example: chain stores starting webshops."] },
-        { "title": "Strategic IT decisions: product or support?", "ask": ["og-057"], "points": ["The basic question: is IT our primary business (A), or is IT supportive to the business (B)?", "Strategy A (primary product): the BCG matrix as drawn on the slide. A star gets investment; a question mark is prioritised or divested; a dog is killed; a cash cow has low growth and high share.", "The Business Model Canvas has nine blocks: Key Partners, Key Activities, Key Resources, Value Propositions, Customer Relationships, Channels, Customer Segments, Cost Structure, Revenue Streams."] },
-        { "title": "IT strategy B: optimize IT support", "points": ["It starts by determining the corporate strategy (for example launch new products, performance optimization, customer orientation), then the strategy requirements and the functional requirements.", "Then: strategic IT units, opportunities and threats, product analysis, what competitors do with IT, the abilities of the current IT platform, opportunities for process and product reengineering, and action plans.", "Outsourcing comes in when you define the best organizational way to execute the strategy. After that: allocate sources and budgets, implement management procedures and address cultural issues."] }
+        {
+          "title": "Disruptive technology",
+          "ask": [
+            "og-047"
+          ],
+          "points": [
+            "A technical innovation that improves a product or service in ways the market does not expect, typically by being lower priced or designed for a different set of consumers or market place.",
+            "Outperforming traditional ways with new technology: SSD, ChatGPT. Superior performance: Apple, Tesla.",
+            "Lower cost: Ryanair, Aldi, Action. New business models: Dell, Amazon, Netflix, Spotify, Airbnb."
+          ]
+        },
+        {
+          "title": "What aspect is innovative? Innovation is relative",
+          "ask": [
+            "og-054"
+          ],
+          "points": [
+            "Product (primary): for example Apple, Tesla.",
+            "Process (supporting): for example the Toyota production process (LEAN), Dell, Alibaba.",
+            "New combinations of existing elements: coffee pads, e-bikes, agricultural drones, smart watches, hybrid cars.",
+            "Innovation is relative: it is not either innovative or not."
+          ],
+          "remember": "Innovation is relative."
+        },
+        {
+          "title": "Three kinds of disruption",
+          "ask": [
+            "og-052"
+          ],
+          "points": [
+            "Low-end disruption: established companies add features too fast, so simple cheap products win at the low end (Aldi, Ryanair, IKEA). No new technology.",
+            "New-market disruption: extend an innovation to a new market (eBay, Uber, e-bike). New technology, often internet or mobile.",
+            "Top-down: new products that outperform the existing ones, sold at a higher price at first (Apple, Tesla, PlayStation, Samsung)."
+          ]
+        },
+        {
+          "title": "How existing companies defend themselves",
+          "ask": [
+            "og-143"
+          ],
+          "points": [
+            "New entrants use new technology to enter existing markets or explore new ones.",
+            "Existing companies can defend by modernizing their old services or products. These are called sustaining innovations.",
+            "Example: chain stores starting webshops."
+          ]
+        },
+        {
+          "title": "Strategic IT decisions: product or support?",
+          "ask": [
+            "og-057"
+          ],
+          "points": [
+            "The basic question: is IT our primary business (A), or is IT supportive to the business (B)?",
+            "Strategy A (primary product): the BCG matrix. A star gets investment; a question mark is prioritised or divested; a dog is killed; a cash cow has low growth and high share.",
+            "The Business Model Canvas has nine blocks: Key Partners, Key Activities, Key Resources, Value Propositions, Customer Relationships, Channels, Customer Segments, Cost Structure, Revenue Streams."
+          ]
+        },
+        {
+          "title": "IT strategy B: optimize IT support",
+          "points": [
+            "It starts by determining the corporate strategy (for example launch new products, performance optimization, customer orientation), then the strategy requirements and the functional requirements.",
+            "Then: strategic IT units, opportunities and threats, product analysis, what competitors do with IT, the abilities of the current IT platform, opportunities for process and product reengineering, and action plans.",
+            "Outsourcing comes in when you define the best organizational way to execute the strategy. After that: allocate sources and budgets, implement management procedures and address cultural issues."
+          ]
+        }
       ]
     },
     "outsourcing-basics": {
-      "minutes": 8, "src": ["g4", "Slides 6-19"],
+      "minutes": 8,
+      "src": [
+        "g4",
+        "Slides 6-19"
+      ],
       "chunks": [
-        { "title": "Why outsource, and the words", "ask": ["og-062"], "points": ["Reasons: save money; focus on the core business; invest more in the business instead of IT; reduce the risk of falling behind in IT; quick access to IT talent (by hiring an innovative SPO).", "SPO = service providing organisation (the IT provider). SRO = service receiving organisation (the customer, the users).", "Revenue (gross sales) is the top line. Profit margin (net income) is the bottom line.", "Utilization rate = billable hours ÷ working hours: the efficiency of service providing."], "remember": "SPO provides, SRO receives." },
-        { "title": "How an SPO is structured", "ask": ["og-067"], "points": ["Three columns. The industry verticals: services specific to a branch, at application or functional level.", "The horizontal services: general technical services (infrastructure, testing, BI) that serve all customers across the verticals.", "The supporting services: the general supporting departments.", "There is no one best structure: it must be aligned with the (changing) strategy, for example after a take-over or merger."] },
-        { "title": "What makes a good SPO", "ask": ["og-070"], "points": ["Top IT SPOs replicate their behaviour to their customers. Two key pillars: competent, loyal and motivated employees, and specialized (on the customer's business) unique services.", "A fair appraisal system motivates people. The attrition rate (the percentage of employees who leave in a time frame) shows motivation: a low rate means better motivated personnel.", "Consultative selling (the SPO's view): understand the customer's business, assess its market, list its challenges and map it against its competitors, so services are tailored."] },
-        { "title": "Organisational alignment", "ask": ["og-073"], "points": ["All levels of the hierarchy must be covered by both organisations.", "The grouping of tasks and responsibilities should be as similar as possible: process managers (horizontals), application managers and business managers (verticals) on both sides."] },
-        { "title": "Selecting an SPO", "ask": ["og-076"], "points": ["Organisations traditionally look at the lowest price, but the value is in an SPO that helps reduce cost, manage complexity and adopt innovation. The lecture says: always choose innovation over price.", "Pitfall: an SPO with a reputation for quality and innovation that then focuses on growth loses its innovative spirit.", "Competitive differentiators: cultural match, superior client facing skills, superior business domain skills, high employee availability.", "Hygiene criteria: financial health and stability of the SPO; employee stability (for example the attrition rate); the quality of the bench resources."], "remember": "Innovation over price. Hygiene = financial health, employee stability, bench quality." },
-        { "title": "Vendor lock-in", "points": ["Vendor lock-in = too much dependency: you cannot get rid of the SPO.", "Measures from this lecture: perform at least 20% of the IT services in-house; let IT staff spread across all IT functions of the SPO so they learn the outsourced work; fill key positions in outsourced projects (architecture, lead designers, lead developers).", "Lecture 5 adds knowledge measures (for example a minimum of 25% SRO personnel). Keep the two figures apart: 20% is about services, 25% about personnel."], "remember": "At least 20% of the services in-house." }
+        {
+          "title": "Why outsource, and the words",
+          "ask": [
+            "og-062"
+          ],
+          "points": [
+            "Reasons: save money; focus on the core business; invest more in the business instead of IT; reduce the risk of falling behind in IT; quick access to IT talent (by hiring an innovative SPO).",
+            "SPO = service providing organisation (the IT provider). SRO = service receiving organisation (the customer, the users).",
+            "Revenue (gross sales) is the top line. Profit margin (net income) is the bottom line.",
+            "Utilization rate = billable hours ÷ working hours: the efficiency of service providing."
+          ],
+          "remember": "SPO provides, SRO receives."
+        },
+        {
+          "title": "How an SPO is structured",
+          "ask": [
+            "og-067"
+          ],
+          "points": [
+            "Three columns. The industry verticals: services specific to a branch, at application or functional level.",
+            "The horizontal services: general technical services (infrastructure, testing, BI) that serve all customers across the verticals.",
+            "The supporting services: the general supporting departments.",
+            "There is no one best structure: it must be aligned with the (changing) strategy, for example after a take-over or merger."
+          ]
+        },
+        {
+          "title": "What makes a good SPO",
+          "ask": [
+            "og-070"
+          ],
+          "points": [
+            "Top IT SPOs replicate their behaviour to their customers. Two key pillars: competent, loyal and motivated employees, and specialized (on the customer's business) unique services.",
+            "A fair appraisal system motivates people. The attrition rate (the percentage of employees who leave in a time frame) shows motivation: a low rate means better motivated personnel.",
+            "Consultative selling (the SPO's view): understand the customer's business, assess its market, list its challenges and map it against its competitors, so services are tailored."
+          ]
+        },
+        {
+          "title": "Organisational alignment",
+          "ask": [
+            "og-073"
+          ],
+          "points": [
+            "All levels of the hierarchy must be covered by both organisations.",
+            "The grouping of tasks and responsibilities should be as similar as possible: process managers (horizontals), application managers and business managers (verticals) on both sides."
+          ]
+        },
+        {
+          "title": "Selecting an SPO",
+          "ask": [
+            "og-076"
+          ],
+          "points": [
+            "Organisations traditionally look at the lowest price, but the value is in an SPO that helps reduce cost, manage complexity and adopt innovation. Always choose innovation over price.",
+            "Pitfall: an SPO with a reputation for quality and innovation that then focuses on growth loses its innovative spirit.",
+            "Competitive differentiators: cultural match, superior client facing skills, superior business domain skills, high employee availability.",
+            "Hygiene criteria: financial health and stability of the SPO; employee stability (for example the attrition rate); the quality of the bench resources."
+          ],
+          "remember": "Innovation over price. Hygiene = financial health, employee stability, bench quality."
+        },
+        {
+          "title": "Vendor lock-in",
+          "points": [
+            "Vendor lock-in = too much dependency: you cannot get rid of the SPO.",
+            "Measures: perform at least 20% of the IT services in-house; let IT staff spread across all IT functions of the SPO so they learn the outsourced work; fill key positions in outsourced projects (architecture, lead designers, lead developers).",
+            "Further knowledge measures include a minimum of 25% SRO personnel. Keep the two figures apart: 20% is about services, 25% about personnel."
+          ],
+          "remember": "At least 20% of the services in-house."
+        }
       ]
     },
     "managing-spo": {
-      "minutes": 8, "src": ["g5", "Slides 4-12"],
+      "minutes": 8,
+      "src": [
+        "g5",
+        "Slides 4-12"
+      ],
       "chunks": [
-        { "title": "Manage your SPO: the DOs", "ask": ["og-080"], "points": ["The goal: a relationship that achieves more than what is in the contract, so also non-contractual goals.", "Use the strengths of the SPO. Monitor the SPO so its weaknesses do not become apparent.", "Treat SPO personnel as your own colleagues.", "Get to know and align with the SPO's key responsible people (especially the horizontals), not only the service managers."] },
-        { "title": "Good practices: people and promises", "ask": ["og-081"], "points": ["Organisation awareness: understand the full structure of the SPO and reward the SPO's innovation ideas in favour of the SRO.", "Optimize production in quality and timeliness. DON'T say yes to the SRO's wishes out of fear of losing business if it is not realistic. DO make realistic agreements.", "HRM: recognize performance, of the SRO's employees too, with financial reward and personal recognition by higher management.", "Attrition targets: reward attrition rates below 10%.", "Innovation targets: for example demand 10 innovations per year, and facilitate them, for example with a dedicated support team."], "remember": "Attrition below 10%. Example innovation target: 10 per year." },
-        { "title": "Pricing models", "ask": ["og-084"], "points": ["Fixed price contract: an agreed set of activities for a fixed price.", "Time and materials contract: pay staff per hour and for materials.", "Staff augmentation: hire professional staff.", "All kinds of variations and combinations can be made in a contract."] },
-        { "title": "Knowledge, the pyramid and productivity", "ask": ["og-088"], "points": ["Hiring an SPO is a knowledge risk (vendor lock-in). Measures: keep SRO personnel on key positions; agree a minimum percentage (for example 25%) of SRO personnel; business continuity knowledge retention testing, which tests whether SRO personnel can do the work without SPO personnel.", "Pyramid management: balance experienced and inexperienced staff. A heavy pyramid (more experience) for tough jobs, a lean pyramid for light jobs. Freshers have 0 to 3 years, the top has more than 10 years. Agree the pyramid in the contract.", "Productivity must be expressed in numbers: function points for development jobs, the number of incidents or changes, managed applications, managed hardware objects.", "In day-to-day work, solving problems together matters more than contract rules. Use the contract for escalation, as a 'big stick'."] },
-        { "title": "Your own overseas IT department (a captive)", "ask": ["og-092"], "points": ["For: lower cost than headquarters, knowledge stays inside, focus on the core business at home.", "Risk: captives tend to be seen as cost centres or back offices, which gives low empowerment and low motivation (cultural differences add to this).", "Face-to-face contact is essential: letting employees and management travel is worth the money. Collaboration motivates, just taking orders demotivates."] },
-        { "title": "Exit management: prepare the exit at the start", "ask": ["og-094"], "points": ["At the start of the relationship, also prepare the exit.", "Cover: scope and duration; governance during the exit (treat it as a project); deliverables and documentation; the employee transfer clause; knowledge transition (for example shadowing); intellectual property; financial terms; cooperation of the incumbent SPO.", "Exit plan testing: test the agreed exit, possibly staged, on non-core business days, for example once every 2 years."], "remember": "Prepare the exit at the start, and treat it as a project." },
-        { "title": "What goes into the contract", "points": ["Price, definition of the services, the personnel profile.", "KPIs, for example service availability in percent (it can differ per service).", "Measures to prevent vendor lock-in, specific requirements, innovation, report content.", "Compensation arrangements, for example a fine or compensation if requirements are not met.", "Procedures for requests, changes, complaints and projects."] }
+        {
+          "title": "Manage your SPO: the DOs",
+          "ask": [
+            "og-080"
+          ],
+          "points": [
+            "The goal: a relationship that achieves more than what is in the contract, so also non-contractual goals.",
+            "Use the strengths of the SPO. Monitor the SPO so its weaknesses do not become apparent.",
+            "Treat SPO personnel as your own colleagues.",
+            "Get to know and align with the SPO's key responsible people (especially the horizontals), not only the service managers."
+          ]
+        },
+        {
+          "title": "Good practices: people and promises",
+          "ask": [
+            "og-081"
+          ],
+          "points": [
+            "Organisation awareness: understand the full structure of the SPO and reward the SPO's innovation ideas in favour of the SRO.",
+            "Optimize production in quality and timeliness. DON'T say yes to the SRO's wishes out of fear of losing business if it is not realistic. DO make realistic agreements.",
+            "HRM: recognize performance, of the SRO's employees too, with financial reward and personal recognition by higher management.",
+            "Attrition targets: reward attrition rates below 10%.",
+            "Innovation targets: for example demand 10 innovations per year, and facilitate them, for example with a dedicated support team."
+          ],
+          "remember": "Attrition below 10%. Example innovation target: 10 per year."
+        },
+        {
+          "title": "Pricing models",
+          "ask": [
+            "og-084"
+          ],
+          "points": [
+            "Fixed price contract: an agreed set of activities for a fixed price.",
+            "Time and materials contract: pay staff per hour and for materials.",
+            "Staff augmentation: hire professional staff.",
+            "All kinds of variations and combinations can be made in a contract."
+          ]
+        },
+        {
+          "title": "Knowledge, the pyramid and productivity",
+          "ask": [
+            "og-088"
+          ],
+          "points": [
+            "Hiring an SPO is a knowledge risk (vendor lock-in). Measures: keep SRO personnel on key positions; agree a minimum percentage (for example 25%) of SRO personnel; business continuity knowledge retention testing, which tests whether SRO personnel can do the work without SPO personnel.",
+            "Pyramid management: balance experienced and inexperienced staff. A heavy pyramid (more experience) for tough jobs, a lean pyramid for light jobs. Freshers have 0 to 3 years, the top has more than 10 years. Agree the pyramid in the contract.",
+            "Productivity must be expressed in numbers: function points for development jobs, the number of incidents or changes, managed applications, managed hardware objects.",
+            "In day-to-day work, solving problems together matters more than contract rules. Use the contract for escalation, as a 'big stick'."
+          ]
+        },
+        {
+          "title": "Your own overseas IT department (a captive)",
+          "ask": [
+            "og-092"
+          ],
+          "points": [
+            "For: lower cost than headquarters, knowledge stays inside, focus on the core business at home.",
+            "Risk: captives tend to be seen as cost centres or back offices, which gives low empowerment and low motivation (cultural differences add to this).",
+            "Face-to-face contact is essential: letting employees and management travel is worth the money. Collaboration motivates, just taking orders demotivates."
+          ]
+        },
+        {
+          "title": "Exit management: prepare the exit at the start",
+          "ask": [
+            "og-094"
+          ],
+          "points": [
+            "At the start of the relationship, also prepare the exit.",
+            "Cover: scope and duration; governance during the exit (treat it as a project); deliverables and documentation; the employee transfer clause; knowledge transition (for example shadowing); intellectual property; financial terms; cooperation of the incumbent SPO.",
+            "Exit plan testing: test the agreed exit, possibly staged, on non-core business days, for example once every 2 years."
+          ],
+          "remember": "Prepare the exit at the start, and treat it as a project."
+        },
+        {
+          "title": "What goes into the contract",
+          "points": [
+            "Price, definition of the services, the personnel profile.",
+            "KPIs, for example service availability in percent (it can differ per service).",
+            "Measures to prevent vendor lock-in, specific requirements, innovation, report content.",
+            "Compensation arrangements, for example a fine or compensation if requirements are not met.",
+            "Procedures for requests, changes, complaints and projects."
+          ]
+        }
       ]
     },
     "scaling-intro": {
-      "minutes": 3, "src": ["g6", "Slides 3-7"],
+      "minutes": 3,
+      "src": [
+        "g6",
+        "Slides 3-7"
+      ],
       "chunks": [
-        { "title": "The Spaceship game", "ask": ["og-100"], "points": ["Space battle: planet Earth against evil intruders. 5 spaceship factories and 1 Space Force Coordinator (SFC).", "Each factory works as a Scrum team and appoints one Product Owner. The Product Owner communicates with the SFC.", "Every team member has a different task: each does one step of the instruction video and passes the plane on.", "After the demo all Product Owners meet the SFC for new instructions."] },
-        { "title": "The production cycle and the Definition of Done", "points": ["One cycle: PO instruction with the SFC 2 minutes, sprint planning 2, building 6, sprint demo about 3, retrospective 2. Five cycles.", "Definition of Done: the spaceship flies at least 3 metres, the folding is neat, the colour coding is correct.", "Evaluation: what went well, what must be improved, how, and which measures."], "remember": "5 cycles. Building is the longest phase (6 minutes)." }
+        {
+          "title": "The Spaceship game",
+          "ask": [
+            "og-100"
+          ],
+          "points": [
+            "Space battle: planet Earth against evil intruders. 5 spaceship factories and 1 Space Force Coordinator (SFC).",
+            "Each factory works as a Scrum team and appoints one Product Owner. The Product Owner communicates with the SFC.",
+            "Every team member has a different task: each does one step of the instruction video and passes the plane on.",
+            "After the demo all Product Owners meet the SFC for new instructions."
+          ]
+        },
+        {
+          "title": "The production cycle and the Definition of Done",
+          "points": [
+            "One cycle: PO instruction with the SFC 2 minutes, sprint planning 2, building 6, sprint demo about 3, retrospective 2. Five cycles.",
+            "Definition of Done: the spaceship flies at least 3 metres, the folding is neat, the colour coding is correct.",
+            "Evaluation: what went well, what must be improved, how, and which measures."
+          ],
+          "remember": "5 cycles. Building is the longest phase (6 minutes)."
+        }
       ]
     },
     "safe": {
-      "minutes": 8, "src": ["g7", "Slides 5-13"],
+      "minutes": 8,
+      "src": [
+        "g7",
+        "Slides 5-13"
+      ],
       "chunks": [
-        { "title": "SAFe basic components", "ask": ["og-105"], "points": ["Agile Release Train (ART): a number of teams (5 to 12) working on one product.", "Program Increment (PI): the incrementally growing product of the ART.", "A PI cycle takes 4 or 5 two-week sprints (8 to 12 weeks).", "PI release: the shippable product of each cycle.", "System Demo: at the end of the PI cycle the integrated product is reviewed."], "remember": "ART = 5 to 12 teams. PI = 4 or 5 two-week sprints." },
-        { "title": "SAFe roles", "ask": ["og-116"], "points": ["Release Train Engineer (RTE): the coordinator of the ART, facilitates the ART meetings (like a team's Scrum Master). The slide once writes it as 'TRE'.", "Product Owner (program level): the PO of the program.", "System Architect: ensures technical integrity and defines the architectural guidelines for the teams.", "Scrum of Scrums Master: the facilitator of the team Scrum Master meetings."] },
-        { "title": "The PI cycle in weeks", "ask": ["og-117"], "points": ["Week 0: PI Planning preparation. Week 1: PI Planning (2 days).", "Weeks 1 to 10: execution, 5 sprints, with sprint planning, daily stand-ups, sprint reviews, retrospectives, the PI System Demo, Scrum of Scrums, PO Sync and ART Sync.", "Week 10: Inspect & Adapt (1 day). Week 11 and on: the next PI Planning.", "The slides also say 8 to 12 weeks for a PI; the table shows 10 weeks with 5 sprints."] },
-        { "title": "PI Planning, day 1", "ask": ["og-110"], "points": ["Morning, with the entire ART: business context (Business Owners and Product Management), product/solution vision, architecture vision and roadmap (System Architect).", "Afternoon: planning context, team breakouts #1 (teams identify stories, estimate story points, identify risks), then the draft plan review.", "Evening: management review and problem solving, for leadership only (RTE, Product Management, Business Owners, Architects)."], "remember": "The evening management review is the only leadership-only session." },
-        { "title": "PI Planning, day 2", "ask": ["og-113"], "points": ["Morning: team breakouts #2 (finalize plans, align dependencies), final plan review and confidence vote, PI objectives presented and approved.", "Afternoon: the program board is finalized (a visual overview of features and dependencies), then the PI Planning retrospective, led by the RTE."] },
-        { "title": "Meetings during the PI", "ask": ["og-119"], "points": ["Team sprints (5 per PI): sprint planning (team, PO, SM), daily stand-up (team), backlog refinement (team, PO), sprint review (team, PO, stakeholders), sprint retrospective (team, SM).", "ART level: Scrum of Scrums (weekly: Scrum Masters, RTE, others with dependencies), PO Sync (weekly: POs, Product Management, Business Owners), ART Sync (weekly: SoS and PO Sync together), System Demo (end of the PI, the entire ART and stakeholders)."], "remember": "Review = team, PO and stakeholders. Retrospective = team and Scrum Master." },
-        { "title": "Inspect & Adapt, at the end of the PI", "points": ["PI System Demo: all teams show working software (1 to 2 hours, the entire ART and stakeholders).", "Quantitative and qualitative measurement (1 hour): metrics such as predictability and velocity.", "Problem-solving workshop (1 hour): root cause analysis and action items, the entire ART in breakouts.", "Confidence vote on the improvement actions (15 minutes)."] }
+        {
+          "title": "SAFe basic components",
+          "ask": [
+            "og-105"
+          ],
+          "points": [
+            "Agile Release Train (ART): a number of teams (5 to 12) working on one product.",
+            "Program Increment (PI): the incrementally growing product of the ART.",
+            "A PI cycle takes 4 or 5 two-week sprints (8 to 12 weeks).",
+            "PI release: the shippable product of each cycle.",
+            "System Demo: at the end of the PI cycle the integrated product is reviewed."
+          ],
+          "remember": "ART = 5 to 12 teams. PI = 4 or 5 two-week sprints."
+        },
+        {
+          "title": "SAFe roles",
+          "ask": [
+            "og-116"
+          ],
+          "points": [
+            "Release Train Engineer (RTE): the coordinator of the ART, facilitates the ART meetings (like a team's Scrum Master).",
+            "Product Owner (program level): the PO of the program.",
+            "System Architect: ensures technical integrity and defines the architectural guidelines for the teams.",
+            "Scrum of Scrums Master: the facilitator of the team Scrum Master meetings."
+          ]
+        },
+        {
+          "title": "The PI cycle in weeks",
+          "ask": [
+            "og-117"
+          ],
+          "points": [
+            "Week 0: PI Planning preparation. Week 1: PI Planning (2 days).",
+            "Weeks 1 to 10: execution, 5 sprints, with sprint planning, daily stand-ups, sprint reviews, retrospectives, the PI System Demo, Scrum of Scrums, PO Sync and ART Sync.",
+            "Week 10: Inspect & Adapt (1 day). Week 11 and on: the next PI Planning.",
+            "Some material also says 8 to 12 weeks for a PI; the standard table shows 10 weeks with 5 sprints."
+          ]
+        },
+        {
+          "title": "PI Planning, day 1",
+          "ask": [
+            "og-110"
+          ],
+          "points": [
+            "Morning, with the entire ART: business context (Business Owners and Product Management), product/solution vision, architecture vision and roadmap (System Architect).",
+            "Afternoon: planning context, team breakouts #1 (teams identify stories, estimate story points, identify risks), then the draft plan review.",
+            "Evening: management review and problem solving, for leadership only (RTE, Product Management, Business Owners, Architects)."
+          ],
+          "remember": "The evening management review is the only leadership-only session."
+        },
+        {
+          "title": "PI Planning, day 2",
+          "ask": [
+            "og-113"
+          ],
+          "points": [
+            "Morning: team breakouts #2 (finalize plans, align dependencies), final plan review and confidence vote, PI objectives presented and approved.",
+            "Afternoon: the program board is finalized (a visual overview of features and dependencies), then the PI Planning retrospective, led by the RTE."
+          ]
+        },
+        {
+          "title": "Meetings during the PI",
+          "ask": [
+            "og-119"
+          ],
+          "points": [
+            "Team sprints (5 per PI): sprint planning (team, PO, SM), daily stand-up (team), backlog refinement (team, PO), sprint review (team, PO, stakeholders), sprint retrospective (team, SM).",
+            "ART level: Scrum of Scrums (weekly: Scrum Masters, RTE, others with dependencies), PO Sync (weekly: POs, Product Management, Business Owners), ART Sync (weekly: SoS and PO Sync together), System Demo (end of the PI, the entire ART and stakeholders)."
+          ],
+          "remember": "Review = team, PO and stakeholders. Retrospective = team and Scrum Master."
+        },
+        {
+          "title": "Inspect & Adapt, at the end of the PI",
+          "points": [
+            "PI System Demo: all teams show working software (1 to 2 hours, the entire ART and stakeholders).",
+            "Quantitative and qualitative measurement (1 hour): metrics such as predictability and velocity.",
+            "Problem-solving workshop (1 hour): root cause analysis and action items, the entire ART in breakouts.",
+            "Confidence vote on the improvement actions (15 minutes)."
+          ]
+        }
       ]
     },
     "scrum-at-scale": {
-      "minutes": 6, "src": ["g7", "Slides 16-28"],
+      "minutes": 6,
+      "src": [
+        "g7",
+        "Slides 16-28"
+      ],
       "chunks": [
-        { "title": "Scrum at Scale (S@S) roles", "ask": ["og-123"], "points": ["Scrum of Scrums Master (SoSM): facilitates the teams.", "Chief Product Owner (CPO): coordinates the PO team.", "Executive Action Team (EAT): facilitates team clusters in the double-scaled setting. It consists of the CPO, SoSM, CEO and company managers. Its goal: resolve escalated impediments and take strategic decisions."], "remember": "SoSM facilitates teams, CPO coordinates the POs, EAT resolves escalated impediments." },
-        { "title": "S@S basic components", "ask": ["og-127"], "points": ["Scaled Daily Scrum (SDS): at least one representative per team.", "Scaled Retrospective: all Scrum Masters of each team.", "Executive MetaScrum (EMS): the CPO and the POs prioritize the backlog, at least once per sprint. There is one backlog for all teams."], "remember": "One backlog for all teams." },
-        { "title": "Scaling the teams", "ask": ["og-125"], "points": ["A Scrum team is a Scrum Master and a Product Owner.", "A Scrum of Scrums (SoS) covers 5 teams.", "A SoSoS (Scrum of Scrum of Scrums) covers 25 teams: five Scrums of Scrums."] },
-        { "title": "The S@S cycle in weeks", "ask": ["og-131"], "points": ["Week 0: preparation (backlog refinement and vision alignment, in the Executive MetaScrum).", "Week 1: planning and alignment (MetaScrum, Scrum of Scrums planning).", "Weeks 1 to 10: execution, 5 sprints, with the scaled events.", "Week 10: Inspect & Adapt (scaled retrospective, Executive Action Team review). Week 11 and on: planning of the next cycle."] },
-        { "title": "The scaled events", "ask": ["og-126"], "points": ["Scaled Daily Scrum: daily, 15 minutes, one representative per team plus the SoSM.", "MetaScrum: weekly, 1 hour, CPO, POs and stakeholders (prioritize the shared backlog, align goals).", "Scrum of Scrums: weekly, 30 to 60 minutes, Scrum Masters, team representatives and the SoSM (resolve delivery impediments).", "Scaled Sprint Review: end of the sprint, optional, if cross-team. Scaled Retrospective: end of the sprint, optional.", "The slide on basic components says the EMS meets at least once per sprint; the events table says weekly. Both are on the slides."] },
-        { "title": "SAFe against Scrum at Scale", "points": ["The lecture's first comparison: SAFe is elaborate, Scrum at Scale is minimalistic.", "Both frameworks have a completely different approach. Their websites show the difference."], "remember": "SAFe = elaborate. S@S = minimalistic." }
+        {
+          "title": "Scrum at Scale (S@S) roles",
+          "ask": [
+            "og-123"
+          ],
+          "points": [
+            "Scrum of Scrums Master (SoSM): facilitates the teams.",
+            "Chief Product Owner (CPO): coordinates the PO team.",
+            "Executive Action Team (EAT): facilitates team clusters in the double-scaled setting. It consists of the CPO, SoSM, CEO and company managers. Its goal: resolve escalated impediments and take strategic decisions."
+          ],
+          "remember": "SoSM facilitates teams, CPO coordinates the POs, EAT resolves escalated impediments."
+        },
+        {
+          "title": "S@S basic components",
+          "ask": [
+            "og-127"
+          ],
+          "points": [
+            "Scaled Daily Scrum (SDS): at least one representative per team.",
+            "Scaled Retrospective: all Scrum Masters of each team.",
+            "Executive MetaScrum (EMS): the CPO and the POs prioritize the backlog, at least once per sprint. There is one backlog for all teams."
+          ],
+          "remember": "One backlog for all teams."
+        },
+        {
+          "title": "Scaling the teams",
+          "ask": [
+            "og-125"
+          ],
+          "points": [
+            "A Scrum team is a Scrum Master and a Product Owner.",
+            "A Scrum of Scrums (SoS) covers 5 teams.",
+            "A SoSoS (Scrum of Scrum of Scrums) covers 25 teams: five Scrums of Scrums."
+          ]
+        },
+        {
+          "title": "The S@S cycle in weeks",
+          "ask": [
+            "og-131"
+          ],
+          "points": [
+            "Week 0: preparation (backlog refinement and vision alignment, in the Executive MetaScrum).",
+            "Week 1: planning and alignment (MetaScrum, Scrum of Scrums planning).",
+            "Weeks 1 to 10: execution, 5 sprints, with the scaled events.",
+            "Week 10: Inspect & Adapt (scaled retrospective, Executive Action Team review). Week 11 and on: planning of the next cycle."
+          ]
+        },
+        {
+          "title": "The scaled events",
+          "ask": [
+            "og-126"
+          ],
+          "points": [
+            "Scaled Daily Scrum: daily, 15 minutes, one representative per team plus the SoSM.",
+            "MetaScrum: weekly, 1 hour, CPO, POs and stakeholders (prioritize the shared backlog, align goals).",
+            "Scrum of Scrums: weekly, 30 to 60 minutes, Scrum Masters, team representatives and the SoSM (resolve delivery impediments).",
+            "Scaled Sprint Review: end of the sprint, optional, if cross-team. Scaled Retrospective: end of the sprint, optional.",
+            "One source says the EMS meets at least once per sprint, another says weekly."
+          ]
+        },
+        {
+          "title": "SAFe against Scrum at Scale",
+          "points": [
+            "A first comparison: SAFe is elaborate, Scrum at Scale is minimalistic.",
+            "Both frameworks have a completely different approach. Their websites show the difference."
+          ],
+          "remember": "SAFe = elaborate. S@S = minimalistic."
+        }
       ]
     }
   }
