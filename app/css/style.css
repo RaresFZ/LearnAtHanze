@@ -771,3 +771,18 @@ kbd[data-key]::before { content: attr(data-key); }
 /* dark mode: a disabled button keeps its surface and fades its text and outline instead of becoming transparent */
 :root[data-theme="dark"] .btn:disabled, :root[data-theme="dark"] .btn.disabled { opacity: 1; color: var(--muted); background: var(--card); border-color: color-mix(in srgb, var(--line) 45%, transparent); }
 :root[data-theme="dark"] .btn:disabled .icon { opacity: 0.6; }
+
+
+
+/* dark mode: coloured buttons, toggles, answer states and tiles are a dark surface with a coloured outline and light coloured text, not a bright flat fill
+   (the contrast of the text on these surfaces is at least 5:1; light mode keeps its flat fills) */
+:root[data-theme="dark"] :is(.btn.yellow, .icon-btn.on, .pill-btn[aria-pressed="true"], .pad-bar .btn[aria-pressed="true"], .btn.g2, .btn.rate.good, .opt.right, .opt.matched, .mode.yellow, .tile.yellow, .chip.yellow) { --tint: var(--yellow); }
+:root[data-theme="dark"] :is(.toggle[aria-pressed="true"], .nav-q.done, .opt.picked, .mode.accent, .hero, .score-card, .chip.accent) { --tint: var(--accent); }
+:root[data-theme="dark"] :is(.btn.g0, .btn.rate.again, .opt.wrong, .opt.nope) { --tint: var(--red); }
+:root[data-theme="dark"] :is(.btn.g1, .btn.rate.easy, .mode.sky) { --tint: var(--sky); }
+:root[data-theme="dark"] :is(.btn.rate.hard, .btn.flagbtn[aria-pressed="true"], button.guess-chip[aria-pressed="true"], .mode.coral, .tile.coral) { --tint: var(--coral); }
+:root[data-theme="dark"] :is(.mode.lilac, .tile.lilac) { --tint: var(--lilac); }
+:root[data-theme="dark"] :is(.switcher a[aria-current="true"]) { --tint: var(--pill); }
+:root[data-theme="dark"] :is(.btn.yellow, .icon-btn.on, .pill-btn[aria-pressed="true"], .pad-bar .btn[aria-pressed="true"], .btn.g2, .btn.rate.good, .opt.right, .opt.matched, .mode.yellow, .tile.yellow, .chip.yellow, .toggle[aria-pressed="true"], .nav-q.done, .opt.picked, .mode.accent, .hero, .score-card, .chip.accent, .btn.g0, .btn.rate.again, .opt.wrong, .opt.nope, .btn.g1, .btn.rate.easy, .mode.sky, .btn.rate.hard, .btn.flagbtn[aria-pressed="true"], button.guess-chip[aria-pressed="true"], .mode.coral, .tile.coral, .mode.lilac, .tile.lilac, .switcher a[aria-current="true"]) { background: color-mix(in srgb, var(--tint) 16%, var(--btn)); color: color-mix(in srgb, var(--tint) 72%, #fff); border-color: var(--tint); }
+:root[data-theme="dark"] .mode:not(.cream) p, :root[data-theme="dark"] .hero .sub { color: var(--ink); }
+:root[data-theme="dark"] .scribble path { stroke: #fff; }
