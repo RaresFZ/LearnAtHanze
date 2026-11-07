@@ -76,6 +76,20 @@
     { "id": "pi-days", "title": "PI Planning: day 1 or day 2?", "topic": "safe", "src": ["g7", "Slides 9-10"], "terms": [
       { "name": "Day 1", "means": "Business context and visions, team breakouts #1, draft plan review, management review.", "tip": "Draft plans and leadership review.", "clues": ["Business context by Business Owners and Product Management.", "Teams identify stories, estimate story points and identify risks.", "Teams present draft plans.", "The evening management review for leadership only."] },
       { "name": "Day 2", "means": "Team breakouts #2, final plan review and confidence vote, PI objectives, program board, retrospective.", "tip": "Final plans and the vote.", "clues": ["Teams finalize plans and align dependencies.", "Final plan review with a confidence vote.", "The program board is finalized.", "The PI Planning retrospective, led by the RTE."] }
+    ] },
+    { "id": "bcg", "title": "BCG matrix: star, cow, question mark or dog?", "topic": "innovation", "src": ["g3", "Slide 14 (image)"], "terms": [
+      { "name": "Star", "means": "High market growth and high market share: invest.", "tip": "High growth, high share.", "clues": ["High market growth and a high market share.", "The advice in the BCG matrix is to invest."] },
+      { "name": "Cow", "means": "Low market growth and high market share.", "tip": "Low growth, high share.", "clues": ["Low market growth but a high market share.", "It is drawn with a dollar sign."] },
+      { "name": "Question mark", "means": "High market growth and low market share: prioritize or divest.", "tip": "High growth, low share.", "clues": ["High market growth but a low market share.", "The arrows say prioritize or divest.", "A very promising prototype that has no market share yet."] },
+      { "name": "Dog", "means": "Low market growth and low market share: kill.", "tip": "Low growth, low share.", "clues": ["Low market growth and a low market share.", "The advice in the BCG matrix is to kill it."] }
+    ] },
+    { "id": "pyramid", "title": "Heavy or lean pyramid?", "topic": "managing-spo", "src": ["g5", "Slide 8"], "terms": [
+      { "name": "Heavy pyramid", "means": "More experienced people: for tough jobs.", "tip": "Heavy = tough.", "clues": ["Relatively many experienced people.", "The right set-up for tough jobs."] },
+      { "name": "Lean pyramid", "means": "Few experienced people and many freshers: for light jobs.", "tip": "Lean = light.", "clues": ["Few experienced people and many freshers.", "The right set-up for light jobs."] }
+    ] },
+    { "id": "scaled-meetings", "title": "Weekly or daily: the scaled meetings", "topic": "scrum-at-scale", "src": ["g7", "Slides 12 and 24"], "terms": [
+      { "name": "SAFe Scrum of Scrums", "means": "Weekly, at ART level: Scrum Masters, the RTE and others with dependencies.", "tip": "SAFe: weekly.", "clues": ["It takes place weekly at ART level.", "Scrum Masters, the RTE and others with dependencies attend."] },
+      { "name": "S@S Scaled Daily Scrum", "means": "Daily, 15 minutes: one representative per team plus the SoSM.", "tip": "S@S: daily.", "clues": ["It is held daily for 15 minutes.", "One representative per team plus the Scrum of Scrums Master."] }
     ] }
   ]
 }

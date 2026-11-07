@@ -44,7 +44,8 @@
       "Work in blocks of 25 to 40 minutes, then take 5 to 10 minutes off. Short blocks beat one long sitting.",
       "Do not just re-read. After each lesson, answer the questions without looking back: pulling an answer out of your head is what makes it stick.",
       "The exam is multiple choice, so practise telling the right answer from the plausible wrong ones. When you miss a question, read why and say it in your own words.",
-      "Many questions ask for numbers and lists from the slides (COBIT, CMMI, ITIL, the audit steps, the PI cycle). Read the cheat sheet the evening before and again an hour before the exam."
+      "Many questions ask for numbers and lists from the course (COBIT, CMMI, ITIL, the audit steps, the PI cycle). Read the cheat sheet the evening before and again an hour before the exam.",
+      "The professor's practice test is under Simulation, Ready-made exams. It shows the kind of question to expect: \"which is NOT part of...\", numbers and durations, and short situations (\"an SPO has 8 experienced people...\")."
     ]
   },
   "cheatsheet": {
@@ -82,7 +83,7 @@
         "items": "Rules and procedures (COBIT, COSO): how do I keep control over my finance? Best practices (ITIL, BiSL, ASL, ISM, MOF): how do I organize my IT processes? Standards (ISO, ANSI, BSI): how do I control my quality?"
       },
       {
-        "name": "Numbers on the slides",
+        "name": "Numbers to know",
         "items": "COBIT: 2 areas, 5 domains, 37 processes, 210 practices, 1112 activities. CMMI: 5 maturity levels, 24 process areas. ITIL: 3 process clusters, 34 processes. ISO 20000: 30 processes. ISO 27001: 114 controls."
       },
       {
@@ -123,15 +124,23 @@
       },
       {
         "name": "SAFe",
-        "items": "ART = 5 to 12 teams on one product. PI = 4 or 5 two-week sprints. PI Planning = 2 days, all teams. Roles: RTE, Product Owner (program), System Architect, Scrum of Scrums Master. Inspect & Adapt in week 10."
+        "items": "ART = 5 to 12 teams on one product. PI = 4 or 5 two-week sprints (8 to 12 weeks). PI Planning = 2 days, all teams. Inspect & Adapt = 1 day, in week 10. Scrum of Scrums = weekly. Roles: RTE, Product Owner (program), System Architect, Scrum of Scrums Master."
       },
       {
         "name": "Scrum at Scale",
-        "items": "Roles: Scrum of Scrums Master (SoSM), Chief Product Owner (CPO), Executive Action Team (EAT). Events: Scaled Daily Scrum, Scaled Retrospective, Executive MetaScrum. One backlog for all teams."
+        "items": "Roles: Scrum of Scrums Master (SoSM), Chief Product Owner (CPO), Executive Action Team (EAT). Events: Scaled Daily Scrum (daily, 15 minutes), Scaled Retrospective, Executive MetaScrum (weekly). One backlog for all teams. Preparation & Planning day: MetaScrum in the morning, Scrum of Scrums planning in the afternoon."
       },
       {
         "name": "SAFe against Scrum at Scale",
-        "items": "SAFe is elaborate, Scrum at Scale is minimalistic. Both have a completely different approach."
+        "items": "SAFe is elaborate (Lean-Agile leadership, built-in quality, continuous delivery, DevOps), Scrum at Scale is minimalistic. Both have a completely different approach. The RTE and the System Architect are SAFe roles only."
+      },
+      {
+        "name": "BCG matrix",
+        "items": "Star = high growth, high share (invest). Question mark = high growth, low share (prioritize or divest). Cow = low growth, high share. Dog = low growth, low share (kill)."
+      },
+      {
+        "name": "Heavy and lean pyramid",
+        "items": "Heavy pyramid: relatively many experienced people, for tough jobs. Lean pyramid: few experienced people and many freshers (0 to 3 years), for light jobs. Agree the balance in the contract."
       }
     ]
   },
@@ -164,7 +173,8 @@
           "points": [
             "The Enron scandal shows the need for control and led to SOX.",
             "SOX makes public organisations responsible for: a Public Company Accounting Oversight Board; auditor independence (registration, procedures); corporate responsibility (individual responsibility); internal control (a yearly quality rating); enhanced financial disclosure (off-balance-sheet items); disclosure of knowable conflicts of interest; penalties for misconduct.",
-            "European counterparts: code Tabaksblat and IFRS."
+            "European counterparts: code Tabaksblat and IFRS.",
+            "Internal control is rated yearly. There are no monthly integrity audits in the list."
           ]
         },
         {
@@ -177,7 +187,8 @@
             "Software development standards and access policies.",
             "Incident management, problem management and technical support policies.",
             "Implementation and testing procedures.",
-            "Disaster recovery and physical security."
+            "Disaster recovery and physical security.",
+            "Why IT matters for SOX: the financial administration runs on IT, so IT has to be in control and transparent too. That is what the ITGC list asks for."
           ],
           "remember": "Incident and problem management are on the list, next to change management."
         },
@@ -185,7 +196,8 @@
           "title": "Standards, reference models and reality",
           "points": [
             "IT needs process standards and controls: you check reality against standards and reference models.",
-            "Related words for that check: compliance, conformity, accordance, consent."
+            "Related words for that check: compliance, conformity, accordance, consent.",
+            "An audit is meant to check whether processes comply with the reference models and standards."
           ]
         }
       ]
@@ -245,7 +257,8 @@
           "points": [
             "COBIT (Control Objectives for Information Technology): 2 areas, 5 domains, 37 processes, 210 governance and management practices, 1112 activities. The version is not stated, and numbers change between versions.",
             "CMMI (Capability Maturity Model Integration, from Carnegie Mellon University): maturity levels, for rating and comparing organisations or for process improvement. 5 maturity levels and 24 process areas, with goals, practices and work products.",
-            "ITIL: 3 process clusters and 34 processes."
+            "ITIL: 3 process clusters and 34 processes.",
+            "The maturity levels come from CMMI (not COBIT). ITIL has 34 processes, not more than 100."
           ],
           "remember": "COBIT 5 domains / 37 processes. CMMI 5 levels / 24 process areas. ITIL 34 processes."
         },
@@ -409,7 +422,8 @@
           "points": [
             "Low-end disruption: established companies add features too fast, so simple cheap products win at the low end (Aldi, Ryanair, IKEA). No new technology.",
             "New-market disruption: extend an innovation to a new market (eBay, Uber, e-bike). New technology, often internet or mobile.",
-            "Top-down: new products that outperform the existing ones, sold at a higher price at first (Apple, Tesla, PlayStation, Samsung)."
+            "Top-down: new products that outperform the existing ones, sold at a higher price at first (Apple, Tesla, PlayStation, Samsung).",
+            "Examples of the market approaches: top-down is an iPhone at a high price first; low-end is a cheap simple product without new technology; new-market takes an innovation to a new group of customers."
           ]
         },
         {
@@ -430,7 +444,7 @@
           ],
           "points": [
             "The basic question: is IT our primary business (A), or is IT supportive to the business (B)?",
-            "Strategy A (primary product): the BCG matrix. A star gets investment; a question mark is prioritised or divested; a dog is killed; a cash cow has low growth and high share.",
+            "Strategy A (primary product): the BCG matrix, with market growth and market share as axes. Star: high growth, high share (invest). Question mark: high growth, low share, promising but unproven (prioritize or divest). Cow: low growth, high share. Dog: low growth, low share (kill).",
             "The Business Model Canvas has nine blocks: Key Partners, Key Activities, Key Resources, Value Propositions, Customer Relationships, Channels, Customer Segments, Cost Structure, Revenue Streams."
           ]
         },
@@ -575,7 +589,8 @@
             "Hiring an SPO is a knowledge risk (vendor lock-in). Measures: keep SRO personnel on key positions; agree a minimum percentage (for example 25%) of SRO personnel; business continuity knowledge retention testing, which tests whether SRO personnel can do the work without SPO personnel.",
             "Pyramid management: balance experienced and inexperienced staff. A heavy pyramid (more experience) for tough jobs, a lean pyramid for light jobs. Freshers have 0 to 3 years, the top has more than 10 years. Agree the pyramid in the contract.",
             "Productivity must be expressed in numbers: function points for development jobs, the number of incidents or changes, managed applications, managed hardware objects.",
-            "In day-to-day work, solving problems together matters more than contract rules. Use the contract for escalation, as a 'big stick'."
+            "In day-to-day work, solving problems together matters more than contract rules. Use the contract for escalation, as a 'big stick'.",
+            "A heavy pyramid has relatively many experienced people (tough jobs). A lean pyramid has few experienced people and many freshers (light jobs)."
           ]
         },
         {
@@ -727,7 +742,8 @@
             "PI System Demo: all teams show working software (1 to 2 hours, the entire ART and stakeholders).",
             "Quantitative and qualitative measurement (1 hour): metrics such as predictability and velocity.",
             "Problem-solving workshop (1 hour): root cause analysis and action items, the entire ART in breakouts.",
-            "Confidence vote on the improvement actions (15 minutes)."
+            "Confidence vote on the improvement actions (15 minutes).",
+            "Inspect & Adapt takes 1 day. PI Planning takes 2 days. A PI cycle is 8 to 12 weeks."
           ]
         }
       ]
@@ -783,7 +799,8 @@
             "Week 0: preparation (backlog refinement and vision alignment, in the Executive MetaScrum).",
             "Week 1: planning and alignment (MetaScrum, Scrum of Scrums planning).",
             "Weeks 1 to 10: execution, 5 sprints, with the scaled events.",
-            "Week 10: Inspect & Adapt (scaled retrospective, Executive Action Team review). Week 11 and on: planning of the next cycle."
+            "Week 10: Inspect & Adapt (scaled retrospective, Executive Action Team review). Week 11 and on: planning of the next cycle.",
+            "The Preparation & Planning day: Executive MetaScrum in the morning, Scrum of Scrums planning in the afternoon (one day)."
           ]
         },
         {
@@ -803,7 +820,9 @@
           "title": "SAFe against Scrum at Scale",
           "points": [
             "A first comparison: SAFe is elaborate, Scrum at Scale is minimalistic.",
-            "Both frameworks have a completely different approach. Their websites show the difference."
+            "Both frameworks have a completely different approach. Their websites show the difference.",
+            "SAFe has incorporated a lot of other methods in its essential configuration: Lean-Agile leadership, built-in quality, continuous delivery and DevOps. S@S is minimalistic.",
+            "Frequency: the SAFe Scrum of Scrums is weekly. The S@S Scaled Daily Scrum is daily (15 minutes). The RTE and the System Architect are SAFe roles, not S@S roles."
           ],
           "remember": "SAFe = elaborate. S@S = minimalistic."
         }

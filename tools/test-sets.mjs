@@ -21,6 +21,13 @@ const TEACHER = ['Inventory', 'Lead time', 'Lean focuses on flow and waste; Six 
   'To reduce overload and expose blocked work', 'A form prevents submission when a required field is empty', 'Standardize', '68.4%',
   'To monitor performance and define responses to deterioration', 'It structures possible causes that still require verification', '10%'];
 
+// the 20 right answers of Exam B's practice test (the answers marked in the five screenshots in "exams studies/Outsourcing & Agile Governance/prep test"), in order
+const PREP = ['a top down market approach', 'They consist of a hierarchy of process clusters, processes and practices', 'Weekly', 'keep a part of the IT personnel inhouse', '8-12 weeks',
+  'Monthly integrity audits', 'best (lowest) price', 'There is one backlog for all teams', 'this is a heavy pyramid, ideal for tough jobs', 'all hierarchical levels are covered',
+  'treat the SPO personnel as your own colleagues', 'IT as an innovative product and IT supporting an innovation', 'IT is conditional for administrative transparency in organisations',
+  'SAFe has incorporated a lot of management methods like LEAN, DEVOPS and management of change, S@S has not', 'Yes, but only if you invest in face to face interactions to manage motivational and cultural issues',
+  'question mark', 'availability and performance levels during the exit phase', 'general technical services', 'Audits are meant to check if processes are compliant with reference models', 'The S@S planning event takes one day'];
+
 // the 26 right answers of the Scrum Kahoot (typos fixed), in order
 const KAHOOT = ['The Product Owner', 'Ensuring Scrum is understood and enacted', '1 month or less', 'The Daily Scrum', 'An ordered list of everything that is needed in a product',
   'To determine when a backlog item is complete', 'Transparency, Inspection and Adaptation', 'To inspect how the last Sprint went and plan improvements', 'Visualize the workflow',
@@ -29,12 +36,12 @@ const KAHOOT = ['The Product Owner', 'Ensuring Scrum is understood and enacted',
   'Kubernetes', 'To observe system performance and detect issues early', 'Performing tasks earlier in the development lifecycle', 'To deliver value through effective service management',
   'Start from scratch', 'The service value chain', 'To align services with changing business needs', 'It ensures alignment with the organisational objectives', 'Progress iteratively with feedback'];
 
-test('Exam A lists three ready-made exams, B none', () => {
+test('Exam A lists three ready-made exams, B one', () => {
   const sets = examSets(A.exam, A.questions);
   assert.deepEqual(sets.map((s) => [s.id, s.questions.length]), [['teacher-test', 20], ['scrum-kahoot', 26], ['answer-key', 20]]);
   assert.ok(sets.every((s) => s.minutes > 0 && s.title && s.description));
   const B = load('outsourcing-governance');
-  assert.deepEqual(examSets(B.exam, B.questions), []);
+  assert.deepEqual(examSets(B.exam, B.questions).map((x) => [x.id, x.questions.length]), [['prep-test', 20]]);
   assert.deepEqual(examSets(null, []), []);
   assert.equal(simConfig(A.exam).types.join(), 'mc', 'the exam is multiple choice');
 });
@@ -99,4 +106,40 @@ test('every lesson part with a quick check points to a question of its own topic
   }
   const events = lessons.topics['scrum-events'].chunks.map((c) => c.title);
   assert.deepEqual(events, ['The Sprint', 'Sprint Planning', 'The Daily Scrum', 'The Sprint Review', 'The Sprint Retrospective', 'The time-boxes on one page']);
+});
+
+test('Exam B: the practice test of the professor, 20 questions in order, options as in the screenshots, right answers as marked', () => {
+  const B = load('outsourcing-governance');
+  const set = examSets(B.exam, B.questions).find((x) => x.id === 'prep-test').questions;
+  assert.equal(set.length, 20);
+  set.forEach((q, i) => {
+    assert.equal(q.type, 'mc'); assert.equal(q.fixedOrder, true, `${q.id} keeps its option order`);
+    assert.equal(rightText(q), PREP[i], `question ${i + 1} (${q.id})`);
+    assert.deepEqual(q.src, ['pt', `Question ${i + 1}`]);
+    assert.equal(q.options.length, 4);
+    assert.ok(B.topics.some((t) => t.id === q.topic));
+  });
+  assert.deepEqual(set[4].options, ['2 weeks', '4-6 weeks', '8-10 weeks', '8-12 weeks']);
+  assert.deepEqual(set[15].options, ['cow', 'question mark', 'star', 'dog']);
+  // the practice test is a ready-made exam, not part of the topic quizzes' special handling: a set attempt scores the marked answers 100%
+  const at = newAttempt('outsourcing-governance', set, 30, 1000, () => 0.5);
+  for (const q of set) assert.deepEqual(at.orders[q.id], [0, 1, 2, 3]);
+  set.forEach((q) => { at.answers[q.id] = q.answer; });
+  const r = finalScores(at, new Map(B.questions.map((q) => [q.id, q])));
+  assert.equal(r.points, 20); assert.equal(r.pct, 100);
+});
+
+test('Exam B: the new multiple-choice questions do not give the answer away by length or position', () => {
+  const B = load('outsourcing-governance');
+  const fresh = B.questions.filter((q) => q.type === 'mc' && q.id > 'og-170');
+  assert.ok(fresh.length >= 15);
+  const pos = [0, 0, 0, 0];
+  let longest = 0;
+  for (const q of fresh) {
+    pos[q.answer]++;
+    const len = q.options.map((o) => o.length);
+    if (len[q.answer] > Math.max(...len.filter((_, i) => i !== q.answer))) longest++;
+  }
+  assert.ok(longest / fresh.length < 0.3, `the right option is the longest in ${longest} of ${fresh.length}`);
+  for (const n of pos) assert.ok(n / fresh.length > 0.15 && n / fresh.length < 0.35, `answer positions ${pos.join('/')}`);
 });

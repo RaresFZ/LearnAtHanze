@@ -6,6 +6,7 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
@@ -124,7 +125,16 @@ for (const [folder, examId] of Object.entries(EXAMS)) {
   const srcDir = path.join(STUDY, folder);
   const outDir = path.join(ROOT, 'content', examId, 'sources');
   fs.mkdirSync(outDir, { recursive: true });
-  for (const name of fs.readdirSync(srcDir).sort()) {
+  // Identical copies ("Lecture 1 (1).pptx", "Lecture 1 (2).pptx") are read once: the copy with the shortest name wins.
+  const files = fs.readdirSync(srcDir, { withFileTypes: true }).filter((d) => d.isFile()).map((d) => d.name).sort((a, b) => a.length - b.length || a.localeCompare(b));
+  const seen = new Map();
+  const names = files.filter((name) => {
+    const hash = createHash('sha1').update(fs.readFileSync(path.join(srcDir, name))).digest('hex');
+    if (seen.has(hash)) { console.log(`SAME  ${examId}/${name}: identical to ${seen.get(hash)}, not read again`); return false; }
+    seen.set(hash, name);
+    return true;
+  }).sort();
+  for (const name of names) {
     const handler = HANDLERS[path.extname(name).toLowerCase()];
     if (!handler) continue;
     if (ONLY && !name.toLowerCase().includes(ONLY)) continue;       // npm run extract -- scrum 1   (only files whose name contains that text)

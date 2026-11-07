@@ -111,7 +111,7 @@ export function renderSimSetup(root, ctx) {
     return FX.obj(h('div', { class: 'card sim-set' }, h('h3', null, s.title), h('p', null, s.description || ''), h('p', { class: 'fine' }, plural(s.questions.length, 'question', 'questions')), FX.obj(go, { cls: 'o-btn' })), { cls: 'o-tile', hover: false, fill: true });
   });
   const setsSection = setCards.length ? h('section', { class: 'field' }, h('h2', { class: 'small' }, 'Ready-made exams'),
-    h('p', { class: 'fine', style: { marginBottom: '12px' } }, 'The real thing, question for question, in the same order. Starting one replaces an unfinished exam.'), h('div', { class: 'sim-sets' }, setCards)) : null;
+    h('p', { class: 'fine', style: { marginBottom: '12px' } }, 'The questions your teachers gave you, in the same order. Starting one replaces an unfinished exam.'), h('div', { class: 'sim-sets' }, setCards)) : null;
 
   const sections = [
     setsSection,

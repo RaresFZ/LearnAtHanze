@@ -124,7 +124,7 @@ Both are built only from what the app already saves for that exam (nothing is es
 
 A timed run through mixed questions with one score at the end, per exam. **It is a practice setup, not the official format:** the course files do not state the real number of questions, time or pass mark. What they do say: Exam A is multiple choice, combined with Lean and Scrum (Scrum lecture 1, slide 5), and Exam B is a multiple-choice theory exam.
 
-**Ready-made exams (Exam A).** Above the mixed exam you find three exams that are exactly the teacher's: **The teacher's test exam** (the 20 questions of the Microsoft Forms test exam "Green Belt Practice Exam", same order, same options, 30 minutes), **The Scrum Kahoot** (the 26 questions of the class Kahoot: Scrum, Kanban, DevOps, ITIL) and **The 20-question answer key**. The Quiz page has the same three as "Ready-made sets", with feedback after every question. The Kahoot file only has the right answers, so the wrong options are written for this app; the right answers are the teacher's. Add your own sets with `"sets"` in `exam.json` and `"set"` on the questions. Set your own in the `simulation` block of `content/<exam>/exam.json`:
+**Ready-made exams.** Exam B has one: **The professor's practice test** (the 20 questions of the practice test he gave, typed over from the five screenshots in `exams studies/Outsourcing & Agile Governance/prep test`, same order and options, 30 minutes; the right answers are the ones marked in the screenshots). Exam A has three exams that are exactly the teacher's: **The teacher's test exam** (the 20 questions of the Microsoft Forms test exam "Green Belt Practice Exam", same order, same options, 30 minutes), **The Scrum Kahoot** (the 26 questions of the class Kahoot: Scrum, Kanban, DevOps, ITIL) and **The 20-question answer key**. The Quiz page has the same three as "Ready-made sets", with feedback after every question. The Kahoot file only has the right answers, so the wrong options are written for this app; the right answers are the teacher's. Add your own sets with `"sets"` in `exam.json` and `"set"` on the questions. Set your own in the `simulation` block of `content/<exam>/exam.json`:
 
 ```json
 "simulation": { "official": false, "questions": 20, "minutes": 30, "types": ["mc"], "passMark": null, "note": "...", "sets": [{ "id": "teacher-test", "title": "...", "minutes": 30, "description": "..." }] }
@@ -216,7 +216,7 @@ On the setup screen, choose **Study together** instead of **Quiz**. Pick the top
 npm run extract
 ```
 
-Reads `exams studies/` and rewrites `content/<exam>/sources/`. It reads `.pptx`, `.ppt`, `.pdf`, `.docx` and `.xlsx`, and needs `pdftotext` (poppler) for PDFs and LibreOffice for old `.ppt` files. To read only some files, give part of the name: `npm run extract -- scrum kahoot`. Files that cannot be read are listed in the `SKIP` table at the top of `tools/extract.mjs`.
+Reads `exams studies/` and rewrites `content/<exam>/sources/`. Identical copies of a file (for example `Lecture 1 (1).pptx` next to `Lecture 1.pptx`) are read once; the tool says `SAME` for the copies. It reads `.pptx`, `.ppt`, `.pdf`, `.docx` and `.xlsx`, and needs `pdftotext` (poppler) for PDFs and LibreOffice for old `.ppt` files. To read only some files, give part of the name: `npm run extract -- scrum kahoot`. Files that cannot be read are listed in the `SKIP` table at the top of `tools/extract.mjs`.
 
 ## Design
 
