@@ -93,7 +93,7 @@ export function renderQuizSetup(root, ctx, preset = {}) {
     b.addEventListener('click', (e) => FX.transition(() => runQuiz(root, ctx, s.questions, { label: s.title }), { x: e.clientX || centreOf(b).x, y: e.clientY || centreOf(b).y }));
     return FX.obj(b, { cls: 'o-btn' });
   });
-  const setsSection = sets.length ? h('section', { class: 'field' }, h('h2', { class: 'small' }, 'Ready-made sets'), h('p', { class: 'fine', style: { marginBottom: '10px' } }, 'The questions of the teacher, in their own order. For a timed run without feedback use Exam simulation.'), h('div', { class: 'row' }, setButtons)) : null;
+  const setsSection = sets.length ? h('section', { class: 'field' }, h('h2', { class: 'small' }, 'Ready-made sets'), h('p', { class: 'fine', style: { marginBottom: '10px' } }, (sets.some((s) => s.practice) ? 'The teacher\'s test first, then practice exams in the same style, written for this app. For a timed run without feedback use Exam simulation.' : 'The questions of the teacher, in their own order. For a timed run without feedback use Exam simulation.')), h('div', { class: 'row' }, setButtons)) : null;
 
   const sections = [
     setsSection,

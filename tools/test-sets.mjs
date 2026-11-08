@@ -36,12 +36,12 @@ const KAHOOT = ['The Product Owner', 'Ensuring Scrum is understood and enacted',
   'Kubernetes', 'To observe system performance and detect issues early', 'Performing tasks earlier in the development lifecycle', 'To deliver value through effective service management',
   'Start from scratch', 'The service value chain', 'To align services with changing business needs', 'It ensures alignment with the organisational objectives', 'Progress iteratively with feedback'];
 
-test('Exam A lists three ready-made exams, B one', () => {
+test('Exam A lists three ready-made exams, B the professor\'s test and ten practice exams', () => {
   const sets = examSets(A.exam, A.questions);
   assert.deepEqual(sets.map((s) => [s.id, s.questions.length]), [['teacher-test', 20], ['scrum-kahoot', 26], ['answer-key', 20]]);
   assert.ok(sets.every((s) => s.minutes > 0 && s.title && s.description));
   const B = load('outsourcing-governance');
-  assert.deepEqual(examSets(B.exam, B.questions).map((x) => [x.id, x.questions.length]), [['prep-test', 20]]);
+  assert.deepEqual(examSets(B.exam, B.questions).map((x) => [x.id, x.questions.length]), [['prep-test', 20], ...Array.from({ length: 10 }, (_, i) => [`practice-${i + 1}`, 20])]);
   assert.deepEqual(examSets(null, []), []);
   assert.equal(simConfig(A.exam).types.join(), 'mc', 'the exam is multiple choice');
 });
@@ -87,7 +87,7 @@ test('a ready-made exam attempt keeps the questions in order and scores the teac
   const at = newAttempt('lean-agile', set.questions, set.minutes, 1000, () => 0.5);
   assert.deepEqual(at.ids, set.questions.map((q) => q.id));
   for (const q of set.questions) assert.deepEqual(at.orders[q.id], [0, 1, 2, 3], 'options in the same order as the Forms');
-  set.questions.forEach((q) => { at.answers[q.id] = q.answer; });
+  set.questions.forEach((q) => { at.answers[q.id] = at.orders[q.id].indexOf(q.answer); });
   const byId = new Map(A.questions.map((q) => [q.id, q]));
   const r = finalScores(at, byId);
   assert.equal(r.points, 20); assert.equal(r.pct, 100);
@@ -142,4 +142,35 @@ test('Exam B: the new multiple-choice questions do not give the answer away by l
   }
   assert.ok(longest / fresh.length < 0.3, `the right option is the longest in ${longest} of ${fresh.length}`);
   for (const n of pos) assert.ok(n / fresh.length > 0.15 && n / fresh.length < 0.35, `answer positions ${pos.join('/')}`);
+});
+
+test('Exam B: ten practice exams of 20 multiple-choice questions, in the topic mix of the professor\'s test, no question twice', () => {
+  const B = load('outsourcing-governance');
+  const sets = examSets(B.exam, B.questions).filter((x) => x.practice);
+  assert.equal(sets.length, 10);
+  const prep = new Set(examSets(B.exam, B.questions).find((x) => x.id === 'prep-test').questions.map((q) => q.id));
+  const seen = new Set();
+  for (const set of sets) {
+    assert.equal(set.questions.length, 20, set.id);
+    assert.equal(new Set(set.ids).size, 20, `${set.id} lists a question twice`);
+    const topics = {};
+    for (const q of set.questions) {
+      assert.equal(q.type, 'mc', q.id); assert.ok(!q.flag, `${q.id} is flagged`); assert.ok(!prep.has(q.id), `${q.id} is in the professor's test`);
+      assert.ok(!q.fixedOrder, `${q.id}: the options of a practice exam are shuffled`);
+      assert.ok(!seen.has(q.id), `${q.id} is in two practice exams`); seen.add(q.id);
+      topics[q.topic] = (topics[q.topic] || 0) + 1;
+    }
+    for (const t of ['control-sox', 'frameworks', 'innovation', 'outsourcing-basics', 'managing-spo', 'safe', 'scrum-at-scale']) assert.ok(topics[t] >= 2, `${set.id} has ${topics[t] || 0} questions on ${t}`);
+    assert.equal((topics.audit || 0) + (topics['audit-report'] || 0), 1, `${set.id}: one question on the audit`);
+    assert.ok(set.questions.filter((q) => Number(q.id.slice(3)) >= 199).length >= 8, `${set.id} has too few new questions`);
+    assert.ok(set.minutes > 0 && set.title && set.description);
+  }
+  assert.equal(seen.size, 200);
+  // an attempt keeps the order of the exam and scores the right options 100%
+  const set = sets[3];
+  const at = newAttempt('outsourcing-governance', set.questions, set.minutes, 1000, () => 0.5);
+  assert.deepEqual(at.ids, set.ids);
+  set.questions.forEach((q) => { at.answers[q.id] = at.orders[q.id].indexOf(q.answer); });
+  const r = finalScores(at, new Map(B.questions.map((q) => [q.id, q])));
+  assert.equal(r.points, 20);
 });

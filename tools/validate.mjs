@@ -58,8 +58,16 @@ function checkSimulation(name, exam, questions) {
     ids.add(set.id);
     if (!set.title) err(`set "${set.id}" needs a title`);
     if (!(Number.isInteger(set.minutes) && set.minutes > 0)) err(`set "${set.id}": minutes must be a positive whole number`);
-    const inSet = questions.filter((q) => q.set === set.id);
-    if (!inSet.length) err(`set "${set.id}" has no questions (give questions "set": "${set.id}")`);
+    if (set.ids !== undefined) {                       // a set can list its questions by id instead (a question may then be in several sets)
+      if (!Array.isArray(set.ids) || !set.ids.length) err(`set "${set.id}": ids must be a non-empty list`);
+      else {
+        if (new Set(set.ids).size !== set.ids.length) err(`set "${set.id}": a question is listed twice`);
+        for (const id of set.ids) { const q = questions.find((x) => x.id === id); if (!q) err(`set "${set.id}": unknown question ${id}`); else if (q.type !== 'mc') err(`set "${set.id}": ${id} is not multiple choice`); }
+      }
+    } else {
+      const inSet = questions.filter((q) => q.set === set.id);
+      if (!inSet.length) err(`set "${set.id}" has no questions (give questions "set": "${set.id}" or list them in "ids")`);
+    }
   }
   for (const q of questions) if (q.set !== undefined && !ids.has(q.set)) err(`${q.id}: set "${q.set}" is not listed in exam.json simulation.sets`);
   const types = Array.isArray(s.types) ? s.types : TYPES;

@@ -123,7 +123,7 @@ test('the app: the switch is only for this computer, and the phone copy is a dif
     const exams = JSON.parse((await req(3789, '/api/exams')).body);
     assert.deepEqual(exams.map((e) => e.id).sort(), ['lean-agile', 'outsourcing-governance']);
     const full = JSON.parse((await req(3789, '/api/exams/outsourcing-governance')).body);
-    assert.ok(full.questions.length > 150 && full.lessons && full.exam.simulation.sets.length === 1);
+    assert.ok(full.questions.length > 150 && full.lessons && full.exam.simulation.sets.length === 11);
     assert.deepEqual(JSON.parse((await req(3789, '/api/phone/status')).body), { onPhone: true }, 'the phone copy is told apart by this answer');
     assert.equal((await req(3789, '/api/live/status')).status, 404);
     assert.equal((await req(3789, '/api/quit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' })).status, 405);

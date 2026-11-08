@@ -9,7 +9,11 @@ import { gradeFill } from './grade.js';
 export const DEFAULTS = { questions: 30, minutes: 45, types: ['mc', 'tf', 'fill', 'open'], official: false, passMark: null, note: '' };
 export const simConfig = (exam) => ({ ...DEFAULTS, ...(exam?.simulation || {}) });
 /** Ready-made exams listed in exam.json ("simulation.sets"): the questions whose "set" matches, in the order of questions.json. Sets without questions are left out. */
-export const examSets = (exam, questions) => (exam?.simulation?.sets || []).map((s) => ({ ...s, questions: questions.filter((q) => q.set === s.id) })).filter((s) => s.questions.length);
+/** A set lists its questions either with "ids" (in that order) or because the questions carry "set": its id. */
+export const examSets = (exam, questions) => {
+  const byId = new Map(questions.map((q) => [q.id, q]));
+  return (exam?.simulation?.sets || []).map((s) => ({ ...s, questions: Array.isArray(s.ids) ? s.ids.map((id) => byId.get(id)).filter(Boolean) : questions.filter((q) => q.set === s.id) })).filter((s) => s.questions.length);
+};
 export const simPool = (questions, cfg) => questions.filter((q) => cfg.types.includes(q.type));
 
 const shuffled = (arr, rnd = Math.random) => { const a = [...arr]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };

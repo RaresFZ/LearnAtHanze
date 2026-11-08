@@ -174,7 +174,8 @@
             "The Enron scandal shows the need for control and led to SOX.",
             "SOX makes public organisations responsible for: a Public Company Accounting Oversight Board; auditor independence (registration, procedures); corporate responsibility (individual responsibility); internal control (a yearly quality rating); enhanced financial disclosure (off-balance-sheet items); disclosure of knowable conflicts of interest; penalties for misconduct.",
             "European counterparts: code Tabaksblat and IFRS.",
-            "Internal control is rated yearly. There are no monthly integrity audits in the list."
+            "Internal control is rated yearly. There are no monthly integrity audits in the list.",
+            "The full name of the act: the Public Company Accounting Reform and Investor Protection Act."
           ]
         },
         {
@@ -436,7 +437,8 @@
           "points": [
             "New entrants use new technology to enter existing markets or explore new ones.",
             "Existing companies can defend by modernizing their old services or products. These are called sustaining innovations.",
-            "Example: chain stores starting webshops."
+            "Example: chain stores starting webshops.",
+            "Disruptive software of the near past: ChatGPT (against Wikipedia and Google), Facebook and WhatsApp, Photoshop, Amazon Cloud services."
           ]
         },
         {
@@ -489,7 +491,8 @@
             "Three columns. The industry verticals: services specific to a branch, at application or functional level.",
             "The horizontal services: general technical services (infrastructure, testing, BI) that serve all customers across the verticals.",
             "The supporting services: the general supporting departments.",
-            "There is no one best structure: it must be aligned with the (changing) strategy, for example after a take-over or merger."
+            "There is no one best structure: it must be aligned with the (changing) strategy, for example after a take-over or merger.",
+            "After a take-over or a merger the structure has to be redesigned for the new situation and strategy."
           ]
         },
         {
@@ -523,7 +526,8 @@
             "Organisations traditionally look at the lowest price, but the value is in an SPO that helps reduce cost, manage complexity and adopt innovation. Always choose innovation over price.",
             "Pitfall: an SPO with a reputation for quality and innovation that then focuses on growth loses its innovative spirit.",
             "Competitive differentiators: cultural match, superior client facing skills, superior business domain skills, high employee availability.",
-            "Hygiene criteria: financial health and stability of the SPO; employee stability, which means continuity of service delivery (for example measured by the attrition rate); the quality of the bench resources."
+            "Hygiene criteria: financial health and stability of the SPO; employee stability, which means continuity of service delivery (for example measured by the attrition rate); the quality of the bench resources.",
+            "The best employees are seldom available (\"on the bench\"), so an SRO must assess how the SPO assures the quality of its bench."
           ],
           "remember": "Innovation over price. Hygiene = financial health, employee stability, bench quality."
         },
@@ -804,7 +808,8 @@
             "Week 1: planning and alignment (MetaScrum, Scrum of Scrums planning).",
             "Weeks 1 to 10: execution, 5 sprints, with the scaled events.",
             "Week 10: Inspect & Adapt (scaled retrospective, Executive Action Team review). Week 11 and on: planning of the next cycle.",
-            "The Preparation & Planning day: Executive MetaScrum in the morning, Scrum of Scrums planning in the afternoon (one day)."
+            "The Preparation & Planning day: Executive MetaScrum in the morning, Scrum of Scrums planning in the afternoon (one day).",
+            "Inspect & Adapt in S@S: a scaled sprint review or demo (1 hour), a metrics review (1 hour), a scaled retrospective and problem solving (1 hour) and a commitment vote on the improvements and the next priorities (15 minutes)."
           ]
         },
         {
