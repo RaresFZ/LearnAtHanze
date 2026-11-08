@@ -786,3 +786,10 @@ kbd[data-key]::before { content: attr(data-key); }
 :root[data-theme="dark"] :is(.btn.yellow, .icon-btn.on, .pill-btn[aria-pressed="true"], .pad-bar .btn[aria-pressed="true"], .btn.g2, .btn.rate.good, .opt.right, .opt.matched, .mode.yellow, .tile.yellow, .chip.yellow, .toggle[aria-pressed="true"], .nav-q.done, .opt.picked, .mode.accent, .hero, .score-card, .chip.accent, .btn.g0, .btn.rate.again, .opt.wrong, .opt.nope, .btn.g1, .btn.rate.easy, .mode.sky, .btn.rate.hard, .btn.flagbtn[aria-pressed="true"], button.guess-chip[aria-pressed="true"], .mode.coral, .tile.coral, .mode.lilac, .tile.lilac, .switcher a[aria-current="true"]) { background: color-mix(in srgb, var(--tint) 16%, var(--btn)); color: color-mix(in srgb, var(--tint) 72%, #fff); border-color: var(--tint); }
 :root[data-theme="dark"] .mode:not(.cream) p, :root[data-theme="dark"] .hero .sub { color: var(--ink); }
 :root[data-theme="dark"] .scribble path { stroke: #fff; }
+
+/* ---- on a phone: notches and the home bar (the app runs full screen from the home screen) ---- */
+body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+.topbar { padding-top: env(safe-area-inset-top); }
+.page { padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
+@media (max-width: 700px) { .page { padding-bottom: calc(72px + env(safe-area-inset-bottom)); } }
+html { -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: transparent; }

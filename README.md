@@ -148,6 +148,29 @@ Four short games per exam, built only from that exam's own questions and answers
 
 Match up and Sort it use the pairs listed in `content/<exam>/games.json` (`"pairs": [question ids]`: the question is the clue, its answer is the match). Pick short, unambiguous questions without a source flag; no two pairs in a round may share an answer. Speed round and Combo run pick short questions automatically (flagged ones are left out). The answers you give in the Speed round and Combo run count toward your accuracy and weak spots, but not toward your carried-over streak. `npm run validate` checks `games.json`.
 
+## Study on your phone (learn in bed)
+
+The whole app runs on your phone too: lessons, quiz, flashcards, simulation, cheat sheet, everything except hosting a Live Quiz.
+
+1. The phone and the computer must be on the **same Wi-Fi** (not a guest network). The computer stays on and awake.
+2. Start the app (`LearnAtHanze.bat`). On the home screen choose **Study on your phone**, then **Turn on phone access**.
+3. The first time, Windows asks if Node.js may use the network: tick **Private networks** only and press Allow access. (If you pressed Cancel, run the PowerShell line below once, as administrator.)
+4. On the phone, **scan the QR code with the camera** (Chrome or Safari). The code opens the app and pairs the phone with your computer, so your progress is shared (see below). Typing the address (it looks like `192.168.0.12:3739`) also opens the app, but then the phone is not paired.
+5. Put it on the home screen (from the page you opened with the QR code) so it opens full screen with its own icon. **iPhone:** Share button, then Add to Home Screen. **Android:** the three dots, then Add to Home screen (or Install app).
+6. When you are done, press **Turn off phone access** (or stop the app). It also switches itself off after 8 hours without use.
+
+```
+New-NetFirewallRule -DisplayName "LearnAtHanze phone study" -Direction Inbound -Protocol TCP -LocalPort 3739 -Action Allow -Profile Private
+```
+
+- **Your progress is the same on the phone and on the computer.** Each device keeps its own part of your progress in its browser and sends it to your computer; every device shows the sum of all parts. So an answer you give on the phone counts on the computer and the other way round, nothing is counted twice, and one device never overwrites the other. It syncs a few seconds after you answer, when you open the app, every minute while it is open, and with **Sync now** at the bottom of an exam page. **Reset progress** and **Import progress** apply to all your devices (an export holds the sum of all of them).
+- **Where it is kept.** On your computer, in the file `.lah-sync.json` in the app folder (not uploaded anywhere, ignored by git, left alone by the launcher update; delete it to forget the synced copies, each device keeps its own part). The same file holds the **pairing key** that is in the QR code. **New pairing code** on the Study on your phone screen makes the old one useless: phones have to scan again.
+- **What is not shared:** the theme, the study timer, read-aloud settings and an exam simulation in progress stay on each device. Two browsers on the same computer (say Chrome and Edge) count as two devices and sync too.
+- **When the computer is off or the phone is away from your Wi-Fi,** each device just keeps its own part and they join again at the next sync. Nothing is lost.
+- **It needs the computer.** The phone copy is served by the computer, so it only works while the app is running at home. If the computer restarts or gets another address from the router, scan the new code and add the icon again.
+- **Safety.** While phone access is on, anyone on the same Wi-Fi who knows the address can open the app. They can only read the study material: the phone copy answers GET requests only, has no Live Quiz host controls and cannot see or change anything on the computer. Your course files are not reachable, and your progress can only be read or written with the pairing key from the QR code (sent over your own Wi-Fi without encryption, like the rest of the page). Port **3739**, only while you switch it on (**3738** is the Live Quiz, **3737** is the app and stays on this computer). `LIVE_LAN=off` keeps the network closed, `PHONE_PORT=3749` picks another port.
+- **Nothing to install on the phone**, no account, no internet needed: the phone talks to your computer only.
+
 ## Live Quiz (play with friends on their phones)
 
 A Kahoot-style game for one exam at a time. You host it on this computer's screen, friends join on their phones with a code, no account and nothing to install.
@@ -186,7 +209,7 @@ On the setup screen, choose **Study together** instead of **Quiz**. Pick the top
 **What it does not touch**
 
 - Your solo progress, streaks and flashcard schedules are never read or changed. A live game saves nothing about you.
-- Only the phone page can be reached from the network, on its own port (**3738**), and only while a game is hosted. The rest of the app, your course files and your progress stay on `localhost:3737`, which only this computer can open. **Phones can join** (above the code) switches the network off at once; **End game** closes the port.
+- Only the phone page can be reached from the network, on its own port (**3738**), and only while a game is hosted (plus the read-only study copy on **3739**, only while you switch on "Study on your phone"). The rest of the app, your course files and your progress stay on `localhost:3737`, which only this computer can open. **Phones can join** (above the code) switches the network off at once; **End game** closes the port.
 
 **If a phone can't connect** (the same help is in the lobby, under "Phones can't connect?"). Try in this order:
 
@@ -230,13 +253,14 @@ Reads `exams studies/` and rewrites `content/<exam>/sources/`. Identical copies 
 
 ## Progress
 
-- Saved automatically in your browser (localStorage), separately per exam. This includes each question's history, the current streak (correct answers in a row, carried over between quizzes), the best streak, the flashcard schedule, your best mini game scores and a list of your sessions.
+- Saved automatically in your browser (localStorage), separately per exam. If you also use the phone (see "Study on your phone"), each device keeps its own part and your computer joins them: every device shows the sum. This includes each question's history, the current streak (correct answers in a row, carried over between quizzes), the best streak, the flashcard schedule, your best mini game scores and a list of your sessions.
 - Older saves keep working: any field a save is missing is filled with a default when it loads.
 - Use **Export progress** on an exam's page to save a backup file named `learnathanze-<exam>-progress-YYYY-MM-DD.json` (always ending in `.json`; your browser may ask where to put it), and **Import progress** to restore it. An import is refused if the file belongs to the other exam, or is not a LearnAtHanze progress file. An exam simulation that is still running is not part of the backup.
-- Reset needs two clicks. It only resets the exam you are on.
+- Reset needs two clicks. It only resets the exam you are on (on all your devices, once they sync).
 
 ## Phone and accessibility
 
+- To study on your phone, see "Study on your phone" above.
 - Laptop first, phone friendly: every screen was checked at 390px wide with no sideways scroll. On touch screens the tap targets are at least 44px, tilt effects follow a mouse but never a finger, and Sort it can be played with a drag, a tap or the keyboard.
 - Keyboard: every action has a key (shown on screen), and the focus ring is always visible. Colours keep text readable in light and dark (checked with Lighthouse: accessibility 100 on the screens that were audited).
 - Motion: "reduce motion" (top bar, or your system setting) makes every animation land instantly.

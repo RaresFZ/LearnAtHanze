@@ -11,6 +11,8 @@ import { renderProgress } from './progress-view.js';
 import { renderSimSetup, destroySim } from './simulation.js';
 import { renderGamesHub, renderGameIntro, destroyGame } from './games.js';
 import { renderLiveSetup, renderLiveHost, destroyLive } from './live.js';
+import { renderPhone } from './phone.js';
+import { configureSync, takeKeyFromUrl, syncAll, startAutoSync, syncState, paired } from './sync.js';
 import { renderLearnHome, renderLearnTopic, renderCheatsheet, destroyLearn, learnCounts } from './learn.js';
 import { renderCalcHome } from './calc.js';
 import { renderConfuseHome } from './confuse.js';
@@ -23,6 +25,8 @@ const switcher = document.getElementById('switcher');
 const tools = document.getElementById('tools');
 let exams = [];
 let wiggled = false;
+// The phone copy of the app (server/phone.js) answers { onPhone: true } on /api/phone/status; the computer's own copy answers its status.
+let onPhone = false;
 
 async function api(path) {
   const res = await fetch(path);
@@ -94,6 +98,11 @@ async function renderHome() {
   setAccent(null);
   const list = exams.length ? exams : await api('/api/exams');
   const full = await Promise.all(list.map((e) => api(`/api/exams/${e.id}`)));
+  const phoneTile = onPhone
+    ? h('p', { class: 'fine phone-note' }, "This is the phone copy. Your progress here stays in this phone's browser and is separate from the computer.")
+    : FX.obj(h('a', { class: 'mode lilac phone-tile', href: '#/phone' },
+      h('div', { class: 'wide-main' }, icon('smartphone', 40), h('div', null, h('h3', null, 'Study on your phone'), h('p', null, 'Open this app on your phone, for example to learn in bed.')))),
+    { cls: 'o-mode o-wide', tilt: 4, shine: true, z: 18 });
   const tiles = list.map((e, k) => {
     const due = cardStatus(full[k]).due;
     const practised = Object.keys(loadProgress(e.id).questions).length;
@@ -105,8 +114,22 @@ async function renderHome() {
   mount(root,
     h('h1', { class: 'pagetitle' }, 'Choose an exam'),
     h('p', { class: 'lead' }, 'Each exam keeps its own questions, progress and statistics. Nothing is shared between them.'),
-    h('div', { class: 'home-grid' }, tiles));
+    h('div', { class: 'home-grid' }, tiles),
+    phoneTile);
   FX.enter(tiles, { delay: FX.base(), stagger: 0.09 });
+}
+
+/** One line about the sync, for the footer of the exam page. */
+function syncText(st, phone, isPaired) {
+  if (!isPaired) return 'This phone is not paired with your computer yet, so its progress stays on the phone. On the computer open Study on your phone and scan the QR code to share progress.';
+  const ago = st.last ? (Date.now() - st.last < 90000 ? 'just now' : `${Math.round((Date.now() - st.last) / 60000)} min ago`) : 'not yet';
+  if (st.status === 'syncing') return 'Syncing your progress ...';
+  if (st.status === 'offline') return `The ${phone ? 'computer' : 'app'} cannot be reached, so your progress is only on this device for now. It syncs again as soon as it can (last sync: ${ago}).`;
+  if (st.status === 'error' || st.status === 'unpaired') return st.error || 'Sync did not work. Try Sync now.';
+  const others = st.devices - 1;
+  if (!st.last) return phone ? 'Your progress is shared with your computer.' : 'Your progress is kept on this computer too, so other devices can join.';
+  if (phone && others === 0) return `Paired with your computer: your progress is saved there too. Last synced ${ago}.`;
+  return others > 0 ? `Your progress is shared with ${others} other device${others === 1 ? '' : 's'}. Last synced ${ago}. Reset and Import progress apply to all of them.` : `Your progress is kept on this computer. Open the app on your phone (Study on your phone) and it follows. Last synced ${ago}.`;
 }
 
 // ---------------------------------------------------------------- exam overview
@@ -168,7 +191,7 @@ async function renderExam(id) {
 
   // study modes: only the ones that exist
   const due = cardStatus(data).due;
-  const live = await api('/api/live/status').catch(() => ({ active: false }));
+  const live = onPhone ? null : await api('/api/live/status').catch(() => ({ active: false }));
   const weakNow = weakCounts(data);
   const weakN = weakNow.questions + weakNow.cards;
   const learn = data.lessons ? learnCounts(data) : null;
@@ -198,7 +221,7 @@ async function renderExam(id) {
     FX.obj(h('a', { class: 'mode yellow', href: `#/exam/${id}/progress` },
       icon('chart-column', 40), h('div', null, h('h3', null, 'Progress'), h('p', null, 'Accuracy over time, mastery per topic, streaks.'))),
     { cls: 'o-mode', tilt: 8, shine: true, fill: true, z: 18 }),
-    FX.obj(h('a', { class: 'mode coral', href: `#/exam/${id}/live` },
+    onPhone ? null : FX.obj(h('a', { class: 'mode coral', href: `#/exam/${id}/live` },
       h('div', { class: 'wide-main' }, icon('radio', 40), h('div', null, h('h3', null, 'Live Quiz'), h('p', null, 'Host a game on this screen. Friends join on their phones with a code.'))),
       h('span', { class: 'chip' }, live.active ? 'Hosting now' : 'Multiplayer')),
     { cls: 'o-mode o-wide', tilt: 4, shine: true, z: 18 }),
@@ -237,6 +260,13 @@ async function renderExam(id) {
   const importBtn = h('button', { class: 'btn', type: 'button' }, 'Import progress');
   importBtn.addEventListener('click', () => importInput.click());
 
+  // sync: the progress of your devices (the computer, the phone) is shared through the computer (sync.js)
+  const syncLine = h('p', { class: 'fine', role: 'status' });
+  syncLine.update = () => { syncLine.textContent = syncText(syncState, onPhone, paired()); syncBtn.hidden = !paired(); };
+  const onSync = () => { if (syncLine.isConnected) syncLine.update(); else window.removeEventListener('lah:sync', onSync); };
+  window.addEventListener('lah:sync', onSync);
+  const syncBtn = h('button', { class: 'btn', type: 'button' }, icon('refresh-cw', 16), ' Sync now');
+  syncBtn.addEventListener('click', async () => { if (await syncAll(exams.map((e) => e.id))) renderExam(id); });
   const freshNote = seen.length === 0
     ? h('div', { class: 'fresh-note' }, FX.mascot(), h('div', { class: 'bubble' }, 'Nothing practised yet. Start with any topic, or a random mix.'))
     : null;
@@ -247,8 +277,9 @@ async function renderExam(id) {
     h('h2', { class: 'section' }, 'Ways to study'), h('div', { class: 'modes' }, modes),
     h('h2', { class: 'section' }, 'Topics', h('span', { class: 'lab' }, 'Pick one to practise')), topicList,
     h('h2', { class: 'section' }, 'Your progress'),
-    h('p', { class: 'fine' }, 'Saved in this browser only. Export a backup now and then.'),
-    h('div', { class: 'tools-row' }, FX.obj(exportBtn, { cls: 'o-btn' }), FX.obj(importBtn, { cls: 'o-btn' }), FX.obj(resetBtn, { cls: 'o-btn' }), importInput), status);
+    syncLine,
+    h('div', { class: 'tools-row' }, syncBtn, FX.obj(exportBtn, { cls: 'o-btn' }), FX.obj(importBtn, { cls: 'o-btn' }), FX.obj(resetBtn, { cls: 'o-btn' }), importInput), status);
+  syncLine.update();
 
   // entrance: hero drops, tiles drop in 60ms apart with counting numbers, then modes and rows
   const base = FX.base();
@@ -374,6 +405,8 @@ async function route() {
     else if ((m = path.match(/^\/exam\/([a-z0-9-]+)\/simulation$/))) await renderSimulation(m[1]);
     else if ((m = path.match(/^\/exam\/([a-z0-9-]+)\/games$/))) await renderGames(m[1]);
     else if ((m = path.match(/^\/exam\/([a-z0-9-]+)\/games\/(match|sort|speed|combo)$/))) await renderGames(m[1], m[2]);
+    else if (path === '/phone') { if (onPhone) FX.navigate('#/'); else await renderPhone(root); }
+    else if (onPhone && /^\/exam\/[a-z0-9-]+\/live/.test(path)) FX.navigate('#/');
     else if ((m = path.match(/^\/exam\/([a-z0-9-]+)\/live$/))) await renderLive(m[1]);
     else if ((m = path.match(/^\/exam\/([a-z0-9-]+)\/live\/host$/))) renderLiveHostView(m[1]);
     else { setAccent(null); mount(root, h('p', { class: 'lead' }, 'This page does not exist. ', h('a', { href: '#/', class: 'back' }, 'Go to the exam list'))); }
@@ -389,6 +422,13 @@ FX.reroute = route;
 (async function boot() {
   FX.boot();
   try { exams = await api('/api/exams'); } catch (e) { errorView(e); return; }
+  onPhone = !!(await fetch('/api/phone/status').then((r) => r.json()).catch(() => ({}))).onPhone;
+  if (onPhone) { document.documentElement.classList.add('on-phone'); takeKeyFromUrl(); }
+  configureSync({ onPhone });
+  const examIds = () => exams.map((e) => e.id);
+  // fetch what your other devices did before the first screen is drawn (but never wait long)
+  await Promise.race([syncAll(examIds()), new Promise((r) => setTimeout(r, 2500))]);
+  startAutoSync(examIds, () => { if (/^#?\/?$|^#\/exam\/[a-z0-9-]+$/.test(location.hash)) FX.reroute(); });
   buildTopbar();
   window.addEventListener('hashchange', route);
   route();

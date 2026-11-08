@@ -310,3 +310,28 @@ body { --opt-1: var(--coral); --opt-2: var(--lilac); --opt-3: var(--sky); --opt-
 .pr-ready { width: 100%; }
 .pr .obj[hidden] { display: none; }
 @media (max-width: 600px) { .pace-bar { margin-left: 0; } }
+
+/* ---- Study on your phone (#/phone) ---- */
+.phone-card { margin-top: 26px; }
+.phone-state { display: inline-block; font: 700 13px/1 var(--mono); letter-spacing: 0.04em; text-transform: uppercase; padding: 8px 12px; border: 2px solid var(--line); border-radius: var(--radius); margin-bottom: 14px; }
+.phone-state.on { background: var(--yellow); color: var(--on-fill); border-color: var(--line); }
+.phone-status > p { max-width: 56ch; margin-bottom: 14px; }
+.phone-open { display: grid; grid-template-columns: 200px 1fr; gap: 24px; align-items: start; }
+.phone-open .qr-tile { grid-column: auto; grid-row: auto; width: 200px; }
+.phone-url { font: 800 28px/1.15 var(--mono); letter-spacing: -0.02em; word-break: break-all; margin-bottom: 12px; }
+.phone-pick { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; align-items: center; }
+.phone-pick .fine { flex-basis: 100%; }
+.phone-h { font: 800 26px/1.1 var(--head); letter-spacing: -0.03em; margin: 36px 0 14px; }
+.phone-steps { display: grid; gap: 14px; counter-reset: none; }
+.phone-step { display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: start; background: var(--card); padding: 16px 18px; border: 2px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+.phone-step h3 { font: 800 19px/1.2 var(--head); letter-spacing: -0.02em; margin-bottom: 4px; }
+.phone-n { display: grid; place-items: center; width: 44px; height: 44px; font: 800 20px/1 var(--head); border: 2px solid var(--line); border-radius: var(--radius); background: var(--page); }
+.phone-notes { display: grid; gap: 10px; max-width: 64ch; }
+.phone-notes li { padding-left: 18px; position: relative; }
+.phone-notes li::before { content: ''; position: absolute; left: 0; top: 0.7em; width: 7px; height: 7px; background: var(--ink); }
+.phone-tile { margin-top: 20px; }
+.phone-note { margin-top: 26px; max-width: 60ch; }
+@media (max-width: 720px) {
+  .phone-open { grid-template-columns: 1fr; }
+  .phone-url { font-size: 22px; }
+}
