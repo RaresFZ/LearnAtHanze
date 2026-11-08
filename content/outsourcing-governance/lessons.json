@@ -188,7 +188,7 @@
             "Incident management, problem management and technical support policies.",
             "Implementation and testing procedures.",
             "Disaster recovery and physical security.",
-            "Why IT matters for SOX: the financial administration runs on IT, so IT has to be in control and transparent too. That is what the ITGC list asks for."
+            "Why SOX matters for IT (the answer of the practice test): IT is conditional for administrative transparency in organisations. The financial administration runs on IT, so IT has to be in control too. That is what the ITGC list asks for."
           ],
           "remember": "Incident and problem management are on the list, next to change management."
         },
@@ -246,7 +246,9 @@
             "Best practices: ITIL, BiSL, ASL, ISM and MOF. They answer 'How do I organize my IT processes?'",
             "Standards: ISO, ANSI and BSI. They answer 'How do I control my quality?'",
             "In the coverage picture COSO has the widest scope on top, with COBIT below it. ITIL sits lower, on the 'how' side.",
-            "Frameworks in general are a structured set of processes, practices and professional products."
+            "Frameworks in general are a structured set of processes, practices and professional products.",
+            "Audits are meant to check whether processes are compliant with the reference models and standards: reality is checked against them.",
+            "A framework is built as a hierarchy: ITIL has process clusters that hold processes, and COBIT has domains, processes, practices and activities."
           ]
         },
         {
@@ -496,7 +498,8 @@
             "og-070"
           ],
           "points": [
-            "Top IT SPOs replicate their behaviour to their customers. Two key pillars: competent, loyal and motivated employees, and specialized (on the customer's business) unique services.",
+            "SPOs can distinguish themselves in the market by: the best client facing managers, business expertise, knowing and speaking the local market habits and language, the cheapest qualified labour force, technical edge expertise (for example cloud) and methodological expertise (for example agile).",
+            "Top IT SPOs replicate their behaviour to their customers and push them to greater achievements too. Two key pillars: competent, loyal and motivated employees, and specialized (on the customer's business) unique services.",
             "A fair appraisal system motivates people. The attrition rate (the percentage of employees who leave in a time frame) shows motivation: a low rate means better motivated personnel.",
             "Consultative selling (the SPO's view): understand the customer's business, assess its market, list its challenges and map it against its competitors, so services are tailored."
           ]
@@ -520,7 +523,7 @@
             "Organisations traditionally look at the lowest price, but the value is in an SPO that helps reduce cost, manage complexity and adopt innovation. Always choose innovation over price.",
             "Pitfall: an SPO with a reputation for quality and innovation that then focuses on growth loses its innovative spirit.",
             "Competitive differentiators: cultural match, superior client facing skills, superior business domain skills, high employee availability.",
-            "Hygiene criteria: financial health and stability of the SPO; employee stability (for example the attrition rate); the quality of the bench resources."
+            "Hygiene criteria: financial health and stability of the SPO; employee stability, which means continuity of service delivery (for example measured by the attrition rate); the quality of the bench resources."
           ],
           "remember": "Innovation over price. Hygiene = financial health, employee stability, bench quality."
         },
@@ -528,7 +531,7 @@
           "title": "Vendor lock-in",
           "points": [
             "Vendor lock-in = too much dependency: you cannot get rid of the SPO.",
-            "Measures: perform at least 20% of the IT services in-house; let IT staff spread across all IT functions of the SPO so they learn the outsourced work; fill key positions in outsourced projects (architecture, lead designers, lead developers).",
+            "Measures: perform at least 20% of the IT services in-house, so a part of the IT personnel stays in-house; let IT staff spread across all IT functions of the SPO so they learn the outsourced work; fill key positions in outsourced projects (architecture, lead designers, lead developers).",
             "Further knowledge measures include a minimum of 25% SRO personnel. Keep the two figures apart: 20% is about services, 25% about personnel."
           ],
           "remember": "At least 20% of the services in-house."
@@ -601,7 +604,8 @@
           "points": [
             "For: lower cost than headquarters, knowledge stays inside, focus on the core business at home.",
             "Risk: captives tend to be seen as cost centres or back offices, which gives low empowerment and low motivation (cultural differences add to this).",
-            "Face-to-face contact is essential: letting employees and management travel is worth the money. Collaboration motivates, just taking orders demotivates."
+            "Face-to-face contact is essential: letting employees and management travel is worth the money. Collaboration motivates, just taking orders demotivates.",
+            "So an overseas IT department only pays off if you invest in face-to-face interactions to manage the motivational and cultural issues."
           ]
         },
         {
@@ -700,7 +704,7 @@
             "Week 0: PI Planning preparation. Week 1: PI Planning (2 days).",
             "Weeks 1 to 10: execution, 5 sprints, with sprint planning, daily stand-ups, sprint reviews, retrospectives, the PI System Demo, Scrum of Scrums, PO Sync and ART Sync.",
             "Week 10: Inspect & Adapt (1 day). Week 11 and on: the next PI Planning.",
-            "Some material also says 8 to 12 weeks for a PI; the standard table shows 10 weeks with 5 sprints."
+            "A PI cycle is 8 to 12 weeks (4 or 5 sprints). The PI table shows the 5-sprint case: 10 weeks."
           ]
         },
         {
@@ -821,7 +825,7 @@
           "points": [
             "A first comparison: SAFe is elaborate, Scrum at Scale is minimalistic.",
             "Both frameworks have a completely different approach. Their websites show the difference.",
-            "SAFe has incorporated a lot of other methods in its essential configuration: Lean-Agile leadership, built-in quality, continuous delivery and DevOps. S@S is minimalistic.",
+            "SAFe has incorporated a lot of other methods in its essential configuration: Lean-Agile leadership, built-in quality, continuous delivery, DevOps and an implementation roadmap for change. In short: SAFe has incorporated management methods like LEAN, DevOps and management of change. S@S has not: it is minimalistic.",
             "Frequency: the SAFe Scrum of Scrums is weekly. The S@S Scaled Daily Scrum is daily (15 minutes). The RTE and the System Architect are SAFe roles, not S@S roles."
           ],
           "remember": "SAFe = elaborate. S@S = minimalistic."
